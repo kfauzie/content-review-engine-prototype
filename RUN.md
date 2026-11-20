@@ -21,7 +21,7 @@
 | 3. Interview | Kevin | Notes in the Notion page | Done |
 | 4. Research synthesis | `pm-1-data-discovery` (Answer) | Below; code in `notebooks/synthesis.py` | Done |
 | 5. Solution concept | `pm-3-problem-to-solution-concept` | [Notion page](https://app.notion.com/p/41e8f31ef05f8137b4bbddec89a6656c): eval plan and dry run, solution after the eval | Revised |
-| 6. Design | `pm-4-solution-design` | | |
+| 6. Design | `pm-4-solution-design` | [design/screen-specs.md](design/screen-specs.md); screen 1 [design/1-scorecard.png](design/1-scorecard.png). Screen 2 waits for agreement on screen 1 | In review |
 | 7. Prototype | `pm-5-mvp-build` | | |
 | 8. MVP review | `pm-6-mvp-review` | | |
 
