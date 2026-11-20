@@ -51,6 +51,39 @@ TEST_SET_NOTES = {
 }
 
 
+# made-up reviewers (Athens compliance team and Legal), assigned in turn; possible MNPI goes to Legal
+REVIEWERS = {"Material non-public information": ["Sophie Laurent, Legal Counsel", "Nikos Andreou, Senior Compliance Manager"],
+             "other": ["Eleni Papadaki, Compliance Analyst", "Dimitris Vlachos, Compliance Analyst", "Katerina Ioannou, Compliance Analyst"]}
+# the three fixes, from the reviewers' comments and the agents' root-cause analysis (Kevin's judgement in tagging)
+FIXES = [
+    {"id": "declaration", "title": "Read each answer with the expert's declaration and the question before it",
+     "why": "The AI judged answers on their own, so \u201cwe\u201d, \u201ctheir\u201d and \u201cthe board\u201d never linked back to the employer, client or former employer in the declaration.",
+     "how": ["Give the AI the declaration and the preceding question with every answer",
+             "Resolve \u201cwe\u201d, \u201cour\u201d and \u201ctheir\u201d to a named company before judging",
+             "Check restrictions and leaving dates against what is said"]},
+    {"id": "people", "title": "Check people and sources, not just companies",
+     "why": "The AI only looked for company information, so private individuals and insiders named as sources went through.",
+     "how": ["Flag named private individuals alongside health, family or legal details",
+             "Flag source phrases such as \u201cmy contact\u201d, \u201ctold me\u201d and \u201cI still speak to\u201d",
+             "Route both to a reviewer with the name highlighted"]},
+    {"id": "sources", "title": "Check the source the expert cites before flagging",
+     "why": "Most false alarms named a public source (an earnings call, a press release, a published report) that the AI never checked.",
+     "how": ["Detect cited sources in the answer",
+             "Look them up in filings, press releases and the company's website",
+             "Clear the passage when the fact is found there; keep it flagged when it isn't"]},
+]
+FIX_OF = {  # card name -> fix id; cards not listed are not addressed by any of the three
+    "Sanjay Mehta": "declaration", "Olivia Grant": "declaration", "Henrik Lindqvist": "declaration", "Nadia Rahimi": "declaration",
+    "Benjamin Cole": "declaration", "Priya Natarajan": "declaration", "Grace Liu": "declaration",
+    "Thomas Achebe": "declaration", "Ingrid Solberg": "declaration", "Ravi Chandran": "declaration", "Tom Fairley": "declaration",
+    "Elena Vasquez": "people", "Owen Prendergast": "people", "Mei Lin Tan": "people", "Farid Haddad": "people",
+    "Hannah Booth": "people", "Marcus Webb": "people", "Sofia Marchetti": "people", "Kwame Mensah": "people",
+    "Lena Hoffmann": "people", "Daniel Osei": "people", "Aoife Brennan": "people",
+    "Daniel Reyes": "sources", "Robert Chen": "sources", "Laura Bennett": "sources", "Arjun Mehra": "sources",
+    "Chloe Martin": "sources", "Ibrahim Yusuf": "sources", "Ruth Okonkwo": "sources", "Marco Rossi": "sources",
+}
+
+
 def slug(s):
     return re.sub(r"[^a-z0-9]+", "-", s.lower()).strip("-")
 
@@ -75,7 +108,7 @@ def main():
         for e in items:
             card = {"id": slug(f"{kind}-{e['name']}"), "kind": kind, "category": e["category"], "name": e["name"],
                     "date": e["date"], "ts": e["ts"], "quote": e["quote"], "source": e["source"],
-                    "cleared": e.get("cleared"), "transcript": None}
+                    "cleared": e.get("cleared"), "transcript": None, "fix": FIX_OF.get(e["name"])}
             if e["category"] in TOP:
                 tid = card["id"]
                 if e["source"].startswith("test set"):
@@ -90,8 +123,9 @@ def main():
                     assert (w["kind"], w["category"], w["date"]) == (kind, e["category"], e["date"]), e["name"]
                     tr = {k: w[k] for k in ("topic", "profile", "declaration", "turns", "passage_ts", "reviewer_comment", "root_cause")}
                     tr["source"] = "written for the prototype"
+                pool = REVIEWERS.get(e["category"], REVIEWERS["other"]) if kind == "missed" else REVIEWERS["other"]
                 tr.update({"id": tid, "kind": kind, "category": e["category"], "name": e["name"], "date": e["date"],
-                           "role": role_of(tr["profile"])})
+                           "role": role_of(tr["profile"]), "reviewer": pool[len(transcripts) % len(pool)]})
                 transcripts[tid] = tr
                 card["transcript"] = tid
                 card["ts"] = tr["passage_ts"]
@@ -101,7 +135,7 @@ def main():
             "sample": SAMPLE, "top": TOP,
             "categories": [{"name": n, "priority": p, "description": d, "found": f, "missed": m, "false_alarms": fa}
                            for n, p, d, f, m, fa in CATEGORIES],
-            "cards": cards, "transcripts": transcripts}
+            "fixes": FIXES, "cards": cards, "transcripts": transcripts}
     out = ROOT / "data/benchmark.json"
     out.write_text(json.dumps(data, indent=1, ensure_ascii=False) + "\n")
 

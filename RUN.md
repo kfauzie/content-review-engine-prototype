@@ -22,7 +22,7 @@
 | 4. Research synthesis | `pm-1-data-discovery` (Answer) | Below; code in `notebooks/synthesis.py` | Done |
 | 5. Solution concept | `pm-3-problem-to-solution-concept` | [Notion page](https://app.notion.com/p/41e8f31ef05f8137b4bbddec89a6656c): eval plan and dry run, solution after the eval | Revised |
 | 6. Design | `pm-4-solution-design` | Round 6: [benchmark](design/1-summary.png), [transcript](design/2-transcript.png); spec in [design/screen-specs.md](design/screen-specs.md) | Approved (round 7) |
-| 7. Prototype | `pm-5-mvp-build` | [build/mvp.html](build/mvp.html) (one file, data embedded); 51 known-answer tests in `build/test_mvp.js`; 28-step headless check in `build/check_mvp.js` | Built, all checks pass |
+| 7. Prototype | `pm-5-mvp-build` | [build/mvp.html](build/mvp.html) (one file, data embedded); known-answer tests in `build/test_mvp.js`; headless check in `build/check_mvp.js` | Built, all checks pass |
 | 8. MVP review | `pm-6-mvp-review` | | |
 
 ## 1. Data review (pm-1, Initial review)
@@ -127,6 +127,7 @@ With 7 issues in a synthetic set, this shows the method works end to end, not th
 | Rulings on disagreements in the eval | Today's reviewers miss things too, so their verdicts can't count as the truth on their own | Scoring the tool against analysts' verdicts as they stand |
 | Header with "missed 23" most prominent; missed issues by type with priority colours; a carousel of examples per type; transcript with reviewer comment and root cause (Kevin's round 5) | More examples make each category concrete; the reviewer's comment and the root cause explain each miss | Expanding rows, the caught-of-found wording |
 | Move made-up misses to the top two categories, keeping 23; unneeded flags by category; only top categories clickable (Kevin's round 6) | The top categories need several examples from different people; unneeded flags need examples too | Raising the total to fit more examples |
+| Round 8 feedback applied (see `build/FEEDBACK.md`): header wording, tags beside the numbers, no legends, reviewers named, three highest-impact fixes with impact on both numbers | The page should say where the AI fails and what to do about it | Showing fixes without impact numbers |
 | Build the prototype as one HTML file with the data embedded (pm-5) | It opens anywhere, offline, with no build step; the tests read the same embedded data | A framework or a separate data file that needs a server |
 | A background agent writes the 13 transcripts behind the written cards, to a strict spec, and the tests re-check its output | Self-contained writing that could run while the page was built | Making only the 5 test-set cards clickable |
 | Write extra example quotes, labelled as written for the design (25 in all by round 6) | The test set has only 4 misses, and the carousels need about 5 per category | Inventing more than each category's made-up miss count |

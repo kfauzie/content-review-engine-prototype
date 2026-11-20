@@ -55,6 +55,38 @@
    "false_alarms": 60
   }
  ],
+ "fixes": [
+  {
+   "id": "declaration",
+   "title": "Read each answer with the expert's declaration and the question before it",
+   "why": "The AI judged answers on their own, so “we”, “their” and “the board” never linked back to the employer, client or former employer in the declaration.",
+   "how": [
+    "Give the AI the declaration and the preceding question with every answer",
+    "Resolve “we”, “our” and “their” to a named company before judging",
+    "Check restrictions and leaving dates against what is said"
+   ]
+  },
+  {
+   "id": "people",
+   "title": "Check people and sources, not just companies",
+   "why": "The AI only looked for company information, so private individuals and insiders named as sources went through.",
+   "how": [
+    "Flag named private individuals alongside health, family or legal details",
+    "Flag source phrases such as “my contact”, “told me” and “I still speak to”",
+    "Route both to a reviewer with the name highlighted"
+   ]
+  },
+  {
+   "id": "sources",
+   "title": "Check the source the expert cites before flagging",
+   "why": "Most false alarms named a public source (an earnings call, a press release, a published report) that the AI never checked.",
+   "how": [
+    "Detect cited sources in the answer",
+    "Look them up in filings, press releases and the company's website",
+    "Clear the passage when the fact is found there; keep it flagged when it isn't"
+   ]
+  }
+ ],
  "cards": [
   {
    "id": "missed-sanjay-mehta",
@@ -66,7 +98,8 @@
    "quote": "Look, I'm not saying anything specific, but if I were you I'd watch their Q3 numbers closely. Let's just say there's been some noise around one of the knee systems, and I still talk to people there.",
    "source": "test set T5-01:24",
    "cleared": null,
-   "transcript": "missed-sanjay-mehta"
+   "transcript": "missed-sanjay-mehta",
+   "fix": "declaration"
   },
   {
    "id": "missed-olivia-grant",
@@ -78,7 +111,8 @@
    "quote": "Between us, the regulator's decision on their diabetes drug came back last week, and it's a rejection. They haven't announced it yet.",
    "source": "written for the design",
    "cleared": null,
-   "transcript": "missed-olivia-grant"
+   "transcript": "missed-olivia-grant",
+   "fix": "declaration"
   },
   {
    "id": "missed-henrik-lindqvist",
@@ -90,7 +124,8 @@
    "quote": "The board approved the sale of the European tyre business on Tuesday. The announcement is planned for after the half-year results.",
    "source": "written for the design",
    "cleared": null,
-   "transcript": "missed-henrik-lindqvist"
+   "transcript": "missed-henrik-lindqvist",
+   "fix": "declaration"
   },
   {
    "id": "missed-nadia-rahimi",
@@ -102,7 +137,8 @@
    "quote": "Their biggest customer has given notice on the five-year supply deal. That's about a fifth of revenue, and the market doesn't know.",
    "source": "written for the design",
    "cleared": null,
-   "transcript": "missed-nadia-rahimi"
+   "transcript": "missed-nadia-rahimi",
+   "fix": "declaration"
   },
   {
    "id": "missed-benjamin-cole",
@@ -114,7 +150,8 @@
    "quote": "I'd expect them to miss guidance. The October order book I saw was down about 15% on last year.",
    "source": "written for the design",
    "cleared": null,
-   "transcript": "missed-benjamin-cole"
+   "transcript": "missed-benjamin-cole",
+   "fix": "declaration"
   },
   {
    "id": "missed-priya-natarajan",
@@ -126,7 +163,8 @@
    "quote": "For us specifically, we're moving list price up 12% on the mid-market tier from January. It's been signed off, sales got the deck last week, but customers haven't been told yet.",
    "source": "test set T3-01:34",
    "cleared": null,
-   "transcript": "missed-priya-natarajan"
+   "transcript": "missed-priya-natarajan",
+   "fix": "declaration"
   },
   {
    "id": "missed-grace-liu",
@@ -138,7 +176,8 @@
    "quote": "We're closing the Manchester plant in March. The staff haven't been told yet, so please keep that between us.",
    "source": "written for the design",
    "cleared": null,
-   "transcript": "missed-grace-liu"
+   "transcript": "missed-grace-liu",
+   "fix": "declaration"
   },
   {
    "id": "missed-mateo-alvarez",
@@ -150,7 +189,8 @@
    "quote": "Our roadmap has the analytics module launching in Q2, which is why we've been hiring so many data engineers.",
    "source": "written for the design",
    "cleared": null,
-   "transcript": "missed-mateo-alvarez"
+   "transcript": "missed-mateo-alvarez",
+   "fix": null
   },
   {
    "id": "missed-siobhan-kelly",
@@ -162,7 +202,8 @@
    "quote": "We're about to lose our second-largest customer. I'm on the account team, and the renewal isn't going to happen.",
    "source": "written for the design",
    "cleared": null,
-   "transcript": "missed-siobhan-kelly"
+   "transcript": "missed-siobhan-kelly",
+   "fix": null
   },
   {
    "id": "missed-elena-vasquez",
@@ -174,7 +215,8 @@
    "quote": "My contact Jamie Holt, who runs procurement there now, told me last week they're giving notice to two of them in Q1.",
    "source": "test set T6-01:34",
    "cleared": null,
-   "transcript": null
+   "transcript": null,
+   "fix": "people"
   },
   {
    "id": "missed-owen-prendergast",
@@ -186,7 +228,8 @@
    "quote": "Their head of logistics, Carla, told me over dinner that the Rotterdam site is being mothballed after Christmas.",
    "source": "written for the design",
    "cleared": null,
-   "transcript": null
+   "transcript": null,
+   "fix": "people"
   },
   {
    "id": "missed-mei-lin-tan",
@@ -198,7 +241,8 @@
    "quote": "I still speak to the plant manager at Ostrava most weeks, and he says the line restart has slipped to February.",
    "source": "written for the design",
    "cleared": null,
-   "transcript": null
+   "transcript": null,
+   "fix": "people"
   },
   {
    "id": "missed-farid-haddad",
@@ -210,7 +254,8 @@
    "quote": "Someone on their pricing committee sent me the new rate card before it went out, so I know the increases are double digit.",
    "source": "written for the design",
    "cleared": null,
-   "transcript": null
+   "transcript": null,
+   "fix": "people"
   },
   {
    "id": "missed-thomas-achebe",
@@ -222,7 +267,8 @@
    "quote": "When we did their carve-out work, the stranded costs came out at nearly twice what management told the board.",
    "source": "written for the design",
    "cleared": null,
-   "transcript": null
+   "transcript": null,
+   "fix": "declaration"
   },
   {
    "id": "missed-ingrid-solberg",
@@ -234,7 +280,8 @@
    "quote": "One bank I advised had its core banking migration fail twice. It never went public, but it cost them most of a year.",
    "source": "written for the design",
    "cleared": null,
-   "transcript": null
+   "transcript": null,
+   "fix": "declaration"
   },
   {
    "id": "missed-ravi-chandran",
@@ -246,7 +293,8 @@
    "quote": "I rebuilt their churn model last year as a consultant, and the real number was well above what they show investors.",
    "source": "written for the design",
    "cleared": null,
-   "transcript": null
+   "transcript": null,
+   "fix": "declaration"
   },
   {
    "id": "missed-hannah-booth",
@@ -258,7 +306,8 @@
    "quote": "I remember Mark Ellison, who led their financial crime team at the time, was signed off for months with a breakdown afterwards.",
    "source": "test set T8-01:24",
    "cleared": null,
-   "transcript": null
+   "transcript": null,
+   "fix": "people"
   },
   {
    "id": "missed-marcus-webb",
@@ -270,7 +319,8 @@
    "quote": "Their finance director, Tom Reyes, has been going through a difficult divorce, which is why he's been so distracted this year.",
    "source": "written for the design",
    "cleared": null,
-   "transcript": null
+   "transcript": null,
+   "fix": "people"
   },
   {
    "id": "missed-sofia-marchetti",
@@ -282,7 +332,8 @@
    "quote": "Speak to Mark Doyle in their Leeds office. I've got his personal mobile if you want it.",
    "source": "written for the design",
    "cleared": null,
-   "transcript": null
+   "transcript": null,
+   "fix": "people"
   },
   {
    "id": "missed-kwame-mensah",
@@ -294,7 +345,8 @@
    "quote": "The head of sales there, Aisha Rahman, went on long-term sick leave after surgery in the spring.",
    "source": "written for the design",
    "cleared": null,
-   "transcript": null
+   "transcript": null,
+   "fix": "people"
   },
   {
    "id": "missed-lena-hoffmann",
@@ -306,7 +358,8 @@
    "quote": "One of their senior engineers, Pieter van Dam, was let go after a drink-driving conviction, which hit the project hard.",
    "source": "written for the design",
    "cleared": null,
-   "transcript": null
+   "transcript": null,
+   "fix": "people"
   },
   {
    "id": "missed-daniel-osei",
@@ -318,7 +371,8 @@
    "quote": "Their compliance officer, Rachel Lim, is on maternity leave until next summer, so the team is stretched.",
    "source": "written for the design",
    "cleared": null,
-   "transcript": null
+   "transcript": null,
+   "fix": "people"
   },
   {
    "id": "missed-aoife-brennan",
@@ -330,7 +384,8 @@
    "quote": "The founder's son is only nineteen, and he's been put on the payroll as a director at the Dublin subsidiary.",
    "source": "written for the design",
    "cleared": null,
-   "transcript": null
+   "transcript": null,
+   "fix": "people"
   },
   {
    "id": "false-alarm-daniel-reyes",
@@ -342,7 +397,8 @@
    "quote": "Publicly, people talk about the mid-sized regional players. Corvane Freight is the one everyone mentions, they're strong in the North West and Scotland.",
    "source": "test set T2-01:19",
    "cleared": "Public speculation about a takeover target, not the expert's employer",
-   "transcript": "false-alarm-daniel-reyes"
+   "transcript": "false-alarm-daniel-reyes",
+   "fix": "sources"
   },
   {
    "id": "false-alarm-tom-fairley",
@@ -354,7 +410,8 @@
    "quote": "Quillon laid out the lending strategy at their 2024 investor day. The logic is straightforward: they already see merchants' transaction data, so they can underwrite small loans with better information than a bank.",
    "source": "test set T4-00:26",
    "cleared": "Former employer, left in 2021; cites the public investor day",
-   "transcript": "false-alarm-tom-fairley"
+   "transcript": "false-alarm-tom-fairley",
+   "fix": "declaration"
   },
   {
    "id": "false-alarm-robert-chen",
@@ -366,7 +423,8 @@
    "quote": "Ardent is a good one because they're transparent. On their Q2 earnings call in August, they reported gross margin of 31.4%, up from 28.9% a year earlier, and guided to 32% to 33% for the full year.",
    "source": "test set T7-00:36",
    "cleared": "Figures from the public Q2 earnings call",
-   "transcript": "false-alarm-robert-chen"
+   "transcript": "false-alarm-robert-chen",
+   "fix": "sources"
   },
   {
    "id": "false-alarm-laura-bennett",
@@ -378,7 +436,8 @@
    "quote": "As their annual report says, they've been closing stores in the north for two years, so the shift to online isn't new.",
    "source": "written for the design",
    "cleared": "Cites the published annual report",
-   "transcript": "false-alarm-laura-bennett"
+   "transcript": "false-alarm-laura-bennett",
+   "fix": "sources"
   },
   {
    "id": "false-alarm-arjun-mehra",
@@ -390,7 +449,8 @@
    "quote": "The chief executive said on the results call that capital spending would rise next year, mostly on automation.",
    "source": "written for the design",
    "cleared": "A public statement on the results call",
-   "transcript": "false-alarm-arjun-mehra"
+   "transcript": "false-alarm-arjun-mehra",
+   "fix": "sources"
   },
   {
    "id": "false-alarm-chloe-martin",
@@ -402,7 +462,8 @@
    "quote": "We announced the Leeds office in a press release last month, so it's no secret we're expanding in the north.",
    "source": "written for the design",
    "cleared": "Announced in a press release",
-   "transcript": "false-alarm-chloe-martin"
+   "transcript": "false-alarm-chloe-martin",
+   "fix": "sources"
   },
   {
    "id": "false-alarm-ibrahim-yusuf",
@@ -414,7 +475,8 @@
    "quote": "Our prices are on the website. The standard tier is £40 a seat, and that hasn't changed this year.",
    "source": "written for the design",
    "cleared": "Published list price",
-   "transcript": "false-alarm-ibrahim-yusuf"
+   "transcript": "false-alarm-ibrahim-yusuf",
+   "fix": "sources"
   },
   {
    "id": "false-alarm-ruth-okonkwo",
@@ -426,7 +488,8 @@
    "quote": "I can only tell you what's in our published sustainability report: we cut emissions by about a tenth last year.",
    "source": "written for the design",
    "cleared": "From the published sustainability report",
-   "transcript": "false-alarm-ruth-okonkwo"
+   "transcript": "false-alarm-ruth-okonkwo",
+   "fix": "sources"
   },
   {
    "id": "false-alarm-marco-rossi",
@@ -438,7 +501,8 @@
    "quote": "Our chief executive showed the new product on stage at the trade show in September, so it's public now.",
    "source": "written for the design",
    "cleared": "Shown publicly at a trade show",
-   "transcript": "false-alarm-marco-rossi"
+   "transcript": "false-alarm-marco-rossi",
+   "fix": "sources"
   }
  ],
  "transcripts": {
@@ -522,7 +586,8 @@
    "category": "Material non-public information",
    "name": "Sanjay Mehta",
    "date": "2026-11-12",
-   "role": "Finance Director, Northwind Biomedical (2018 to March 2026). Independent consultant (March 2026 to present)."
+   "role": "Finance Director, Northwind Biomedical (2018 to March 2026). Independent consultant (March 2026 to present).",
+   "reviewer": "Sophie Laurent, Legal Counsel"
   },
   "missed-olivia-grant": {
    "topic": "Diabetes drug approvals",
@@ -594,7 +659,8 @@
    "category": "Material non-public information",
    "name": "Olivia Grant",
    "date": "2026-10-29",
-   "role": "Regulatory Affairs Manager, Pellham Biosciences (2016 to 2022). Principal Consultant, Ashgrove Regulatory Partners (2022 to present)."
+   "role": "Regulatory Affairs Manager, Pellham Biosciences (2016 to 2022). Principal Consultant, Ashgrove Regulatory Partners (2022 to present).",
+   "reviewer": "Nikos Andreou, Senior Compliance Manager"
   },
   "missed-henrik-lindqvist": {
    "topic": "European tyre market",
@@ -671,7 +737,8 @@
    "category": "Material non-public information",
    "name": "Henrik Lindqvist",
    "date": "2026-11-05",
-   "role": "Plant Manager, Nordvik Rubber (2012 to 2019). Head of Corporate Strategy, Brannholt Automotive (2019 to present)."
+   "role": "Plant Manager, Nordvik Rubber (2012 to 2019). Head of Corporate Strategy, Brannholt Automotive (2019 to present).",
+   "reviewer": "Sophie Laurent, Legal Counsel"
   },
   "missed-nadia-rahimi": {
    "topic": "Food packaging supply",
@@ -748,7 +815,8 @@
    "category": "Material non-public information",
    "name": "Nadia Rahimi",
    "date": "2026-11-10",
-   "role": "Account Manager, Fenwick Cartons (2014 to 2018). Key Account Director, Stellan Packaging (2018 to August 2026). Independent packaging consultant (August 2026 to present)."
+   "role": "Account Manager, Fenwick Cartons (2014 to 2018). Key Account Director, Stellan Packaging (2018 to August 2026). Independent packaging consultant (August 2026 to present).",
+   "reviewer": "Nikos Andreou, Senior Compliance Manager"
   },
   "missed-benjamin-cole": {
    "topic": "Industrial pumps distribution",
@@ -825,7 +893,8 @@
    "category": "Material non-public information",
    "name": "Benjamin Cole",
    "date": "2026-11-16",
-   "role": "Regional Sales Manager, Hartwell Pumps (2014 to 2021). Commercial Director, Ridgeway Industrial Supply (2021 to present)."
+   "role": "Regional Sales Manager, Hartwell Pumps (2014 to 2021). Commercial Director, Ridgeway Industrial Supply (2021 to present).",
+   "reviewer": "Sophie Laurent, Legal Counsel"
   },
   "missed-priya-natarajan": {
    "topic": "Workforce SaaS pricing",
@@ -917,7 +986,8 @@
    "category": "Current-employer confidential",
    "name": "Priya Natarajan",
    "date": "2026-11-04",
-   "role": "VP Sales EMEA, Teallight Software (2021 to present). Previously Sales Director, Orbisoft (2016 to 2021)."
+   "role": "VP Sales EMEA, Teallight Software (2021 to present). Previously Sales Director, Orbisoft (2016 to 2021).",
+   "reviewer": "Katerina Ioannou, Compliance Analyst"
   },
   "missed-grace-liu": {
    "topic": "UK household goods manufacturing",
@@ -994,7 +1064,8 @@
    "category": "Current-employer confidential",
    "name": "Grace Liu",
    "date": "2026-10-30",
-   "role": "Production Engineer, Thornbury Plastics (2015 to 2020). Operations Director, Kelsall Home Products (2020 to present)."
+   "role": "Production Engineer, Thornbury Plastics (2015 to 2020). Operations Director, Kelsall Home Products (2020 to present).",
+   "reviewer": "Eleni Papadaki, Compliance Analyst"
   },
   "missed-mateo-alvarez": {
    "topic": "Retail point-of-sale software",
@@ -1071,7 +1142,8 @@
    "category": "Current-employer confidential",
    "name": "Mateo Alvarez",
    "date": "2026-11-07",
-   "role": "Software Engineer, Plinth Systems (2014 to 2019). Engineering Manager, Quayside Retail Software (2019 to present)."
+   "role": "Software Engineer, Plinth Systems (2014 to 2019). Engineering Manager, Quayside Retail Software (2019 to present).",
+   "reviewer": "Dimitris Vlachos, Compliance Analyst"
   },
   "missed-siobhan-kelly": {
    "topic": "Outsourced facilities management",
@@ -1148,7 +1220,8 @@
    "category": "Current-employer confidential",
    "name": "Siobhan Kelly",
    "date": "2026-11-18",
-   "role": "Account Manager, Brayfield Telecom (2015 to 2021). Senior Account Director, Calder Facilities Services (2021 to present)."
+   "role": "Account Manager, Brayfield Telecom (2015 to 2021). Senior Account Director, Calder Facilities Services (2021 to present).",
+   "reviewer": "Katerina Ioannou, Compliance Analyst"
   },
   "false-alarm-daniel-reyes": {
    "topic": "Road freight consolidation",
@@ -1240,7 +1313,8 @@
    "category": "Material non-public information",
    "name": "Daniel Reyes",
    "date": "2026-11-03",
-   "role": "Regional Operations Manager, Halbrook Logistics (2019 to present). Previously Depot Manager, Marlow Haulage (2014 to 2019)."
+   "role": "Regional Operations Manager, Halbrook Logistics (2019 to present). Previously Depot Manager, Marlow Haulage (2014 to 2019).",
+   "reviewer": "Eleni Papadaki, Compliance Analyst"
   },
   "false-alarm-tom-fairley": {
    "topic": "Payments lending strategy",
@@ -1322,7 +1396,8 @@
    "category": "Material non-public information",
    "name": "Tom Fairley",
    "date": "2026-11-06",
-   "role": "Head of Product, Quillon Payments (2017 to 2021). Chief Product Officer, Brisk Invoicing (2021 to 2024). Independent advisor (2024 to present)."
+   "role": "Head of Product, Quillon Payments (2017 to 2021). Chief Product Officer, Brisk Invoicing (2021 to 2024). Independent advisor (2024 to present).",
+   "reviewer": "Dimitris Vlachos, Compliance Analyst"
   },
   "false-alarm-robert-chen": {
    "topic": "Packaged food margins",
@@ -1404,7 +1479,8 @@
    "category": "Material non-public information",
    "name": "Robert Chen",
    "date": "2026-11-12",
-   "role": "CFO, Ardent Foods (2016 to 2022). Non-executive director at two private food companies (2022 to present)."
+   "role": "CFO, Ardent Foods (2016 to 2022). Non-executive director at two private food companies (2022 to present).",
+   "reviewer": "Katerina Ioannou, Compliance Analyst"
   },
   "false-alarm-laura-bennett": {
    "topic": "UK fashion retail",
@@ -1476,7 +1552,8 @@
    "category": "Material non-public information",
    "name": "Laura Bennett",
    "date": "2026-11-14",
-   "role": "Head of Store Operations, Ellery & Pike (2011 to 2018). Independent retail consultant (2018 to present)."
+   "role": "Head of Store Operations, Ellery & Pike (2011 to 2018). Independent retail consultant (2018 to present).",
+   "reviewer": "Eleni Papadaki, Compliance Analyst"
   },
   "false-alarm-arjun-mehra": {
    "topic": "Warehouse automation spending",
@@ -1548,7 +1625,8 @@
    "category": "Material non-public information",
    "name": "Arjun Mehra",
    "date": "2026-11-19",
-   "role": "Engineering Manager, Dunmore Logistics (2013 to 2020). Independent warehouse automation consultant (2020 to present)."
+   "role": "Engineering Manager, Dunmore Logistics (2013 to 2020). Independent warehouse automation consultant (2020 to present).",
+   "reviewer": "Dimitris Vlachos, Compliance Analyst"
   },
   "false-alarm-chloe-martin": {
    "topic": "UK legal services hiring",
@@ -1625,7 +1703,8 @@
    "category": "Current-employer confidential",
    "name": "Chloe Martin",
    "date": "2026-10-28",
-   "role": "Recruitment Consultant, Harrowgate Partners (2014 to 2020). Head of Talent, Fenmore Legal Services (2020 to present)."
+   "role": "Recruitment Consultant, Harrowgate Partners (2014 to 2020). Head of Talent, Fenmore Legal Services (2020 to present).",
+   "reviewer": "Katerina Ioannou, Compliance Analyst"
   },
   "false-alarm-ibrahim-yusuf": {
    "topic": "Field service software",
@@ -1702,7 +1781,8 @@
    "category": "Current-employer confidential",
    "name": "Ibrahim Yusuf",
    "date": "2026-11-04",
-   "role": "Implementation Consultant, Corbridge Systems (2015 to 2019). Head of Customer Success, Tidewell Software (2019 to present)."
+   "role": "Implementation Consultant, Corbridge Systems (2015 to 2019). Head of Customer Success, Tidewell Software (2019 to present).",
+   "reviewer": "Eleni Papadaki, Compliance Analyst"
   },
   "false-alarm-ruth-okonkwo": {
    "topic": "Construction materials decarbonisation",
@@ -1774,7 +1854,8 @@
    "category": "Current-employer confidential",
    "name": "Ruth Okonkwo",
    "date": "2026-11-11",
-   "role": "Environmental Engineer, Ashby Aggregates (2014 to 2021). Head of Sustainability, Marchbank Building Materials (2021 to present)."
+   "role": "Environmental Engineer, Ashby Aggregates (2014 to 2021). Head of Sustainability, Marchbank Building Materials (2021 to present).",
+   "reviewer": "Dimitris Vlachos, Compliance Analyst"
   },
   "false-alarm-marco-rossi": {
    "topic": "Smart kitchen appliances",
@@ -1851,7 +1932,8 @@
    "category": "Current-employer confidential",
    "name": "Marco Rossi",
    "date": "2026-11-17",
-   "role": "Product Designer, Albaro Elettrodomestici (2013 to 2019). Senior Product Manager, Velmora Home Appliances (2019 to present)."
+   "role": "Product Designer, Albaro Elettrodomestici (2013 to 2019). Senior Product Manager, Velmora Home Appliances (2019 to present).",
+   "reviewer": "Katerina Ioannou, Compliance Analyst"
   }
  }
 }

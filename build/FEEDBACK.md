@@ -1,6 +1,14 @@
-# Prototype feedback, next round (noted, not yet applied)
+# Prototype feedback, round 8 (applied)
 
-Kevin's feedback on the built prototype (`build/mvp.html`). Nothing below is applied yet: it waits for Kevin's go. Later points replace earlier ones where they conflict.
+Kevin's feedback on the built prototype (`build/mvp.html`). Applied after Kevin's go; tests and the headless check updated and passing.
+
+**Choices made while applying:**
+- **Right card heading:** "Flags raised by the AI", to mirror the left card.
+- **Card widths:** both cards are now equal, so each pair of numbers sits side by side.
+- **Reviewers:** the names and titles are made up and rotate across the transcripts. Possible material non-public information goes to Legal.
+- **Fix impact:** misses are counted exactly (one card per miss). False alarms are estimated per category from the tagged examples, and only the top two categories have examples. Fix 2's false-alarm impact is shown as "not estimated".
+- **Uncovered misses:** 2 misses (Mateo Alvarez, Siobhan Kelly) aren't addressed by any of the three fixes.
+- **Reduced motion:** the page now turns off its animations when the viewer's device asks for reduced motion.
 
 ## Header
 1. **Subtitle under the title:** "We compared AI and human review across 1,000 transcripts to see where the AI misses compliance risks, and where it raises false alarms"

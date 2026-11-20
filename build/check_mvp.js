@@ -33,11 +33,19 @@ const t = (name, ok, got) => { if (!ok) fail++; console.log(`${ok ? "PASS" : "FA
   const t0 = Date.now();
   await p.goto(url); await p.waitForSelector('body[data-ready="1"]');
   const num = async k => (await p.locator(`[data-n="${k}"]`).first().textContent()).trim();
-  t("header numbers: 262 found, 23 missed, 239 caught, 187 false alarms",
-    await num("found") === "262" && await num("missed") === "23" && await num("caught") === "239" && await num("false") === "187");
-  const sizes = await p.evaluate(() => ["found", "missed", "false"].map(k => parseFloat(getComputedStyle(document.querySelector(`[data-n="${k}"]`)).fontSize)));
-  t("missed by AI is the largest number", sizes[1] > sizes[0] && sizes[1] > sizes[2], sizes.join("/"));
-  t("tags: liability risk and operational risk", (await p.locator(".risk .tag").textContent()) === "Liability risk" && (await p.locator(".fa .tag").textContent()) === "Operational risk");
+  t("header numbers: 262 found, 23 missed, 239 correctly flagged, 187 false alarms",
+    await num("found") === "262" && await num("missed") === "23" && await num("correct") === "239" && await num("false") === "187");
+  const sizes = await p.evaluate(() => ["found", "missed", "false", "correct"].map(k => parseFloat(getComputedStyle(document.querySelector(`[data-n="${k}"]`)).fontSize)));
+  t("missed by AI is the largest number; 239 is styled like 262", sizes[1] > sizes[0] && sizes[1] > sizes[2] && sizes[3] === sizes[0], sizes.join("/"));
+  t("card headings", (await p.locator(".kh").allTextContents()).join("|") === "Compliance risks found in the transcripts|Flags raised by the AI");
+  t("Liability risk sits next to 23, Operational cost next to 187",
+    (await p.locator(".risk .bigrow .tag").textContent()) === "Liability risk" && (await p.locator(".fa .bigrow .tag").textContent()) === "Operational cost");
+  t("no legends under the bars, no \"Confirmed\"", await p.locator(".sleg").count() === 0 && !(await p.locator("main").textContent()).includes("Confirmed"));
+  t("subtitle", (await p.locator(".sub1").textContent()) === "We compared AI and human review across 1,000 transcripts to see where the AI misses compliance risks, and where it raises false alarms");
+  t("three fixes, each with how and impact on both numbers", await p.locator(".fix").count() === 3 &&
+    await p.locator(".fix li").count() === 9 && await p.locator(".fix [data-imp]").count() === 6);
+  t("fix impacts", (await p.locator(".fix [data-imp]").allTextContents()).join("|") ===
+    "Missed by AI \u221210 (7 high priority)|False alarms \u221212|Missed by AI \u221211|False alarms: not estimated|Missed by AI: no change|False alarms \u221278");
 
   const mnpi = p.locator('[data-cat="missed|Material non-public information"]');
   t("MNPI missed shows 3 of its 5 cards", await mnpi.locator(".ex").count() === 3 && (await mnpi.locator("[data-range]").textContent()) === "1–3 of 5");
@@ -65,10 +73,11 @@ const t = (name, ok, got) => { if (!ok) fail++; console.log(`${ok ? "PASS" : "FA
   let okAll = true;
   for (const id of ids) {
     await p.goto(`${url}#t/${id}`); await p.waitForSelector('body[data-view="transcript"]');
-    const ok = await p.locator("#passage").count() === 1 && await p.locator(".note.rev").count() === 1 && await p.locator(".note.agent .ns").textContent() === "Analysis by an independent agent, from the original AI's log";
+    const ok = await p.locator("#passage").count() === 1 && await p.locator(".note.rev").count() === 1 && await p.locator(".note.agent .ns").textContent() === "Analysis by an independent agent, from the original AI's log"
+      && /^[A-Z][a-z]+ [A-Z][a-z]+, [A-Z]/.test(await p.locator(".note.rev .ns").textContent());
     if (!ok) { okAll = false; console.log("  problem in", id); }
   }
-  t(`all ${ids.length} transcripts open with the passage, reviewer comment and agent analysis`, okAll);
+  t(`all ${ids.length} transcripts open with the passage, the reviewer's name, title and comment, and the agent analysis`, okAll);
 
   await p.goto(url); await p.waitForSelector('body[data-view="summary"]');
   await p.locator('[data-cat="missed|Material non-public information"] a.ex').first().click();
