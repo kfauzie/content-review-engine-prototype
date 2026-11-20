@@ -21,8 +21,8 @@
 | 3. Interview | Kevin | Notes in the Notion page | Done |
 | 4. Research synthesis | `pm-1-data-discovery` (Answer) | Below; code in `notebooks/synthesis.py` | Done |
 | 5. Solution concept | `pm-3-problem-to-solution-concept` | [Notion page](https://app.notion.com/p/41e8f31ef05f8137b4bbddec89a6656c): eval plan and dry run, solution after the eval | Revised |
-| 6. Design | `pm-4-solution-design` | Round 6: [benchmark](design/1-summary.png), [transcript](design/2-transcript.png); spec in [design/screen-specs.md](design/screen-specs.md) | In review, not built |
-| 7. Prototype | `pm-5-mvp-build` | | |
+| 6. Design | `pm-4-solution-design` | Round 6: [benchmark](design/1-summary.png), [transcript](design/2-transcript.png); spec in [design/screen-specs.md](design/screen-specs.md) | Approved (round 7) |
+| 7. Prototype | `pm-5-mvp-build` | [build/mvp.html](build/mvp.html) (one file, data embedded); 51 known-answer tests in `build/test_mvp.js`; 28-step headless check in `build/check_mvp.js` | Built, all checks pass |
 | 8. MVP review | `pm-6-mvp-review` | | |
 
 ## 1. Data review (pm-1, Initial review)
@@ -96,6 +96,26 @@ With 7 issues in a synthetic set, this shows the method works end to end, not th
 
 **Solution concept, revised:** [Notion page](https://app.notion.com/p/41e8f31ef05f8137b4bbddec89a6656c). The order is eval, failure analysis, prioritise, live test, and only then a solution.
 
+## 7. Prototype (pm-5)
+- **How to open:** download `build/mvp.html` and open it in a browser. It needs no server, because the data is embedded.
+- **How to check:** run `npm install`, `npx playwright install chromium`, then `npm test`. The same checks run on every push (`.github/workflows/checks.yml`).
+- **Data:** `notebooks/build_data.py` assembles `data/benchmark.json` from the made-up counts, `data/examples_illustrative.json` and the transcripts, and embeds it in the page. There are 32 example cards, and the 18 in the top two categories open a transcript.
+  - **5 transcripts** come from the test set, verbatim.
+  - **13 transcripts** were written for the prototype by a background agent, in `data/transcripts_illustrative.json`. The checks confirm each card's quote sits word for word at its passage.
+- **The known-answer tests check:**
+  - every total (262, 239, 23, 187, 426, 9 high priority) and every category's counts
+  - that no category has more cards than its count, and no person appears twice
+  - that only the top categories are clickable, and every clickable card has a transcript
+  - that test-set quotes and transcripts match the test set
+  - that the page has no em dashes, no "real issues" and no status verdicts
+- **The headless check covers:**
+  - a slow first load (fonts delayed), the header numbers, and that "missed by AI" is the largest number
+  - the carousel arrows and their limits, collapsing and expanding by click and by Enter, and that lower-priority cards don't link
+  - opening all 18 transcripts, each with its passage, reviewer comment and agent analysis
+  - the back link, and an unknown transcript link
+  - no sideways scrolling at 390px or 768px, one card at a time on a phone, and no console errors
+- **Sanity check:** I captured screenshots of every state at desktop, tablet and phone width and looked at each against the round 7 design. They match. I found nothing the design didn't cover.
+
 ## Decisions I made (and what I turned down)
 
 | Decision | Why | What I turned down |
@@ -107,6 +127,8 @@ With 7 issues in a synthetic set, this shows the method works end to end, not th
 | Rulings on disagreements in the eval | Today's reviewers miss things too, so their verdicts can't count as the truth on their own | Scoring the tool against analysts' verdicts as they stand |
 | Header with "missed 23" most prominent; missed issues by type with priority colours; a carousel of examples per type; transcript with reviewer comment and root cause (Kevin's round 5) | More examples make each category concrete; the reviewer's comment and the root cause explain each miss | Expanding rows, the caught-of-found wording |
 | Move made-up misses to the top two categories, keeping 23; unneeded flags by category; only top categories clickable (Kevin's round 6) | The top categories need several examples from different people; unneeded flags need examples too | Raising the total to fit more examples |
+| Build the prototype as one HTML file with the data embedded (pm-5) | It opens anywhere, offline, with no build step; the tests read the same embedded data | A framework or a separate data file that needs a server |
+| A background agent writes the 13 transcripts behind the written cards, to a strict spec, and the tests re-check its output | Self-contained writing that could run while the page was built | Making only the 5 test-set cards clickable |
 | Write extra example quotes, labelled as written for the design (25 in all by round 6) | The test set has only 4 misses, and the carousels need about 5 per category | Inventing more than each category's made-up miss count |
 | Caught against missed, out of what reviewers found; issues by type, opening in place; full transcript with call context; dashboard look (Kevin's round 4) | Plain wording needs no "real issues" or rates; one page plus the transcript | Separate category pages, per-category unneeded flags |
 | Frame it as an AI performance benchmark; name the errors by cost (missed issues: compliance risk; unneeded flags: operational cost); counts only, no percentages or targets; full transcript with every passage marked (Kevin's round 3) | The page should read on its own, without meta text, and show where the AI is right as well as wrong | Rates, shares, the zero target, a single-example detail page |

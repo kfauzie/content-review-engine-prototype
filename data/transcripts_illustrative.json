@@ -1,0 +1,947 @@
+{
+ "note": "ILLUSTRATIVE. Fictional transcripts written for the prototype. People and companies are invented.",
+ "transcripts": [
+  {
+   "name": "Olivia Grant",
+   "kind": "missed",
+   "category": "Material non-public information",
+   "date": "2026-10-29",
+   "topic": "Diabetes drug approvals",
+   "profile": "Olivia Grant. Regulatory Affairs Manager, Pellham Biosciences (2016 to 2022). Principal Consultant, Ashgrove Regulatory Partners (2022 to present). Industry: pharmaceuticals, regulatory affairs.",
+   "declaration": "Currently a consultant at Ashgrove Regulatory Partners, which advises listed drug developers on regulatory submissions; Torvane Pharma (listed company) is a current client. Must not discuss any client's non-public regulatory, clinical or commercial information.",
+   "turns": [
+    {
+     "ts": "00:00",
+     "speaker": "INTERVIEWER",
+     "text": "Thanks for joining, Olivia. I'm looking at diabetes and weight-loss drugs, and how regulators are treating the newer once-weekly treatments. Where are we in the cycle?"
+    },
+    {
+     "ts": "00:16",
+     "speaker": "EXPERT",
+     "text": "We're in a busy phase. After the first wave of once-weekly injectables, regulators have a clearer template for what they want to see, so submissions are better prepared. The questions have moved on from whether these drugs work to long-term safety, especially heart outcomes and muscle loss."
+    },
+    {
+     "ts": "00:52",
+     "speaker": "INTERVIEWER",
+     "text": "How long are reviews taking at the moment?"
+    },
+    {
+     "ts": "00:57",
+     "speaker": "EXPERT",
+     "text": "Standard reviews are running close to the published timelines, roughly a year. Where it slips is when the regulator asks for more data mid-review. That can add six months, and smaller companies often haven't budgeted for it."
+    },
+    {
+     "ts": "01:31",
+     "speaker": "INTERVIEWER",
+     "text": "What tends to trigger those requests?"
+    },
+    {
+     "ts": "01:36",
+     "speaker": "EXPERT",
+     "text": "Usually the safety database is too small, or the trial population doesn't match the patients who'll actually get the drug. Manufacturing is the other one. Inspectors find problems at a contract manufacturer and the whole file stalls."
+    },
+    {
+     "ts": "02:10",
+     "speaker": "INTERVIEWER",
+     "text": "Torvane has its once-weekly diabetes drug under review. How do you rate their chances?"
+    },
+    {
+     "ts": "02:17",
+     "speaker": "EXPERT",
+     "text": "Between us, the regulator's decision on their diabetes drug came back last week, and it's a rejection. They haven't announced it yet."
+    },
+    {
+     "ts": "02:34",
+     "speaker": "INTERVIEWER",
+     "text": "Let's go back to the wider market. How are health systems responding to the price of these drugs?"
+    },
+    {
+     "ts": "02:41",
+     "speaker": "EXPERT",
+     "text": "Cautiously, in most of Europe. Health systems are limiting access to patients with the highest body mass index or existing heart disease, and pushing for deals linked to outcomes. Volumes will grow, but the price per patient will keep falling."
+    },
+    {
+     "ts": "03:18",
+     "speaker": "INTERVIEWER",
+     "text": "Thanks, Olivia."
+    }
+   ],
+   "passage_ts": "02:17",
+   "reviewer_comment": "The expert advises Torvane on its submissions and disclosed an unannounced regulatory rejection, which is plainly material and non-public. We redacted the passage, held the transcript back from the client and referred the expert to the vetting team.",
+   "root_cause": "The AI assessed each expert turn on its own, and this turn names no company: 'their' points back to Torvane in the interviewer's question. Without that link it never matched the passage to the client listed in the declaration, and read 'the regulator's decision' as general regulatory commentary."
+  },
+  {
+   "name": "Henrik Lindqvist",
+   "kind": "missed",
+   "category": "Material non-public information",
+   "date": "2026-11-05",
+   "topic": "European tyre market",
+   "profile": "Henrik Lindqvist. Plant Manager, Nordvik Rubber (2012 to 2019). Head of Corporate Strategy, Brannholt Automotive (2019 to present). Industry: automotive components and tyres.",
+   "declaration": "Currently employed by Brannholt Automotive (listed company), which owns a European tyre business. May discuss the tyre and components market in general. Must not discuss Brannholt's non-public information, financials, strategy or corporate activity.",
+   "turns": [
+    {
+     "ts": "00:00",
+     "speaker": "INTERVIEWER",
+     "text": "Henrik, thanks for your time. I'm researching the European tyre market. How healthy is it right now?"
+    },
+    {
+     "ts": "00:12",
+     "speaker": "EXPERT",
+     "text": "Mixed. Replacement tyres are steady, because people keep driving older cars for longer. Volumes for new cars follow vehicle production, which is still below where it was before the pandemic. And Asian imports have taken a big share of the budget end."
+    },
+    {
+     "ts": "00:46",
+     "speaker": "INTERVIEWER",
+     "text": "How are European producers responding to the imports?"
+    },
+    {
+     "ts": "00:51",
+     "speaker": "EXPERT",
+     "text": "By moving up the range. Premium and large-rim tyres, winter and all-season, and tyres designed for electric vehicles, which carry more weight and need to run quietly. The budget segment is very hard to defend with European energy and labour costs."
+    },
+    {
+     "ts": "01:28",
+     "speaker": "INTERVIEWER",
+     "text": "Is there pressure to consolidate?"
+    },
+    {
+     "ts": "01:33",
+     "speaker": "EXPERT",
+     "text": "Yes. A lot of diversified component groups are asking whether they should own tyre plants at all. Tyres are capital heavy, and the margins are thinner than in electronics or software-rich parts."
+    },
+    {
+     "ts": "02:05",
+     "speaker": "INTERVIEWER",
+     "text": "Are any of the groups actually acting on that?"
+    },
+    {
+     "ts": "02:10",
+     "speaker": "EXPERT",
+     "text": "The board approved the sale of the European tyre business on Tuesday. The announcement is planned for after the half-year results."
+    },
+    {
+     "ts": "02:28",
+     "speaker": "INTERVIEWER",
+     "text": "Moving on, how much are electric vehicles changing the replacement cycle?"
+    },
+    {
+     "ts": "02:34",
+     "speaker": "EXPERT",
+     "text": "Quite a lot. Electric cars are heavier and deliver torque instantly, so tyres wear faster, often 20 to 30% sooner. That's good for replacement volumes, and drivers seem willing to pay more for tyres approved for their car."
+    },
+    {
+     "ts": "03:08",
+     "speaker": "INTERVIEWER",
+     "text": "And raw materials?"
+    },
+    {
+     "ts": "03:12",
+     "speaker": "EXPERT",
+     "text": "Natural rubber prices have been volatile, and the new European deforestation rules mean producers must trace rubber back to the plantation. That adds cost and favours the bigger groups that already have traceability systems."
+    }
+   ],
+   "passage_ts": "02:10",
+   "reviewer_comment": "Henrik heads strategy at Brannholt, a listed company, and disclosed a board-approved sale of its European tyre business ahead of the announcement. We rejected the transcript and escalated the expert for breaching his declaration.",
+   "root_cause": "The expert said 'the board' rather than 'our board' and never named Brannholt, so the AI read the answer as commentary on consolidation among peers. The issue only shows against the declaration, which says he works in strategy at a listed group that owns a European tyre business, and the AI did not make that comparison."
+  },
+  {
+   "name": "Nadia Rahimi",
+   "kind": "missed",
+   "category": "Material non-public information",
+   "date": "2026-11-10",
+   "topic": "Food packaging supply",
+   "profile": "Nadia Rahimi. Account Manager, Fenwick Cartons (2014 to 2018). Key Account Director, Stellan Packaging (2018 to August 2026). Independent packaging consultant (August 2026 to present). Industry: food and drink packaging.",
+   "declaration": "Left Stellan Packaging (listed company) in August 2026. No current employer. Standard confidentiality obligations to Stellan, including its customer contracts. No conflicts declared.",
+   "turns": [
+    {
+     "ts": "00:00",
+     "speaker": "INTERVIEWER",
+     "text": "Nadia, thanks for joining. I'm looking at packaging suppliers to the big food manufacturers. How do those contracts usually work?"
+    },
+    {
+     "ts": "00:13",
+     "speaker": "EXPERT",
+     "text": "Most large food companies run tenders every three to five years for their main packaging categories: cartons, films, trays. The contracts set volumes and a price formula, with pass-through clauses for board, resin and energy costs."
+    },
+    {
+     "ts": "00:47",
+     "speaker": "INTERVIEWER",
+     "text": "How sticky are the customers?"
+    },
+    {
+     "ts": "00:51",
+     "speaker": "EXPERT",
+     "text": "Stickier than people think. Switching means new tooling, line trials and food safety sign-off, which can take most of a year. So incumbents usually keep the business unless service or quality has gone badly wrong."
+    },
+    {
+     "ts": "01:25",
+     "speaker": "INTERVIEWER",
+     "text": "And how concentrated are the suppliers' customer books?"
+    },
+    {
+     "ts": "01:30",
+     "speaker": "EXPERT",
+     "text": "Very, for the mid-sized listed players. It's common for the top three customers to be half of revenue. That's fine while things are good, but one lost tender can move the whole year."
+    },
+    {
+     "ts": "02:02",
+     "speaker": "INTERVIEWER",
+     "text": "Is that a live risk at Stellan?"
+    },
+    {
+     "ts": "02:07",
+     "speaker": "EXPERT",
+     "text": "Their biggest customer has given notice on the five-year supply deal. That's about a fifth of revenue, and the market doesn't know."
+    },
+    {
+     "ts": "02:24",
+     "speaker": "INTERVIEWER",
+     "text": "Let's talk about sustainability. How is the plastic packaging tax changing demand?"
+    },
+    {
+     "ts": "02:30",
+     "speaker": "EXPERT",
+     "text": "It's pushing customers towards recycled content and paper-based formats. Suppliers that secured recycled resin early are winning share, and the others are either paying the tax or losing the work."
+    },
+    {
+     "ts": "03:02",
+     "speaker": "INTERVIEWER",
+     "text": "What about automation in packaging plants?"
+    },
+    {
+     "ts": "03:06",
+     "speaker": "EXPERT",
+     "text": "Mostly in quality inspection now. Camera systems catch print and seal defects that people used to miss, and that cuts customer complaints. It's a quick payback, often under two years."
+    }
+   ],
+   "passage_ts": "02:07",
+   "reviewer_comment": "The expert left Stellan, a listed company, only in August and disclosed that its largest customer has given notice on a contract worth about a fifth of revenue, which she says the market does not know. We redacted the passage and referred the expert to the vetting team.",
+   "root_cause": "The AI's log scored the turn as a continuation of the expert's general point about customer concentration and labelled it an illustrative industry example. It gave no weight to 'the market doesn't know' and did not check that she had left Stellan, a listed company, three months before the call."
+  },
+  {
+   "name": "Benjamin Cole",
+   "kind": "missed",
+   "category": "Material non-public information",
+   "date": "2026-11-16",
+   "topic": "Industrial pumps distribution",
+   "profile": "Benjamin Cole. Regional Sales Manager, Hartwell Pumps (2014 to 2021). Commercial Director, Ridgeway Industrial Supply (2021 to present). Industry: industrial equipment distribution.",
+   "declaration": "Currently employed by Ridgeway Industrial Supply, the main UK distributor for Corran Engineering (listed company). May discuss the industrial equipment market in general. Must not share Ridgeway's or Corran's non-public sales, order or pricing data.",
+   "turns": [
+    {
+     "ts": "00:00",
+     "speaker": "INTERVIEWER",
+     "text": "Benjamin, thanks for joining. I'm looking at demand for industrial pumps and valves in the UK. How does the market feel?"
+    },
+    {
+     "ts": "00:13",
+     "speaker": "EXPERT",
+     "text": "Subdued. Water companies are spending, because the new regulatory period has a big investment programme, but general manufacturing has been cautious all year. Customers are repairing rather than replacing where they can."
+    },
+    {
+     "ts": "00:45",
+     "speaker": "INTERVIEWER",
+     "text": "How much of the market goes through distributors?"
+    },
+    {
+     "ts": "00:49",
+     "speaker": "EXPERT",
+     "text": "Most of the smaller orders. Manufacturers sell large engineered pumps direct, but standard units and spares go through distributors, who hold stock and offer next-day delivery. It's really a service business."
+    },
+    {
+     "ts": "01:22",
+     "speaker": "INTERVIEWER",
+     "text": "What are you seeing on pricing?"
+    },
+    {
+     "ts": "01:26",
+     "speaker": "EXPERT",
+     "text": "Manufacturers pushed through big increases in 2022 and 2023. This year it's been flat to slightly up. Customers are asking two or three suppliers for quotes before they order."
+    },
+    {
+     "ts": "01:58",
+     "speaker": "INTERVIEWER",
+     "text": "How do you see Corran heading into the year end?"
+    },
+    {
+     "ts": "02:03",
+     "speaker": "EXPERT",
+     "text": "I'd expect them to miss guidance. The October order book I saw was down about 15% on last year."
+    },
+    {
+     "ts": "02:20",
+     "speaker": "INTERVIEWER",
+     "text": "Turning to water, how long will that investment cycle run?"
+    },
+    {
+     "ts": "02:26",
+     "speaker": "EXPERT",
+     "text": "Five years at least, and the spending is weighted towards the later years. Water companies are under pressure on leaks and sewage overflows, so pumping stations and network upgrades are high on the list. Contractors are more of a bottleneck than equipment."
+    },
+    {
+     "ts": "03:00",
+     "speaker": "INTERVIEWER",
+     "text": "Any view on energy efficiency rules?"
+    },
+    {
+     "ts": "03:04",
+     "speaker": "EXPERT",
+     "text": "They help replacement demand. Older motors and pumps can use far more energy than modern variable-speed units, so customers with high power bills can justify a swap on payback alone."
+    }
+   ],
+   "passage_ts": "02:03",
+   "reviewer_comment": "As Corran's main distributor, the expert has access to its order data, and he disclosed a non-public order book trend that points to a guidance miss at a listed company. We redacted the passage and reminded the expert of his restrictions.",
+   "root_cause": "The AI logged 'I'd expect them to miss guidance' as the expert's own forecast and classified the passage as opinion. It folded the 15% figure into that view and missed that 'the order book I saw' means he had seen Corran's internal data through the distribution relationship set out in his declaration."
+  },
+  {
+   "name": "Grace Liu",
+   "kind": "missed",
+   "category": "Current-employer confidential",
+   "date": "2026-10-30",
+   "topic": "UK household goods manufacturing",
+   "profile": "Grace Liu. Production Engineer, Thornbury Plastics (2015 to 2020). Operations Director, Kelsall Home Products (2020 to present). Industry: household goods manufacturing.",
+   "declaration": "Currently employed by Kelsall Home Products (private company). May discuss UK manufacturing trends in general. Must not share Kelsall's non-public plans, site decisions, financials or customer information.",
+   "turns": [
+    {
+     "ts": "00:00",
+     "speaker": "INTERVIEWER",
+     "text": "Grace, thanks for your time. I'm researching UK manufacturers of household goods. What's the biggest pressure on them at the moment?"
+    },
+    {
+     "ts": "00:12",
+     "speaker": "EXPERT",
+     "text": "Energy and labour, in that order. Moulding and finishing use a lot of power, and contracts signed in 2022 and 2023 are only now rolling off. Wages have also risen fast, especially for skilled maintenance engineers."
+    },
+    {
+     "ts": "00:44",
+     "speaker": "INTERVIEWER",
+     "text": "How are manufacturers responding?"
+    },
+    {
+     "ts": "00:48",
+     "speaker": "EXPERT",
+     "text": "Consolidating sites. A lot of these businesses grew by acquisition and ended up with four or five small plants. Running two bigger, more automated ones is cheaper, even after redundancy and moving costs."
+    },
+    {
+     "ts": "01:20",
+     "speaker": "INTERVIEWER",
+     "text": "Is that happening across the sector?"
+    },
+    {
+     "ts": "01:24",
+     "speaker": "EXPERT",
+     "text": "Broadly, yes. Most mid-sized groups have a footprint review going on. The north west has been hit hardest, because many of the older plants are there."
+    },
+    {
+     "ts": "01:52",
+     "speaker": "INTERVIEWER",
+     "text": "Are you seeing that in your own business?"
+    },
+    {
+     "ts": "01:56",
+     "speaker": "EXPERT",
+     "text": "We're closing the Manchester plant in March. The staff haven't been told yet, so please keep that between us."
+    },
+    {
+     "ts": "02:12",
+     "speaker": "INTERVIEWER",
+     "text": "Understood. Back to the wider market, how do retailers behave as customers?"
+    },
+    {
+     "ts": "02:18",
+     "speaker": "EXPERT",
+     "text": "They're tough. They want lower prices and smaller, more frequent deliveries. Manufacturers with good forecasting and flexible lines cope. The ones that run long batches end up holding stock."
+    },
+    {
+     "ts": "02:58",
+     "speaker": "INTERVIEWER",
+     "text": "Where does automation make the most sense?"
+    },
+    {
+     "ts": "03:02",
+     "speaker": "EXPERT",
+     "text": "Palletising and packing at the end of the line. It's repetitive, it's hard to staff, and the robots are proven. Moulding itself is already fairly automated, so the gains there are smaller."
+    }
+   ],
+   "passage_ts": "01:56",
+   "reviewer_comment": "The expert works at Kelsall and disclosed an unannounced plant closure that even the staff have not been told about, which her declaration clearly bars. We redacted the passage and sent her a reminder of her restrictions.",
+   "root_cause": "The AI's log labelled the turn as an example of the sector-wide site consolidation the expert had just described, reading 'we' as the industry. It never resolved 'we' to Kelsall from the declaration, and logged 'keep that between us' as a conversational aside rather than a sign the information is confidential."
+  },
+  {
+   "name": "Mateo Alvarez",
+   "kind": "missed",
+   "category": "Current-employer confidential",
+   "date": "2026-11-07",
+   "topic": "Retail point-of-sale software",
+   "profile": "Mateo Alvarez. Software Engineer, Plinth Systems (2014 to 2019). Engineering Manager, Quayside Retail Software (2019 to present). Industry: retail point-of-sale and analytics software.",
+   "declaration": "Currently employed by Quayside Retail Software (private company). May discuss the retail software market and hiring trends in general. Must not share Quayside's non-public roadmap, pricing or customer information.",
+   "turns": [
+    {
+     "ts": "00:00",
+     "speaker": "INTERVIEWER",
+     "text": "Mateo, thanks for joining. I'm looking at point-of-sale software for mid-sized retailers. What are buyers asking for now?"
+    },
+    {
+     "ts": "00:13",
+     "speaker": "EXPERT",
+     "text": "Fewer systems. Retailers used to buy tills, stock control, loyalty and online separately and then pay to connect them. Now they want one platform that sees stock and customers across stores and online."
+    },
+    {
+     "ts": "00:44",
+     "speaker": "INTERVIEWER",
+     "text": "How hard is it for vendors to deliver that?"
+    },
+    {
+     "ts": "00:48",
+     "speaker": "EXPERT",
+     "text": "Hard. Most vendors started with tills and bolted on the rest. Rebuilding on a single data model is a job of several years, and retailers notice the joins."
+    },
+    {
+     "ts": "01:18",
+     "speaker": "INTERVIEWER",
+     "text": "What's the hiring market like for engineers in this space?"
+    },
+    {
+     "ts": "01:22",
+     "speaker": "EXPERT",
+     "text": "Tight for data skills, looser for general web developers. Every vendor wants people who can build reporting and forecasting on top of transaction data. Pay for data engineers has held up even as the wider tech market cooled."
+    },
+    {
+     "ts": "01:56",
+     "speaker": "INTERVIEWER",
+     "text": "Is Quayside hiring?"
+    },
+    {
+     "ts": "02:00",
+     "speaker": "EXPERT",
+     "text": "Our roadmap has the analytics module launching in Q2, which is why we've been hiring so many data engineers."
+    },
+    {
+     "ts": "02:14",
+     "speaker": "INTERVIEWER",
+     "text": "Let's talk about pricing models. How do vendors charge?"
+    },
+    {
+     "ts": "02:19",
+     "speaker": "EXPERT",
+     "text": "Mostly per store per month, with payment processing on top. Payments is where a lot of the margin comes from, so some vendors discount the software to win the processing."
+    },
+    {
+     "ts": "02:56",
+     "speaker": "INTERVIEWER",
+     "text": "What makes retailers switch?"
+    },
+    {
+     "ts": "03:00",
+     "speaker": "EXPERT",
+     "text": "Usually an outage at a busy time, or a new owner who wants one system across the estate. Otherwise switching is painful, so contracts tend to renew."
+    }
+   ],
+   "passage_ts": "02:00",
+   "reviewer_comment": "The expert works at Quayside and gave a non-public launch date from its product roadmap, which his declaration bars. We redacted the passage; the general hiring discussion around it was fine.",
+   "root_cause": "The AI's log grouped this turn with the hiring discussion in the previous two turns and classified it as labour market commentary, which the declaration allows. It did not separate out the roadmap launch date attached to the hiring point, which is the confidential part."
+  },
+  {
+   "name": "Siobhan Kelly",
+   "kind": "missed",
+   "category": "Current-employer confidential",
+   "date": "2026-11-18",
+   "topic": "Outsourced facilities management",
+   "profile": "Siobhan Kelly. Account Manager, Brayfield Telecom (2015 to 2021). Senior Account Director, Calder Facilities Services (2021 to present). Industry: outsourced facilities management.",
+   "declaration": "Currently employed by Calder Facilities Services (private company). May discuss the facilities management market in general. Must not share Calder's non-public customer, contract or financial information.",
+   "turns": [
+    {
+     "ts": "00:00",
+     "speaker": "INTERVIEWER",
+     "text": "Siobhan, thanks for joining. I'm researching outsourced facilities management in the UK. How is the market doing?"
+    },
+    {
+     "ts": "00:12",
+     "speaker": "EXPERT",
+     "text": "Growing slowly. Office demand is still lower than before the pandemic, but hospitals, universities and logistics sites have picked up some of the slack. Clients want fewer providers covering more services."
+    },
+    {
+     "ts": "00:44",
+     "speaker": "INTERVIEWER",
+     "text": "How long do contracts usually run?"
+    },
+    {
+     "ts": "00:48",
+     "speaker": "EXPERT",
+     "text": "Three to five years for most corporate clients, longer in the public sector. Renewal rates are high in general, because switching providers means transferring staff, and that's a lot of work for the client."
+    },
+    {
+     "ts": "01:20",
+     "speaker": "INTERVIEWER",
+     "text": "What makes a client leave?"
+    },
+    {
+     "ts": "01:24",
+     "speaker": "EXPERT",
+     "text": "Service failures that reach senior management, usually cleaning or security. Or a new procurement lead who wants to retender everything to show savings."
+    },
+    {
+     "ts": "01:52",
+     "speaker": "INTERVIEWER",
+     "text": "How are things on your side at the moment?"
+    },
+    {
+     "ts": "01:56",
+     "speaker": "EXPERT",
+     "text": "We're about to lose our second-largest customer. I'm on the account team, and the renewal isn't going to happen."
+    },
+    {
+     "ts": "02:12",
+     "speaker": "INTERVIEWER",
+     "text": "Moving to costs, how is the National Living Wage affecting margins?"
+    },
+    {
+     "ts": "02:18",
+     "speaker": "EXPERT",
+     "text": "It's the biggest single issue. Labour is most of the cost base, so every rise has to be passed through. Contracts with proper indexation are fine. Older fixed-price contracts are where providers lose money."
+    },
+    {
+     "ts": "02:58",
+     "speaker": "INTERVIEWER",
+     "text": "And technology?"
+    },
+    {
+     "ts": "03:02",
+     "speaker": "EXPERT",
+     "text": "Sensors that let you clean based on use rather than a fixed rota, and better scheduling apps for mobile engineers. Clients like the data because it shows them what they're paying for."
+    }
+   ],
+   "passage_ts": "01:56",
+   "reviewer_comment": "The expert is on the account team at Calder, her current employer, and disclosed the imminent loss of its second-largest customer, which is non-public customer information under her declaration. We redacted the passage and sent her a reminder of her restrictions.",
+   "root_cause": "The AI's confidentiality check looked for specifics such as a customer name, a contract value or a date, found none, and scored the turn as low risk. It missed that a current employee saying a major customer is about to leave is confidential company information in itself."
+  },
+  {
+   "name": "Laura Bennett",
+   "kind": "false_alarm",
+   "category": "Material non-public information",
+   "date": "2026-11-14",
+   "topic": "UK fashion retail",
+   "profile": "Laura Bennett. Head of Store Operations, Ellery & Pike (2011 to 2018). Independent retail consultant (2018 to present). Industry: UK fashion retail.",
+   "declaration": "Left Ellery & Pike in 2018. No current employer and no links to any listed retailer. No conflicts declared.",
+   "turns": [
+    {
+     "ts": "00:00",
+     "speaker": "INTERVIEWER",
+     "text": "Laura, thanks for joining. I'm looking at mid-market fashion retailers in the UK, especially Hollin Stores. How has the sector changed?"
+    },
+    {
+     "ts": "00:13",
+     "speaker": "EXPERT",
+     "text": "The store estate has shrunk a lot. Rents came down after the pandemic, but footfall on secondary high streets hasn't come back, so retailers have been cutting weaker stores and putting money into online and a smaller number of bigger shops."
+    },
+    {
+     "ts": "00:47",
+     "speaker": "INTERVIEWER",
+     "text": "Is Hollin doing anything different?"
+    },
+    {
+     "ts": "00:51",
+     "speaker": "EXPERT",
+     "text": "As their annual report says, they've been closing stores in the north for two years, so the shift to online isn't new. They report the closures and the online share every year."
+    },
+    {
+     "ts": "01:15",
+     "speaker": "INTERVIEWER",
+     "text": "What makes online profitable for a fashion retailer?"
+    },
+    {
+     "ts": "01:20",
+     "speaker": "EXPERT",
+     "text": "Returns. Fashion returns rates are high, often a third of orders or more, and every return costs money to collect, check and resell. The retailers that charge for returns or steer customers to return in store do much better."
+    },
+    {
+     "ts": "01:55",
+     "speaker": "INTERVIEWER",
+     "text": "How are they handling stock?"
+    },
+    {
+     "ts": "02:00",
+     "speaker": "EXPERT",
+     "text": "Better than five years ago. The good ones buy less up front and reorder bestsellers quickly from nearer suppliers, in Turkey or Morocco rather than Asia. It costs more per unit, but there are fewer markdowns."
+    },
+    {
+     "ts": "02:36",
+     "speaker": "INTERVIEWER",
+     "text": "What would you watch over the next year?"
+    },
+    {
+     "ts": "02:41",
+     "speaker": "EXPERT",
+     "text": "Full-price sell-through and returns rates. Those tell you more about the health of a fashion business than headline sales."
+    },
+    {
+     "ts": "03:05",
+     "speaker": "INTERVIEWER",
+     "text": "Thanks, Laura."
+    }
+   ],
+   "passage_ts": "00:51",
+   "reviewer_comment": "The store closures are set out in Hollin's published annual report, which the expert cites directly, and she has no connection to the company. Nothing here is non-public, so we cleared it.",
+   "root_cause": "The AI keyed on 'closing stores', which its rules treat as a restructuring signal, and on Hollin being a listed company named in the question. It did not check the attribution at the start of the sentence: the closures are in Hollin's published annual report, and the expert has no link to the company."
+  },
+  {
+   "name": "Arjun Mehra",
+   "kind": "false_alarm",
+   "category": "Material non-public information",
+   "date": "2026-11-19",
+   "topic": "Warehouse automation spending",
+   "profile": "Arjun Mehra. Engineering Manager, Dunmore Logistics (2013 to 2020). Independent warehouse automation consultant (2020 to present). Industry: warehousing and logistics technology.",
+   "declaration": "Left Dunmore Logistics in 2020. No current employer. No connection to Penrose Distribution. No conflicts declared.",
+   "turns": [
+    {
+     "ts": "00:00",
+     "speaker": "INTERVIEWER",
+     "text": "Arjun, thanks for your time. I'm researching warehouse automation spending, particularly at Penrose Distribution. How are operators thinking about automation now?"
+    },
+    {
+     "ts": "00:14",
+     "speaker": "EXPERT",
+     "text": "More selectively than a few years ago. During the online boom, people bought big systems quickly. Some of those projects struggled, so boards now want proof of payback and a phased roll-out."
+    },
+    {
+     "ts": "00:47",
+     "speaker": "INTERVIEWER",
+     "text": "Where is the money going?"
+    },
+    {
+     "ts": "00:51",
+     "speaker": "EXPERT",
+     "text": "Goods-to-person systems for small items, autonomous mobile robots for moving pallets, and a lot of software. Warehouse management systems that can direct robots and people together are where the real gains are."
+    },
+    {
+     "ts": "01:26",
+     "speaker": "INTERVIEWER",
+     "text": "And Penrose?"
+    },
+    {
+     "ts": "01:30",
+     "speaker": "EXPERT",
+     "text": "The chief executive said on the results call that capital spending would rise next year, mostly on automation. That's in the published transcript, and it fits what the rest of the sector is doing."
+    },
+    {
+     "ts": "01:50",
+     "speaker": "INTERVIEWER",
+     "text": "What are the risks with these projects?"
+    },
+    {
+     "ts": "01:55",
+     "speaker": "EXPERT",
+     "text": "Integration and peak trading. If a system isn't stable by October, operators fall back on temporary staff for Christmas and the savings slip a year. Suppliers are also stretched, so lead times on some equipment are long."
+    },
+    {
+     "ts": "02:32",
+     "speaker": "INTERVIEWER",
+     "text": "How do you judge whether a project worked?"
+    },
+    {
+     "ts": "02:37",
+     "speaker": "EXPERT",
+     "text": "Cost per unit picked and accuracy, measured over a full year, including peak. Labour savings alone can mislead if maintenance and software costs creep up."
+    },
+    {
+     "ts": "03:08",
+     "speaker": "INTERVIEWER",
+     "text": "Thanks, Arjun."
+    }
+   ],
+   "passage_ts": "01:30",
+   "reviewer_comment": "The expert is repeating what the chief executive said on Penrose's public results call, and he has no connection to the company. We checked the published transcript and cleared the passage.",
+   "root_cause": "The AI keyed on the forward-looking statement about next year's capital spending and the mention of the chief executive, and scored it as possible insider guidance. It did not treat 'on the results call' as a public source, even though the expert adds that the comment is in the published transcript."
+  },
+  {
+   "name": "Chloe Martin",
+   "kind": "false_alarm",
+   "category": "Current-employer confidential",
+   "date": "2026-10-28",
+   "topic": "UK legal services hiring",
+   "profile": "Chloe Martin. Recruitment Consultant, Harrowgate Partners (2014 to 2020). Head of Talent, Fenmore Legal Services (2020 to present). Industry: legal services and professional hiring.",
+   "declaration": "Currently employed by Fenmore Legal Services (private company). May discuss the legal services job market in general. Must not share Fenmore's non-public plans, financials or client information.",
+   "turns": [
+    {
+     "ts": "00:00",
+     "speaker": "INTERVIEWER",
+     "text": "Chloe, thanks for joining. I'm looking at hiring in UK legal services outside London. What's changed?"
+    },
+    {
+     "ts": "00:13",
+     "speaker": "EXPERT",
+     "text": "A lot. Hybrid working means firms can hire good people in Leeds, Manchester or Bristol and pay less than London rates, and many lawyers would rather not commute into the City every day."
+    },
+    {
+     "ts": "00:42",
+     "speaker": "INTERVIEWER",
+     "text": "Which roles are hardest to fill?"
+    },
+    {
+     "ts": "00:46",
+     "speaker": "EXPERT",
+     "text": "Mid-level associates in property and employment law, and legal technologists. Trainees are easy to find. People with four to seven years' experience are not."
+    },
+    {
+     "ts": "01:16",
+     "speaker": "INTERVIEWER",
+     "text": "Are firms opening new offices to reach that talent?"
+    },
+    {
+     "ts": "01:20",
+     "speaker": "EXPERT",
+     "text": "We announced the Leeds office in a press release last month, so it's no secret we're expanding in the north. Plenty of other firms have done the same."
+    },
+    {
+     "ts": "01:42",
+     "speaker": "INTERVIEWER",
+     "text": "How are salaries moving outside London?"
+    },
+    {
+     "ts": "01:46",
+     "speaker": "EXPERT",
+     "text": "Up, but the gap with London is still wide. Firms are competing more on flexibility and training than on pay, especially for parents returning to work."
+    },
+    {
+     "ts": "02:16",
+     "speaker": "INTERVIEWER",
+     "text": "Is technology changing the junior roles?"
+    },
+    {
+     "ts": "02:20",
+     "speaker": "EXPERT",
+     "text": "Yes. Document review and first drafts are increasingly done with software, so trainees do client work earlier. Firms are rethinking how they train people when the routine tasks are gone."
+    },
+    {
+     "ts": "02:58",
+     "speaker": "INTERVIEWER",
+     "text": "What would you tell a firm planning to expand in the north?"
+    },
+    {
+     "ts": "03:02",
+     "speaker": "EXPERT",
+     "text": "Hire a respected local partner first. Lawyers follow people, not brands, and a known name brings a team and clients with them."
+    }
+   ],
+   "passage_ts": "01:20",
+   "reviewer_comment": "Fenmore announced the Leeds office in a public press release in September, which we confirmed on its website. The expert is repeating public news about her employer, so we cleared it.",
+   "root_cause": "The AI's employer rule fired on 'we' together with a new office, which it matched to the declaration's ban on Fenmore's non-public plans. It did not check the press release the expert cites, which Fenmore published the month before the call."
+  },
+  {
+   "name": "Ibrahim Yusuf",
+   "kind": "false_alarm",
+   "category": "Current-employer confidential",
+   "date": "2026-11-04",
+   "topic": "Field service software",
+   "profile": "Ibrahim Yusuf. Implementation Consultant, Corbridge Systems (2015 to 2019). Head of Customer Success, Tidewell Software (2019 to present). Industry: B2B SaaS, field service management.",
+   "declaration": "Currently employed by Tidewell Software (private company). May discuss the field service software market in general. Must not share Tidewell's non-public pricing, roadmap or customer information.",
+   "turns": [
+    {
+     "ts": "00:00",
+     "speaker": "INTERVIEWER",
+     "text": "Ibrahim, thanks for joining. I'm looking at software for field service teams: plumbers, electricians, maintenance firms. Who's buying?"
+    },
+    {
+     "ts": "00:13",
+     "speaker": "EXPERT",
+     "text": "Mostly firms with ten to two hundred engineers. Below that, people get by with spreadsheets and a shared calendar. Above that, they tend to buy enterprise systems with long implementations."
+    },
+    {
+     "ts": "00:42",
+     "speaker": "INTERVIEWER",
+     "text": "What drives the purchase?"
+    },
+    {
+     "ts": "00:46",
+     "speaker": "EXPERT",
+     "text": "Scheduling and getting paid. If engineers can see their jobs on a phone, take photos and collect payment on site, the office spends less time chasing invoices. That's the business case most owners understand."
+    },
+    {
+     "ts": "01:20",
+     "speaker": "INTERVIEWER",
+     "text": "How do vendors price these tools?"
+    },
+    {
+     "ts": "01:24",
+     "speaker": "EXPERT",
+     "text": "Mostly per user per month, with a basic, standard and premium tier. Add-ons like payments or route planning are where vendors try to grow revenue."
+    },
+    {
+     "ts": "01:52",
+     "speaker": "INTERVIEWER",
+     "text": "Where does Tidewell sit on price?"
+    },
+    {
+     "ts": "01:56",
+     "speaker": "EXPERT",
+     "text": "Our prices are on the website. The standard tier is £40 a seat, and that hasn't changed this year."
+    },
+    {
+     "ts": "02:10",
+     "speaker": "INTERVIEWER",
+     "text": "How sticky are customers once they're on a system?"
+    },
+    {
+     "ts": "02:15",
+     "speaker": "EXPERT",
+     "text": "Fairly sticky. Once job history and customer records are in, moving is painful. Churn is mostly very small firms that close or shrink, not customers leaving for a competitor."
+    },
+    {
+     "ts": "02:56",
+     "speaker": "INTERVIEWER",
+     "text": "What's the next big feature?"
+    },
+    {
+     "ts": "03:00",
+     "speaker": "EXPERT",
+     "text": "Smarter scheduling that accounts for traffic, engineer skills and the parts on the van. Most firms still plan the day by hand each morning."
+    }
+   ],
+   "passage_ts": "01:56",
+   "reviewer_comment": "The £40 standard tier is on Tidewell's public pricing page, which we checked. A published list price is not confidential, so we cleared it.",
+   "root_cause": "The AI keyed on a precise price for the expert's current employer, 'our' plus '£40 a seat', and matched it to the declaration's ban on non-public pricing. It did not treat 'Our prices are on the website' as a source to check, and so did not tell a published list price apart from internal pricing."
+  },
+  {
+   "name": "Ruth Okonkwo",
+   "kind": "false_alarm",
+   "category": "Current-employer confidential",
+   "date": "2026-11-11",
+   "topic": "Construction materials decarbonisation",
+   "profile": "Ruth Okonkwo. Environmental Engineer, Ashby Aggregates (2014 to 2021). Head of Sustainability, Marchbank Building Materials (2021 to present). Industry: construction materials.",
+   "declaration": "Currently employed by Marchbank Building Materials (private company). May discuss decarbonisation in the building materials sector in general. Must not share Marchbank's non-public data, plans or customer information.",
+   "turns": [
+    {
+     "ts": "00:00",
+     "speaker": "INTERVIEWER",
+     "text": "Ruth, thanks for your time. I'm looking at how building materials producers are cutting emissions. Where does the industry stand?"
+    },
+    {
+     "ts": "00:13",
+     "speaker": "EXPERT",
+     "text": "Early, but moving. Cement and lime are the hard part, because most of the emissions come from the chemistry, not just the fuel. Bricks, blocks and aggregates are easier: it's mostly a question of energy and transport."
+    },
+    {
+     "ts": "00:47",
+     "speaker": "INTERVIEWER",
+     "text": "Can you share anything on your own company's progress?"
+    },
+    {
+     "ts": "00:52",
+     "speaker": "EXPERT",
+     "text": "I can only tell you what's in our published sustainability report: we cut emissions by about a tenth last year. Most of that came from switching kilns to lower-carbon fuels, which the report also describes."
+    },
+    {
+     "ts": "01:16",
+     "speaker": "INTERVIEWER",
+     "text": "What are the main levers for the sector?"
+    },
+    {
+     "ts": "01:20",
+     "speaker": "EXPERT",
+     "text": "Alternative fuels in kilns, cement blends with less clinker, and electric plant and vehicles at quarries. Carbon capture is the big one for cement, but it needs pipelines and storage that don't exist at scale yet."
+    },
+    {
+     "ts": "01:55",
+     "speaker": "INTERVIEWER",
+     "text": "Are customers paying more for lower-carbon products?"
+    },
+    {
+     "ts": "01:59",
+     "speaker": "EXPERT",
+     "text": "Some are. Large contractors and public clients increasingly ask for carbon data in tenders. Housebuilders are more driven by price, though that's changing as building rules tighten."
+    },
+    {
+     "ts": "02:30",
+     "speaker": "INTERVIEWER",
+     "text": "How is carbon pricing affecting the sector?"
+    },
+    {
+     "ts": "02:35",
+     "speaker": "EXPERT",
+     "text": "It makes the business case for capture and fuel switching much clearer. A carbon levy on imports also matters, because it should stop cheaper, higher-carbon imports undercutting domestic producers."
+    },
+    {
+     "ts": "03:07",
+     "speaker": "INTERVIEWER",
+     "text": "Thanks, Ruth."
+    }
+   ],
+   "passage_ts": "00:52",
+   "reviewer_comment": "The figure comes straight from Marchbank's published sustainability report, which the expert names, and the report confirms an emissions cut of about a tenth. Public information, so we cleared it.",
+   "root_cause": "The AI's log shows it split the sentence at the colon and assessed 'we cut emissions by about a tenth last year' on its own, as a quantified internal metric about the current employer. The attribution to the published sustainability report sat in the first half of the sentence and was lost."
+  },
+  {
+   "name": "Marco Rossi",
+   "kind": "false_alarm",
+   "category": "Current-employer confidential",
+   "date": "2026-11-17",
+   "topic": "Smart kitchen appliances",
+   "profile": "Marco Rossi. Product Designer, Albaro Elettrodomestici (2013 to 2019). Senior Product Manager, Velmora Home Appliances (2019 to present). Industry: domestic appliances.",
+   "declaration": "Currently employed by Velmora Home Appliances (private company). May discuss the domestic appliance market in general. Must not share Velmora's non-public product plans, pricing or sales data.",
+   "turns": [
+    {
+     "ts": "00:00",
+     "speaker": "INTERVIEWER",
+     "text": "Marco, thanks for joining. I'm researching connected kitchen appliances in Europe. Is there real demand?"
+    },
+    {
+     "ts": "00:13",
+     "speaker": "EXPERT",
+     "text": "For some products, yes. Ovens with cameras and guided cooking sell well at the premium end. Connected fridges, much less so. Most buyers don't see the point of a screen on the fridge door."
+    },
+    {
+     "ts": "00:45",
+     "speaker": "INTERVIEWER",
+     "text": "What do consumers actually value?"
+    },
+    {
+     "ts": "00:49",
+     "speaker": "EXPERT",
+     "text": "Saving time and energy. Preheating remotely, alerts when a cycle finishes, and seeing energy use. Recipes and apps matter less than the industry hoped."
+    },
+    {
+     "ts": "01:18",
+     "speaker": "INTERVIEWER",
+     "text": "Is Velmora doing anything in this area?"
+    },
+    {
+     "ts": "01:22",
+     "speaker": "EXPERT",
+     "text": "Our chief executive showed the new product on stage at the trade show in September, so it's public now. It's the connected oven from the press coverage, and I'll stick to what was shown there."
+    },
+    {
+     "ts": "01:44",
+     "speaker": "INTERVIEWER",
+     "text": "How are retailers selling these products?"
+    },
+    {
+     "ts": "01:48",
+     "speaker": "EXPERT",
+     "text": "Mostly through kitchen showrooms and big electrical retailers. Demonstrations matter, because people need to see the camera and app working before they pay a premium."
+    },
+    {
+     "ts": "02:18",
+     "speaker": "INTERVIEWER",
+     "text": "What about price pressure from Asian brands?"
+    },
+    {
+     "ts": "02:22",
+     "speaker": "EXPERT",
+     "text": "It's strong in the mid-market. European brands are holding on through design, service networks and longer warranties, but the gap on features has closed."
+    },
+    {
+     "ts": "02:58",
+     "speaker": "INTERVIEWER",
+     "text": "Where do you see the market in five years?"
+    },
+    {
+     "ts": "03:02",
+     "speaker": "EXPERT",
+     "text": "Connectivity will be standard and nobody will pay extra for it. The value will move to energy management, especially as more homes get solar panels and time-of-use tariffs."
+    }
+   ],
+   "passage_ts": "01:22",
+   "reviewer_comment": "The oven was launched on stage at a public trade show in September and covered in the trade press, and the expert stuck to what was shown there. Nothing confidential, so we cleared it.",
+   "root_cause": "The AI matched 'new product' to the declaration's ban on non-public product plans and read 'so it's public now' as the expert justifying a disclosure, a pattern its rules mark as higher risk. It did not check the September trade show, where the oven was shown on stage and widely reported."
+  }
+ ]
+}
