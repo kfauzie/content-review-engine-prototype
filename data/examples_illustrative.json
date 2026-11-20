@@ -1,5 +1,5 @@
 {
- "note": "ILLUSTRATIVE. Examples for the benchmark design: 'examples' are missed issues, 'unneeded' are unneeded flags. Entries with a 'test set' source quote synthetic-expert-transcripts.md word for word; entries 'written for the design' are new fictional passages. People, companies and all call dates are invented. No person appears twice.",
+ "note": "ILLUSTRATIVE. Examples for the benchmark design: 'examples' are missed issues, 'false_alarms' are flagged by AI and cleared by reviewers. Entries with a 'test set' source quote synthetic-expert-transcripts.md word for word; entries 'written for the design' are new fictional passages. People, companies and all call dates are invented. No person appears twice.",
  "examples": [
   {
    "category": "Material non-public information",
@@ -186,7 +186,7 @@
    "quote": "The founder's son is only nineteen, and he's been put on the payroll as a director at the Dublin subsidiary."
   }
  ],
- "unneeded": [
+ "false_alarms": [
   {
    "name": "Daniel Reyes",
    "date": "2026-11-03",

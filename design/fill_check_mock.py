@@ -1,6 +1,6 @@
 """Write the two design pages for the AI performance benchmark (round 5).
 
-  design/1-summary.html     header, missed issues by type with a carousel of examples per type, unneeded flags
+  design/1-summary.html     header with two cards, missed by AI and false alarms by type, carousels, collapsible rows
   design/2-transcript.html  call context, full transcript, missed passage with issue type, reviewer comment, root cause
 
 Counts are MADE UP for a 1,000-transcript sample (Kevin's call); misses moved to the top two types in round 6, total kept at 23. Examples come from data/examples_illustrative.json:
@@ -28,9 +28,9 @@ HIGH = [("Material non-public information", "Non-public facts that could move a 
 LOWER = [("Source disclosure", "Names an insider as the source", 29, 4),
          ("Former-client confidential", "Confidential details from a former client or employer", 33, 3),
          ("Personal data", "Names or sensitive details of private individuals", 96, 7)]
-UNNEEDED_BY = {"Material non-public information": 60, "Current-employer confidential": 30, "Declaration conflict": 9,
+FALSE_BY = {"Material non-public information": 60, "Current-employer confidential": 30, "Declaration conflict": 9,
                "Source disclosure": 8, "Former-client confidential": 20, "Personal data": 60}  # made up
-UNNEEDED = sum(UNNEEDED_BY.values())
+FALSE = sum(FALSE_BY.values())
 TOP = ("Material non-public information", "Current-employer confidential")  # cards open a transcript
 FOUND = sum(r[2] for r in HIGH + LOWER)
 MISSED = sum(r[3] for r in HIGH + LOWER)
@@ -41,11 +41,11 @@ DATA = json.loads(Path("data/examples_illustrative.json").read_text())
 EXAMPLES = defaultdict(list)
 for e in DATA["examples"]:
     EXAMPLES[e["category"]].append(e)
-UNNEEDED_EX = defaultdict(list)
-for e in DATA["unneeded"]:
-    UNNEEDED_EX[e["category"]].append(e)
-assert UNNEEDED == 187
-for grp in list(EXAMPLES.values()) + list(UNNEEDED_EX.values()):
+FALSE_EX = defaultdict(list)
+for e in DATA["false_alarms"]:
+    FALSE_EX[e["category"]].append(e)
+assert FALSE == 187 and CAUGHT + FALSE == 426
+for grp in list(EXAMPLES.values()) + list(FALSE_EX.values()):
     assert len({e["name"] for e in grp}) == len(grp), "one person per example"
 for name, _, _, missed in HIGH + LOWER:
     assert len(EXAMPLES[name]) <= missed, f"{name}: more examples than misses"
@@ -105,7 +105,7 @@ h2{font-size:18px;margin:0 0 14px;font-weight:650}
 .cat.hi{box-shadow:inset 4px 0 0 var(--hi),0 0 0 1px var(--line)}
 .cat .n{font-size:18px;font-weight:650;letter-spacing:-.2px} .cat .d{color:var(--muted);font-size:13px}
 .cat .c{font-size:28px;font-weight:700;letter-spacing:-.6px;font-variant-numeric:tabular-nums;text-align:right;line-height:1}
-.cat .c small{display:block;font-size:12px;font-weight:500;color:var(--muted);letter-spacing:0;margin-top:4px}
+.cat .c small{display:block;font-size:12px;font-weight:500;color:var(--muted);letter-spacing:0;margin-top:4px;white-space:nowrap}
 .cat.hi .c{color:var(--hi)} .cat.lo .c{color:var(--lo)} .cat .c.zero{color:var(--faint)}
 .car{padding:0 22px 18px}
 .carhead{display:flex;justify-content:flex-end;align-items:center;gap:8px;margin:-6px 0 10px;color:var(--faint);font-size:12px}
@@ -147,6 +147,27 @@ h2{font-size:18px;margin:0 0 14px;font-weight:650}
 .cat.am{box-shadow:inset 4px 0 0 #d9b979,0 0 0 1px var(--line)} .cat.am .ex{background:var(--amber-wash)} .cat.am .av{background:#b7791f}
 .cat.am .car{padding-top:16px}
 .ex .cl{font-size:12px;color:var(--amber);font-weight:500}
+.sub1{color:var(--muted);font-size:15px;margin:-6px 0 22px}
+.kpis{display:grid;grid-template-columns:1.5fr 1fr;gap:16px;margin-bottom:40px}
+.kpi{background:var(--card);border-radius:18px;padding:22px 24px;box-shadow:0 1px 2px rgba(15,23,42,.04),0 0 0 1px var(--line)}
+.kpi .kh{display:flex;align-items:center;gap:10px;font-weight:650;font-size:15px}
+.kpi .tag{font-size:12px;font-weight:600;border-radius:999px;padding:2px 10px}
+.kpi.risk .tag{color:var(--red);background:var(--red-wash)} .kpi.fa .tag{color:var(--amber);background:var(--amber-wash)}
+.kpi .nums{display:flex;align-items:flex-end;gap:28px;margin:16px 0 14px;flex-wrap:wrap}
+.kpi .big{font-size:56px;font-weight:750;letter-spacing:-2px;line-height:.95;font-variant-numeric:tabular-nums}
+.kpi .lab{color:var(--muted);font-size:13px;margin-top:6px}
+.kpi.risk .big.miss{color:var(--red);font-size:72px} .kpi .big.base{font-size:34px;color:var(--ink2);letter-spacing:-1px}
+.kpi.fa .big{color:var(--amber);font-size:48px}
+.sbar{display:flex;gap:2px;height:14px}
+.sbar i{display:block;height:100%} .sbar i:first-child{border-radius:4px 0 0 4px} .sbar i:last-child{border-radius:0 4px 4px 0}
+.sleg{display:flex;gap:18px;margin-top:8px;font-size:12px;color:var(--muted)}
+.sleg span{display:inline-flex;align-items:center;gap:6px} .sleg b{color:var(--ink);font-weight:600}
+.sleg i{width:9px;height:9px;border-radius:2px;display:inline-block}
+.cat .top{grid-template-columns:1fr 200px 64px 18px!important;cursor:pointer}
+.mini{display:flex;gap:2px;height:8px}
+.mini i{display:block;height:100%} .mini i:first-child{border-radius:3px 0 0 3px} .mini i:last-child{border-radius:0 3px 3px 0}
+.tog{width:8px;height:8px;border-right:1.5px solid var(--muted);border-bottom:1.5px solid var(--muted);transform:rotate(-135deg);margin-top:4px;justify-self:end}
+.cat.shut .tog{transform:rotate(45deg);margin-top:-4px} .tog.none{visibility:hidden}
 .ex{position:relative}
 .ex.open:after{content:"";position:absolute;right:16px;bottom:22px;width:7px;height:7px;border-right:1.5px solid var(--ink2);border-bottom:1.5px solid var(--ink2);transform:rotate(-45deg)}
 .ufsec .cat .top{padding:13px 22px} .ufsec .cat .n{font-size:15px} .ufsec .cat .c{font-size:20px;color:var(--amber)} .ufsec .cat .c.zero{color:var(--faint)}
@@ -165,30 +186,53 @@ def page(title, body):
 def card(e, kind):
     clickable = e["category"] in TOP
     href = ' href="2-transcript.html"' if e["source"] == f"test set T{EX}-{EX_TS}" else ""
-    extra = f'<span class="cl">Cleared: {html.escape(e["cleared"])}</span>' if kind == "unneeded" else ""
+    extra = f'<span class="cl">Cleared: {html.escape(e["cleared"])}</span>' if kind == "false" else ""
     return (f'<a class="ex{" open" if clickable else ""}"{href}><q>{html.escape(e["quote"])}</q>{extra}<div class="who">'
             f'<span class="av">{initials(e["name"])}</span><div><div class="nm">{e["name"]}</div>'
             f'<div class="dt">{nice(e["date"])} · {e["ts"]}</div></div></div></a>')
 
 
-def cat(name, desc, count, label, level, ex, kind, carousel=True):
+def cat(name, desc, count, label, level, ex, kind, carousel=True, shut=False, base=0, scale=1, colour="var(--red)"):
     c = f'<div class="c{" zero" if not count else ""}">{count}<small>{label}</small></div>'
-    out = f'<div class="cat {level}"><div class="top"><div><div class="n">{name}</div><div class="d">{desc}</div></div>{c}</div>'
-    if ex and carousel:
+    w = (base + count) / scale * 100
+    mini = (f'<div class="mini" style="width:{w:.1f}%" title="{base} {"caught" if kind == "missed" else "confirmed"}, {count} {label}">'
+            f'<i style="flex:{base};background:#cbd5e1"></i>' + (f'<i style="flex:{count};background:{colour}"></i>' if count else "") + "</div>")
+    has = bool(ex and carousel)
+    out = (f'<div class="cat {level}{" shut" if shut and has else ""}"><div class="top"><div><div class="n">{name}</div><div class="d">{desc}</div></div>'
+           f'<div>{mini}</div>{c}<span class="tog{"" if has else " none"}"></span></div>')
+    if has and not shut:
         nav = (f'<div class="carhead">1–3 of {len(ex)}<span class="arr l off"></span><span class="arr r"></span></div>') if len(ex) > 3 else ""
         out += f'<div class="car">{nav}<div class="cards">{"".join(card(e, kind) for e in ex[:3])}</div></div>'
     return out + "</div>"
 
 
 def summary():
-    body = f'''<div class="head"><div><h1>AI performance benchmark</h1>
-<div class="line"><span><b>{SAMPLE:,}</b> transcripts</span><span class="sep">·</span><span><b>{FOUND}</b> issues found by human reviewers</span>
-<span class="sep">·</span><span>AI caught <b>{CAUGHT}</b></span><span class="missed">missed <b>{MISSED}</b></span></div></div>
-<div class="uf"><b>{UNNEEDED}</b> unneeded flags <span class="tag">Operational cost</span></div></div>
-<h2>Missed issues by type</h2>
-<div class="grp"><i style="background:var(--hi)"></i>High priority</div>{"".join(cat(n, d, m, "missed", "hi", EXAMPLES[n], "missed") for n, d, f, m in HIGH)}
-<div class="grp"><i style="background:var(--lo)"></i>Medium and low priority</div>{"".join(cat(n, d, m, "missed", "lo", EXAMPLES[n], "missed") for n, d, f, m in LOWER)}
-<div class="ufsec"><h2>Unneeded flags <span class="num">{UNNEEDED}</span><span class="tag">Operational cost</span></h2>{"".join(cat(n, d, UNNEEDED_BY[n], "unneeded", "am", UNNEEDED_EX[n], "unneeded", carousel=n in TOP) for n, d, *_ in HIGH + LOWER)}</div>'''
+    rows = HIGH + LOWER
+    ms = max(f for _, _, f, _ in rows)
+    fs = max((f - m) + FALSE_BY[n] for n, _, f, m in rows)
+    miss = lambda grp, lvl: "".join(cat(n, d, m, "missed", lvl, EXAMPLES[n], "missed", shut=(n == "Source disclosure"),
+                                        base=f - m, scale=ms) for n, d, f, m in grp)
+    fa = lambda grp: "".join(cat(n, d, FALSE_BY[n], "false alarms", "am", FALSE_EX[n], "false", carousel=n in TOP,
+                                 base=f - m, scale=fs, colour="#c08a2e") for n, d, f, m in grp)
+    body = f'''<h1>AI performance benchmark</h1>
+<p class="sub1">{SAMPLE:,} transcripts reviewed by the AI and by human reviewers</p>
+<div class="kpis">
+<div class="kpi risk"><div class="kh">Compliance risks <span class="tag">Liability risk</span></div>
+<div class="nums"><div><div class="big base">{FOUND}</div><div class="lab">found by human reviewers</div></div>
+<div><div class="big miss">{MISSED}</div><div class="lab">missed by AI</div></div></div>
+<div class="sbar"><i style="flex:{CAUGHT};background:#cbd5e1"></i><i style="flex:{MISSED};background:var(--red)"></i></div>
+<div class="sleg"><span><i style="background:#cbd5e1"></i>Caught by AI <b>{CAUGHT}</b></span><span><i style="background:var(--red)"></i>Missed by AI <b>{MISSED}</b></span></div></div>
+<div class="kpi fa"><div class="kh">False alarms <span class="tag">Operational risk</span></div>
+<div class="nums"><div><div class="big">{FALSE}</div><div class="lab">flagged by AI, cleared by human reviewers</div></div></div>
+<div class="sbar"><i style="flex:{CAUGHT};background:#cbd5e1"></i><i style="flex:{FALSE};background:#c08a2e"></i></div>
+<div class="sleg"><span><i style="background:#cbd5e1"></i>Confirmed <b>{CAUGHT}</b></span><span><i style="background:#c08a2e"></i>False alarms <b>{FALSE}</b></span></div></div>
+</div>
+<h2>Missed by AI, by type</h2>
+<div class="grp"><i style="background:var(--hi)"></i>High priority</div>{miss(HIGH, "hi")}
+<div class="grp"><i style="background:var(--lo)"></i>Medium and low priority</div>{miss(LOWER, "lo")}
+<div class="ufsec"><h2>False alarms, by type</h2>
+<div class="grp"><i style="background:var(--hi)"></i>High priority</div>{fa(HIGH)}
+<div class="grp"><i style="background:var(--lo)"></i>Medium and low priority</div>{fa(LOWER)}</div>'''
     return page("AI performance benchmark (design)", body)
 
 
@@ -219,5 +263,5 @@ def transcript():
 if __name__ == "__main__":
     Path("design/1-summary.html").write_text(summary())
     Path("design/2-transcript.html").write_text(transcript())
-    print(f"found {FOUND}, caught {CAUGHT}, missed {MISSED}; unneeded {UNNEEDED}; examples per type: "
+    print(f"found {FOUND}, caught {CAUGHT}, missed {MISSED}; false alarms {FALSE}; examples per type: "
           f"{ {k: len(v) for k, v in EXAMPLES.items()} }")
