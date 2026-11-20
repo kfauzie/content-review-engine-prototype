@@ -33,19 +33,30 @@ const t = (name, ok, got) => { if (!ok) fail++; console.log(`${ok ? "PASS" : "FA
   const t0 = Date.now();
   await p.goto(url); await p.waitForSelector('body[data-ready="1"]');
   const num = async k => (await p.locator(`[data-n="${k}"]`).first().textContent()).trim();
-  t("header numbers: 262 found, 23 missed, 239 correctly flagged, 187 false alarms",
-    await num("found") === "262" && await num("missed") === "23" && await num("correct") === "239" && await num("false") === "187");
-  const sizes = await p.evaluate(() => ["found", "missed", "false", "correct"].map(k => parseFloat(getComputedStyle(document.querySelector(`[data-n="${k}"]`)).fontSize)));
-  t("missed by AI is the largest number; 239 is styled like 262", sizes[1] > sizes[0] && sizes[1] > sizes[2] && sizes[3] === sizes[0], sizes.join("/"));
-  t("card headings", (await p.locator(".kh").allTextContents()).join("|") === "Compliance risks found in the transcripts|Flags raised by the AI");
-  t("Liability risk sits next to 23, Operational cost next to 187",
-    (await p.locator(".risk .bigrow .tag").textContent()) === "Liability risk" && (await p.locator(".fa .bigrow .tag").textContent()) === "Operational cost");
-  t("no legends under the bars, no \"Confirmed\"", await p.locator(".sleg").count() === 0 && !(await p.locator("main").textContent()).includes("Confirmed"));
+  t("header numbers: 239 found by AI, 23 missed by AI, 187 false alarms",
+    await num("caught") === "239" && await num("missed") === "23" && await num("false") === "187");
+  const sizes = await p.evaluate(() => ["caught", "missed", "false"].map(k => parseFloat(getComputedStyle(document.querySelector(`[data-n="${k}"]`)).fontSize)));
+  t("missed by AI is the largest number", sizes[1] > sizes[0] && sizes[1] > sizes[2], sizes.join("/"));
+  const boxes = await p.evaluate(() => [".risk", ".fa"].map(s => document.querySelector(s).getBoundingClientRect().width));
+  t("the compliance box is bigger than the false alarm box", boxes[0] > boxes[1] * 1.4, boxes.map(Math.round).join("/"));
+  t("compliance heading, larger type", (await p.locator(".kh").textContent()) === "Compliance risks found in transcripts" &&
+    await p.evaluate(() => parseFloat(getComputedStyle(document.querySelector(".kh")).fontSize)) >= 20);
+  t("labels: found by AI, missed by AI", (await p.locator(".risk .lab").allTextContents()).join("|") === "found by AI|missed by AI");
+  t("Liability risk next to 23; Operational cost in the false alarm box",
+    (await p.locator(".risk .bigrow .tag").textContent()) === "Liability risk" && (await p.locator(".fa .tag").textContent()) === "Operational cost");
+  t("false alarm box shows only 187 false alarms and its description", (await p.locator(".fa .fal").textContent()) === "false alarms" &&
+    (await p.locator(".fa .lab").textContent()) === "flagged by AI, marked as non-risk by human reviewers" && await p.locator(".fa .sbar").count() === 0);
+  t("no legends, no \"Confirmed\"", await p.locator(".sleg").count() === 0 && !(await p.locator("main").textContent()).includes("Confirmed"));
   t("subtitle", (await p.locator(".sub1").textContent()) === "We compared AI and human review across 1,000 transcripts to see where the AI misses compliance risks, and where it raises false alarms");
-  t("three fixes, each with how and impact on both numbers", await p.locator(".fix").count() === 3 &&
-    await p.locator(".fix li").count() === 9 && await p.locator(".fix [data-imp]").count() === 6);
-  t("fix impacts", (await p.locator(".fix [data-imp]").allTextContents()).join("|") ===
-    "Missed by AI \u221210 (7 high priority)|False alarms \u221212|Missed by AI \u221211|False alarms: not estimated|Missed by AI: no change|False alarms \u221278");
+  t("three fixes, each with two highlighted example quotes (initials and date) and three steps", await p.locator(".fix").count() === 3 &&
+    await p.locator(".fix .fq mark").count() === 6 && await p.locator(".fix li").count() === 9 && await p.locator(".fix .fq a").count() === 0);
+  t("expected impact boxes, no grey placeholders", (await p.locator(".fix .ih").allTextContents()).every(x => x === "Expected impact") &&
+    (await p.locator(".fix [data-imp]").allTextContents()).join("|") ===
+    "Reduces missed by AI by 107 high priority|Cuts false alarms by 12|Reduces missed by AI by 11|Cuts false alarms by 78" &&
+    !/no change|not estimated/.test(await p.locator(".fixes").textContent()));
+  t("category rows: a big number with \"out of\", no bars", await p.locator(".mini").count() === 0 &&
+    (await p.locator('[data-cat="missed|Material non-public information"] .c').textContent()) === "5out of 38" &&
+    (await p.locator('[data-cat="false_alarm|Material non-public information"] .c').textContent()) === "60out of 93");
 
   const mnpi = p.locator('[data-cat="missed|Material non-public information"]');
   t("MNPI missed shows 3 of its 5 cards", await mnpi.locator(".ex").count() === 3 && (await mnpi.locator("[data-range]").textContent()) === "1–3 of 5");

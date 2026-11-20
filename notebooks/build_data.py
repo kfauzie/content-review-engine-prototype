@@ -57,17 +57,17 @@ REVIEWERS = {"Material non-public information": ["Sophie Laurent, Legal Counsel"
 # the three fixes, from the reviewers' comments and the agents' root-cause analysis (Kevin's judgement in tagging)
 FIXES = [
     {"id": "declaration", "title": "Read each answer with the expert's declaration and the question before it",
-     "why": "The AI judged answers on their own, so \u201cwe\u201d, \u201ctheir\u201d and \u201cthe board\u201d never linked back to the employer, client or former employer in the declaration.",
+     "examples": [{"name": "Priya Natarajan", "highlight": "For us specifically"}, {"name": "Henrik Lindqvist", "highlight": "The board approved the sale"}],
      "how": ["Give the AI the declaration and the preceding question with every answer",
              "Resolve \u201cwe\u201d, \u201cour\u201d and \u201ctheir\u201d to a named company before judging",
              "Check restrictions and leaving dates against what is said"]},
     {"id": "people", "title": "Check people and sources, not just companies",
-     "why": "The AI only looked for company information, so private individuals and insiders named as sources went through.",
+     "examples": [{"name": "Sofia Marchetti", "highlight": "I've got his personal mobile"}, {"name": "Owen Prendergast", "highlight": "Their head of logistics, Carla, told me"}],
      "how": ["Flag named private individuals alongside health, family or legal details",
              "Flag source phrases such as \u201cmy contact\u201d, \u201ctold me\u201d and \u201cI still speak to\u201d",
              "Route both to a reviewer with the name highlighted"]},
     {"id": "sources", "title": "Check the source the expert cites before flagging",
-     "why": "Most false alarms named a public source (an earnings call, a press release, a published report) that the AI never checked.",
+     "examples": [{"name": "Ibrahim Yusuf", "highlight": "Our prices are on the website"}, {"name": "Laura Bennett", "highlight": "As their annual report says"}],
      "how": ["Detect cited sources in the answer",
              "Look them up in filings, press releases and the company's website",
              "Clear the passage when the fact is found there; keep it flagged when it isn't"]},
@@ -131,11 +131,17 @@ def main():
                 card["ts"] = tr["passage_ts"]
             cards.append(card)
 
+    by_name = {c["name"]: c for c in cards}
+    for f in FIXES:
+        for x in f["examples"]:
+            c = by_name[x["name"]]
+            assert x["highlight"] in c["quote"] and c["fix"] == f["id"], x
     data = {"note": "ILLUSTRATIVE. Made-up counts for a 1,000-transcript sample; examples and transcripts are synthetic.",
             "sample": SAMPLE, "top": TOP,
             "categories": [{"name": n, "priority": p, "description": d, "found": f, "missed": m, "false_alarms": fa}
                            for n, p, d, f, m, fa in CATEGORIES],
-            "fixes": FIXES, "cards": cards, "transcripts": transcripts}
+            "fixes": [{**f, "examples": [{**x, **{k: by_name[x["name"]][k] for k in ("quote", "date", "kind", "category")}}
+                                         for x in f["examples"]]} for f in FIXES], "cards": cards, "transcripts": transcripts}
     out = ROOT / "data/benchmark.json"
     out.write_text(json.dumps(data, indent=1, ensure_ascii=False) + "\n")
 

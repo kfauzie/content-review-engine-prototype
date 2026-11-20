@@ -1,3 +1,14 @@
+# Prototype feedback, round 9 (applied)
+
+1. **The compliance box:** a bigger label ("Compliance risks found in transcripts", 20px) and a bigger box than the false alarm box, because liability risk matters more than operational cost. It shows "239 found by AI" in green and "23 missed by AI" in big red with "Liability risk" beside it. The bar is green and red.
+2. **The false alarm box:** shows only "187 false alarms", "flagged by AI, marked as non-risk by human reviewers" and the "Operational cost" tag. No 239 and no bar.
+3. **More colour:** green for found by AI, a red tint on the compliance box, an amber tint on the false alarm box, and violet for the fixes.
+4. **The fixes:** the general description is replaced by two concrete examples each. Each example is a highlighted quote with the expert's initials and the call date, and it isn't clickable. Short quotes are shown in full; long ones show the sentence with the highlight.
+5. **An "Expected impact" box in each fix,** with separate boxes: "Reduces missed by AI by N" (red, high-priority count beneath) and "Cuts false alarms by N" (amber). The grey "no change" and "not estimated" boxes are removed.
+6. **Issue categories:** the bars are removed. Each row shows the number big, with "out of N" smaller beside it. For false alarms, N is the AI's flags in that category (correct plus false alarms).
+
+---
+
 # Prototype feedback, round 8 (applied)
 
 Kevin's feedback on the built prototype (`build/mvp.html`). Applied after Kevin's go; tests and the headless check updated and passing.

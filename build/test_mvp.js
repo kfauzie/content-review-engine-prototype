@@ -61,7 +61,9 @@ t("fix 3, cited sources: no change to misses, about 78 fewer false alarms (60 x 
   imp[2].id === "sources" && imp[2].missed === 0 && imp[2].falseAlarms === 78, JSON.stringify(imp[2]));
 t("the fixes never claim more misses than exist, and 2 misses stay uncovered", imp.reduce((s, x) => s + x.missed, 0) === 21 &&
   D.cards.filter(c => c.kind === "missed" && !c.fix).map(c => c.name).join() === "Mateo Alvarez,Siobhan Kelly");
-t("each fix has a title, a why and three how steps", D.fixes.length === 3 && D.fixes.every(f => f.title && f.why && f.how.length === 3));
+t("each fix has a title, two examples and three how steps", D.fixes.length === 3 && D.fixes.every(f => f.title && f.how.length === 3 && f.examples.length === 2));
+t("each fix example quotes its card word for word, highlights a phrase in it, and is tagged to that fix", D.fixes.every(f => f.examples.every(x => {
+  const c = D.cards.find(k => k.name === x.name); return c && c.quote === x.quote && c.date === x.date && x.quote.includes(x.highlight) && c.fix === f.id; })));
 t("every transcript names its reviewer and title", Object.values(D.transcripts).every(x => /^[A-Z][a-z]+ [A-Z][a-z]+, [A-Z]/.test(x.reviewer)));
 t("carousel window clamps at the ends", JSON.stringify(C.windowOf(5, 4, 3)) === '{"start":2,"end":5}' && JSON.stringify(C.windowOf(5, -1, 3)) === '{"start":0,"end":3}');
 t("three cards on desktop, two on tablet, one on phone", C.perView(1280) === 3 && C.perView(800) === 2 && C.perView(390) === 1);

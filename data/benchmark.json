@@ -59,7 +59,24 @@
   {
    "id": "declaration",
    "title": "Read each answer with the expert's declaration and the question before it",
-   "why": "The AI judged answers on their own, so “we”, “their” and “the board” never linked back to the employer, client or former employer in the declaration.",
+   "examples": [
+    {
+     "name": "Priya Natarajan",
+     "highlight": "For us specifically",
+     "quote": "For us specifically, we're moving list price up 12% on the mid-market tier from January. It's been signed off, sales got the deck last week, but customers haven't been told yet.",
+     "date": "2026-11-04",
+     "kind": "missed",
+     "category": "Current-employer confidential"
+    },
+    {
+     "name": "Henrik Lindqvist",
+     "highlight": "The board approved the sale",
+     "quote": "The board approved the sale of the European tyre business on Tuesday. The announcement is planned for after the half-year results.",
+     "date": "2026-11-05",
+     "kind": "missed",
+     "category": "Material non-public information"
+    }
+   ],
    "how": [
     "Give the AI the declaration and the preceding question with every answer",
     "Resolve “we”, “our” and “their” to a named company before judging",
@@ -69,7 +86,24 @@
   {
    "id": "people",
    "title": "Check people and sources, not just companies",
-   "why": "The AI only looked for company information, so private individuals and insiders named as sources went through.",
+   "examples": [
+    {
+     "name": "Sofia Marchetti",
+     "highlight": "I've got his personal mobile",
+     "quote": "Speak to Mark Doyle in their Leeds office. I've got his personal mobile if you want it.",
+     "date": "2026-10-31",
+     "kind": "missed",
+     "category": "Personal data"
+    },
+    {
+     "name": "Owen Prendergast",
+     "highlight": "Their head of logistics, Carla, told me",
+     "quote": "Their head of logistics, Carla, told me over dinner that the Rotterdam site is being mothballed after Christmas.",
+     "date": "2026-10-28",
+     "kind": "missed",
+     "category": "Source disclosure"
+    }
+   ],
    "how": [
     "Flag named private individuals alongside health, family or legal details",
     "Flag source phrases such as “my contact”, “told me” and “I still speak to”",
@@ -79,7 +113,24 @@
   {
    "id": "sources",
    "title": "Check the source the expert cites before flagging",
-   "why": "Most false alarms named a public source (an earnings call, a press release, a published report) that the AI never checked.",
+   "examples": [
+    {
+     "name": "Ibrahim Yusuf",
+     "highlight": "Our prices are on the website",
+     "quote": "Our prices are on the website. The standard tier is £40 a seat, and that hasn't changed this year.",
+     "date": "2026-11-04",
+     "kind": "false_alarm",
+     "category": "Current-employer confidential"
+    },
+    {
+     "name": "Laura Bennett",
+     "highlight": "As their annual report says",
+     "quote": "As their annual report says, they've been closing stores in the north for two years, so the shift to online isn't new.",
+     "date": "2026-11-14",
+     "kind": "false_alarm",
+     "category": "Material non-public information"
+    }
+   ],
    "how": [
     "Detect cited sources in the answer",
     "Look them up in filings, press releases and the company's website",
