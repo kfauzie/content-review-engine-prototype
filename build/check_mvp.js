@@ -62,7 +62,8 @@ const t = (name, ok, got) => { if (!ok) fail++; console.log(`${ok ? "PASS" : "FA
   t("one summary panel: false alarms beside the hero at about 30% width, same row height", fb[1][0] < fb[0][0] / 2 && Math.abs(fb[1][1] - fb[0][1]) < 2 && Math.abs(fb[1][2] - fb[0][2]) < 2,
     fb.map(x => x.slice(0, 2).map(Math.round).join("x")).join(" vs "));
   t("secondary number is at most half the hero number", sizes[2] <= sizes[1] / 2, sizes.join("/"));
-  t("section title \"Possible improvements\", no estimate note", (await p.locator(".fixes").evaluate(e => e.previousElementSibling.textContent)) === "Possible improvements" && await p.locator(".est").count() === 0);
+  t("section title \"Possible improvements\" with its source subtitle, no estimate note", (await p.locator(".fixes").evaluate(e => e.previousElementSibling.previousElementSibling.textContent)) === "Possible improvements" && await p.locator(".est").count() === 0 &&
+    (await p.locator(".secsub").textContent()) === "Based on the human reviewers' comments and independent agents' analysis of the original AI's logs");
   t("expected impact boxes, no grey placeholders", (await p.locator(".fix .ih").allTextContents()).every(x => x === "Expected impact") &&
     (await p.locator(".fix [data-imp]").allTextContents()).join("|") ===
     "10 fewer risks missed by AI, 7 of them high priority|12 fewer false alarms|11 fewer risks missed by AI|78 fewer false alarms" &&
@@ -72,6 +73,19 @@ const t = (name, ok, got) => { if (!ok) fail++; console.log(`${ok ? "PASS" : "FA
     (await p.locator('[data-cat="false_alarm|Material non-public information"] .c').textContent()) === "60of 93" &&
     (await p.locator('[data-cat="missed|Material non-public information"] .cin').textContent()) === "in this category");
 
+  const fams = await p.evaluate(() => [...new Set([...document.querySelectorAll("h1,h2,.kh,.n,.fq,.lab,.d")].map(e => getComputedStyle(e).fontFamily.split(",")[0].replace(/["']/g, "").trim()))]);
+  t("one font family throughout", fams.length === 1, fams.join(" | "));
+  t("category cards match the recommendation examples: no names, a highlight, initials, date and call time",
+    await p.locator(".cat .ex.fq").count() > 0 && await p.locator(".cat .nm").count() === 0 &&
+    (await p.locator(".cat .ex").evaluateAll(a => a.every(x => x.querySelector("mark") && /^[A-Z]{2}\d{1,2} [A-Z][a-z]{2} \d{4} · \d\d:\d\d$/.test(x.querySelector(".by").textContent)))));
+  const inView = id => p.evaluate(i => { const r = document.getElementById(i).getBoundingClientRect(); return r.top >= 0 && r.top < innerHeight; }, id);
+  await p.locator(".risk.jump").click(); await p.waitForTimeout(900);
+  t("clicking the compliance box scrolls to \"Missed by AI, by type\"", await inView("sec-missed"));
+  await p.evaluate(() => scrollTo(0, 0)); await p.locator(".fa.jump").click(); await p.waitForTimeout(900);
+  t("clicking the false alarm box scrolls to \"False alarms, by type\"", await inView("sec-false"));
+  await p.evaluate(() => scrollTo(0, 0)); await p.locator(".risk.jump").focus(); await p.keyboard.press("Enter"); await p.waitForTimeout(900);
+  t("Enter on the focused compliance box does the same", await inView("sec-missed"));
+  await p.evaluate(() => scrollTo(0, 0));
   const mnpi = p.locator('[data-cat="missed|Material non-public information"]');
   t("MNPI missed shows 3 of its 5 cards", await mnpi.locator(".ex").count() === 3 && (await mnpi.locator("[data-range]").textContent()) === "1–3 of 5");
   await mnpi.locator('.arr.r').click();
@@ -88,7 +102,7 @@ const t = (name, ok, got) => { if (!ok) fail++; console.log(`${ok ? "PASS" : "FA
   t("Enter on the focused category shows them again", await p.locator('[data-cat="missed|Personal data"] .ex').count() === 3);
   t("declaration conflict (0 missed) has no tiles and no toggle", await p.locator('[data-cat="missed|Declaration conflict"] [data-toggle]').count() === 0);
   t("outside the top categories, only fix examples open a transcript", await p.locator('[data-cat="missed|Personal data"] a.ex').count() === 1 &&
-    (await p.locator('[data-cat="missed|Personal data"] a.ex .nm').textContent()) === "Hannah Booth" && await p.locator('[data-cat="missed|Former-client confidential"] a.ex').count() === 0);
+    (await p.locator('[data-cat="missed|Personal data"] a.ex .av').getAttribute("title")) === "Hannah Booth" && await p.locator('[data-cat="missed|Former-client confidential"] a.ex').count() === 0);
   t("false alarms: top two have carousels, the rest show counts only",
     await p.locator('[data-cat="false_alarm|Material non-public information"] a.ex').count() === 3 && await p.locator('[data-cat="false_alarm|Personal data"] .ex').count() === 0);
 

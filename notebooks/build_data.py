@@ -91,6 +91,26 @@ FIXES = [
              "Check that source: filings, press releases or the company's website.",
              "Clear the statement if the information is there. Keep it flagged if it isn't."]},
 ]
+# the telling phrase in each card's quote (fix examples reuse the same phrase); checked to appear word for word
+HIGHLIGHT = {
+    "Sanjay Mehta": "watch their Q3 numbers closely", "Olivia Grant": "the regulator's decision on their diabetes drug",
+    "Henrik Lindqvist": "The board approved the sale", "Nadia Rahimi": "Their biggest customer has given notice on the five-year supply deal",
+    "Benjamin Cole": "The October order book I saw was down about 15%",
+    "Priya Natarajan": "For us specifically", "Grace Liu": "We're closing the Manchester plant in March",
+    "Mateo Alvarez": "Our roadmap has the analytics module launching in Q2", "Siobhan Kelly": "We're about to lose our second-largest customer",
+    "Elena Vasquez": "My contact Jamie Holt, who runs procurement there now, told me", "Owen Prendergast": "Their head of logistics, Carla, told me",
+    "Mei Lin Tan": "I still speak to the plant manager at Ostrava", "Farid Haddad": "Someone on their pricing committee sent me the new rate card",
+    "Thomas Achebe": "the stranded costs came out at nearly twice what management told the board",
+    "Ingrid Solberg": "had its core banking migration fail twice", "Ravi Chandran": "the real number was well above what they show investors",
+    "Hannah Booth": "Mark Ellison", "Marcus Webb": "Tom Reyes, has been going through a difficult divorce",
+    "Sofia Marchetti": "I've got his personal mobile", "Kwame Mensah": "Aisha Rahman, went on long-term sick leave after surgery",
+    "Lena Hoffmann": "Pieter van Dam, was let go after a drink-driving conviction", "Daniel Osei": "Rachel Lim, is on maternity leave",
+    "Aoife Brennan": "The founder's son is only nineteen",
+    "Daniel Reyes": "Publicly, people talk about", "Tom Fairley": "at their 2024 investor day", "Robert Chen": "On their Q2 earnings call in August",
+    "Laura Bennett": "As their annual report says", "Arjun Mehra": "said on the results call",
+    "Chloe Martin": "We announced the Leeds office in a press release", "Ibrahim Yusuf": "Our prices are on the website",
+    "Ruth Okonkwo": "what's in our published sustainability report", "Marco Rossi": "showed the new product on stage at the trade show",
+}
 FIX_EXAMPLE_NAMES = {x["name"] for f in FIXES for x in f["examples"]}
 FIX_OF = {  # card name -> fix id; cards not listed are not addressed by any of the three
     "Sanjay Mehta": "declaration", "Olivia Grant": "declaration", "Henrik Lindqvist": "declaration", "Nadia Rahimi": "declaration",
@@ -128,7 +148,8 @@ def main():
         for e in items:
             card = {"id": slug(f"{kind}-{e['name']}"), "kind": kind, "category": e["category"], "name": e["name"],
                     "date": e["date"], "ts": e["ts"], "quote": e["quote"], "source": e["source"],
-                    "cleared": e.get("cleared"), "transcript": None, "fix": FIX_OF.get(e["name"])}
+                    "cleared": e.get("cleared"), "transcript": None, "fix": FIX_OF.get(e["name"]), "highlight": HIGHLIGHT[e["name"]]}
+            assert card["highlight"] in card["quote"], e["name"]
             if e["category"] in TOP or e["name"] in FIX_EXAMPLE_NAMES:
                 tid = card["id"]
                 if e["source"].startswith("test set"):
@@ -158,7 +179,7 @@ def main():
     for f in FIXES:
         for x in f["examples"]:
             c = by_name[x["name"]]
-            assert x["highlight"] in c["quote"] and c["fix"] == f["id"], x
+            assert x["highlight"] in c["quote"] and c["fix"] == f["id"] and x["highlight"] == c["highlight"], x
     data = {"note": "ILLUSTRATIVE. Made-up counts for a 1,000-transcript sample; examples and transcripts are synthetic.",
             "sample": SAMPLE, "top": TOP,
             "categories": [{"name": n, "priority": p, "description": d, "found": f, "missed": m, "false_alarms": fa}

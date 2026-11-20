@@ -74,6 +74,7 @@ t("each reviewer comment is timestamped one or two days after the call", Object.
 t("each fix example carries its call timestamp, matching its card and transcript passage", D.fixes.every(f => f.examples.every(x =>
   x.ts === D.cards.find(c => c.name === x.name).ts && x.ts === D.transcripts[x.transcript].passage_ts)));
 t("date and time format", C.niceDateTime("2026-11-13T11:17") === "13 Nov 2026, 11:17");
+t("every card has a highlight that appears word for word in its quote", D.cards.every(c => c.highlight && c.quote.includes(c.highlight)));
 t("carousel window clamps at the ends", JSON.stringify(C.windowOf(5, 4, 3)) === '{"start":2,"end":5}' && JSON.stringify(C.windowOf(5, -1, 3)) === '{"start":0,"end":3}');
 t("three cards on desktop, two on tablet, one on phone", C.perView(1280) === 3 && C.perView(800) === 2 && C.perView(390) === 1);
 t("initials and dates", C.initials("Mei Lin Tan") === "ML" && C.niceDate("2026-11-04") === "4 Nov 2026");

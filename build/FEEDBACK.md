@@ -1,3 +1,12 @@
+# Prototype feedback, round 14 (applied)
+
+1. **One font again:** the serif from round 13 is removed, and Inter is used throughout. The rest of the polish stays (paper neutrals, hairline surfaces, marker-style highlights). A check confirms one font family.
+2. **Subtitle under "Possible improvements":** "Based on the human reviewers' comments and independent agents' analysis of the original AI's logs".
+3. **Category example cards match the recommendation examples:** no names, a highlighted phrase, initials, date and call time, in the same card component. All 32 cards now have a highlight, and a check confirms each appears word for word in its quote. Cards that are also recommendation examples use the same phrase. False alarm cards keep their "Cleared: …" line, which is content.
+4. **The top boxes are clickable:** the compliance box scrolls to "Missed by AI, by type", and the false alarm box scrolls to "False alarms, by type". Each has a down arrow and a hover state. They work with the keyboard (Enter or Space), and the scroll is smooth unless the device asks for reduced motion.
+
+---
+
 # Prototype polish, round 13 (presentation only)
 
 Kevin asked for a review of legal AI interfaces and a light visual polish, with no change to any number or text. The diff touches only the stylesheet and the font link: one added CSS block, and Newsreader added to the Google Fonts request.
