@@ -48,8 +48,10 @@ const t = (name, ok, got) => { if (!ok) fail++; console.log(`${ok ? "PASS" : "FA
     (await p.locator(".fa .lab").textContent()) === "flagged by AI, marked as non-risk by human reviewers" && await p.locator(".fa .sbar").count() === 0);
   t("no legends, no \"Confirmed\"", await p.locator(".sleg").count() === 0 && !(await p.locator("main").textContent()).includes("Confirmed"));
   t("subtitle", (await p.locator(".sub1").textContent()) === "We compared AI and human review across 1,000 transcripts to see where the AI misses compliance risks, and where it raises false alarms");
+  t("fix titles", (await p.locator(".fix h3").allTextContents()).join("|") === "Read each answer in context|Check for people and sources, not just companies|Check the expert's cited source before flagging");
+  t("first example reads as written", (await p.locator('.fix[data-fix="declaration"] .fq').first().textContent()).startsWith("\u201cFor us specifically, we're moving list price up 12% on the mid-market tier from January.\u201d"));
   t("three fixes, each with root cause, examples and next steps", await p.locator(".fix").count() === 3 &&
-    (await p.locator(".fix").first().locator(".fl").allTextContents()).join("|") === "Root cause|Examples|Next steps" && await p.locator(".fix li").count() === 9);
+    (await p.locator(".fix .fl").allTextContents()).join("|") === "Why the AI missed it|Examples|What we'll change|Why the AI missed it|Examples|What we'll change|Why the AI raised a false alarm|Examples|What we'll change" && await p.locator(".fix li").count() === 9);
   t("9 example quotes (3, 2, 4), each highlighted and linking to its transcript", await p.locator(".fix .fq mark").count() === 9 &&
     (await p.locator(".fix a.fq").evaluateAll(a => a.map(x => x.getAttribute("href")))).every(h => /^#t\//.test(h)) &&
     (await p.evaluate(() => [...document.querySelectorAll(".fix")].map(f => f.querySelectorAll(".fq").length).join())) === "3,2,4");
@@ -57,7 +59,7 @@ const t = (name, ok, got) => { if (!ok) fail++; console.log(`${ok ? "PASS" : "FA
   t("false alarm box is much smaller: under half the width and shorter", fb[1][0] < fb[0][0] / 2 && fb[1][1] < fb[0][1], fb.map(x => x.map(Math.round).join("x")).join(" vs "));
   t("expected impact boxes, no grey placeholders", (await p.locator(".fix .ih").allTextContents()).every(x => x === "Expected impact") &&
     (await p.locator(".fix [data-imp]").allTextContents()).join("|") ===
-    "Reduces missed by AI by 107 high priority|Cuts false alarms by 12|Reduces missed by AI by 11|Cuts false alarms by 78" &&
+    "10 fewer risks missed by AI, 7 of them high priority|12 fewer false alarms|11 fewer risks missed by AI|78 fewer false alarms" &&
     !/no change|not estimated/.test(await p.locator(".fixes").textContent()));
   t("category rows: a big number, \"of N\" and \"in this category\" beneath, no bars", await p.locator(".mini").count() === 0 &&
     (await p.locator('[data-cat="missed|Material non-public information"] .c').textContent()) === "5of 38" &&

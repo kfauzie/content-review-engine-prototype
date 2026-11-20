@@ -58,8 +58,9 @@
  "fixes": [
   {
    "id": "declaration",
-   "title": "Read each answer with the expert's declaration and the question before it",
-   "root_cause": "The AI judged answers on their own, so “we”, “their” and “the board” never linked back to the employer, client or former employer in the declaration.",
+   "title": "Read each answer in context",
+   "cause_label": "Why the AI missed it",
+   "root_cause": "The AI read each answer in isolation. When an expert said “we”, “their” or “the board”, it didn't know which company they meant, so it couldn't tell that the expert was talking about their own employer, a client or a former employer.",
    "examples": [
     {
      "name": "Priya Natarajan",
@@ -90,15 +91,16 @@
     }
    ],
    "how": [
-    "Give the AI the declaration and the preceding question with every answer",
-    "Resolve “we”, “our” and “their” to a named company before judging",
-    "Check restrictions and leaving dates against what is said"
+    "Give the AI the expert's declaration and the question asked alongside every answer.",
+    "Work out which company “we”, “our” or “their” refers to before judging the answer.",
+    "Check what was said against the expert's restrictions and the date they left each company."
    ]
   },
   {
    "id": "people",
-   "title": "Check people and sources, not just companies",
-   "root_cause": "The AI only looked for company information, so private individuals and insiders named as sources went through.",
+   "title": "Check for people and sources, not just companies",
+   "cause_label": "Why the AI missed it",
+   "root_cause": "The AI only looked for information about companies. It didn't catch private individuals being named, or experts naming insiders as their source.",
    "examples": [
     {
      "name": "Elena Vasquez",
@@ -120,15 +122,16 @@
     }
    ],
    "how": [
-    "Flag named private individuals alongside health, family or legal details",
-    "Flag source phrases such as “my contact”, “told me” and “I still speak to”",
-    "Route both to a reviewer with the name highlighted"
+    "Flag any named private individual mentioned alongside health, family or legal details.",
+    "Flag phrases that point to an inside source, such as “my contact”, “told me” and “I still speak to”.",
+    "Send both to a reviewer, with the name highlighted."
    ]
   },
   {
    "id": "sources",
-   "title": "Check the source the expert cites before flagging",
-   "root_cause": "Most false alarms named a public source (an earnings call, a press release, a published report) that the AI never checked.",
+   "title": "Check the expert's cited source before flagging",
+   "cause_label": "Why the AI raised a false alarm",
+   "root_cause": "Most false alarms were statements the expert attributed to a public source, such as an earnings call, a press release or an annual report. The AI flagged them without checking whether the information really was public.",
    "examples": [
     {
      "name": "Ibrahim Yusuf",
@@ -168,9 +171,9 @@
     }
    ],
    "how": [
-    "Detect cited sources in the answer",
-    "Look them up in filings, press releases and the company's website",
-    "Clear the passage when the fact is found there; keep it flagged when it isn't"
+    "Spot when an expert cites a source.",
+    "Check that source: filings, press releases or the company's website.",
+    "Clear the statement if the information is there. Keep it flagged if it isn't."
    ]
   }
  ],

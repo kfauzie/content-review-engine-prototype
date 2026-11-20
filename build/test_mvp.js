@@ -63,6 +63,7 @@ t("fix 3, cited sources: no change to misses, about 78 fewer false alarms (60 x 
 t("the fixes never claim more misses than exist, and 2 misses stay uncovered", imp.reduce((s, x) => s + x.missed, 0) === 21 &&
   D.cards.filter(c => c.kind === "missed" && !c.fix).map(c => c.name).join() === "Mateo Alvarez,Siobhan Kelly");
 t("each fix has a title, a root cause, 2 to 4 examples and three next steps", D.fixes.length === 3 && D.fixes.every(f => f.title && f.root_cause && f.how.length === 3 && f.examples.length >= 2 && f.examples.length <= 4));
+t("each fix labels its cause: missed for fixes 1 and 2, false alarm for fix 3", D.fixes.map(f => f.cause_label).join("|") === "Why the AI missed it|Why the AI missed it|Why the AI raised a false alarm");
 t("the number of examples varies across fixes (3, 2, 4)", D.fixes.map(f => f.examples.length).join() === "3,2,4");
 t("every fix example opens its transcript", D.fixes.every(f => f.examples.every(x => x.transcript && D.transcripts[x.transcript] && D.transcripts[x.transcript].name === x.name)));
 t("each fix example quotes its card word for word, highlights a phrase in it, and is tagged to that fix", D.fixes.every(f => f.examples.every(x => {

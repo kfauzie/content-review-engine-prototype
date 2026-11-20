@@ -1,3 +1,12 @@
+# Prototype feedback, round 11 (applied)
+
+Kevin rewrote the fix copy in plain terms for a senior lawyer. It's applied word for word:
+- **Titles:** "Read each answer in context", "Check for people and sources, not just companies", "Check the expert's cited source before flagging".
+- **Section labels:** "Why the AI missed it" (fixes 1 and 2), "Why the AI raised a false alarm" (fix 3), "Examples", "What we'll change".
+- **Impact lines:** "10 fewer risks missed by AI, 7 of them high priority", "12 fewer false alarms", "11 fewer risks missed by AI", "78 fewer false alarms". The numbers still come from the code. This also ends the earlier ambiguity, where "10" and "7 high priority" could read as "107".
+
+---
+
 # Prototype feedback, round 10 (applied)
 
 1. **The false alarm box:** much smaller than the main box (about a quarter of the width), sized to its own content, not the same height.

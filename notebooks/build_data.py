@@ -63,28 +63,31 @@ REVIEWERS = {"Material non-public information": ["Sophie Laurent, Legal Counsel"
              "other": ["Eleni Papadaki, Compliance Analyst", "Dimitris Vlachos, Compliance Analyst", "Katerina Ioannou, Compliance Analyst"]}
 # the three fixes, from the reviewers' comments and the agents' root-cause analysis (Kevin's judgement in tagging)
 FIXES = [
-    {"id": "declaration", "title": "Read each answer with the expert's declaration and the question before it",
-     "root_cause": "The AI judged answers on their own, so \u201cwe\u201d, \u201ctheir\u201d and \u201cthe board\u201d never linked back to the employer, client or former employer in the declaration.",
+    {"id": "declaration", "title": "Read each answer in context", "cause_label": "Why the AI missed it",
+     "root_cause": "The AI read each answer in isolation. When an expert said \u201cwe\u201d, \u201ctheir\u201d or \u201cthe board\u201d, it didn't know "
+                   "which company they meant, so it couldn't tell that the expert was talking about their own employer, a client or a former employer.",
      "examples": [{"name": "Priya Natarajan", "highlight": "For us specifically"}, {"name": "Henrik Lindqvist", "highlight": "The board approved the sale"},
                   {"name": "Olivia Grant", "highlight": "the regulator's decision on their diabetes drug"}],
-     "how": ["Give the AI the declaration and the preceding question with every answer",
-             "Resolve \u201cwe\u201d, \u201cour\u201d and \u201ctheir\u201d to a named company before judging",
-             "Check restrictions and leaving dates against what is said"]},
-    {"id": "people", "title": "Check people and sources, not just companies",
-     "root_cause": "The AI only looked for company information, so private individuals and insiders named as sources went through.",
+     "how": ["Give the AI the expert's declaration and the question asked alongside every answer.",
+             "Work out which company \u201cwe\u201d, \u201cour\u201d or \u201ctheir\u201d refers to before judging the answer.",
+             "Check what was said against the expert's restrictions and the date they left each company."]},
+    {"id": "people", "title": "Check for people and sources, not just companies", "cause_label": "Why the AI missed it",
+     "root_cause": "The AI only looked for information about companies. It didn't catch private individuals being named, or experts naming "
+                   "insiders as their source.",
      "examples": [{"name": "Elena Vasquez", "highlight": "My contact Jamie Holt, who runs procurement there now, told me"},
                   {"name": "Hannah Booth", "highlight": "Mark Ellison"}],
-     "how": ["Flag named private individuals alongside health, family or legal details",
-             "Flag source phrases such as \u201cmy contact\u201d, \u201ctold me\u201d and \u201cI still speak to\u201d",
-             "Route both to a reviewer with the name highlighted"]},
-    {"id": "sources", "title": "Check the source the expert cites before flagging",
-     "root_cause": "Most false alarms named a public source (an earnings call, a press release, a published report) that the AI never checked.",
+     "how": ["Flag any named private individual mentioned alongside health, family or legal details.",
+             "Flag phrases that point to an inside source, such as \u201cmy contact\u201d, \u201ctold me\u201d and \u201cI still speak to\u201d.",
+             "Send both to a reviewer, with the name highlighted."]},
+    {"id": "sources", "title": "Check the expert's cited source before flagging", "cause_label": "Why the AI raised a false alarm",
+     "root_cause": "Most false alarms were statements the expert attributed to a public source, such as an earnings call, a press release or an "
+                   "annual report. The AI flagged them without checking whether the information really was public.",
      "examples": [{"name": "Ibrahim Yusuf", "highlight": "Our prices are on the website"}, {"name": "Laura Bennett", "highlight": "As their annual report says"},
                   {"name": "Robert Chen", "highlight": "On their Q2 earnings call in August"},
                   {"name": "Chloe Martin", "highlight": "We announced the Leeds office in a press release"}],
-     "how": ["Detect cited sources in the answer",
-             "Look them up in filings, press releases and the company's website",
-             "Clear the passage when the fact is found there; keep it flagged when it isn't"]},
+     "how": ["Spot when an expert cites a source.",
+             "Check that source: filings, press releases or the company's website.",
+             "Clear the statement if the information is there. Keep it flagged if it isn't."]},
 ]
 FIX_EXAMPLE_NAMES = {x["name"] for f in FIXES for x in f["examples"]}
 FIX_OF = {  # card name -> fix id; cards not listed are not addressed by any of the three
