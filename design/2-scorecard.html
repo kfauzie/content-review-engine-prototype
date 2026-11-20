@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scorecard (design)</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="design.css"><style>
+.runbar{display:flex;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.runbar .muted{color:var(--muted)}
+.errs{display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-bottom:8px}
+.err{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px 18px}
+.err.miss{border-top:4px solid var(--miss)} .err.alarm{border-top:3px solid var(--alarm)}
+.err .lab{font-weight:600} .err .def{color:var(--muted);font-size:13px}
+.err.miss .big{font-size:40px;font-weight:700;color:var(--miss);letter-spacing:-.5px;margin:4px 0 0}
+.err.alarm .big{font-size:26px;font-weight:700;color:var(--alarm);margin:4px 0 0}
+.err .big small{font-size:15px;font-weight:500;color:var(--muted);letter-spacing:0}
+.flow{color:var(--muted);font-size:14px;margin:0 0 14px}
+.errs{margin-bottom:24px!important}
+.flow b{color:var(--ink);font-weight:600}
+.grid{display:grid;grid-template-columns:1.15fr 1fr;gap:18px;align-items:start}
+table{width:100%;border-collapse:collapse}
+th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:right;font-variant-numeric:tabular-nums}
+th{font-size:12px;font-weight:600;color:var(--muted);background:var(--soft);vertical-align:bottom}
+th.grp{text-align:center;font-size:11px;letter-spacing:.3px;text-transform:uppercase;border-bottom:0;padding-bottom:2px}
+th.grp.miss{color:var(--miss)} th.grp.alarm{color:var(--alarm)}
+td:first-child,th:first-child{text-align:left}
+td.m,th.m{background:var(--miss-tint)} td.m{font-weight:700;color:var(--miss)}
+td.cnt{color:var(--ink);text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:3px}
+td.on{outline:2px solid var(--ink);outline-offset:-2px}
+tr.base td{color:var(--muted);font-size:13px} tr.total td{font-weight:600;background:var(--soft);border-bottom:0}
+.under{padding:10px 12px;font-size:13px;color:var(--muted);border-top:1px solid var(--line)}
+.dd .ddh{padding:12px 14px;border-bottom:1px solid var(--line)} .dd .ddh b{display:block;font-size:15px}
+.dd .ddh span{color:var(--muted);font-size:13px}
+.p{padding:12px 14px;border-bottom:1px solid var(--line);font-size:13px}
+.p:last-child{border-bottom:0}
+.p .where{font-weight:600;margin-bottom:4px} .p .where span{color:var(--muted);font-weight:400}
+.p .quote{margin:0 0 8px;color:var(--ink)}
+.p dl{display:grid;grid-template-columns:96px 1fr;gap:4px 10px;margin:0}
+.p dt{color:var(--muted)} .p dd{margin:0}
+.p .row{display:flex;gap:10px;align-items:center;margin-top:8px;flex-wrap:wrap}
+.check{display:inline-flex;gap:6px;align-items:center;color:var(--note)}
+.check i{width:14px;height:14px;border:1.5px solid var(--faint);border-radius:3px;display:inline-block}
+</style></head><body>
+<div class="top">
+  <div class="mark"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><rect x="1" y="1" width="20" height="20" rx="5" fill="#1c2230"/><path d="M6 11.5l3 3 7-7" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="16.5" cy="16.5" r="2.4" fill="#3843c4" stroke="#fff" stroke-width="1.2"/></svg>Content review engine</div>
+  <div class="steps"><div class="step"><b>1</b>Review screen</div><div class="step on"><b>2</b>Scorecard</div></div>
+  <div class="synth">Synthetic data</div>
+</div>
+<main>
+<dl class="head"><dt>Customer</dt><dd>Dialectica Legal &amp; Compliance</dd>
+<dt>User</dt><dd>Whoever decides the AI is ready to run <i style="color:var(--muted);font-weight:400">(to confirm who)</i></dd>
+<dt>Job to be done</dt><dd>Judge, issue type by issue type, whether the AI is good enough to run</dd></dl>
+<div class="notice">8 synthetic transcripts. Human verdicts here are the test set's answer key, so some misses in real data will be the human over-redacting: mark those in the drill-down.</div>
+<div class="runbar"><span class="muted">Run</span><span class="sel" style="min-width:330px">Blind AI reviewer</span></div>
+<p class="flow lead"><b>51</b> passages reviewed by a human → AI flagged <b>7</b> → human acted on <b>7</b>, cleared <b>0</b></p>
+<div class="errs">
+<div class="err miss"><div class="lab">Missed by AI</div><div class="big">0 <small>of 7 passages the human acted on</small></div><div class="def">The human acted on it, and the AI didn't flag it.</div></div>
+<div class="err alarm"><div class="lab">False alarms</div><div class="big">0 <small>of 7 AI flags</small></div><div class="def">The AI flagged it, and the human cleared it.</div></div>
+</div>
+
+<div class="grid">
+<div><h2>By issue type</h2><p class="sub">Every count opens the passages behind it.</p>
+<div class="panel"><table><thead>
+<tr><th></th><th colspan="2" class="grp miss">Misses</th><th colspan="3" class="grp alarm">False alarms</th></tr>
+<tr><th>Issue type</th><th>Human acted on</th><th class="m">Missed by AI</th><th>AI flagged</th><th>Human acted on</th><th>Human cleared</th></tr>
+</thead><tbody><tr><td>Material non-public information</td><td class="cnt">2</td><td class="m cnt">0</td><td class="cnt on">2</td><td class="cnt">2</td><td class="cnt">0</td></tr><tr><td>Current-employer confidential</td><td class="cnt">1</td><td class="m cnt">0</td><td class="cnt">1</td><td class="cnt">1</td><td class="cnt">0</td></tr><tr><td>Declaration conflict</td><td class="cnt">1</td><td class="m cnt">0</td><td class="cnt">1</td><td class="cnt">1</td><td class="cnt">0</td></tr><tr><td>Source disclosure</td><td class="cnt">1</td><td class="m cnt">0</td><td class="cnt">1</td><td class="cnt">1</td><td class="cnt">0</td></tr><tr><td>Confidentiality breach</td><td class="cnt">1</td><td class="m cnt">0</td><td class="cnt">1</td><td class="cnt">1</td><td class="cnt">0</td></tr><tr><td>Personal data</td><td class="cnt">1</td><td class="m cnt">0</td><td class="cnt">1</td><td class="cnt">1</td><td class="cnt">0</td></tr><tr class="total"><td>All types</td><td>7</td><td class="m cnt">0</td><td>7</td><td>7</td><td>0</td></tr></tbody></table><div class="under">Same action as the human on 4 of the 7 rightly flagged passages. 3 differ, shown in the review screen.</div></div></div>
+<div><h2>Material non-public information · AI flagged (2)</h2><p class="sub">Each passage with the quote, the declaration, the human verdict and the AI's reason.</p><div class="panel dd"><div class="p"><div class="where">Road freight consolidation <span>· Transcript 2 · 01:39</span></div>
+<p class="quote">“Honestly? I&#x27;d be surprised if Corvane is still independent by spring. I probably shouldn&#x27;t say much more, but we&#x27;ve had integration planning sessions already. They&#x27;re staffing the integration team from our side, and there&#x27;s a project codename going around internally. The board&#x27;s signed off on it, it&#x27;s just timing on the announcement.”</p><dl><dt>Declaration</dt><dd>Currently employed by Halbrook Logistics (listed company). May discuss general industry trends. Must not discuss Halbrook&#x27;s non-public information, financials, strategy or corporate activity.</dd>
+<dt>Human verdict</dt><dd>Material non-public information · Reject whole transcript. Current employee of a listed company discloses a board-approved, unannounced acquisition, in breach of his declaration. Redaction does not cure the expert&#x27;s breach; escalate the expert for review.</dd><dt>AI</dt><dd>Material non-public information · Reject whole transcript. Current Halbrook employee (listed company; declaration bars discussing Halbrook&#x27;s non-public corporate activity) reveals unannounced acquisition of Corvane: &#x27;we&#x27;ve had integration planning sessions already&#x27;, &#x27;project codename&#x27;, &#x27;The board&#x27;s signed off on it, it&#x27;s just timing on the announcement&#x27;. Deliberate breach of declaration.</dd></dl></div><div class="p"><div class="where">Medical devices <span>· Transcript 5 · 01:24</span></div>
+<p class="quote">“Look, I&#x27;m not saying anything specific, but if I were you I&#x27;d watch their Q3 numbers closely. Let&#x27;s just say there&#x27;s been some noise around one of the knee systems, and I still talk to people there. Quality issues take a while to show up in the numbers.”</p><dl><dt>Declaration</dt><dd>Left Northwind Biomedical (listed company) in March 2026. No current employer in medical devices. Standard confidentiality obligations to Northwind. No conflicts declared.</dd>
+<dt>Human verdict</dt><dd>Material non-public information · Escalate. Hedged, but points to a possible undisclosed product quality issue at a listed former employer, sourced from current contacts there. Too uncertain for AI to clear or reject; needs a compliance reviewer.</dd><dt>AI</dt><dd>Material non-public information · Reject whole transcript. Former Northwind Finance Director (listed company, left March 2026, confidentiality obligations) tips undisclosed quality issue ahead of results: &#x27;watch their Q3 numbers closely&#x27;, &#x27;noise around one of the knee systems&#x27;, &#x27;I still talk to people there&#x27;. Signals non-public adverse information from ongoing insider contacts.</dd></dl></div></div></div>
+</div>
+</main></body></html>

@@ -1,0 +1,38 @@
+/* Shared styles for the design mockups. Neutral defaults: Dialectica's design system wasn't available. */
+:root{
+  --ink:#1c2230; --muted:#5d6676; --faint:#8a93a3; --line:#e2e5eb; --bg:#f5f6f8; --panel:#fff; --soft:#fafbfc;
+  --primary:#3843c4;
+  --miss:#a8281e; --miss-tint:#fdeeec; --miss-line:#f2c4be;      /* missed by AI: the primary error */
+  --alarm:#8a5200; --alarm-tint:#fff4df; --alarm-line:#f0d29a;   /* false alarm: the secondary error */
+  --ai:#5b3fa8; --ai-tint:#f1edfb; --ai-line:#d6cbf2;            /* what the AI said */
+  --human:#2d569f; --human-tint:#eaf0fa; --human-line:#c4d3ef;   /* what the human said */
+  --agree:#1d7349; --agree-tint:#e7f4ed;                          /* AI and human agree */
+  --note:#4b5361; --note-tint:#eef0f3;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 Inter,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.top{display:flex;align-items:center;gap:24px;padding:12px 32px;background:var(--panel);border-bottom:1px solid var(--line)}
+.mark{display:flex;align-items:center;gap:10px;font-weight:600}
+.steps{display:flex;gap:4px;margin-left:16px}
+.step{display:flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;color:var(--muted);font-weight:500}
+.step b{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--note-tint);font-size:12px}
+.step.on{color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink)} .step.on b{background:var(--ink);color:#fff}
+.synth{margin-left:auto;font-size:12px;font-weight:600;color:var(--note);background:var(--note-tint);border:1px solid var(--line);padding:4px 10px;border-radius:999px}
+main{max-width:1280px;margin:0 auto;padding:22px 32px 40px}
+.head{display:grid;grid-template-columns:140px 1fr;gap:4px 16px;margin-bottom:14px}
+.head dt{color:var(--muted)} .head dd{margin:0;font-weight:500}
+.head .tbc{color:var(--alarm);font-weight:600}
+.notice{background:var(--note-tint);border-left:3px solid var(--faint);padding:9px 14px;border-radius:6px;color:var(--note);font-size:13px;margin-bottom:20px}
+h2{font-size:16px;margin:0 0 4px} .sub{color:var(--muted);margin:0 0 12px;font-size:13px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.pill{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;padding:2px 9px;border-radius:999px;white-space:nowrap}
+.pill.ai{color:var(--ai);background:var(--ai-tint)} .pill.human{color:var(--human);background:var(--human-tint)}
+.pill.agree{color:var(--agree);background:var(--agree-tint)} .pill.miss{color:var(--miss);background:var(--miss-tint);border:1px solid var(--miss-line)}
+.pill.alarm{color:var(--alarm);background:var(--alarm-tint);border:1px solid var(--alarm-line)} .pill.note{color:var(--note);background:var(--note-tint)}
+.sel{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:6px;padding:5px 9px;background:#fff;font-size:13px;justify-content:space-between}
+.sel:after{content:"";width:7px;height:7px;border-right:1.5px solid var(--muted);border-bottom:1.5px solid var(--muted);transform:rotate(45deg) translateY(-2px)}
+.btn{background:var(--primary);color:#fff;border:0;border-radius:8px;padding:10px 18px;font:600 14px Inter,sans-serif}
+.link{color:var(--ink);font-weight:500;font-size:13px;text-decoration:underline;text-underline-offset:2px}
+mark.q{background:var(--ai-tint);color:inherit;border-bottom:2px solid var(--ai-line);padding:0 1px}
+.foot{display:flex;align-items:center;gap:16px;justify-content:flex-end;margin-top:14px}
+.foot .muted{color:var(--muted);font-size:13px}

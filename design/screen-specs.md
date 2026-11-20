@@ -1,51 +1,69 @@
 # Design (pm-4): screen specs
 
-> Illustrated on 8 synthetic transcripts. Nothing here is Dialectica's data, policy or tool. The engine under test is made up for the demo.
+> Illustrated on 8 synthetic transcripts. Nothing here is Dialectica's data, policy or tool.
 
-Two screens for two users, so two screens rather than one page: Legal decides what the engine may do, and an analyst clears a transcript. Most important first.
+**Revised after Kevin's feedback on the first scorecard:**
+- Lead with the review screen, so the numbers can be trusted.
+- Then a scorecard that starts from volume, as a funnel per issue type.
+- Missed by AI is the primary error and false alarm the secondary, shown separately but connected.
+- Raw numbers only: no status labels and no miss-rate bar. No "missed by analysts".
+- Every count opens its passages, and a miss carries a root cause and an over-redaction marker.
+- The user is to be confirmed.
 
-**Design system:** Dialectica's isn't available (Figma isn't connected and there's no `design-system.md`). These are neutral defaults: greyscale, one accent for the main action, and one hue per meaning.
+**Where the AI verdicts come from:** a blind AI reviewer. A subagent saw only `data/eval/blind_input.md`: profiles, declarations and transcripts, with no answer keys and no transcript titles. Its verdicts are in `data/eval/ai_verdicts_blind.json`.
 
-**Patterns borrowed** (from public help pages and search summaries; this session couldn't open product sites to study screenshots):
-- **Counts of agreement with expert labels, per criterion, and a click from any count into its disagreements:** eval tools such as Langfuse's per-criterion alignment view and Pydantic Logfire's case comparison, which shows the evaluator's reason.
-- **The document in the centre, with a coding panel and a card of facts about it beside it:** Relativity's review interface.
-- **Every flag carries an explanation of where the risk is:** Global Relay's surveillance alerts.
+**Where the human verdicts come from:** the test set's answer key.
 
-## Screen 1: Eval scorecard (designed first)
+**The rules baseline:** a made-up engine that flags company names. It's used only in design 3, to show what a miss drill-down looks like, because the blind AI missed nothing in this sample.
 
-**User:** the Chief Legal & Regulatory Officer, with Kevin (Lead AI Product Developer) running the eval.
-**Job to be done:** decide, one issue type at a time, whether the engine can be trusted to do more, and see why.
+**Design system:** Dialectica's isn't available, so these are neutral defaults with one hue per meaning:
+- **Red:** missed by AI
+- **Amber:** false alarm
+- **Purple:** what the AI said
+- **Blue:** what the human said
+- **Green:** AI and human agree
+- **Indigo:** the main action
+
+**Patterns borrowed** (from public help pages and search summaries; product sites couldn't be opened to study screenshots):
+- **Counts of agreement with expert labels per criterion, each opening its disagreements:** eval tools such as Langfuse and Pydantic Logfire.
+- **The document in the centre, with facts about it in a side card:** Relativity's review interface.
+- **Every flag carries an explanation of where the risk is:** Global Relay.
+
+## Screen 1: Review screen ([design/1-review.png](1-review.png))
+
+**User:** a compliance reviewer checking the AI's work.
+**Job to be done:** check, passage by passage, what the AI flagged and why, against the human verdict.
 
 | | |
 |---|---|
-| **Example input** | 8 synthetic transcripts (51 expert answers). The flags of a made-up engine that flags every answer naming a company. Analysts' verdicts, which here are the test set's answer key (7 issues). |
-| **Expected output** | Three numbers: missed by the engine (4 of 7 issues), false alarms (5 of 8 flags), missed by analysts (0 until Legal rules otherwise). A one-line diagnosis. A table by issue type showing issues, rightly flagged, missed by the engine, missed by analysts, the miss-rate bar, evidence needed against evidence held, and status. A list of the 9 disagreements awaiting a ruling. |
-| **Happy path** | Read the three numbers and the diagnosis, then scan the types. Open a disagreement to see the passage, the declaration and both verdicts, then record a ruling, and the numbers update. Set the miss-rate bar for each type, then save the rulings. |
-| **Edge cases** | **A passage with no analyst verdict:** left out and counted as "not reviewed". **A ruling that the engine was right where analysts cleared:** the passage becomes an issue, missed by analysts. **A ruling that analysts over-flagged:** the issue is removed. **A type with no issues:** "No issues yet". **An engine that doesn't assign types:** false alarms are shown as a total, not by type. **Quitting midway:** rulings are kept. |
-| **Acceptance criteria** | Every count opens the passages behind it. Rightly flagged plus missed by the engine equals issues. Flags equal rightly flagged plus false alarms. The bar sets the evidence needed at 3 in n, so 60, 150 or 300 issues. The synthetic-data line is always visible. |
-| **Handoff** | Status by type goes to Legal for sign-off. Misses and false alarms go to failure analysis, prioritised by the cost of a mistake. Any passage opens in screen 2. |
+| **Example input** | Synthetic transcript 5 (medical devices): its 6 expert answers, the profile and declaration, the blind AI's verdicts and the human verdicts |
+| **Expected output** | Every expert answer with the AI's verdict and reason, and the human's verdict, side by side. The words the AI relied on are highlighted, in the passage and in the declaration. An outcome on each answer: both cleared, rightly flagged, missed by AI, false alarm, or action differs. The transcript decision from each side. A queue of the 8 transcripts with a one-line summary each |
+| **Happy path** | Pick a transcript from the queue. Read the flagged answers first (marked on the left edge), then the clears, each with a one-line reason. Go to the next transcript |
+| **Edge cases** | **The AI flags a different type than the human:** both are shown, along with any other types the AI listed. **Both flag the passage but choose different actions:** marked "action differs" (3 of 7 in this run). **No human verdict yet:** the AI verdict only, marked "awaiting review". **An AI-led interview:** labelled in the queue |
+| **Acceptance criteria** | Quotes are verbatim, generated from the data by `design/fill_review_mock.py`. Every AI verdict has a reason, including clears. Colour is never the only signal: every outcome has a text label. One primary button |
+| **Handoff** | The checked verdicts feed the scorecard. Disagreements go to failure analysis |
 
-## Screen 2: Review screen (designed after screen 1 is agreed)
+## Screen 2: Scorecard ([design/2-scorecard.png](2-scorecard.png), miss state [design/3-scorecard-misses.png](3-scorecard-misses.png))
 
-**User:** a junior compliance analyst.
-**Job to be done:** clear a transcript without letting a high-impact issue through, and without leaving the screen to check the declaration.
+**User:** whoever decides the AI is ready to run. **To confirm:** the Chief Legal & Regulatory Officer, a compliance operations lead, or both.
+**Job to be done:** judge, issue type by issue type, whether the AI is good enough to run.
 
 | | |
 |---|---|
-| **Example input** | Synthetic transcript 4 (payments lending). The expert left his former employer in 2021, names it twice and cites public sources. |
-| **Expected output** | The declaration beside the transcript. On each answer, facts found by code with their source: "Names Quillon: former employer, left 2021 (profile)", "Cites a public source: investor day". A decision on each answer with a fact (clear, redact or escalate). A transcript decision. An audit trail. |
-| **Happy path** | Pick the transcript from the queue and read it with the declaration beside it. At each answer with a fact, decide. Then record the transcript decision, which writes the audit trail. |
-| **Edge cases** | **No declaration on file:** a warning to review every line and refer the expert to vetting. **A leaving date that comes only from the expert's own declaration:** said in the fact. **An AI-led interview:** labelled as such. **Quitting midway:** decisions kept as a draft. |
-| **Acceptance criteria** | No declaration check needs another system. Every fact names its source and is a fact, not a verdict: people decide. In the real build, an AI adds a one-line reason, and this prototype says so. One primary button. Every decision lands in the audit trail with who or what, and when. |
-| **Handoff** | Escalations go to a senior compliance manager, then Legal. Declaration conflicts go to the vetting team. Decisions flow back into the eval as analysts' verdicts. |
+| **Example input** | One eval run (the blind AI reviewer) over 51 passages with human verdicts |
+| **Expected output** | **The funnel first:** 51 passages reviewed by a human, then AI flagged 7, then human acted on 7 and cleared 0. **Missed by AI**, the primary error and the biggest number: 0 of 7. **False alarms**, secondary: 0 of 7. **A table by issue type** in two groups: misses (human acted on, missed by AI) and false alarms (AI flagged, human acted on, human cleared). The action agreement on rightly flagged passages, 4 of 7. **A drill-down** on the selected count |
+| **Happy path** | Read the funnel and the two errors, then scan the misses column by type. Click any count to read its passages, each showing the quote, the declaration, the human verdict and the AI's reason. Set a root cause on each miss |
+| **Edge cases** | **A miss that was the human over-redacting:** the eval reviewer marks it in the drill-down, without a headline of its own. **An engine whose flags have no type:** the false-alarm columns say so (design 3). **The AI flags a passage under a different type:** counted as "flagged under another type", not as a miss, and shown in the drill-down |
+| **Acceptance criteria** | Raw numbers only. Numbers and quotes are generated from `notebooks/eval.py` by `design/fill_scorecard_mock.py`. Within each type, AI flagged equals human acted on plus human cleared. Missed by AI is the most prominent figure |
+| **Handoff** | Misses, each with its root cause, go to failure analysis and prioritisation. The decision to let the AI run is made by the person to be confirmed |
 
 ## Style sheet (copy review)
-- **Terms, one name per thing:** issue type · engine · analysts' verdict · ruling · rightly flagged · false alarm · missed by the engine · missed by analysts · miss-rate bar · declaration.
+- **Terms, one name per thing:** passage · AI · human verdict · missed by AI · false alarm · rightly flagged · human acted on · human cleared · root cause · over-redacted · declaration.
 - **Issue type names:**
   - Material non-public information
   - Current-employer confidential
   - Declaration conflict
-  - Insider source named
-  - Former-client confidential
+  - Source disclosure
+  - Confidentiality breach
   - Personal data
-- **Writing rules:** sentence case, numbers as digits, "%" in tables. No em dashes. Buttons start with a verb. Confirmations are in the past tense.
+- **Writing rules:** sentence case. No em dashes. Buttons start with a verb.

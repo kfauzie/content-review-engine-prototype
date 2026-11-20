@@ -1,21 +1,23 @@
-"""Eval demo: how the eval scores engine flags against the truth, per expert answer and by issue type.
-It demonstrates the method; its numbers are not results (the stand-in's misses are built into the test set).
+"""Eval: score an engine's flags against the human verdict, as a funnel per issue type.
 Run from the run folder: python3 notebooks/eval.py
 
-Engines compared:
-  1. Made-up engine: flags every expert answer that names a company. Not a model of Dialectica's tool, about which
-     nothing is known.
-  2. Pipeline check: data/eval/ai_reviewer_verdicts.json, written after seeing the answer key. It only checks that
-     verdicts load and score; its numbers are not reported.
+Runs:
+  1. Blind AI reviewer: data/eval/ai_verdicts_blind.json, written by a subagent that saw only
+     data/eval/blind_input.md (no answer keys, no transcript titles).
+  2. Rules baseline: flags every answer that names a company. Made up, to show what misses look like; not a
+     model of Dialectica's tool.
 
-Truth: the answer key. In a real eval the truth is reviewers' verdicts, with disagreements adjudicated by a senior
-reviewer or Legal, which adds a fourth outcome (the human missed it). The answer key has no separate human verdict,
-so that column can't be filled here.
+Human verdict: the test set's answer key (8 synthetic transcripts). Some "misses" in real data will be the human
+over-redacting; the drill-down lets a reviewer mark those.
+
+Funnel per issue type X, over every passage with a human verdict:
+  AI flagged as X -> human acted on it (rightly flagged) | human cleared it (false alarm)
+  Missed by AI: the human acted on it as X, and the AI didn't flag the passage at all.
+  Flagged under another type: the human acted on it as X, and the AI flagged it as a different type.
 """
 import json
 import re
 import sys
-from collections import Counter, defaultdict
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -23,85 +25,73 @@ from data_review import SRC, parse  # noqa: E402
 from synthesis import companies  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
-HIGH = ["MNPI", "Current employer confidential", "Declaration conflict"]
-TYPES = HIGH + ["Source disclosure", "Confidentiality breach", "PII"]
-RANK = ["publish", "publish with redactions", "escalate", "reject"]
-ACTION_TO_DECISION = {"redact": "publish with redactions", "escalate to human": "escalate", "reject whole transcript": "reject"}
+TYPES = ["MNPI", "Current employer confidential", "Declaration conflict", "Source disclosure", "Confidentiality breach", "PII"]
 
 
 def aid(t, ts):
     return f"T{t['num']}-{ts // 60:02d}:{ts % 60:02d}"
 
 
-def main():
+def load():
     text = SRC.read_text()
     T = parse(text)
     keys = {int(re.match(r"\d+", b).group()): json.loads(re.search(r"```json\n(.*?)\n```", b, re.S).group(1))
             for b in text.split("\n## Transcript ")[1:]}
     A = [(t, ts, txt) for t in T for ts, who, txt in t["turns"] if who == "EXPERT"]
-    truth = {f"T{n}-{i['timestamp']}": i for n, k in keys.items() for i in k["issues"]}
-    C = companies(T)
-
-    current = {aid(t, ts): any(re.search(rf"\b{c}\b", txt) for c in C) for t, ts, txt in A}
-    R = json.loads((ROOT / "data/eval/ai_reviewer_verdicts.json").read_text())["verdicts"]
-    reviewer = {k: v["verdict"] == "flag" for k, v in R.items()}
-    assert set(reviewer) == set(current), "every expert answer needs a verdict"
-
-    print(f"expert answers: {len(A)}; answers with an issue in the answer key: {len(truth)}")
-    results = {}
-    for name, flags in [("Made-up engine (flags company names)", current), ("Pipeline check (saw the answer key; not a result)", reviewer)]:
-        tp = [a for a in flags if flags[a] and a in truth]
-        fp = [a for a in flags if flags[a] and a not in truth]
-        fn = [a for a in flags if not flags[a] and a in truth]
-        results[name] = dict(tp=tp, fp=fp, fn=fn)
-        print(f"\n== {name}")
-        print(f"flagged {len(tp) + len(fp)} of {len(A)}: rightly flagged {len(tp)}, false alarms {len(fp)}, missed {len(fn)}")
-        print(f"  false alarms: {fp}")
-        print(f"  missed: {fn}")
-        print("  by issue type (rightly flagged / missed):")
-        for ty in TYPES:
-            ids = [a for a, i in truth.items() if i["category"] == ty]
-            got = [a for a in ids if flags[a]]
-            print(f"    {ty}: {len(got)} / {len(ids) - len(got)} {'(zero-miss type)' if ty in HIGH else ''}")
-        hm = [a for a in fn if truth[a]["category"] in HIGH]
-        print(f"  misses in the three zero-miss types: {len(hm)} {hm}")
-
-    print("\n== Reviewer: issue type labels and transcript decisions")
-    label_ok = [a for a, i in truth.items() if R[a]["verdict"] == "flag" and i["category"] in R[a]["types"]]
-    print(f"right issue type on flagged issues: {len(label_ok)} of {len(truth)}")
-    extra = {a: [x for x in R[a].get('types', []) if x != truth.get(a, {}).get('category')] for a in R if R[a]["verdict"] == "flag"}
-    print(f"extra labels on rightly flagged answers: { {a: x for a, x in extra.items() if x} }")
-    dec_ok = 0
+    human = {aid(t, ts): None for t, ts, _ in A}
     for n, k in keys.items():
-        acts = [ACTION_TO_DECISION[R[a]["action"]] for a in R if a.startswith(f"T{n}-") and R[a]["verdict"] == "flag"]
-        d = max(acts, key=RANK.index) if acts else "publish"
-        dec_ok += d == k["overall_decision"]
-        if d != k["overall_decision"]:
-            print(f"  T{n}: reviewer {d}, answer key {k['overall_decision']}")
-    print(f"transcript decisions matching the answer key: {dec_ok} of {len(keys)}")
+        for i in k["issues"]:
+            human[f"T{n}-{i['timestamp']}"] = {"type": i["category"], "action": i["expected_action"]}
+    return T, A, human
 
-    print("\n== Failure analysis: made-up engine")
-    cur = results["Made-up engine (flags company names)"]
-    by_ts = {aid(t, ts): (t, txt) for t, ts, txt in A}
-    for a in cur["fn"]:
-        t, txt = by_ts[a]
-        voice = re.findall(r"\b(us|we|our|their|there)\b", txt, re.I)
-        print(f"  missed {a} [{truth[a]['category']}]: names no company; points at it with {sorted(set(w.lower() for w in voice))}")
-    cause_fp = Counter()
-    for a in cur["fp"]:
-        t, txt = by_ts[a]
-        own = any(re.search(rf"\b{e}\b", txt) for e in t["employers"])
-        public = bool(re.search(r"investor day|filings|annual results|earnings call|Publicly|reports in", txt))
-        cause = ("own former employer, public source cited" if own and public else
-                 "own former employer, expert declines to go further" if own else
-                 "another company, framed as public talk" if public else "another company")
-        cause_fp[cause] += 1
-        print(f"  false alarm {a}: {cause}")
-    print(f"false alarms by cause: {dict(cause_fp)}")
 
-    print("\n== Sizing the live test: zero misses in n real issues of a type bounds the miss rate below 3/n (95% confidence)")
-    for rate in (0.05, 0.02, 0.01):
-        print(f"  to show a miss rate below {rate:.0%}: at least {int(3 / rate)} issues of that type, all caught")
+def runs(T, A):
+    blind = json.loads((ROOT / "data/eval/ai_verdicts_blind.json").read_text())["verdicts"]
+    ai = {k: ({"type": v["type"], "action": v["action"]} if v["verdict"] == "flag" else None) for k, v in blind.items()}
+    C = companies(T)
+    rules = {aid(t, ts): ({"type": None, "action": None} if any(re.search(rf"\b{c}\b", txt) for c in C) else None)
+             for t, ts, txt in A}
+    return {"Blind AI reviewer": ai, "Rules baseline (flags company names)": rules}
+
+
+def funnel(engine, human):
+    rows = {}
+    for x in TYPES:
+        flagged = [a for a, v in engine.items() if v and v["type"] == x]
+        rows[x] = dict(flagged=flagged,
+                       acted=[a for a in flagged if human[a]],
+                       cleared=[a for a in flagged if not human[a]],
+                       missed=[a for a, h in human.items() if h and h["type"] == x and not engine[a]],
+                       other=[a for a, h in human.items() if h and h["type"] == x and engine[a] and engine[a]["type"] != x],
+                       human=[a for a, h in human.items() if h and h["type"] == x])
+    allflags = [a for a, v in engine.items() if v]
+    return rows, dict(reviewed=len(human), flagged=allflags,
+                      acted=[a for a in allflags if human[a]], cleared=[a for a in allflags if not human[a]],
+                      missed=[a for a, h in human.items() if h and not engine[a]],
+                      human=[a for a, h in human.items() if h])
+
+
+def main():
+    T, A, human = load()
+    blind = json.loads((ROOT / "data/eval/ai_verdicts_blind.json").read_text())["verdicts"]
+    for name, engine in runs(T, A).items():
+        assert set(engine) == set(human), f"{name}: every answer needs a verdict"
+        rows, tot = funnel(engine, human)
+        print(f"\n== {name}")
+        print(f"passages reviewed by a human: {tot['reviewed']}; human acted on: {len(tot['human'])}")
+        print(f"AI flagged {len(tot['flagged'])} -> human acted on {len(tot['acted'])} (rightly flagged), "
+              f"cleared {len(tot['cleared'])} (false alarm)")
+        print(f"missed by AI: {len(tot['missed'])} of {len(tot['human'])} the human acted on {tot['missed']}")
+        print(f"false alarms: {tot['cleared']}")
+        print("  by issue type: AI flagged -> acted / cleared | missed by AI | flagged under another type")
+        for x, r in rows.items():
+            print(f"    {x}: {len(r['flagged'])} -> {len(r['acted'])} / {len(r['cleared'])} | {len(r['missed'])} | {len(r['other'])}")
+        typed = [a for a in tot["acted"] if engine[a]["type"]]
+        if typed:
+            same = [a for a in typed if engine[a]["action"] == human[a]["action"]]
+            diff = {a: f"AI {engine[a]['action']} / human {human[a]['action']}" for a in typed if a not in same}
+            print(f"same action as the human: {len(same)} of {len(typed)}; differs: {diff}")
+            print(f"other types the AI listed: { {a: blind[a].get('other_types') for a in typed if blind[a].get('other_types')} }")
 
 
 if __name__ == "__main__":

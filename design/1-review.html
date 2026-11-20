@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Review screen (design)</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="design.css">
+<style>
+.layout{display:grid;grid-template-columns:230px 1fr 300px;gap:18px;align-items:start}
+.queue .item{padding:10px 12px;border-bottom:1px solid var(--line)}
+.queue .item:last-child{border-bottom:0}
+.queue .item.on{background:var(--soft);box-shadow:inset 3px 0 0 var(--ink)}
+.queue .t{font-weight:600} .queue .m{color:var(--muted);font-size:12px;margin-top:2px}
+.queue .qh{padding:10px 12px;font-size:12px;font-weight:600;color:var(--muted);border-bottom:1px solid var(--line)}
+.thead{padding:14px 16px;border-bottom:1px solid var(--line)}
+.thead .title{font-size:16px;font-weight:600}
+.thead .meta{color:var(--muted);font-size:13px;margin:2px 0 10px}
+.thead .sum{display:flex;gap:8px;flex-wrap:wrap}
+.turn{padding:10px 16px}
+.turn .ts{color:var(--faint);font-size:12px;font-variant-numeric:tabular-nums;margin-right:6px}
+.turn.q{color:var(--muted);font-size:13px}
+.turn.a{border-top:1px solid var(--line)}
+.turn.a .txt{margin:2px 0 8px}
+.verd{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.verd .col{border-radius:8px;padding:8px 10px;font-size:13px}
+.verd .col.ai{background:var(--ai-tint)} .verd .col.human{background:var(--human-tint)}
+.verd .who{font-size:11px;font-weight:700;letter-spacing:.3px;text-transform:uppercase;margin-bottom:2px}
+.verd .ai .who{color:var(--ai)} .verd .human .who{color:var(--human)}
+.verd .dec{font-weight:600}
+.verd .why{color:var(--note);margin-top:3px}
+.flagged{background:linear-gradient(var(--panel),var(--panel)) padding-box;box-shadow:inset 3px 0 0 var(--ai)}
+.outcome{display:flex;gap:8px;margin-top:8px}
+.clearline{display:flex;gap:10px;align-items:baseline;font-size:12.5px;color:var(--muted)}
+.clearline b{color:var(--ai);font-weight:600;white-space:nowrap}
+.clearline span:not(.pill){flex:1}
+.verd .also{color:var(--muted);font-size:12px;margin-top:4px}
+.side .card{padding:14px 16px;border-bottom:1px solid var(--line)}
+.side .card:last-child{border-bottom:0}
+.side h3{font-size:12px;font-weight:700;letter-spacing:.3px;text-transform:uppercase;color:var(--muted);margin:0 0 6px}
+.side p{margin:0 0 6px;font-size:13px}
+.side .row{display:flex;justify-content:space-between;font-size:13px;padding:3px 0}
+</style>
+</head>
+<body>
+<div class="top">
+  <div class="mark"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><rect x="1" y="1" width="20" height="20" rx="5" fill="#1c2230"/><path d="M6 11.5l3 3 7-7" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="16.5" cy="16.5" r="2.4" fill="#3843c4" stroke="#fff" stroke-width="1.2"/></svg>Content review engine</div>
+  <div class="steps"><div class="step on"><b>1</b>Review screen</div><div class="step"><b>2</b>Scorecard</div></div>
+  <div class="synth">Synthetic data</div>
+</div>
+<main>
+  <dl class="head">
+    <dt>Customer</dt><dd>Dialectica Legal &amp; Compliance</dd>
+    <dt>User</dt><dd>Compliance reviewer checking the AI's work</dd>
+    <dt>Job to be done</dt><dd>Check, passage by passage, what the AI flagged and why, against the human verdict</dd>
+  </dl>
+  <div class="notice">8 synthetic transcripts. AI verdicts come from a blind AI reviewer that saw only the transcripts, profiles and declarations. Human verdicts here are the test set's answer key.</div>
+
+  <div class="layout">
+    <div class="panel queue">
+      <div class="qh">Transcripts (8)</div>
+      <div class="item"><div class="t">UK grocery supply chain</div><div class="m">Agree on all 7 answers</div></div>
+      <div class="item"><div class="t">Road freight consolidation</div><div class="m">1 flagged · same action</div></div>
+      <div class="item"><div class="t">Workforce SaaS pricing</div><div class="m">1 flagged · same action</div></div>
+      <div class="item"><div class="t">Payments lending strategy</div><div class="m">Agree on all 6 answers</div></div>
+      <div class="item on"><div class="t">Medical devices</div><div class="m">1 flagged · action differs</div></div>
+      <div class="item"><div class="t">Enterprise software buying</div><div class="m">2 flagged · action differs on 1</div></div>
+      <div class="item"><div class="t">Packaged food margins</div><div class="m">Agree on all 6 answers</div></div>
+      <div class="item"><div class="t">Financial crime (AI-led)</div><div class="m">2 flagged · action differs on 1</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="thead">
+        <div class="title">Medical devices</div>
+        <div class="meta">Transcript 5 · Sanjay Mehta · 6 expert answers</div>
+        <div class="sum"><span class="pill ai">AI flagged 1</span><span class="pill human">Human acted on 1</span><span class="pill agree">Same passage</span><span class="pill note">Action differs</span></div>
+      </div>
+      <!--TURNS-->
+<div class="turn q"><span class="ts">00:00</span>Interviewer: Sanjay, thanks for your time. I&#x27;m looking at the mid-cap medical devices space, especially orthopaedic implants. How is demand?</div>
+<div class="turn a"><div class="txt"><span class="ts">00:12</span>Strong. Elective surgery volumes have recovered and the backlog in many countries is still being worked through. Ageing populations make the long-term demand very predictable.</div><div class="clearline"><b>AI cleared</b><span>General market view on orthopaedic demand and ageing populations.</span><span class="pill agree">Both cleared</span></div></div>
+<div class="turn q"><span class="ts">00:35</span>Interviewer: How about pricing?</div>
+<div class="turn a"><div class="txt"><span class="ts">00:38</span>Under pressure from hospital procurement, especially in Europe where tenders are aggressive. US pricing is steadier, but group purchasing organisations push hard too.</div><div class="clearline"><b>AI cleared</b><span>General view on hospital procurement pricing pressure in Europe and US.</span><span class="pill agree">Both cleared</span></div></div>
+<div class="turn q"><span class="ts">01:00</span>Interviewer: What about Northwind specifically?</div>
+<div class="turn a"><div class="txt"><span class="ts">01:03</span>I&#x27;ll stay careful there since I only left in March. Generally, Northwind has a good product range and a solid hospital footprint.</div><div class="clearline"><b>AI cleared</b><span>Expert stays careful and gives only a generic, positive public-level view of Northwind.</span><span class="pill agree">Both cleared</span></div></div>
+<div class="turn q"><span class="ts">01:20</span>Interviewer: Anything investors should be aware of?</div>
+<div class="turn a flagged"><div class="txt"><span class="ts">01:24</span>Look, I&#x27;m not saying anything specific, but if I were you I&#x27;d <mark class="q">watch their Q3 numbers closely</mark>. Let&#x27;s just say there&#x27;s been some <mark class="q">noise around one of the knee systems</mark>, and <mark class="q">I still talk to people there</mark>. Quality issues take a while to show up in the numbers.</div>
+    <div class="verd"><div class="col ai"><div class="who">AI flagged</div><div class="dec">Material non-public information · Reject whole transcript</div><div class="why">Former Northwind Finance Director (listed company, left March 2026, confidentiality obligations) tips undisclosed quality issue ahead of results: &#x27;watch their Q3 numbers closely&#x27;, &#x27;noise around one of the knee systems&#x27;, &#x27;I still talk to people there&#x27;. Signals non-public adverse information from ongoing insider contacts.</div><div class="also">Also listed: Confidentiality breach</div></div>
+    <div class="col human"><div class="who">Human verdict</div><div class="dec">Material non-public information · Escalate</div><div class="why">Hedged, but points to a possible undisclosed product quality issue at a listed former employer, sourced from current contacts there. Too uncertain for AI to clear or reject; needs a compliance reviewer.</div></div></div>
+    <div class="outcome"><span class="pill agree">Rightly flagged</span><span class="pill note">Action differs: AI chose reject whole transcript, human chose escalate</span></div></div>
+<div class="turn q"><span class="ts">01:52</span>Interviewer: Okay. Going back to the market, how important is regulation?</div>
+<div class="turn a"><div class="txt"><span class="ts">01:57</span>Very. The EU medical device regulation raised the bar for clinical evidence. Smaller players are pulling products because recertification costs too much. That&#x27;s good for the bigger, well-capitalised companies.</div><div class="clearline"><b>AI cleared</b><span>General discussion of public EU medical device regulation and its effects.</span><span class="pill agree">Both cleared</span></div></div>
+<div class="turn q"><span class="ts">02:25</span>Interviewer: And robotics in orthopaedics?</div>
+<div class="turn a"><div class="txt"><span class="ts">02:29</span>It&#x27;s the main arms race. Surgeons who train on a robot tend to stay with that company&#x27;s implants, so robotics is really a way to lock in implant sales.</div><div class="clearline"><b>AI cleared</b><span>General industry view on robotics locking in implant sales.</span><span class="pill agree">Both cleared</span></div></div>
+<div class="turn q"><span class="ts">02:50</span>Interviewer: Thank you, Sanjay.</div>
+<!--/TURNS-->
+    </div>
+
+    <div class="panel side">
+      <div class="card"><h3>Expert profile</h3><p>Sanjay Mehta. Finance Director, Northwind Biomedical (2018 to March 2026). Independent consultant (March 2026 to present). Medical devices.</p></div>
+      <div class="card"><h3>Declaration</h3><p><mark class="q">Left Northwind Biomedical (listed company) in March 2026.</mark> No current employer in medical devices. Standard confidentiality obligations to Northwind. No conflicts declared.</p></div>
+      <div class="card"><h3>Transcript decision</h3>
+        <div class="row"><span class="pill ai">AI</span><span>Reject whole transcript</span></div>
+        <div class="row"><span class="pill human">Human</span><span>Escalate</span></div>
+      </div>
+      <div class="card"><div class="foot" style="margin:0;justify-content:space-between"><span class="muted">5 of 8 checked</span><button class="btn">Next transcript</button></div></div>
+    </div>
+  </div>
+</main>
+</body>
+</html>

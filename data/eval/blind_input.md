@@ -1,0 +1,272 @@
+# Expert call transcripts for content review
+
+Fictional transcripts. Each has the expert's profile, their onboarding declaration and the transcript.
+Answer IDs are T<transcript>-<mm:ss> of the expert's answer.
+
+## Transcript 1
+
+**Expert profile:** Maria Okonedo. Director of Supply Chain, Brightmere Grocers (2015 to 2023). Independent supply chain consultant (2023 to present). Industry: UK grocery retail.
+
+**Onboarding declaration:** Left Brightmere Grocers in June 2023. No current employer in grocery retail. Not under any confidentiality restriction beyond standard post-employment terms. No conflicts declared.
+
+[00:00] INTERVIEWER: Thanks for joining, Maria. I'm looking at UK grocery supply chains, especially cold chain and automation. Can you start with how the landscape has changed over the last five years?
+
+[T1-00:21] EXPERT: Sure. The big shift is that the large grocers stopped treating distribution as a cost centre and started treating it as a competitive weapon. Before the pandemic, most of the conversation was about squeezing pennies out of each case. After 2020, it became about resilience. Everyone saw empty shelves and realised a lean network has no slack.
+
+[00:58] INTERVIEWER: What did that mean in practice?
+
+[T1-01:03] EXPERT: More regional depots, more safety stock on key lines, and a lot more investment in visibility. You'd be amazed how many grocers, even large ones, didn't know where a pallet was between leaving the supplier and arriving at the depot. Now most of the big players have some kind of control tower, a single view of inbound freight.
+
+[01:40] INTERVIEWER: And automation?
+
+[T1-01:44] EXPERT: It's real, but it's uneven. Automated picking works brilliantly for ambient goods, tins, pasta, that kind of thing. Chilled is harder because of temperature and shelf life, and fresh produce is harder still because items are irregular. So you see grocers automate ambient first and keep people on chilled and fresh. The business case is mostly about labour availability now, not labour cost. You simply can't hire enough warehouse staff in some regions.
+
+[02:35] INTERVIEWER: How about cold chain specifically?
+
+[T1-02:39] EXPERT: Cold chain is where I'd look if I were an investor. The regulation is tightening on temperature logging, and the refrigerant rules are pushing operators to replace older fleets. That's a big capex cycle. The operators who can offer verified temperature data end to end will win contracts, because grocers want to prove compliance to food safety auditors without chasing paper.
+
+[03:20] INTERVIEWER: Who's doing that well?
+
+[T1-03:23] EXPERT: I'd rather talk about capabilities than name operators. The good ones have telematics in every trailer, alerts when temperature drifts, and the data feeds straight into the grocer's system. The weaker ones still send a PDF at the end of the week.
+
+[03:51] INTERVIEWER: Fair. What's your view on margins for third-party logistics providers serving grocers?
+
+[T1-03:58] EXPERT: Thin and getting thinner on the basic contracts. The money is in value-added services: returns handling, cross-docking for online orders, and data. If a 3PL can tell a grocer which suppliers are consistently late, that's worth more than moving one more pallet.
+
+[04:30] INTERVIEWER: Last question. Where are grocers still underinvesting?
+
+[T1-04:35] EXPERT: Forecasting at store level. Depot forecasting has improved a lot, but store-level ordering still relies too heavily on manual overrides. That's where waste comes from, especially in fresh. I think the next few years will be about machine learning for store ordering, but the hard part is change management, getting store managers to trust the system.
+
+[05:10] INTERVIEWER: Great, thank you, Maria.
+
+## Transcript 2
+
+**Expert profile:** Daniel Reyes. Regional Operations Manager, Halbrook Logistics (2019 to present). Previously Depot Manager, Marlow Haulage (2014 to 2019). Industry: road freight and logistics.
+
+**Onboarding declaration:** Currently employed by Halbrook Logistics (listed company). May discuss general industry trends. Must not discuss Halbrook's non-public information, financials, strategy or corporate activity.
+
+[00:00] INTERVIEWER: Hi Daniel, thanks for your time. I'm researching consolidation in UK road freight. How fragmented is the market today?
+
+[T2-00:12] EXPERT: Very. There are a handful of large national players and then thousands of small operators, many of them family businesses with ten or twenty trucks. Driver shortages and fuel costs have pushed a lot of the small ones to the edge, so consolidation has been happening for years.
+
+[00:44] INTERVIEWER: What's driving deals at the larger end?
+
+[T2-00:48] EXPERT: Network density, mainly. If you can fill trucks on the return leg, your economics change completely. And customers increasingly want one provider across the country, not five regional ones.
+
+[01:15] INTERVIEWER: Are there obvious targets?
+
+[T2-01:19] EXPERT: Publicly, people talk about the mid-sized regional players. Corvane Freight is the one everyone mentions, they're strong in the North West and Scotland.
+
+[01:35] INTERVIEWER: Do you think Corvane stays independent?
+
+[T2-01:39] EXPERT: Honestly? I'd be surprised if Corvane is still independent by spring. I probably shouldn't say much more, but we've had integration planning sessions already. They're staffing the integration team from our side, and there's a project codename going around internally. The board's signed off on it, it's just timing on the announcement.
+
+[02:12] INTERVIEWER: Okay. Let's step back to the broader market. How are fuel costs affecting pricing?
+
+[T2-02:20] EXPERT: Fuel surcharges are standard now, so most of the volatility gets passed through. The bigger issue is driver wages. They're up a lot over three years and they don't come back down. Operators who didn't lock in rate increases are hurting.
+
+[02:51] INTERVIEWER: And electrification?
+
+[T2-02:55] EXPERT: Early. Electric vans for last mile, yes. Heavy goods vehicles, still mostly pilots. Charging at depots is the bottleneck, grid connections can take years. Hydrogen gets talked about, but I don't see it at scale this decade.
+
+[03:28] INTERVIEWER: Where's the margin opportunity for operators?
+
+[T2-03:32] EXPERT: Contract logistics rather than spot freight. Multi-year contracts with warehousing attached are stickier and better margin. Spot is a race to the bottom when capacity is loose.
+
+[04:00] INTERVIEWER: Thanks, Daniel.
+
+## Transcript 3
+
+**Expert profile:** Priya Natarajan. VP Sales EMEA, Teallight Software (2021 to present). Previously Sales Director, Orbisoft (2016 to 2021). Industry: B2B SaaS, workforce scheduling software.
+
+**Onboarding declaration:** Currently employed by Teallight Software (private company). May discuss the workforce software market, buyer behaviour and competitors in general terms. Must not share Teallight's non-public pricing, roadmap or customer information.
+
+[00:00] INTERVIEWER: Priya, thanks for joining. I'm looking at the workforce scheduling software market in Europe. How would you describe demand right now?
+
+[T3-00:14] EXPERT: Healthy but more scrutinised. Two years ago, buyers were adding tools quickly. Now every purchase goes through finance, and they want a clear payback, usually within a year.
+
+[00:36] INTERVIEWER: Who are the typical buyers?
+
+[T3-00:39] EXPERT: Operations leaders in retail, hospitality and healthcare. HR is involved, but operations owns the budget because scheduling directly drives labour cost, which is often their biggest line.
+
+[01:02] INTERVIEWER: How competitive is pricing?
+
+[T3-01:06] EXPERT: Competitive at the low end, where you have lots of simple tools. At the enterprise end, it's more about integration with payroll and time-and-attendance systems. Switching costs are high once you're integrated.
+
+[01:30] INTERVIEWER: Are vendors pushing price increases?
+
+[T3-01:34] EXPERT: Most of the market is trying. For us specifically, we're moving list price up 12% on the mid-market tier from January. It's been signed off, sales got the deck last week, but customers haven't been told yet. We think churn risk is low because of the integrations.
+
+[02:01] INTERVIEWER: Interesting. How do buyers usually react to increases like that?
+
+[T3-02:06] EXPERT: In general, they push back, then accept if the vendor shows new value at the same time, a new module or better reporting. The ones who churn are usually the smaller accounts who were price shopping anyway.
+
+[02:31] INTERVIEWER: What about AI features in scheduling?
+
+[T3-02:35] EXPERT: Everyone is adding demand forecasting. The useful version predicts footfall or patient volume and builds a draft rota. The hype version is a chatbot on top. Buyers are getting better at telling the difference.
+
+[03:00] INTERVIEWER: Which segment is growing fastest?
+
+[T3-03:03] EXPERT: Healthcare. Staffing pressures are severe, agency costs are high, and better scheduling reduces agency spend directly. That's an easy business case.
+
+[03:25] INTERVIEWER: Thank you, Priya.
+
+## Transcript 4
+
+**Expert profile:** Tom Fairley. Head of Product, Quillon Payments (2017 to 2021). Chief Product Officer, Brisk Invoicing (2021 to 2024). Independent advisor (2024 to present). Industry: payments and fintech.
+
+**Onboarding declaration:** Left Quillon Payments in 2021 and Brisk Invoicing in 2024. No current employer. Standard confidentiality obligations to former employers. No conflicts declared.
+
+[00:00] INTERVIEWER: Tom, thanks for joining. I'm looking at Quillon's move into small business lending. You were there for four years, so I'd love your view.
+
+[T4-00:13] EXPERT: Happy to, with the caveat that I left in 2021, so I'll stick to what's public and my general view of the market.
+
+[00:24] INTERVIEWER: Understood.
+
+[T4-00:26] EXPERT: Quillon laid out the lending strategy at their 2024 investor day. The logic is straightforward: they already see merchants' transaction data, so they can underwrite small loans with better information than a bank. That's the whole thesis, and it's been in their public filings since.
+
+[00:55] INTERVIEWER: Does the thesis hold up?
+
+[T4-00:58] EXPERT: Mostly. Payment data is a strong signal for cash flow. The risk is concentration. If a sector like hospitality has a bad year, a lot of their borrowers suffer at once. When I was there, the culture was very product-led, and lending is a credit business, so building that muscle takes time.
+
+[01:30] INTERVIEWER: How do competitors compare?
+
+[T4-01:33] EXPERT: Several payment providers are doing the same thing. The differentiator is how quickly they can approve a loan and how well they price risk. Speed sells to small businesses. Pricing determines whether the book makes money.
+
+[02:00] INTERVIEWER: What should investors watch?
+
+[T4-02:03] EXPERT: Default rates by sector and vintage, which Quillon reports in its annual results, and how much of the loan book they keep versus sell on to funding partners. Keeping it boosts revenue but adds risk to the balance sheet.
+
+[02:30] INTERVIEWER: Any view on management?
+
+[T4-02:33] EXPERT: The CEO has been consistent and public about wanting to become a broader financial services provider for small businesses. Whether they execute is the question, but the direction isn't a secret.
+
+[02:52] INTERVIEWER: Thanks, Tom.
+
+## Transcript 5
+
+**Expert profile:** Sanjay Mehta. Finance Director, Northwind Biomedical (2018 to March 2026). Independent consultant (March 2026 to present). Industry: medical devices.
+
+**Onboarding declaration:** Left Northwind Biomedical (listed company) in March 2026. No current employer in medical devices. Standard confidentiality obligations to Northwind. No conflicts declared.
+
+[00:00] INTERVIEWER: Sanjay, thanks for your time. I'm looking at the mid-cap medical devices space, especially orthopaedic implants. How is demand?
+
+[T5-00:12] EXPERT: Strong. Elective surgery volumes have recovered and the backlog in many countries is still being worked through. Ageing populations make the long-term demand very predictable.
+
+[00:35] INTERVIEWER: How about pricing?
+
+[T5-00:38] EXPERT: Under pressure from hospital procurement, especially in Europe where tenders are aggressive. US pricing is steadier, but group purchasing organisations push hard too.
+
+[01:00] INTERVIEWER: What about Northwind specifically?
+
+[T5-01:03] EXPERT: I'll stay careful there since I only left in March. Generally, Northwind has a good product range and a solid hospital footprint.
+
+[01:20] INTERVIEWER: Anything investors should be aware of?
+
+[T5-01:24] EXPERT: Look, I'm not saying anything specific, but if I were you I'd watch their Q3 numbers closely. Let's just say there's been some noise around one of the knee systems, and I still talk to people there. Quality issues take a while to show up in the numbers.
+
+[01:52] INTERVIEWER: Okay. Going back to the market, how important is regulation?
+
+[T5-01:57] EXPERT: Very. The EU medical device regulation raised the bar for clinical evidence. Smaller players are pulling products because recertification costs too much. That's good for the bigger, well-capitalised companies.
+
+[02:25] INTERVIEWER: And robotics in orthopaedics?
+
+[T5-02:29] EXPERT: It's the main arms race. Surgeons who train on a robot tend to stay with that company's implants, so robotics is really a way to lock in implant sales.
+
+[02:50] INTERVIEWER: Thank you, Sanjay.
+
+## Transcript 6
+
+**Expert profile:** Elena Vasquez. Head of Procurement, Marrow Analytics (2019 to October 2024, per declaration). Independent procurement advisor (October 2024 to present). Industry: enterprise data and analytics software.
+
+**Onboarding declaration:** Left Marrow Analytics in October 2024. No current employer. Not in contact with Marrow Analytics in a professional capacity. No conflicts declared.
+
+[00:00] INTERVIEWER: Elena, thanks for joining. I'm researching how large enterprises buy data and analytics software. What does a typical buying process look like?
+
+[T6-00:14] EXPERT: Long. Six to twelve months for a big platform. You have IT, security, procurement and the business all involved. Security review alone can take two or three months.
+
+[00:36] INTERVIEWER: Where do deals usually stall?
+
+[T6-00:40] EXPERT: Security and legal. Vendors underestimate how many questions a large company's security team will ask, especially about where data is stored and who can access it.
+
+[01:02] INTERVIEWER: How are enterprises approaching vendor consolidation?
+
+[T6-01:06] EXPERT: Aggressively. Most companies have too many overlapping tools. At Marrow, our team is rolling out a consolidation programme next month, cutting the analytics stack from nine vendors to four. We've been building the business case since the summer.
+
+[01:30] INTERVIEWER: Which vendors are likely to lose?
+
+[T6-01:34] EXPERT: The niche dashboard tools. My contact Jamie Holt, who runs procurement there now, told me last week they're giving notice to two of them in Q1. The big platforms will win because they can bundle.
+
+[01:55] INTERVIEWER: In general, how do vendors defend against consolidation?
+
+[T6-01:59] EXPERT: Deep integration and proving usage. If a vendor can show that hundreds of people use the tool daily, it's hard to cut. If usage is concentrated in one team, it's an easy target.
+
+[02:20] INTERVIEWER: What about pricing models?
+
+[T6-02:24] EXPERT: Buyers are pushing back on per-seat pricing for analytics, because usage is uneven. Consumption-based pricing is growing, but finance teams worry about unpredictable bills, so many deals end up with a committed spend plus overage.
+
+[02:50] INTERVIEWER: Thanks, Elena.
+
+## Transcript 7
+
+**Expert profile:** Robert Chen. CFO, Ardent Foods (2016 to 2022). Non-executive director at two private food companies (2022 to present). Industry: packaged food manufacturing.
+
+**Onboarding declaration:** Left Ardent Foods (listed company) in 2022. Non-executive roles at two private food companies, declared by name and excluded from discussion. No conflicts with Ardent declared.
+
+[00:00] INTERVIEWER: Robert, thanks for joining. I'm looking at margins in packaged food. Can you walk me through what's happening?
+
+[T7-00:11] EXPERT: Margins got squeezed hard in 2022 and 2023 by input costs: wheat, oils, packaging, energy. Since then, most manufacturers have rebuilt them through price increases and mix.
+
+[00:33] INTERVIEWER: Can you give a concrete example?
+
+[T7-00:36] EXPERT: Ardent is a good one because they're transparent. On their Q2 earnings call in August, they reported gross margin of 31.4%, up from 28.9% a year earlier, and guided to 32% to 33% for the full year. They attributed most of it to pricing and to exiting low-margin private label contracts.
+
+[01:08] INTERVIEWER: That's quite specific. Is that from your time there?
+
+[T7-01:11] EXPERT: No, that's all from the August call and the slides they published. I left in 2022. I'm just reading their numbers like any analyst would.
+
+[01:25] INTERVIEWER: Got it. Is the private label exit a smart move?
+
+[T7-01:29] EXPERT: For margins, yes. For volume, it hurts, and it means factories run below capacity unless they fill them with branded growth. That's the trade-off every mid-sized manufacturer faces.
+
+[01:52] INTERVIEWER: What about retailer pushback on prices?
+
+[T7-01:56] EXPERT: It's intense. Retailers are delisting brands that push too hard, and promoting their own label. The brands with genuine pricing power are the ones consumers will switch stores for, and there aren't many.
+
+[02:20] INTERVIEWER: What would you watch going forward?
+
+[T7-02:23] EXPERT: Volume trends. Margin recovery through price only lasts so long. If volumes keep falling, manufacturers will have to reinvest in promotion, and margins will come back down.
+
+[02:45] INTERVIEWER: Thanks, Robert.
+
+## Transcript 8 (AI-led interview)
+
+**Expert profile:** Hannah Booth. Senior Manager, Financial Crime Advisory, Kestrel Advisory (2016 to 2023), where she audited banks' anti-money-laundering controls. Head of Compliance, Pellow Insurance (2023 to present). Industry: financial crime compliance.
+
+**Onboarding declaration:** Currently employed by Pellow Insurance; will not discuss Pellow. Left Kestrel Advisory in 2023. Bound by confidentiality to Kestrel's former clients. No conflicts declared.
+
+[00:00] AI INTERVIEWER: Thank you for joining. This interview focuses on anti-money-laundering controls in mid-sized UK banks. First question: what are the most common weaknesses you have seen?
+
+[T8-00:15] EXPERT: The most common is customer due diligence, especially source of funds for higher-risk customers. Banks collect the documents at onboarding but don't refresh them. Second is transaction monitoring that generates too many false alerts, so analysts burn out and miss the real ones.
+
+[00:48] AI INTERVIEWER: Can you give an example of how severe these gaps can be?
+
+[T8-00:53] EXPERT: At one of the banks we audited, Fairhaven Credit, around 40% of the higher-risk customer files we sampled were missing source-of-funds documentation. It was in our final report to their board. They had to run a full remediation programme.
+
+[01:20] AI INTERVIEWER: How do banks typically respond to findings like that?
+
+[T8-01:24] EXPERT: A remediation programme, usually with external help, and a lot of pressure on the compliance team. It's tough on people. I remember Mark Ellison, who led their financial crime team at the time, was signed off for months with a breakdown afterwards.
+
+[01:48] AI INTERVIEWER: What separates banks that manage this well?
+
+[T8-01:52] EXPERT: Ownership in the first line. When relationship managers own the quality of customer files, rather than leaving it all to compliance, you get far better results. And good monitoring tuning: fewer, better alerts.
+
+[02:15] AI INTERVIEWER: How is technology changing transaction monitoring?
+
+[T8-02:19] EXPERT: Machine learning is reducing false positives in the better systems, sometimes significantly. But regulators want explainability. If a model closes an alert, the bank needs to show why. Black-box models are a hard sell to the regulator.
+
+[02:45] AI INTERVIEWER: Final question: what should investors in bank technology watch?
+
+[T8-02:49] EXPERT: Vendors that combine monitoring with case management and a clear audit trail. Regulators care less about how clever the model is and more about whether the bank can evidence its decisions.
+
+[03:10] AI INTERVIEWER: Thank you. This transcript was generated from an AI-led interview.

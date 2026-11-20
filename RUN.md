@@ -21,7 +21,7 @@
 | 3. Interview | Kevin | Notes in the Notion page | Done |
 | 4. Research synthesis | `pm-1-data-discovery` (Answer) | Below; code in `notebooks/synthesis.py` | Done |
 | 5. Solution concept | `pm-3-problem-to-solution-concept` | [Notion page](https://app.notion.com/p/41e8f31ef05f8137b4bbddec89a6656c): eval plan and dry run, solution after the eval | Revised |
-| 6. Design | `pm-4-solution-design` | [design/screen-specs.md](design/screen-specs.md); screen 1 [design/1-scorecard.png](design/1-scorecard.png). Screen 2 waits for agreement on screen 1 | In review |
+| 6. Design | `pm-4-solution-design` | [design/screen-specs.md](design/screen-specs.md): review screen [1](design/1-review.png), scorecard [2](design/2-scorecard.png), miss state [3](design/3-scorecard-misses.png) | In review, not built |
 | 7. Prototype | `pm-5-mvp-build` | | |
 | 8. MVP review | `pm-6-mvp-review` | | |
 
@@ -87,6 +87,12 @@ Every number comes from `notebooks/synthesis.py`. Each hypothesis from the role-
 **Pipeline check only:** `data/eval/ai_reviewer_verdicts.json` holds verdicts written by Claude after it had seen the answer key. They only confirm that the scorer reads verdicts and computes the outcomes. The score isn't reported anywhere.
 
 **Sizing the live test:** zero misses in n real issues of a type shows, with 95% confidence, a miss rate below 3 in n. That means 60 issues for 5%, 150 for 2% and 300 for 1%.
+
+**Blind AI reviewer:** a subagent read only `data/eval/blind_input.md` (made by `notebooks/make_blind_input.py`: no answer keys, no transcript titles) and wrote `data/eval/ai_verdicts_blind.json`.
+- **Flags:** all 7 passages the human acted on, each with the same issue type. No false alarms.
+- **Actions:** the same as the human on 4 of 7. On the other 3, it rejected transcripts 5 and 8 where the human escalated or redacted, and escalated transcript 6 where the human rejected.
+
+With 7 issues in a synthetic set, this shows the method works end to end, not that the AI is ready.
 
 **Solution concept, revised:** [Notion page](https://app.notion.com/p/41e8f31ef05f8137b4bbddec89a6656c). The order is eval, failure analysis, prioritise, live test, and only then a solution.
 
