@@ -1,3 +1,18 @@
+# Prototype polish, round 13 (presentation only)
+
+Kevin asked for a review of legal AI interfaces and a light visual polish, with no change to any number or text. The diff touches only the stylesheet and the font link: one added CSS block, and Newsreader added to the Google Fonts request.
+
+**Research:** web search turned up positioning for Harvey, Legora and Spellbook, and reviews praising Luminance's "clean interface" and clause highlighting. The product sites are blocked from this container, so the traits applied are Claude's read of the category, not a study of their screens.
+
+**Applied:**
+- **Type:** an editorial serif (Newsreader) for the title, section headings, card headings, category names and fix titles. Quotes are in serif, so they read like documents. Numbers stay in Inter.
+- **Colour:** warm paper neutrals (background #f6f4ef, cards #fffefb) with deep ink navy. Colour is kept for meaning: deep red for missed, amber for false alarms, green for found, violet for the fixes, blue for reviewers.
+- **Surfaces:** hairline borders in place of shadows, and a coloured top rule on the summary panel (red for liability, amber for cost). The "Liability risk" tag is solid red, and the "Operational cost" tag is outlined.
+- **Example and fix quotes:** cards with a coloured left rule. Highlights use a marker-style underline, the way a lawyer marks up a document.
+- **Transcript:** a document column with serif text for the expert's answers, sans-serif for the interviewer, and outlined tags.
+
+---
+
 # Prototype feedback, round 12 (applied)
 
 1. **Fixes section title:** "Possible improvements", with the "Estimated from…" note removed.
