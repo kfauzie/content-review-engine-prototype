@@ -21,7 +21,7 @@
 | 3. Interview | Kevin | Notes in the Notion page | Done |
 | 4. Research synthesis | `pm-1-data-discovery` (Answer) | Below; code in `notebooks/synthesis.py` | Done |
 | 5. Solution concept | `pm-3-problem-to-solution-concept` | [Notion page](https://app.notion.com/p/41e8f31ef05f8137b4bbddec89a6656c): eval plan and dry run, solution after the eval | Revised |
-| 6. Design | `pm-4-solution-design` | AI performance benchmark: [benchmark](design/1-summary.png), [transcript](design/2-transcript.png); spec in [design/screen-specs.md](design/screen-specs.md) | In review, not built |
+| 6. Design | `pm-4-solution-design` | Round 5: [benchmark](design/1-summary.png), [transcript](design/2-transcript.png); spec in [design/screen-specs.md](design/screen-specs.md) | In review, not built |
 | 7. Prototype | `pm-5-mvp-build` | | |
 | 8. MVP review | `pm-6-mvp-review` | | |
 
@@ -105,6 +105,8 @@ With 7 issues in a synthetic set, this shows the method works end to end, not th
 | Eval before any solution (Kevin's feedback) | We don't know the real problem yet; an eval by issue type shows whether the tool is too cautious, not cautious enough, or keyed on the wrong signal | The first concept, which recommended declaration-aware review on role-play evidence |
 | Present the dry run as a demo of the method, and drop the reviewer's score (Kevin's feedback) | The stand-in's misses were built into the test set, and a score from a reviewer that saw the answer key would invite the wrong questions | Leading with "missed 4 of 7" |
 | Rulings on disagreements in the eval | Today's reviewers miss things too, so their verdicts can't count as the truth on their own | Scoring the tool against analysts' verdicts as they stand |
+| Header with "missed 23" most prominent; missed issues by type with priority colours; a carousel of examples per type; transcript with reviewer comment and root cause (Kevin's round 5) | More examples make each category concrete; the reviewer's comment and the root cause explain each miss | Expanding rows, the caught-of-found wording |
+| Write 14 extra example quotes, labelled as written for the design | The test set has only 4 misses, and the carousels need about 5 per category | Inventing more than each category's made-up miss count |
 | Caught against missed, out of what reviewers found; issues by type, opening in place; full transcript with call context; dashboard look (Kevin's round 4) | Plain wording needs no "real issues" or rates; one page plus the transcript | Separate category pages, per-category unneeded flags |
 | Frame it as an AI performance benchmark; name the errors by cost (missed issues: compliance risk; unneeded flags: operational cost); counts only, no percentages or targets; full transcript with every passage marked (Kevin's round 3) | The page should read on its own, without meta text, and show where the AI is right as well as wrong | Rates, shares, the zero target, a single-example detail page |
 | Summary first, details one click deeper; misses by category, split into high priority and other, against a goal of zero high-priority misses (Kevin's feedback) | The decision is per category, and the reader sees the summary before the detail | A single screen listing every miss |

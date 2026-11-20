@@ -1,58 +1,69 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>AI performance benchmark (design)</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;650;700&display=swap" rel="stylesheet"><style>
-:root{--bg:#f3f4f7;--card:#fff;--ink:#0f172a;--ink2:#334155;--muted:#64748b;--faint:#94a3b8;--line:#eceff3;
---red:#d1342f;--red-wash:#fdeeed;--amber:#b7791f;--amber-wash:#fdf6e7;--slate:#cbd5e1}
+:root{--bg:#f2f4f7;--card:#fff;--ink:#0f172a;--ink2:#334155;--muted:#64748b;--faint:#94a3b8;--line:#e9edf2;
+--red:#d1342f;--red-wash:#fdeeed;--hi:#b42318;--hi-wash:#fef3f2;--lo:#475569;--lo-wash:#f1f5f9;--amber:#b7791f;--amber-wash:#fdf6e7}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 Inter,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
 nav{display:flex;align-items:center;justify-content:space-between;height:56px;padding:0 32px;background:var(--card);border-bottom:1px solid var(--line)}
 .brand{display:flex;align-items:center;gap:10px;font-weight:600}
 .badge{font-size:12px;color:var(--muted);background:var(--bg);border-radius:999px;padding:3px 10px}
-main{max-width:1040px;margin:0 auto;padding:36px 32px 64px}
-.eyebrow{font-size:13px;color:var(--muted);font-weight:500}
-h1{font-size:30px;line-height:1.25;letter-spacing:-.6px;margin:6px 0 22px;font-weight:650}
-h1 .r{color:var(--red)}
-.card{background:var(--card);border-radius:16px;box-shadow:0 1px 2px rgba(15,23,42,.04),0 0 0 1px var(--line)}
-.split{height:10px;border-radius:5px;background:var(--slate);overflow:hidden;display:flex;margin-bottom:28px}
-.split i{display:block;height:100%;background:var(--red)}
-.legend{display:flex;gap:20px;font-size:13px;color:var(--muted);margin-bottom:28px}
-.legend b{color:var(--ink);font-weight:600}
-.legend span{display:inline-flex;align-items:center;gap:7px}
-.legend .dot{width:9px;height:9px;border-radius:3px;display:inline-block}
-.ct{display:flex;align-items:baseline;justify-content:space-between;padding:20px 24px 8px}
-.ct h2{font-size:17px;margin:0;font-weight:650}
-.grp{padding:14px 24px 6px;font-size:12px;font-weight:600;color:var(--faint);letter-spacing:.04em;text-transform:uppercase}
-.row{display:grid;grid-template-columns:1fr 220px 18px;gap:20px;align-items:center;padding:14px 24px;border-top:1px solid var(--line)}
-.row .n{font-weight:600;font-size:15px} .row .d{color:var(--muted);font-size:13px}
-.row .s{text-align:right;color:var(--ink2);font-variant-numeric:tabular-nums}
-.row .s .m{color:var(--red);font-weight:600} .row .s .z{color:var(--faint)}
-.chev{width:7px;height:7px;border-right:1.5px solid var(--faint);border-bottom:1.5px solid var(--faint);transform:rotate(45deg);margin-top:-4px}
-.row.open{background:#fbfbfc} .row.open .chev{transform:rotate(-135deg);margin-top:4px}
-.ex{display:grid;grid-template-columns:3px 1fr 150px 18px;gap:14px;align-items:center;margin:0 24px 14px;padding:12px 14px;border-radius:12px;background:var(--red-wash)}
-.ex .bar{height:100%;min-height:22px;border-radius:2px;background:var(--red)}
-.ex q{color:var(--ink2)} .ex .w{color:var(--muted);font-size:13px;text-align:right}
-.ex .go{width:7px;height:7px;border-right:1.5px solid var(--red);border-bottom:1.5px solid var(--red);transform:rotate(-45deg)}
-.flags{display:flex;align-items:center;gap:14px;margin-top:16px;padding:16px 24px}
-.flags .num{font-size:18px;font-weight:650;color:var(--amber);font-variant-numeric:tabular-nums}
-.flags .txt{color:var(--ink2)}
-.flags .dot{width:9px;height:9px;border-radius:3px;background:var(--amber)}
+main{max-width:1120px;margin:0 auto;padding:36px 32px 64px}
+h1{font-size:36px;letter-spacing:-.9px;margin:0 0 14px;font-weight:700}
+.head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:32px;flex-wrap:wrap}
+.line{display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 14px;color:var(--muted);font-size:15px}
+.line b{color:var(--ink);font-weight:600}
+.line .sep{color:var(--faint)}
+.line .missed{display:inline-flex;align-items:baseline;gap:8px;background:var(--red-wash);color:var(--red);border-radius:12px;padding:4px 14px;font-weight:600}
+.line .missed b{font-size:34px;color:var(--red);letter-spacing:-1px;line-height:1.1}
+.uf{display:flex;align-items:center;gap:10px;background:var(--card);border-radius:12px;padding:10px 14px;box-shadow:0 0 0 1px var(--line);color:var(--ink2)}
+.uf b{color:var(--amber);font-size:18px}
+.uf .tag{font-size:12px;font-weight:600;color:var(--amber);background:var(--amber-wash);border-radius:999px;padding:2px 9px}
+h2{font-size:18px;margin:0 0 14px;font-weight:650}
+.grp{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin:22px 0 10px}
+.grp i{width:10px;height:10px;border-radius:3px;display:inline-block}
+.cat{background:var(--card);border-radius:16px;box-shadow:0 1px 2px rgba(15,23,42,.04),0 0 0 1px var(--line);margin-bottom:12px;overflow:hidden}
+.cat .top{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center;padding:18px 22px}
+.cat.hi{box-shadow:inset 4px 0 0 var(--hi),0 0 0 1px var(--line)}
+.cat .n{font-size:18px;font-weight:650;letter-spacing:-.2px} .cat .d{color:var(--muted);font-size:13px}
+.cat .c{font-size:28px;font-weight:700;letter-spacing:-.6px;font-variant-numeric:tabular-nums;text-align:right;line-height:1}
+.cat .c small{display:block;font-size:12px;font-weight:500;color:var(--muted);letter-spacing:0;margin-top:4px}
+.cat.hi .c{color:var(--hi)} .cat.lo .c{color:var(--lo)} .cat .c.zero{color:var(--faint)}
+.car{padding:0 22px 18px}
+.carhead{display:flex;justify-content:flex-end;align-items:center;gap:8px;margin:-6px 0 10px;color:var(--faint);font-size:12px}
+.arr{width:28px;height:28px;border-radius:50%;box-shadow:0 0 0 1px var(--line);display:grid;place-items:center;background:#fff}
+.arr:before{content:"";width:6px;height:6px;border-right:1.5px solid var(--ink2);border-bottom:1.5px solid var(--ink2)}
+.arr.l:before{transform:rotate(135deg);margin-left:3px} .arr.r:before{transform:rotate(-45deg);margin-right:3px}
+.arr.off{opacity:.4}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.ex{display:flex;flex-direction:column;gap:14px;border-radius:12px;padding:14px 16px;background:var(--bg)}
+.cat.hi .ex{background:var(--hi-wash)}
+.ex q{color:var(--ink);display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;font-size:13.5px}
+.who{display:flex;align-items:center;gap:10px;margin-top:auto}
+.av{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:700;color:#fff;background:var(--lo)}
+.cat.hi .av{background:var(--hi)}
+.who .nm{font-weight:600;font-size:13px;line-height:1.2} .who .dt{color:var(--muted);font-size:12px}
 .back{display:inline-flex;align-items:center;gap:8px;color:var(--muted);margin-bottom:18px}
 .back:before{content:"";width:7px;height:7px;border-left:1.5px solid var(--muted);border-bottom:1.5px solid var(--muted);transform:rotate(45deg)}
-.ctx{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-bottom:16px}
-.ctx > div{padding:18px 22px;border-left:1px solid var(--line)} .ctx > div:first-child{border-left:0}
-.ctx .k{font-size:12px;color:var(--faint);font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin-bottom:4px}
-.ctx .v{color:var(--ink2)} .ctx .v b{color:var(--ink);font-weight:600}
+.eyebrow{font-size:13px;color:var(--muted);font-weight:500;margin-bottom:4px}
+.ctx{display:grid;grid-template-columns:1fr 1fr 2fr;background:var(--card);border-radius:16px;box-shadow:0 0 0 1px var(--line);margin-bottom:16px}
+.ctx > div{padding:16px 20px;border-left:1px solid var(--line)} .ctx > div:first-child{border-left:0}
 .ctx .wide{grid-column:1/-1;border-left:0;border-top:1px solid var(--line)}
-.tr{padding:10px 24px 18px}
-.turn{display:grid;grid-template-columns:52px 1fr 250px;gap:16px;padding:9px 0}
+.ctx .k{font-size:12px;color:var(--faint);font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin-bottom:3px}
+.ctx .v{color:var(--ink2)} .ctx .v b{color:var(--ink)}
+.tr{background:var(--card);border-radius:16px;box-shadow:0 0 0 1px var(--line);padding:12px 24px 18px}
+.turn{display:grid;grid-template-columns:52px 1fr;gap:16px;padding:9px 0}
 .turn .t{color:var(--faint);font-variant-numeric:tabular-nums;font-size:13px;padding-top:1px}
-.turn .who{font-size:12px;font-weight:600;color:var(--faint);margin-bottom:1px}
+.turn .s{font-size:12px;font-weight:600;color:var(--faint);margin-bottom:1px}
 .turn.q .x{color:var(--muted)}
-.turn.miss .x{background:var(--red-wash);box-shadow:inset 3px 0 0 var(--red);border-radius:10px;padding:10px 12px;margin:-2px 0}
-.turn .tag{align-self:start;font-size:12px;font-weight:600;color:var(--red);background:var(--red-wash);border-radius:999px;padding:4px 10px;justify-self:start;margin-top:18px;white-space:nowrap}
-</style></head><body><nav><div class="brand"><svg width="20" height="20" viewBox="0 0 22 22" aria-hidden="true"><rect x="1" y="1" width="20" height="20" rx="6" fill="#0f172a"/><path d="M6 11.5l3 3 7-7" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Content review engine</div><span class="badge">Illustrative</span></nav><main><div class="eyebrow">AI performance benchmark · 1,000 transcripts</div>
-<h1>Reviewers found 262 issues. The AI caught 239 and missed <span class="r">23</span>.</h1>
-<div class="split"><i style="width:8.78%;margin-left:auto"></i></div>
-<div class="card"><div class="ct"><h2>Issues by type</h2></div>
-<div class="grp">High priority</div><div class="row open"><div><div class="n">Material non-public information</div><div class="d">Non-public facts about a listed company that could move its share price</div></div><div class="s">caught 37 of 38, <span class="m">missed 1</span></div><span class="chev"></span></div><a class="ex" href="2-transcript.html"><span class="bar"></span><q>Look, I&#x27;m not saying anything specific, but if I were you I&#x27;d watch their Q3 numbers closely.</q><span class="w">Medical devices · 01:24</span><span class="go"></span></a><div class="row"><div><div class="n">Current-employer confidential</div><div class="d">Non-public information about the expert's current employer</div></div><div class="s">caught 51 of 52, <span class="m">missed 1</span></div><span class="chev"></span></div><div class="row"><div><div class="n">Declaration conflict</div><div class="d">What the expert says contradicts their declaration</div></div><div class="s">caught 14 of 14, <span class="z">missed 0</span></div><span class="chev"></span></div>
-<div class="grp">Other</div><div class="row"><div><div class="n">Source disclosure</div><div class="d">Names a person inside a company as the source</div></div><div class="s">caught 23 of 29, <span class="m">missed 6</span></div><span class="chev"></span></div><div class="row"><div><div class="n">Former-client confidential</div><div class="d">Confidential information about a former client or employer</div></div><div class="s">caught 29 of 33, <span class="m">missed 4</span></div><span class="chev"></span></div><div class="row"><div><div class="n">Personal data</div><div class="d">Names or sensitive details of private individuals</div></div><div class="s">caught 85 of 96, <span class="m">missed 11</span></div><span class="chev"></span></div></div>
-<div class="card flags"><span class="dot"></span><span class="txt">The AI also flagged <b class="num">187</b> passages reviewers cleared.</span></div></main></body></html>
+.hit{border-radius:12px;background:var(--red-wash);box-shadow:inset 3px 0 0 var(--red);padding:12px 14px}
+.hit .tag{display:inline-block;font-size:12px;font-weight:600;color:var(--red);background:#fff;border-radius:999px;padding:2px 10px;margin-bottom:6px}
+.notes{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px}
+.note{background:#fff;border-radius:10px;padding:10px 12px;box-shadow:0 0 0 1px #f6d4d1}
+.note .k{font-size:12px;font-weight:600;color:var(--muted);margin-bottom:2px}
+</style></head><body><nav><div class="brand"><svg width="20" height="20" viewBox="0 0 22 22" aria-hidden="true"><rect x="1" y="1" width="20" height="20" rx="6" fill="#0f172a"/><path d="M6 11.5l3 3 7-7" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Content review engine</div><span class="badge">Illustrative</span></nav><main><div class="head"><div><h1>AI performance benchmark</h1>
+<div class="line"><span><b>1,000</b> transcripts</span><span class="sep">·</span><span><b>262</b> issues found by human reviewers</span>
+<span class="sep">·</span><span>AI caught <b>239</b></span><span class="missed">missed <b>23</b></span></div></div>
+<div class="uf"><b>187</b> unneeded flags <span class="tag">Operational cost</span></div></div>
+<h2>Missed issues by type</h2>
+<div class="grp"><i style="background:var(--hi)"></i>High priority</div><div class="cat hi"><div class="top"><div><div class="n">Material non-public information</div><div class="d">Non-public facts that could move a listed company's share price</div></div><div class="c">1<small>missed</small></div></div><div class="car"><div class="cards"><a class="ex" href="2-transcript.html"><q>Look, I&#x27;m not saying anything specific, but if I were you I&#x27;d watch their Q3 numbers closely. Let&#x27;s just say there&#x27;s been some noise around one of the knee systems, and I still talk to people there.</q><div class="who"><span class="av">SM</span><div><div class="nm">Sanjay Mehta</div><div class="dt">12 Nov 2026 · 01:24</div></div></div></a></div></div></div><div class="cat hi"><div class="top"><div><div class="n">Current-employer confidential</div><div class="d">Non-public information about the expert's current employer</div></div><div class="c">1<small>missed</small></div></div><div class="car"><div class="cards"><a class="ex"><q>For us specifically, we&#x27;re moving list price up 12% on the mid-market tier from January. It&#x27;s been signed off, sales got the deck last week, but customers haven&#x27;t been told yet.</q><div class="who"><span class="av">PN</span><div><div class="nm">Priya Natarajan</div><div class="dt">4 Nov 2026 · 01:34</div></div></div></a></div></div></div><div class="cat hi"><div class="top"><div><div class="n">Declaration conflict</div><div class="d">Contradicts what the expert declared</div></div><div class="c zero">0<small>missed</small></div></div></div>
+<div class="grp"><i style="background:var(--lo)"></i>Medium and low priority</div><div class="cat lo"><div class="top"><div><div class="n">Source disclosure</div><div class="d">Names an insider as the source</div></div><div class="c">6<small>missed</small></div></div><div class="car"><div class="carhead">1–3 of 5<span class="arr l off"></span><span class="arr r"></span></div><div class="cards"><a class="ex"><q>My contact Jamie Holt, who runs procurement there now, told me last week they&#x27;re giving notice to two of them in Q1.</q><div class="who"><span class="av">EV</span><div><div class="nm">Elena Vasquez</div><div class="dt">9 Nov 2026 · 01:34</div></div></div></a><a class="ex"><q>Their head of logistics, Carla, told me over dinner that the Rotterdam site is being mothballed after Christmas.</q><div class="who"><span class="av">OP</span><div><div class="nm">Owen Prendergast</div><div class="dt">28 Oct 2026 · 14:52</div></div></div></a><a class="ex"><q>I still speak to the plant manager at Ostrava most weeks, and he says the line restart has slipped to February.</q><div class="who"><span class="av">ML</span><div><div class="nm">Mei Lin Tan</div><div class="dt">2 Nov 2026 · 22:07</div></div></div></a></div></div></div><div class="cat lo"><div class="top"><div><div class="n">Former-client confidential</div><div class="d">Confidential details from a former client or employer</div></div><div class="c">4<small>missed</small></div></div><div class="car"><div class="carhead">1–3 of 4<span class="arr l off"></span><span class="arr r"></span></div><div class="cards"><a class="ex"><q>When we did their carve-out work, the stranded costs came out at nearly twice what management told the board.</q><div class="who"><span class="av">TA</span><div><div class="nm">Thomas Achebe</div><div class="dt">30 Oct 2026 · 18:26</div></div></div></a><a class="ex"><q>One bank I advised had its core banking migration fail twice. It never went public, but it cost them most of a year.</q><div class="who"><span class="av">IS</span><div><div class="nm">Ingrid Solberg</div><div class="dt">6 Nov 2026 · 11:03</div></div></div></a><a class="ex"><q>I rebuilt their churn model last year as a consultant, and the real number was well above what they show investors.</q><div class="who"><span class="av">RC</span><div><div class="nm">Ravi Chandran</div><div class="dt">11 Nov 2026 · 26:40</div></div></div></a></div></div></div><div class="cat lo"><div class="top"><div><div class="n">Personal data</div><div class="d">Names or sensitive details of private individuals</div></div><div class="c">11<small>missed</small></div></div><div class="car"><div class="carhead">1–3 of 7<span class="arr l off"></span><span class="arr r"></span></div><div class="cards"><a class="ex"><q>I remember Mark Ellison, who led their financial crime team at the time, was signed off for months with a breakdown afterwards.</q><div class="who"><span class="av">HB</span><div><div class="nm">Hannah Booth</div><div class="dt">13 Nov 2026 · 01:24</div></div></div></a><a class="ex"><q>Their finance director, Tom Reyes, has been going through a difficult divorce, which is why he&#x27;s been so distracted this year.</q><div class="who"><span class="av">MW</span><div><div class="nm">Marcus Webb</div><div class="dt">27 Oct 2026 · 16:12</div></div></div></a><a class="ex"><q>Speak to Mark Doyle in their Leeds office. I&#x27;ve got his personal mobile if you want it.</q><div class="who"><span class="av">SM</span><div><div class="nm">Sofia Marchetti</div><div class="dt">31 Oct 2026 · 05:48</div></div></div></a></div></div></div></main></body></html>
