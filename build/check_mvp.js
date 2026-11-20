@@ -25,7 +25,7 @@ const t = (name, ok, got) => { if (!ok) fail++; console.log(`${ok ? "PASS" : "FA
     const { ctx, p } = await fresh();
     await p.route(/fonts\.(googleapis|gstatic)\.com/, async r => { await new Promise(s => setTimeout(s, 1500)); r.continue().catch(() => r.abort()); });
     await p.goto(url); await p.waitForSelector('body[data-ready="1"]', { timeout: 8000 });
-    t("renders on a slow first load", await p.locator("h1").textContent() === "AI performance benchmark");
+    t("renders on a slow first load", await p.locator("h1").textContent() === "Content review AI: performance benchmark");
     await ctx.close();
   }
 
@@ -49,7 +49,7 @@ const t = (name, ok, got) => { if (!ok) fail++; console.log(`${ok ? "PASS" : "FA
   t("false alarm box shows only 187 false alarms and its description", (await p.locator(".fa .fal").textContent()) === "false alarms" &&
     (await p.locator(".fa .lab").textContent()) === "flagged by AI, marked as non-risk by human reviewers" && await p.locator(".fa .sbar").count() === 0);
   t("no legends, no \"Confirmed\"", await p.locator(".sleg").count() === 0 && !(await p.locator("main").textContent()).includes("Confirmed"));
-  t("subtitle", (await p.locator(".sub1").textContent()) === "We compared AI and human review across 1,000 transcripts to see where the AI misses compliance risks, and where it raises false alarms");
+  t("subtitle", (await p.locator(".sub1").textContent()) === "We compared the content review AI with human reviewers across 1,000 transcripts to see where it misses compliance risks, and where it raises false alarms.");
   t("fix titles", (await p.locator(".fix h3").allTextContents()).join("|") === "Read each answer in context|Check for people and sources, not just companies|Check the expert's cited source before flagging");
   t("recommendation examples show date and call timestamp", (await p.locator('.fix[data-fix="declaration"] .fq .by').first().textContent()) === "PN4 Nov 2026 · 01:34");
   t("first example reads as written", (await p.locator('.fix[data-fix="declaration"] .fq').first().textContent()).startsWith("\u201cFor us specifically, we're moving list price up 12% on the mid-market tier from January.\u201d"));
@@ -106,7 +106,7 @@ const t = (name, ok, got) => { if (!ok) fail++; console.log(`${ok ? "PASS" : "FA
     (await p.locator('[data-cat="missed|Personal data"] a.ex .av').getAttribute("title")) === "Hannah Booth" && await p.locator('[data-cat="missed|Former-client confidential"] a.ex').count() === 0);
   t("false alarms are grouped by type of false alarm, with examples where there are some",
     (await p.locator('[data-cat^="fatype|"] .n').allTextContents()).join("|") === "Public source cited|The expert's own opinion or estimate|Former employer, left long ago|Public market talk" &&
-    await p.locator('[data-cat="fatype|public-source"] a.ex').count() === 3 && await p.locator('[data-cat="fatype|own-view"] .ex').count() === 0 &&
+    await p.locator('[data-cat="fatype|public-source"] a.ex').count() === 3 && await p.locator('[data-cat="fatype|own-view"] .ex').count() === 3 && await p.locator('[data-cat="fatype|own-view"] a.ex').count() === 0 &&
     await p.locator('[data-cat^="false_alarm|"]').count() === 0);
 
   const links = await p.locator("a.ex").evaluateAll(a => a.map(x => x.getAttribute("href")));
@@ -130,7 +130,7 @@ const t = (name, ok, got) => { if (!ok) fail++; console.log(`${ok ? "PASS" : "FA
   t("missed: note titled \"Why the original AI didn't flag it\"", (await p.locator(".note.agent .nt").textContent()) === "Why the original AI didn't flag it");
   t("call context: expert, call date, role, declared", await p.locator(".ctx .k").allTextContents().then(k => k.join("|")) === "Expert|Call date|Role|Declared");
   await p.locator(".back").click(); await p.waitForSelector('body[data-view="summary"]');
-  t("back returns to the benchmark", await p.locator("h1").textContent() === "AI performance benchmark");
+  t("back returns to the benchmark", await p.locator("h1").textContent() === "Content review AI: performance benchmark");
   await p.locator('[data-cat="fatype|public-source"] .arr.r').click();
   t("false alarm carousel moves", (await p.locator('[data-cat="fatype|public-source"] [data-range]').textContent()) === "2–4 of 7");
   await p.locator('[data-cat="fatype|public-source"] a.ex').first().click();
@@ -155,6 +155,8 @@ const t = (name, ok, got) => { if (!ok) fail++; console.log(`${ok ? "PASS" : "FA
   await p.setViewportSize({ width: 390, height: 844 }); await p.goto(url); await p.waitForSelector('body[data-ready="1"]');
   t("phone shows one card at a time", await p.locator('[data-cat="missed|Material non-public information"] .ex').count() === 1);
 
+  await p.setViewportSize({ width: 1280, height: 900 }); await p.goto(url); await p.waitForSelector('body[data-ready="1"]');
+  t("top bar and badge", (await p.locator(".brand").textContent()) === "Content review engine· AI benchmark" && (await p.locator(".badge").textContent()) === "Illustrative · synthetic data");
   t("no console errors", errors.length === 0, errors.join(" | ") || "none");
   await ctx.close(); await b.close(); srv.close();
   console.log(fail ? `${fail} FAILED` : "Headless check passes"); process.exit(fail ? 1 : 0);

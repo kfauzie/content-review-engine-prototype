@@ -23,7 +23,7 @@
 | 5. Solution concept | `pm-3-problem-to-solution-concept` | [Notion page](https://app.notion.com/p/41e8f31ef05f8137b4bbddec89a6656c): eval plan and dry run, solution after the eval | Revised |
 | 6. Design | `pm-4-solution-design` | Round 6: [benchmark](design/1-summary.png), [transcript](design/2-transcript.png); spec in [design/screen-specs.md](design/screen-specs.md) | Approved (round 7) |
 | 7. Prototype | `pm-5-mvp-build` | [build/mvp.html](build/mvp.html) (one file, data embedded); known-answer tests in `build/test_mvp.js`; headless check in `build/check_mvp.js` | Built, all checks pass |
-| 8. MVP review | `pm-6-mvp-review` | | |
+| 8. MVP review | `pm-6-mvp-review` | [Notion page](https://app.notion.com/p/41e8f31ef05f8164b508f1dd601d8be2): evaluation plan and five questions | Ready for the review; Step 3 (check the sample) waits for real transcripts |
 
 ## 1. Data review (pm-1, Initial review)
 
@@ -115,6 +115,15 @@ With 7 issues in a synthetic set, this shows the method works end to end, not th
   - the back link, and an unknown transcript link
   - no sideways scrolling at 390px or 768px, one card at a time on a phone, and no console errors
 - **Sanity check:** I captured screenshots of every state at desktop, tablet and phone width and looked at each against the round 7 design. They match. I found nothing the design didn't cover.
+
+## 8. MVP review (pm-6)
+- **Evaluation plan:** two AI parts.
+  - **The AI reviewer:** right means it flags every passage reviewers acted on, with the right type. The cases that matter are hedged hints, "we" or "us" with no company named, insider sources, former employers citing public sources, and AI-led interviews. It needs about 300 issues per high-priority type for a miss rate below 1%, plus around 1,000 transcripts to count false alarms.
+  - **The independent agent:** right means its root cause matches a senior reviewer's. Rely on it only once the two agree on a checked sample.
+- **Trust in stages:** known answers, then shadow mode, then clearing one type with a second-read sample and an automatic stop.
+- **Questions, in pm-6 order:** does it solve the problem; trust and sign-off (follow-up on who signs off); the real sample; assumptions; defaults.
+- **Assumptions:** kept 4 of the concept's 5 open questions. Dropped "Who rules on disagreements, and how quickly?", because the prototype no longer uses rulings: Kevin removed "missed by analysts".
+- **Step 3** (check the sample ourselves) starts when real transcripts arrive.
 
 ## Decisions I made (and what I turned down)
 

@@ -38,7 +38,7 @@ t("bar scale for false alarms is 89 + 60 = 149 (personal data)", C.barScale(fa) 
 t("no data problems", C.problems(D).length === 0, C.problems(D).join("; ") || "none");
 const count = (kind, cat) => C.cardsFor(D, kind, cat).length;
 t("missed cards: 5, 4, 0, 4, 3, 7 (one per miss)", BRIEF.map(b => count("missed", b[0])).join() === "5,4,0,4,3,7");
-t("false alarm cards: 5 and 4 in the top two categories, none elsewhere", BRIEF.map(b => count("false_alarm", b[0])).join() === "5,4,0,0,0,0");
+t("false alarm cards by issue category: 5, 4, 1, 4, 2, 2 (new examples kept outside the top two, so fix estimates hold)", BRIEF.map(b => count("false_alarm", b[0])).join() === "5,4,1,4,2,2");
 const names = D.cards.map(c => c.name);
 t("no person appears twice", new Set(names).size === names.length, `${names.length} cards`);
 const fixNames = new Set(D.fixes.flatMap(f => f.examples.map(x => x.name)));
@@ -77,8 +77,8 @@ t("date and time format", C.niceDateTime("2026-11-13T11:17") === "13 Nov 2026, 1
 t("every card has a highlight that appears word for word in its quote", D.cards.every(c => c.highlight && c.quote.includes(c.highlight)));
 t("false alarm types: 98 + 41 + 27 + 21 = 187, the same total as by issue type", D.false_alarm_types.map(x => x.count).join() === "98,41,27,21" &&
   D.false_alarm_types.reduce((s, x) => s + x.count, 0) === C.totals(D).falseAlarms);
-t("every false alarm card has a type; examples per type: 7, 0, 1, 1", D.cards.filter(c => c.kind === "false_alarm").every(c => c.fa_type) &&
-  D.false_alarm_types.map(x => C.faTypeCards(D, x.id).length).join() === "7,0,1,1");
+t("every false alarm card has a type; examples per type: 7, 3, 4, 4", D.cards.filter(c => c.kind === "false_alarm").every(c => c.fa_type) &&
+  D.false_alarm_types.map(x => C.faTypeCards(D, x.id).length).join() === "7,3,4,4");
 t("carousel window clamps at the ends", JSON.stringify(C.windowOf(5, 4, 3)) === '{"start":2,"end":5}' && JSON.stringify(C.windowOf(5, -1, 3)) === '{"start":0,"end":3}');
 t("three cards on desktop, two on tablet, one on phone", C.perView(1280) === 3 && C.perView(800) === 2 && C.perView(390) === 1);
 t("initials and dates", C.initials("Mei Lin Tan") === "ML" && C.niceDate("2026-11-04") === "4 Nov 2026");
@@ -88,5 +88,5 @@ t("no em or en dashes", !/[—]/.test(text) && !/–/.test(html.replace(/<script
 t("no 'real issues', percentages or status verdicts in the page's own copy",
   !/real issues|miss rate|not cautious enough|needs more evidence|unneeded/i.test(html.replace(/<script id="data"[\s\S]*?<\/script>/, "")));
 t("wording: no \"Confirmed\", no \"Operational risk\"", !/Confirmed|confirmed|Operational risk/.test(html.replace(/<script id="data"[\s\S]*?<\/script>/, "")));
-t("synthetic data is labelled on screen", html.includes('<span class="badge">Illustrative</span>'));
+t("synthetic data is labelled on screen", html.includes('<span class="badge">Illustrative · synthetic data</span>'));
 console.log(fail ? `${fail} FAILED` : "All tests pass"); process.exit(fail ? 1 : 0);

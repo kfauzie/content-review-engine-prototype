@@ -110,6 +110,15 @@ HIGHLIGHT = {
     "Laura Bennett": "As their annual report says", "Arjun Mehra": "said on the results call",
     "Chloe Martin": "We announced the Leeds office in a press release", "Ibrahim Yusuf": "Our prices are on the website",
     "Ruth Okonkwo": "what's in our published sustainability report", "Marco Rossi": "showed the new product on stage at the trade show",
+    "Isabel Moreno": "My own estimate",
+    "Kenji Watanabe": "Nobody told me this, but my view is",
+    "Fatima Al-Sayed": "that's only my opinion",
+    "George Whitfield": "When I was at Harlow Foods in 2015",
+    "Ana Costa": "I left Brennick Steel in 2017",
+    "Patrick Doyle": "back in 2014",
+    "Leila Nasser": "has said at two conferences",
+    "Tomasz Nowak": "that's just the chatter going round",
+    "Rebecca Stone": "According to the financial press",
 }
 # false alarms grouped by why the AI raised them; counts made up (they sum to 187), examples tagged by Kevin's judgement
 FALSE_ALARM_TYPES = [
@@ -120,7 +129,17 @@ FALSE_ALARM_TYPES = [
 ]
 FALSE_ALARM_TYPE_OF = {"Robert Chen": "public-source", "Laura Bennett": "public-source", "Arjun Mehra": "public-source", "Chloe Martin": "public-source",
                        "Ibrahim Yusuf": "public-source", "Ruth Okonkwo": "public-source", "Marco Rossi": "public-source",
-                       "Tom Fairley": "former-employer", "Daniel Reyes": "market-talk"}
+                       "Tom Fairley": "former-employer", "Daniel Reyes": "market-talk",
+                       "Isabel Moreno": "own-view",
+                       "Kenji Watanabe": "own-view",
+                       "Fatima Al-Sayed": "own-view",
+                       "George Whitfield": "former-employer",
+                       "Ana Costa": "former-employer",
+                       "Patrick Doyle": "former-employer",
+                       "Leila Nasser": "market-talk",
+                       "Tomasz Nowak": "market-talk",
+                       "Rebecca Stone": "market-talk",
+                       }
 FIX_EXAMPLE_NAMES = {x["name"] for f in FIXES for x in f["examples"]}
 FIX_OF = {  # card name -> fix id; cards not listed are not addressed by any of the three
     "Sanjay Mehta": "declaration", "Olivia Grant": "declaration", "Henrik Lindqvist": "declaration", "Nadia Rahimi": "declaration",

@@ -267,6 +267,87 @@
    "source": "written for the design",
    "quote": "Our chief executive showed the new product on stage at the trade show in September, so it's public now.",
    "cleared": "Shown publicly at a trade show"
+  },
+  {
+   "category": "Former-client confidential",
+   "name": "Isabel Moreno",
+   "date": "2026-10-29",
+   "ts": "07:41",
+   "source": "written for the design",
+   "quote": "My own estimate is that their margins are nearer 20% than 25%, based on industry benchmarks, not anything I worked on.",
+   "cleared": "The expert's own estimate from public benchmarks"
+  },
+  {
+   "category": "Source disclosure",
+   "name": "Kenji Watanabe",
+   "date": "2026-11-05",
+   "ts": "13:22",
+   "source": "written for the design",
+   "quote": "Nobody told me this, but my view is they'll have to raise prices within a year.",
+   "cleared": "A personal view, not from a source"
+  },
+  {
+   "category": "Personal data",
+   "name": "Fatima Al-Sayed",
+   "date": "2026-11-13",
+   "ts": "19:58",
+   "source": "written for the design",
+   "quote": "I think their new chief executive, Daniel Kerr, is the right person for the turnaround, though that's only my opinion.",
+   "cleared": "An opinion about a public figure in a public role"
+  },
+  {
+   "category": "Former-client confidential",
+   "name": "George Whitfield",
+   "date": "2026-10-31",
+   "ts": "10:14",
+   "source": "written for the design",
+   "quote": "When I was at Harlow Foods in 2015, we priced on a cost-plus basis. I've no idea what they do now.",
+   "cleared": "Left Harlow Foods in 2016; nothing current"
+  },
+  {
+   "category": "Declaration conflict",
+   "name": "Ana Costa",
+   "date": "2026-11-09",
+   "ts": "04:37",
+   "source": "written for the design",
+   "quote": "I left Brennick Steel in 2017, and back then the plant ran three shifts.",
+   "cleared": "Matches the declaration; nine-year-old detail"
+  },
+  {
+   "category": "Source disclosure",
+   "name": "Patrick Doyle",
+   "date": "2026-11-16",
+   "ts": "22:45",
+   "source": "written for the design",
+   "quote": "My old manager at Fenwick Telecom, back in 2014, always said the network was over-built.",
+   "cleared": "A decade-old opinion from a former employer"
+  },
+  {
+   "category": "Personal data",
+   "name": "Leila Nasser",
+   "date": "2026-10-30",
+   "ts": "16:03",
+   "source": "written for the design",
+   "quote": "Their chief executive, Anna Berg, has said at two conferences that she'd consider selling the business.",
+   "cleared": "Public statements by a chief executive"
+  },
+  {
+   "category": "Source disclosure",
+   "name": "Tomasz Nowak",
+   "date": "2026-11-07",
+   "ts": "11:36",
+   "source": "written for the design",
+   "quote": "A few people I met at the trade show think the merger will happen, but that's just the chatter going round.",
+   "cleared": "General market rumour, no insider named"
+  },
+  {
+   "category": "Source disclosure",
+   "name": "Rebecca Stone",
+   "date": "2026-11-18",
+   "ts": "08:29",
+   "source": "written for the design",
+   "quote": "According to the financial press, analysts expect Tavish Bank to cut its dividend.",
+   "cleared": "Published analyst expectations"
   }
  ]
 }

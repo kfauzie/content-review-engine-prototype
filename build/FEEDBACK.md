@@ -1,3 +1,17 @@
+# Prototype feedback, round 16 (applied)
+
+1. **Three more examples in each of the last three false alarm types.** The expert's own opinion goes from 0 to 3, former employer left long ago from 1 to 4, and public market talk from 1 to 4. All 9 are written for the design, from fictional experts, each with a highlight and a "Cleared" reason.
+   - **Filing:** each is filed under an issue category outside the top two (what the AI plausibly flagged it as), so fix 1 and fix 3's false alarm estimates (12 and 78) are unchanged.
+   - **Transcripts:** under the existing rule, these cards don't open a transcript.
+2. **Header copy:**
+   - **Top bar:** "Content review engine · AI benchmark".
+   - **Badge:** "Illustrative · synthetic data".
+   - **Title:** "Content review AI: performance benchmark" (also the browser tab).
+   - **Subtitle:** "We compared the content review AI with human reviewers across 1,000 transcripts to see where it misses compliance risks, and where it raises false alarms."
+   - **Phone:** the top bar wraps the badge onto its own line.
+
+---
+
 # Prototype feedback, round 15 (applied)
 
 **False alarms are grouped by type of false alarm, not by issue type.** Nothing else on the page changed.
