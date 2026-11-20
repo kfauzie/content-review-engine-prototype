@@ -75,12 +75,16 @@ t("each fix example carries its call timestamp, matching its card and transcript
   x.ts === D.cards.find(c => c.name === x.name).ts && x.ts === D.transcripts[x.transcript].passage_ts)));
 t("date and time format", C.niceDateTime("2026-11-13T11:17") === "13 Nov 2026, 11:17");
 t("every card has a highlight that appears word for word in its quote", D.cards.every(c => c.highlight && c.quote.includes(c.highlight)));
+t("false alarm types: 98 + 41 + 27 + 21 = 187, the same total as by issue type", D.false_alarm_types.map(x => x.count).join() === "98,41,27,21" &&
+  D.false_alarm_types.reduce((s, x) => s + x.count, 0) === C.totals(D).falseAlarms);
+t("every false alarm card has a type; examples per type: 7, 0, 1, 1", D.cards.filter(c => c.kind === "false_alarm").every(c => c.fa_type) &&
+  D.false_alarm_types.map(x => C.faTypeCards(D, x.id).length).join() === "7,0,1,1");
 t("carousel window clamps at the ends", JSON.stringify(C.windowOf(5, 4, 3)) === '{"start":2,"end":5}' && JSON.stringify(C.windowOf(5, -1, 3)) === '{"start":0,"end":3}');
 t("three cards on desktop, two on tablet, one on phone", C.perView(1280) === 3 && C.perView(800) === 2 && C.perView(390) === 1);
 t("initials and dates", C.initials("Mei Lin Tan") === "ML" && C.niceDate("2026-11-04") === "4 Nov 2026");
 
 const text = html.replace(/<script id="data"[\s\S]*?<\/script>/, "") + JSON.stringify(D);
-t("no em or en dashes", !/[—]/.test(text) && !/–/.test(html.replace(/<script id="data"[\s\S]*?<\/script>/, "").replace(/\$\{w\.start \+ 1\}–/, "")));
+t("no em or en dashes", !/[—]/.test(text) && !/–/.test(html.replace(/<script id="data"[\s\S]*?<\/script>/, "").replace(/\$\{w\.start \+ 1\}–/g, "")));
 t("no 'real issues', percentages or status verdicts in the page's own copy",
   !/real issues|miss rate|not cautious enough|needs more evidence|unneeded/i.test(html.replace(/<script id="data"[\s\S]*?<\/script>/, "")));
 t("wording: no \"Confirmed\", no \"Operational risk\"", !/Confirmed|confirmed|Operational risk/.test(html.replace(/<script id="data"[\s\S]*?<\/script>/, "")));

@@ -1,3 +1,20 @@
+# Prototype feedback, round 15 (applied)
+
+**False alarms are grouped by type of false alarm, not by issue type.** Nothing else on the page changed.
+
+| Type | False alarms (made up) | Examples |
+|---|---|---|
+| Public source cited | 98 | 7 (Robert Chen, Laura Bennett, Arjun Mehra, Chloe Martin, Ibrahim Yusuf, Ruth Okonkwo, Marco Rossi) |
+| The expert's own opinion or estimate | 41 | none in the test set (count only) |
+| Former employer, left long ago | 27 | 1 (Tom Fairley) |
+| Public market talk | 21 | 1 (Daniel Reyes) |
+
+- **Totals:** the types sum to 187, the same total as before, and a check enforces it.
+- **Rows:** each shows the count "of 187" with "of all false alarms" beneath. They open and close like the issue rows, and every example opens its transcript.
+- **Unchanged:** fix 3's impact (78 fewer false alarms) still comes from the same tagged examples.
+
+---
+
 # Prototype feedback, round 14 (applied)
 
 1. **One font again:** the serif from round 13 is removed, and Inter is used throughout. The rest of the polish stays (paper neutrals, hairline surfaces, marker-style highlights). A check confirms one font family.

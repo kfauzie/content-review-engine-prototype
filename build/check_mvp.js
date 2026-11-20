@@ -70,7 +70,8 @@ const t = (name, ok, got) => { if (!ok) fail++; console.log(`${ok ? "PASS" : "FA
     !/no change|not estimated/.test(await p.locator(".fixes").textContent()));
   t("category rows: a big number, \"of N\" and \"in this category\" beneath, no bars", await p.locator(".mini").count() === 0 &&
     (await p.locator('[data-cat="missed|Material non-public information"] .c').textContent()) === "5of 38" &&
-    (await p.locator('[data-cat="false_alarm|Material non-public information"] .c').textContent()) === "60of 93" &&
+    (await p.locator('[data-cat="fatype|public-source"] .c').textContent()) === "98of 187" &&
+    (await p.locator('[data-cat="fatype|public-source"] .cin').textContent()) === "of all false alarms" &&
     (await p.locator('[data-cat="missed|Material non-public information"] .cin').textContent()) === "in this category");
 
   const fams = await p.evaluate(() => [...new Set([...document.querySelectorAll("h1,h2,.kh,.n,.fq,.lab,.d")].map(e => getComputedStyle(e).fontFamily.split(",")[0].replace(/["']/g, "").trim()))]);
@@ -103,8 +104,10 @@ const t = (name, ok, got) => { if (!ok) fail++; console.log(`${ok ? "PASS" : "FA
   t("declaration conflict (0 missed) has no tiles and no toggle", await p.locator('[data-cat="missed|Declaration conflict"] [data-toggle]').count() === 0);
   t("outside the top categories, only fix examples open a transcript", await p.locator('[data-cat="missed|Personal data"] a.ex').count() === 1 &&
     (await p.locator('[data-cat="missed|Personal data"] a.ex .av').getAttribute("title")) === "Hannah Booth" && await p.locator('[data-cat="missed|Former-client confidential"] a.ex').count() === 0);
-  t("false alarms: top two have carousels, the rest show counts only",
-    await p.locator('[data-cat="false_alarm|Material non-public information"] a.ex').count() === 3 && await p.locator('[data-cat="false_alarm|Personal data"] .ex').count() === 0);
+  t("false alarms are grouped by type of false alarm, with examples where there are some",
+    (await p.locator('[data-cat^="fatype|"] .n').allTextContents()).join("|") === "Public source cited|The expert's own opinion or estimate|Former employer, left long ago|Public market talk" &&
+    await p.locator('[data-cat="fatype|public-source"] a.ex').count() === 3 && await p.locator('[data-cat="fatype|own-view"] .ex').count() === 0 &&
+    await p.locator('[data-cat^="false_alarm|"]').count() === 0);
 
   const links = await p.locator("a.ex").evaluateAll(a => a.map(x => x.getAttribute("href")));
   t("every visible top-category card links to a transcript", links.length >= 12 && links.every(h => /^#t\//.test(h)), `${links.length} links`);
@@ -128,7 +131,9 @@ const t = (name, ok, got) => { if (!ok) fail++; console.log(`${ok ? "PASS" : "FA
   t("call context: expert, call date, role, declared", await p.locator(".ctx .k").allTextContents().then(k => k.join("|")) === "Expert|Call date|Role|Declared");
   await p.locator(".back").click(); await p.waitForSelector('body[data-view="summary"]');
   t("back returns to the benchmark", await p.locator("h1").textContent() === "AI performance benchmark");
-  await p.locator('[data-cat="false_alarm|Current-employer confidential"] a.ex').first().click();
+  await p.locator('[data-cat="fatype|public-source"] .arr.r').click();
+  t("false alarm carousel moves", (await p.locator('[data-cat="fatype|public-source"] [data-range]').textContent()) === "2–4 of 7");
+  await p.locator('[data-cat="fatype|public-source"] a.ex').first().click();
   await p.waitForSelector('body[data-view="transcript"]');
   t("false alarm: amber passage, note titled \"Why the original AI flagged it\"",
     await p.locator(".hit.false_alarm").count() === 1 && (await p.locator(".note.agent .nt").textContent()) === "Why the original AI flagged it");

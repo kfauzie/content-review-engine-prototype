@@ -111,6 +111,16 @@ HIGHLIGHT = {
     "Chloe Martin": "We announced the Leeds office in a press release", "Ibrahim Yusuf": "Our prices are on the website",
     "Ruth Okonkwo": "what's in our published sustainability report", "Marco Rossi": "showed the new product on stage at the trade show",
 }
+# false alarms grouped by why the AI raised them; counts made up (they sum to 187), examples tagged by Kevin's judgement
+FALSE_ALARM_TYPES = [
+    {"id": "public-source", "name": "Public source cited", "description": "The expert attributed it to a filing, earnings call, press release or website", "count": 98},
+    {"id": "own-view", "name": "The expert's own opinion or estimate", "description": "A personal view or estimate, not based on inside information", "count": 41},
+    {"id": "former-employer", "name": "Former employer, left long ago", "description": "About a company the expert left years ago, with nothing current", "count": 27},
+    {"id": "market-talk", "name": "Public market talk", "description": "Speculation already circulating in the market", "count": 21},
+]
+FALSE_ALARM_TYPE_OF = {"Robert Chen": "public-source", "Laura Bennett": "public-source", "Arjun Mehra": "public-source", "Chloe Martin": "public-source",
+                       "Ibrahim Yusuf": "public-source", "Ruth Okonkwo": "public-source", "Marco Rossi": "public-source",
+                       "Tom Fairley": "former-employer", "Daniel Reyes": "market-talk"}
 FIX_EXAMPLE_NAMES = {x["name"] for f in FIXES for x in f["examples"]}
 FIX_OF = {  # card name -> fix id; cards not listed are not addressed by any of the three
     "Sanjay Mehta": "declaration", "Olivia Grant": "declaration", "Henrik Lindqvist": "declaration", "Nadia Rahimi": "declaration",
@@ -148,7 +158,8 @@ def main():
         for e in items:
             card = {"id": slug(f"{kind}-{e['name']}"), "kind": kind, "category": e["category"], "name": e["name"],
                     "date": e["date"], "ts": e["ts"], "quote": e["quote"], "source": e["source"],
-                    "cleared": e.get("cleared"), "transcript": None, "fix": FIX_OF.get(e["name"]), "highlight": HIGHLIGHT[e["name"]]}
+                    "cleared": e.get("cleared"), "transcript": None, "fix": FIX_OF.get(e["name"]), "highlight": HIGHLIGHT[e["name"]],
+                    "fa_type": FALSE_ALARM_TYPE_OF.get(e["name"]) if kind == "false_alarm" else None}
             assert card["highlight"] in card["quote"], e["name"]
             if e["category"] in TOP or e["name"] in FIX_EXAMPLE_NAMES:
                 tid = card["id"]
@@ -176,6 +187,8 @@ def main():
             cards.append(card)
 
     by_name = {c["name"]: c for c in cards}
+    assert sum(t["count"] for t in FALSE_ALARM_TYPES) == sum(c[5] for c in CATEGORIES) == 187
+    assert all(c["fa_type"] for c in cards if c["kind"] == "false_alarm")
     for f in FIXES:
         for x in f["examples"]:
             c = by_name[x["name"]]
@@ -184,6 +197,7 @@ def main():
             "sample": SAMPLE, "top": TOP,
             "categories": [{"name": n, "priority": p, "description": d, "found": f, "missed": m, "false_alarms": fa}
                            for n, p, d, f, m, fa in CATEGORIES],
+            "false_alarm_types": FALSE_ALARM_TYPES,
             "fixes": [{**f, "examples": [{**x, **{k: by_name[x["name"]][k] for k in ("quote", "date", "ts", "kind", "category", "transcript")}}
                                          for x in f["examples"]]} for f in FIXES], "cards": cards, "transcripts": transcripts}
     out = ROOT / "data/benchmark.json"

@@ -55,6 +55,32 @@
    "false_alarms": 60
   }
  ],
+ "false_alarm_types": [
+  {
+   "id": "public-source",
+   "name": "Public source cited",
+   "description": "The expert attributed it to a filing, earnings call, press release or website",
+   "count": 98
+  },
+  {
+   "id": "own-view",
+   "name": "The expert's own opinion or estimate",
+   "description": "A personal view or estimate, not based on inside information",
+   "count": 41
+  },
+  {
+   "id": "former-employer",
+   "name": "Former employer, left long ago",
+   "description": "About a company the expert left years ago, with nothing current",
+   "count": 27
+  },
+  {
+   "id": "market-talk",
+   "name": "Public market talk",
+   "description": "Speculation already circulating in the market",
+   "count": 21
+  }
+ ],
  "fixes": [
   {
    "id": "declaration",
@@ -199,7 +225,8 @@
    "cleared": null,
    "transcript": "missed-sanjay-mehta",
    "fix": "declaration",
-   "highlight": "watch their Q3 numbers closely"
+   "highlight": "watch their Q3 numbers closely",
+   "fa_type": null
   },
   {
    "id": "missed-olivia-grant",
@@ -213,7 +240,8 @@
    "cleared": null,
    "transcript": "missed-olivia-grant",
    "fix": "declaration",
-   "highlight": "the regulator's decision on their diabetes drug"
+   "highlight": "the regulator's decision on their diabetes drug",
+   "fa_type": null
   },
   {
    "id": "missed-henrik-lindqvist",
@@ -227,7 +255,8 @@
    "cleared": null,
    "transcript": "missed-henrik-lindqvist",
    "fix": "declaration",
-   "highlight": "The board approved the sale"
+   "highlight": "The board approved the sale",
+   "fa_type": null
   },
   {
    "id": "missed-nadia-rahimi",
@@ -241,7 +270,8 @@
    "cleared": null,
    "transcript": "missed-nadia-rahimi",
    "fix": "declaration",
-   "highlight": "Their biggest customer has given notice on the five-year supply deal"
+   "highlight": "Their biggest customer has given notice on the five-year supply deal",
+   "fa_type": null
   },
   {
    "id": "missed-benjamin-cole",
@@ -255,7 +285,8 @@
    "cleared": null,
    "transcript": "missed-benjamin-cole",
    "fix": "declaration",
-   "highlight": "The October order book I saw was down about 15%"
+   "highlight": "The October order book I saw was down about 15%",
+   "fa_type": null
   },
   {
    "id": "missed-priya-natarajan",
@@ -269,7 +300,8 @@
    "cleared": null,
    "transcript": "missed-priya-natarajan",
    "fix": "declaration",
-   "highlight": "For us specifically"
+   "highlight": "For us specifically",
+   "fa_type": null
   },
   {
    "id": "missed-grace-liu",
@@ -283,7 +315,8 @@
    "cleared": null,
    "transcript": "missed-grace-liu",
    "fix": "declaration",
-   "highlight": "We're closing the Manchester plant in March"
+   "highlight": "We're closing the Manchester plant in March",
+   "fa_type": null
   },
   {
    "id": "missed-mateo-alvarez",
@@ -297,7 +330,8 @@
    "cleared": null,
    "transcript": "missed-mateo-alvarez",
    "fix": null,
-   "highlight": "Our roadmap has the analytics module launching in Q2"
+   "highlight": "Our roadmap has the analytics module launching in Q2",
+   "fa_type": null
   },
   {
    "id": "missed-siobhan-kelly",
@@ -311,7 +345,8 @@
    "cleared": null,
    "transcript": "missed-siobhan-kelly",
    "fix": null,
-   "highlight": "We're about to lose our second-largest customer"
+   "highlight": "We're about to lose our second-largest customer",
+   "fa_type": null
   },
   {
    "id": "missed-elena-vasquez",
@@ -325,7 +360,8 @@
    "cleared": null,
    "transcript": "missed-elena-vasquez",
    "fix": "people",
-   "highlight": "My contact Jamie Holt, who runs procurement there now, told me"
+   "highlight": "My contact Jamie Holt, who runs procurement there now, told me",
+   "fa_type": null
   },
   {
    "id": "missed-owen-prendergast",
@@ -339,7 +375,8 @@
    "cleared": null,
    "transcript": null,
    "fix": "people",
-   "highlight": "Their head of logistics, Carla, told me"
+   "highlight": "Their head of logistics, Carla, told me",
+   "fa_type": null
   },
   {
    "id": "missed-mei-lin-tan",
@@ -353,7 +390,8 @@
    "cleared": null,
    "transcript": null,
    "fix": "people",
-   "highlight": "I still speak to the plant manager at Ostrava"
+   "highlight": "I still speak to the plant manager at Ostrava",
+   "fa_type": null
   },
   {
    "id": "missed-farid-haddad",
@@ -367,7 +405,8 @@
    "cleared": null,
    "transcript": null,
    "fix": "people",
-   "highlight": "Someone on their pricing committee sent me the new rate card"
+   "highlight": "Someone on their pricing committee sent me the new rate card",
+   "fa_type": null
   },
   {
    "id": "missed-thomas-achebe",
@@ -381,7 +420,8 @@
    "cleared": null,
    "transcript": null,
    "fix": "declaration",
-   "highlight": "the stranded costs came out at nearly twice what management told the board"
+   "highlight": "the stranded costs came out at nearly twice what management told the board",
+   "fa_type": null
   },
   {
    "id": "missed-ingrid-solberg",
@@ -395,7 +435,8 @@
    "cleared": null,
    "transcript": null,
    "fix": "declaration",
-   "highlight": "had its core banking migration fail twice"
+   "highlight": "had its core banking migration fail twice",
+   "fa_type": null
   },
   {
    "id": "missed-ravi-chandran",
@@ -409,7 +450,8 @@
    "cleared": null,
    "transcript": null,
    "fix": "declaration",
-   "highlight": "the real number was well above what they show investors"
+   "highlight": "the real number was well above what they show investors",
+   "fa_type": null
   },
   {
    "id": "missed-hannah-booth",
@@ -423,7 +465,8 @@
    "cleared": null,
    "transcript": "missed-hannah-booth",
    "fix": "people",
-   "highlight": "Mark Ellison"
+   "highlight": "Mark Ellison",
+   "fa_type": null
   },
   {
    "id": "missed-marcus-webb",
@@ -437,7 +480,8 @@
    "cleared": null,
    "transcript": null,
    "fix": "people",
-   "highlight": "Tom Reyes, has been going through a difficult divorce"
+   "highlight": "Tom Reyes, has been going through a difficult divorce",
+   "fa_type": null
   },
   {
    "id": "missed-sofia-marchetti",
@@ -451,7 +495,8 @@
    "cleared": null,
    "transcript": null,
    "fix": "people",
-   "highlight": "I've got his personal mobile"
+   "highlight": "I've got his personal mobile",
+   "fa_type": null
   },
   {
    "id": "missed-kwame-mensah",
@@ -465,7 +510,8 @@
    "cleared": null,
    "transcript": null,
    "fix": "people",
-   "highlight": "Aisha Rahman, went on long-term sick leave after surgery"
+   "highlight": "Aisha Rahman, went on long-term sick leave after surgery",
+   "fa_type": null
   },
   {
    "id": "missed-lena-hoffmann",
@@ -479,7 +525,8 @@
    "cleared": null,
    "transcript": null,
    "fix": "people",
-   "highlight": "Pieter van Dam, was let go after a drink-driving conviction"
+   "highlight": "Pieter van Dam, was let go after a drink-driving conviction",
+   "fa_type": null
   },
   {
    "id": "missed-daniel-osei",
@@ -493,7 +540,8 @@
    "cleared": null,
    "transcript": null,
    "fix": "people",
-   "highlight": "Rachel Lim, is on maternity leave"
+   "highlight": "Rachel Lim, is on maternity leave",
+   "fa_type": null
   },
   {
    "id": "missed-aoife-brennan",
@@ -507,7 +555,8 @@
    "cleared": null,
    "transcript": null,
    "fix": "people",
-   "highlight": "The founder's son is only nineteen"
+   "highlight": "The founder's son is only nineteen",
+   "fa_type": null
   },
   {
    "id": "false-alarm-daniel-reyes",
@@ -521,7 +570,8 @@
    "cleared": "Public speculation about a takeover target, not the expert's employer",
    "transcript": "false-alarm-daniel-reyes",
    "fix": "sources",
-   "highlight": "Publicly, people talk about"
+   "highlight": "Publicly, people talk about",
+   "fa_type": "market-talk"
   },
   {
    "id": "false-alarm-tom-fairley",
@@ -535,7 +585,8 @@
    "cleared": "Former employer, left in 2021; cites the public investor day",
    "transcript": "false-alarm-tom-fairley",
    "fix": "declaration",
-   "highlight": "at their 2024 investor day"
+   "highlight": "at their 2024 investor day",
+   "fa_type": "former-employer"
   },
   {
    "id": "false-alarm-robert-chen",
@@ -549,7 +600,8 @@
    "cleared": "Figures from the public Q2 earnings call",
    "transcript": "false-alarm-robert-chen",
    "fix": "sources",
-   "highlight": "On their Q2 earnings call in August"
+   "highlight": "On their Q2 earnings call in August",
+   "fa_type": "public-source"
   },
   {
    "id": "false-alarm-laura-bennett",
@@ -563,7 +615,8 @@
    "cleared": "Cites the published annual report",
    "transcript": "false-alarm-laura-bennett",
    "fix": "sources",
-   "highlight": "As their annual report says"
+   "highlight": "As their annual report says",
+   "fa_type": "public-source"
   },
   {
    "id": "false-alarm-arjun-mehra",
@@ -577,7 +630,8 @@
    "cleared": "A public statement on the results call",
    "transcript": "false-alarm-arjun-mehra",
    "fix": "sources",
-   "highlight": "said on the results call"
+   "highlight": "said on the results call",
+   "fa_type": "public-source"
   },
   {
    "id": "false-alarm-chloe-martin",
@@ -591,7 +645,8 @@
    "cleared": "Announced in a press release",
    "transcript": "false-alarm-chloe-martin",
    "fix": "sources",
-   "highlight": "We announced the Leeds office in a press release"
+   "highlight": "We announced the Leeds office in a press release",
+   "fa_type": "public-source"
   },
   {
    "id": "false-alarm-ibrahim-yusuf",
@@ -605,7 +660,8 @@
    "cleared": "Published list price",
    "transcript": "false-alarm-ibrahim-yusuf",
    "fix": "sources",
-   "highlight": "Our prices are on the website"
+   "highlight": "Our prices are on the website",
+   "fa_type": "public-source"
   },
   {
    "id": "false-alarm-ruth-okonkwo",
@@ -619,7 +675,8 @@
    "cleared": "From the published sustainability report",
    "transcript": "false-alarm-ruth-okonkwo",
    "fix": "sources",
-   "highlight": "what's in our published sustainability report"
+   "highlight": "what's in our published sustainability report",
+   "fa_type": "public-source"
   },
   {
    "id": "false-alarm-marco-rossi",
@@ -633,7 +690,8 @@
    "cleared": "Shown publicly at a trade show",
    "transcript": "false-alarm-marco-rossi",
    "fix": "sources",
-   "highlight": "showed the new product on stage at the trade show"
+   "highlight": "showed the new product on stage at the trade show",
+   "fa_type": "public-source"
   }
  ],
  "transcripts": {
