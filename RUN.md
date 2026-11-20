@@ -21,7 +21,7 @@
 | 3. Interview | Kevin | Notes in the Notion page | Done |
 | 4. Research synthesis | `pm-1-data-discovery` (Answer) | Below; code in `notebooks/synthesis.py` | Done |
 | 5. Solution concept | `pm-3-problem-to-solution-concept` | [Notion page](https://app.notion.com/p/41e8f31ef05f8137b4bbddec89a6656c): eval plan and dry run, solution after the eval | Revised |
-| 6. Design | `pm-4-solution-design` | [design/screen-specs.md](design/screen-specs.md): review screen [1](design/1-review.png), scorecard [2](design/2-scorecard.png), miss state [3](design/3-scorecard-misses.png) | In review, not built |
+| 6. Design | `pm-4-solution-design` | One screen: [design/1-check.png](design/1-check.png), spec in [design/screen-specs.md](design/screen-specs.md) | In review, not built |
 | 7. Prototype | `pm-5-mvp-build` | | |
 | 8. MVP review | `pm-6-mvp-review` | | |
 
@@ -105,5 +105,7 @@ With 7 issues in a synthetic set, this shows the method works end to end, not th
 | Eval before any solution (Kevin's feedback) | We don't know the real problem yet; an eval by issue type shows whether the tool is too cautious, not cautious enough, or keyed on the wrong signal | The first concept, which recommended declaration-aware review on role-play evidence |
 | Present the dry run as a demo of the method, and drop the reviewer's score (Kevin's feedback) | The stand-in's misses were built into the test set, and a score from a reviewer that saw the answer key would invite the wrong questions | Leading with "missed 4 of 7" |
 | Rulings on disagreements in the eval | Today's reviewers miss things too, so their verdicts can't count as the truth on their own | Scoring the tool against analysts' verdicts as they stand |
+| One screen, one story (Kevin's feedback): three numbers and the list of AI misses | The point is the check before the AI does more; the reviewer workflow, declarations and rulings were cut | A review screen plus a scorecard funnel with drill-downs |
+| Made-up top numbers for a 1,000-transcript sample (Kevin's call) | It shows the scale the check runs at; labelled as illustrative | Numbers computed from the 8-transcript test set |
 | No estimates of time saved | No measured baseline; the figures came from a role-play | The 45-to-26-minute estimate and the hours saved per 1,000 transcripts |
 | Findings as questions, not answers | 8 transcripts can't size the problem; the interview has to | Proposing an AI and human split before discovery |
