@@ -79,21 +79,12 @@ Every number comes from `notebooks/synthesis.py`. Each hypothesis from the role-
 
 **Surprise:** in 1 answer, a current employee talks about their employer as "us" without naming it (T3 01:34). A check that starts only when a company is named would miss it.
 
-## 5. Eval dry run (after Kevin's feedback on the first concept)
-Every number comes from `notebooks/eval.py`. Each expert answer is scored against the answer key as rightly flagged, a false alarm or missed, by issue type. The fourth outcome, missed by the human, needs a separate human verdict, which this data doesn't have.
+## 5. Eval demo (after Kevin's feedback on the first concept)
+`notebooks/eval.py` scores each expert answer against the answer key as rightly flagged, a false alarm or missed, by issue type. The fourth outcome, missed by the human, needs a separate human verdict, which this data doesn't have.
 
-| Engine | Rightly flagged | False alarms | Missed | Missed in the three zero-miss types |
-|---|---|---|---|---|
-| Current tool, stand-in: flags every answer that names a company (built from the role-play description) | 3 | 5 | 4 | 2 of 4 (T3, T5) |
-| Declaration-aware reviewer: Claude, verdicts in `data/eval/ai_reviewer_verdicts.json`. **Not blind**: it had seen the answer key, so the score isn't evidence | 7 | 0 | 0 | 0 of 4 |
+**This demonstrates the method, not a result.** The stand-in flags every answer that names a company, and the test transcripts were written with issues that don't name companies. So its score (3 rightly flagged, 5 false alarms, 4 missed) is built in, and says nothing about Dialectica's tool.
 
-**Failure analysis (stand-in):**
-- All 4 misses name no company. The expert points with "us", "we", "their" or "there".
-- All 5 false alarms name a company where that's fine:
-  - 3 name the expert's former employer and cite a public source
-  - 1 frames a takeover target as public talk
-  - 1 has the expert declining to say more
-- One root cause behind both: no declaration, and no check of the source.
+**Pipeline check only:** `data/eval/ai_reviewer_verdicts.json` holds verdicts written by Claude after it had seen the answer key. They only confirm that the scorer reads verdicts and computes the outcomes. The score isn't reported anywhere.
 
 **Sizing the live test:** zero misses in n real issues of a type shows, with 95% confidence, a miss rate below 3 in n. That means 60 issues for 5%, 150 for 2% and 300 for 1%.
 
@@ -106,6 +97,7 @@ Every number comes from `notebooks/eval.py`. Each expert answer is scored agains
 | Use Kevin's 8 transcripts, not data I generate | Real-looking passages beat invented volumes, and the test set covers the hard cases (hedges, public figures, declaration conflicts) | A synthetic month of scores and volumes, built before the data arrived |
 | Hold back the answer key | Reviewers don't get one. Discovery should see what they see, and the key stays clean for testing the build | Reading the key's categories and expected actions into the findings |
 | Eval before any solution (Kevin's feedback) | We don't know the real problem yet; an eval by issue type shows whether the tool is too cautious, not cautious enough, or keyed on the wrong signal | The first concept, which recommended declaration-aware review on role-play evidence |
+| Present the dry run as a demo of the method, and drop the reviewer's score (Kevin's feedback) | The stand-in's misses were built into the test set, and a score from a reviewer that saw the answer key would invite the wrong questions | Leading with "missed 4 of 7" |
 | Rulings on disagreements in the eval | Today's reviewers miss things too, so their verdicts can't count as the truth on their own | Scoring the tool against analysts' verdicts as they stand |
 | No estimates of time saved | No measured baseline; the figures came from a role-play | The 45-to-26-minute estimate and the hours saved per 1,000 transcripts |
 | Findings as questions, not answers | 8 transcripts can't size the problem; the interview has to | Proposing an AI and human split before discovery |

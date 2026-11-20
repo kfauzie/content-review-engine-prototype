@@ -1,10 +1,12 @@
-"""Eval dry run: compare engine flags with the answer key, per expert answer and by issue type.
+"""Eval demo: how the eval scores engine flags against the truth, per expert answer and by issue type.
+It demonstrates the method; its numbers are not results (the stand-in's misses are built into the test set).
 Run from the run folder: python3 notebooks/eval.py
 
 Engines compared:
   1. Current tool (stand-in): flags every expert answer that names a company. Built from the role-play
      description ("it flags every company mention"), not from the real tool.
-  2. Declaration-aware AI reviewer: data/eval/ai_reviewer_verdicts.json. NOT BLIND (see its caveat).
+  2. Pipeline check: data/eval/ai_reviewer_verdicts.json, written after seeing the answer key. It only checks that
+     verdicts load and score; its numbers are not reported.
 
 Truth: the answer key. In a real eval the truth is reviewers' verdicts, with disagreements adjudicated by a senior
 reviewer or Legal, which adds a fourth outcome (the human missed it). The answer key has no separate human verdict,
@@ -47,7 +49,7 @@ def main():
 
     print(f"expert answers: {len(A)}; answers with an issue in the answer key: {len(truth)}")
     results = {}
-    for name, flags in [("Current tool (stand-in)", current), ("Declaration-aware reviewer (not blind)", reviewer)]:
+    for name, flags in [("Current tool (stand-in)", current), ("Pipeline check (saw the answer key; not a result)", reviewer)]:
         tp = [a for a in flags if flags[a] and a in truth]
         fp = [a for a in flags if flags[a] and a not in truth]
         fn = [a for a in flags if not flags[a] and a in truth]
