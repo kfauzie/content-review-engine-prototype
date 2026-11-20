@@ -1,21 +1,16 @@
-# Design (pm-4): AI performance benchmark
+# Design (pm-4): AI performance benchmark, round 4
 
 > Illustrated. The counts are made up for a 1,000-transcript sample (Kevin's call). The transcript is from a synthetic test set. Nothing here is Dialectica's data.
 
-**Headline:** "AI and human review compared on 1,000 transcripts". **Subtitle:** "Where the AI misses issues, and where it over-flags."
+**Wording:** everything reads as caught against missed, out of what reviewers found. No "real issues", no percentages, no rates.
 
-**The two errors, named by what they cost:**
-- **Missed issues (compliance risk):** a reviewer found an issue the AI didn't flag. This is the main focus.
-- **Unneeded flags (operational cost):** the AI flagged something a reviewer cleared. Visible, but lighter and lower on the page.
+**Look:** a dashboard. Light grey background, white cards, red for missed, amber for unneeded flags. Hierarchy comes from type size, with minimal text.
 
-**Counting rules:** counts only, shown as "x of y", in transcripts throughout. No percentages, no targets, no status labels, no instructions.
-
-| Level | Shows | Design |
+| Page | Shows | Design |
 |---|---|---|
-| 1. Summary | The headline. Missed issues: 23 of 262 real issues, with 2 high priority. Unneeded flags: 187 of 426 AI flags. Then counts by category for each error, high priority first (material non-public information, current-employer confidential, declaration conflict), then other (source disclosure, former-client confidential, personal data). A thin bar shows each count | [1-summary.png](1-summary.png) |
-| 2. Category | The category, its count ("1 of 38 real issues missed") and a one-line description, then its transcripts | [2-category.png](2-category.png) |
-| 3. Transcript | The whole transcript, with every passage marked: flagged correctly (green), missed (red, with the root cause under it), unneeded flag (amber). A three-item key | [3-transcript.png](3-transcript.png) |
+| 1. Benchmark | **Above the headline:** "AI performance benchmark · 1,000 transcripts". **Headline:** "Reviewers found 262 issues. The AI caught 239 and missed 23." with a bar split into caught and missed beneath it. **Card "Issues by type":** high priority first (material non-public information, current-employer confidential, declaration conflict), then other (source disclosure, former-client confidential, personal data). Each row has the name, a one-line description and "caught X of Y, missed Z". A row opens in place to list its missed examples. **Small amber card:** "The AI also flagged 187 passages reviewers cleared." | [1-summary.png](1-summary.png) |
+| 2. Transcript | Opened from a missed example. **Call context:** the call topic, the expert, their role and what they declared. **The full transcript,** with the missed passage in red and the issue type labelled beside it | [2-transcript.png](2-transcript.png) |
 
-**Where the numbers come from:** `design/fill_check_mock.py` holds the made-up inputs for each category. It checks that rightly flagged plus missed equals real issues in every category, and that the totals are 23 of 262, 187 of 426 and 2.
+**Numbers:** `design/fill_check_mock.py` holds the made-up figures for each category (found by reviewers, missed by AI), works out caught as found minus missed, and checks the totals are 262, 239 and 23.
 
-**Where the transcript marks come from:** synthetic transcript 5, scored by `notebooks/eval.py` against the test set's answer key. The engine is the made-up rules run (it flags company names), because it's the only run with misses and unneeded flags. The blind AI reviewer got all 7 issues right, so its transcripts would show green only. The root cause is my failure-analysis judgement.
+**The example:** synthetic transcript 5 at 01:24, which the made-up rules engine missed when scored against the test set's answer key in `notebooks/eval.py`.

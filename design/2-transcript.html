@@ -1,0 +1,57 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Transcript (design)</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;650;700&display=swap" rel="stylesheet"><style>
+:root{--bg:#f3f4f7;--card:#fff;--ink:#0f172a;--ink2:#334155;--muted:#64748b;--faint:#94a3b8;--line:#eceff3;
+--red:#d1342f;--red-wash:#fdeeed;--amber:#b7791f;--amber-wash:#fdf6e7;--slate:#cbd5e1}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 Inter,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+nav{display:flex;align-items:center;justify-content:space-between;height:56px;padding:0 32px;background:var(--card);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:10px;font-weight:600}
+.badge{font-size:12px;color:var(--muted);background:var(--bg);border-radius:999px;padding:3px 10px}
+main{max-width:1040px;margin:0 auto;padding:36px 32px 64px}
+.eyebrow{font-size:13px;color:var(--muted);font-weight:500}
+h1{font-size:30px;line-height:1.25;letter-spacing:-.6px;margin:6px 0 22px;font-weight:650}
+h1 .r{color:var(--red)}
+.card{background:var(--card);border-radius:16px;box-shadow:0 1px 2px rgba(15,23,42,.04),0 0 0 1px var(--line)}
+.split{height:10px;border-radius:5px;background:var(--slate);overflow:hidden;display:flex;margin-bottom:28px}
+.split i{display:block;height:100%;background:var(--red)}
+.legend{display:flex;gap:20px;font-size:13px;color:var(--muted);margin-bottom:28px}
+.legend b{color:var(--ink);font-weight:600}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.legend .dot{width:9px;height:9px;border-radius:3px;display:inline-block}
+.ct{display:flex;align-items:baseline;justify-content:space-between;padding:20px 24px 8px}
+.ct h2{font-size:17px;margin:0;font-weight:650}
+.grp{padding:14px 24px 6px;font-size:12px;font-weight:600;color:var(--faint);letter-spacing:.04em;text-transform:uppercase}
+.row{display:grid;grid-template-columns:1fr 220px 18px;gap:20px;align-items:center;padding:14px 24px;border-top:1px solid var(--line)}
+.row .n{font-weight:600;font-size:15px} .row .d{color:var(--muted);font-size:13px}
+.row .s{text-align:right;color:var(--ink2);font-variant-numeric:tabular-nums}
+.row .s .m{color:var(--red);font-weight:600} .row .s .z{color:var(--faint)}
+.chev{width:7px;height:7px;border-right:1.5px solid var(--faint);border-bottom:1.5px solid var(--faint);transform:rotate(45deg);margin-top:-4px}
+.row.open{background:#fbfbfc} .row.open .chev{transform:rotate(-135deg);margin-top:4px}
+.ex{display:grid;grid-template-columns:3px 1fr 150px 18px;gap:14px;align-items:center;margin:0 24px 14px;padding:12px 14px;border-radius:12px;background:var(--red-wash)}
+.ex .bar{height:100%;min-height:22px;border-radius:2px;background:var(--red)}
+.ex q{color:var(--ink2)} .ex .w{color:var(--muted);font-size:13px;text-align:right}
+.ex .go{width:7px;height:7px;border-right:1.5px solid var(--red);border-bottom:1.5px solid var(--red);transform:rotate(-45deg)}
+.flags{display:flex;align-items:center;gap:14px;margin-top:16px;padding:16px 24px}
+.flags .num{font-size:18px;font-weight:650;color:var(--amber);font-variant-numeric:tabular-nums}
+.flags .txt{color:var(--ink2)}
+.flags .dot{width:9px;height:9px;border-radius:3px;background:var(--amber)}
+.back{display:inline-flex;align-items:center;gap:8px;color:var(--muted);margin-bottom:18px}
+.back:before{content:"";width:7px;height:7px;border-left:1.5px solid var(--muted);border-bottom:1.5px solid var(--muted);transform:rotate(45deg)}
+.ctx{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-bottom:16px}
+.ctx > div{padding:18px 22px;border-left:1px solid var(--line)} .ctx > div:first-child{border-left:0}
+.ctx .k{font-size:12px;color:var(--faint);font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin-bottom:4px}
+.ctx .v{color:var(--ink2)} .ctx .v b{color:var(--ink);font-weight:600}
+.ctx .wide{grid-column:1/-1;border-left:0;border-top:1px solid var(--line)}
+.tr{padding:10px 24px 18px}
+.turn{display:grid;grid-template-columns:52px 1fr 250px;gap:16px;padding:9px 0}
+.turn .t{color:var(--faint);font-variant-numeric:tabular-nums;font-size:13px;padding-top:1px}
+.turn .who{font-size:12px;font-weight:600;color:var(--faint);margin-bottom:1px}
+.turn.q .x{color:var(--muted)}
+.turn.miss .x{background:var(--red-wash);box-shadow:inset 3px 0 0 var(--red);border-radius:10px;padding:10px 12px;margin:-2px 0}
+.turn .tag{align-self:start;font-size:12px;font-weight:600;color:var(--red);background:var(--red-wash);border-radius:999px;padding:4px 10px;justify-self:start;margin-top:18px;white-space:nowrap}
+</style></head><body><nav><div class="brand"><svg width="20" height="20" viewBox="0 0 22 22" aria-hidden="true"><rect x="1" y="1" width="20" height="20" rx="6" fill="#0f172a"/><path d="M6 11.5l3 3 7-7" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Content review engine</div><span class="badge">Illustrative</span></nav><main><a class="back" href="1-summary.html">Benchmark</a>
+<div class="eyebrow">Call topic</div><h1 style="margin-bottom:16px">Medical devices</h1>
+<div class="card ctx"><div><div class="k">Expert</div><div class="v"><b>Sanjay Mehta</b></div></div>
+<div style="grid-column:span 2"><div class="k">Role</div><div class="v">Finance Director, Northwind Biomedical (2018 to March 2026). Independent consultant (March 2026 to present).</div></div>
+<div class="wide"><div class="k">Declared</div><div class="v">Left Northwind Biomedical (listed company) in March 2026. No current employer in medical devices. Standard confidentiality obligations to Northwind. No conflicts declared.</div></div></div>
+<div class="card tr"><div class="turn q"><span class="t">00:00</span><div><div class="who">Interviewer</div><div class="x">Sanjay, thanks for your time. I&#x27;m looking at the mid-cap medical devices space, especially orthopaedic implants. How is demand?</div></div><span></span></div><div class="turn"><span class="t">00:12</span><div><div class="who">Expert</div><div class="x">Strong. Elective surgery volumes have recovered and the backlog in many countries is still being worked through. Ageing populations make the long-term demand very predictable.</div></div><span></span></div><div class="turn q"><span class="t">00:35</span><div><div class="who">Interviewer</div><div class="x">How about pricing?</div></div><span></span></div><div class="turn"><span class="t">00:38</span><div><div class="who">Expert</div><div class="x">Under pressure from hospital procurement, especially in Europe where tenders are aggressive. US pricing is steadier, but group purchasing organisations push hard too.</div></div><span></span></div><div class="turn q"><span class="t">01:00</span><div><div class="who">Interviewer</div><div class="x">What about Northwind specifically?</div></div><span></span></div><div class="turn"><span class="t">01:03</span><div><div class="who">Expert</div><div class="x">I&#x27;ll stay careful there since I only left in March. Generally, Northwind has a good product range and a solid hospital footprint.</div></div><span></span></div><div class="turn q"><span class="t">01:20</span><div><div class="who">Interviewer</div><div class="x">Anything investors should be aware of?</div></div><span></span></div><div class="turn miss"><span class="t">01:24</span><div><div class="who">Expert</div><div class="x">Look, I&#x27;m not saying anything specific, but if I were you I&#x27;d watch their Q3 numbers closely. Let&#x27;s just say there&#x27;s been some noise around one of the knee systems, and I still talk to people there. Quality issues take a while to show up in the numbers.</div></div><span class="tag">Missed · Material non-public information</span></div><div class="turn q"><span class="t">01:52</span><div><div class="who">Interviewer</div><div class="x">Okay. Going back to the market, how important is regulation?</div></div><span></span></div><div class="turn"><span class="t">01:57</span><div><div class="who">Expert</div><div class="x">Very. The EU medical device regulation raised the bar for clinical evidence. Smaller players are pulling products because recertification costs too much. That&#x27;s good for the bigger, well-capitalised companies.</div></div><span></span></div><div class="turn q"><span class="t">02:25</span><div><div class="who">Interviewer</div><div class="x">And robotics in orthopaedics?</div></div><span></span></div><div class="turn"><span class="t">02:29</span><div><div class="who">Expert</div><div class="x">It&#x27;s the main arms race. Surgeons who train on a robot tend to stay with that company&#x27;s implants, so robotics is really a way to lock in implant sales.</div></div><span></span></div><div class="turn q"><span class="t">02:50</span><div><div class="who">Interviewer</div><div class="x">Thank you, Sanjay.</div></div><span></span></div></div></main></body></html>
