@@ -36,7 +36,7 @@
 - One profile (T6) takes its dates "per declaration": the only record of when she left comes from the expert herself.
 - None of this changes the findings.
 
-**How big the base is:** 8 transcripts, written as a test set. They show the kinds of passage reviewers meet, not how often each occurs. Every share below describes this sample, not Dialectica's volumes. The markers in Finding 1 are plain patterns I wrote after reading these transcripts, so how often they hit here is no evidence of how they'd do on real calls.
+**How big the base is:** 8 synthetic transcripts, written as a test set (not Dialectica's). They show the kinds of passage reviewers meet, not how often each occurs. Every share below describes this sample, not Dialectica's volumes. The markers in Finding 1 are plain patterns I wrote after reading these transcripts, so how often they hit here is no evidence of how they'd do on real calls.
 
 ### Findings
 
@@ -68,13 +68,13 @@
 Kevin ran a role-play call with "Jason", and the notes and transcript are in the discovery page in Notion. **Treat it as hypotheses, not discovery.** Nothing below is a quote from the real Jason.
 
 ## 4. Research synthesis (pm-1, Answer)
-Every number comes from `notebooks/synthesis.py`. Each hypothesis from the role-play was tested on its own.
+Every number comes from `notebooks/synthesis.py`. Each hypothesis from the role-play was checked on its own. **The transcripts are synthetic test data, written for this exercise, so they can't support or rule out a hypothesis about Dialectica.** The verdicts only say whether the test set agrees with each hypothesis, which shows whether it's a fair test set for the eval.
 
 | # | Hypothesis (role-play) | Choices made | Result | Verdict |
 |---|---|---|---|---|
-| 1 | Most of a transcript is harmless, but nobody knows which part matters until they've read it | Measured by expert answer and by word, using the four markers from Step 1 | 9 of 51 answers (17.6%) and 374 of 1,885 words (19.8%) carry a marker | **Supported** in this sample |
-| 2 | Experts often mention companies, and each mention sends the reviewer to the profile system | Counted answers that name any company | 8 answers, in 6 of 8 calls | **Supported** that mentions are common. The time cost can't be tested here |
-| 3 | Personal data is usually a simple redaction | Answers naming a private person, and whether the same answer cites an insider source | 2 answers. T8 names a person. T6 names the insider who passed on information, so it's about the source, not only personal data | **Unclear**: 1 of 2 is more than a redaction |
+| 1 | Most of a transcript is harmless, but nobody knows which part matters until they've read it | Measured by expert answer and by word, using the four markers from Step 1 | 9 of 51 answers (17.6%) and 374 of 1,885 words (19.8%) carry a marker | **Consistent** with the test set (not evidence) |
+| 2 | Experts often mention companies, and each mention sends the reviewer to the profile system | Counted answers that name any company | 8 answers, in 6 of 8 calls | **Consistent** with the test set (not evidence). The time cost can't be tested here |
+| 3 | Personal data is usually a simple redaction | Answers naming a private person, and whether the same answer cites an insider source | 2 answers. T8 names a person. T6 names the insider who passed on information, so it's about the source, not only personal data | **Not consistent**: in the test set, 1 of 2 is more than a redaction |
 | 4 | The current tool flags every company mention | Not testable | The data holds no output from the current tool | **Unclear**: tested in the eval below with a stand-in |
 
 **Surprise:** in 1 answer, a current employee talks about their employer as "us" without naming it (T3 01:34). A check that starts only when a company is named would miss it.
