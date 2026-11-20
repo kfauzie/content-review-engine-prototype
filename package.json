@@ -1,0 +1,11 @@
+{
+  "name": "content-review-engine-prototype",
+  "private": true,
+  "description": "Checks for the illustrative AI performance benchmark prototype",
+  "scripts": {
+    "test": "node build/test_mvp.js && node build/check_mvp.js"
+  },
+  "devDependencies": {
+    "playwright": "^1.49.0"
+  }
+}

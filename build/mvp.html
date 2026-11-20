@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI performance benchmark</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;650;700;750&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f2f4f7;--card:#fff;--ink:#0f172a;--ink2:#334155;--muted:#64748b;--faint:#94a3b8;--line:#e9edf2;
+--red:#d1342f;--red-wash:#fdeeed;--hi:#b42318;--hi-wash:#fef3f2;--lo:#475569;
+--amber:#b7791f;--amber-bar:#c08a2e;--amber-wash:#fdf6e7;--grey-bar:#cbd5e1;
+--blue:#2f62c9;--blue-wash:#eef4ff;--violet:#6d4bd1;--violet-wash:#f4f0ff}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:14px/1.5 Inter,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--ink);outline-offset:2px;border-radius:6px}
+nav{display:flex;align-items:center;justify-content:space-between;height:56px;padding:0 32px;background:var(--card);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:10px;font-weight:600}
+.badge{font-size:12px;color:var(--muted);background:var(--bg);border-radius:999px;padding:3px 10px}
+main{max-width:1120px;margin:0 auto;padding:36px 32px 64px}
+.view{animation:in .28s ease-out}
+@keyframes in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+h1{font-size:36px;letter-spacing:-.9px;margin:0 0 6px;font-weight:700;line-height:1.15}
+.sub1{color:var(--muted);font-size:15px;margin:0 0 22px}
+h2{font-size:18px;margin:0 0 6px;font-weight:650}
+/* top cards */
+.kpis{display:grid;grid-template-columns:1.5fr 1fr;gap:16px;margin-bottom:40px}
+.kpi{background:var(--card);border-radius:18px;padding:22px 24px;box-shadow:0 1px 2px rgba(15,23,42,.04),0 0 0 1px var(--line)}
+.kh{display:flex;align-items:center;gap:10px;font-weight:650;font-size:15px;flex-wrap:wrap}
+.tag{font-size:12px;font-weight:600;border-radius:999px;padding:2px 10px}
+.risk .tag{color:var(--red);background:var(--red-wash)} .fa .tag{color:var(--amber);background:var(--amber-wash)}
+.nums{display:flex;align-items:flex-end;gap:28px;margin:16px 0 14px;flex-wrap:wrap}
+.big{font-weight:750;letter-spacing:-2px;line-height:.95;font-variant-numeric:tabular-nums}
+.big.base{font-size:34px;color:var(--ink2);letter-spacing:-1px}
+.big.miss{font-size:72px;color:var(--red)} .fa .big{font-size:48px;color:var(--amber)}
+.lab{color:var(--muted);font-size:13px;margin-top:6px}
+.sbar{display:flex;gap:2px;height:14px}
+.sbar i,.mini i{display:block;height:100%}
+.sbar i:first-child,.mini i:first-child{border-radius:4px 0 0 4px} .sbar i:last-child,.mini i:last-child{border-radius:0 4px 4px 0}
+.sbar i:only-child,.mini i:only-child{border-radius:4px}
+.sleg{display:flex;gap:18px;margin-top:8px;font-size:12px;color:var(--muted);flex-wrap:wrap}
+.sleg span{display:inline-flex;align-items:center;gap:6px} .sleg b{color:var(--ink);font-weight:600}
+.sleg i{width:9px;height:9px;border-radius:2px;display:inline-block}
+/* categories */
+.grp{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin:22px 0 10px}
+.grp i{width:10px;height:10px;border-radius:3px;display:inline-block}
+.cat{background:var(--card);border-radius:16px;box-shadow:0 1px 2px rgba(15,23,42,.04),0 0 0 1px var(--line);margin-bottom:12px;overflow:hidden}
+.cat.hi{box-shadow:inset 4px 0 0 var(--hi),0 0 0 1px var(--line)} .cat.am{box-shadow:inset 4px 0 0 #d9b979,0 0 0 1px var(--line)}
+.top{display:grid;grid-template-columns:1fr 200px 72px 18px;gap:16px;align-items:center;padding:18px 22px;width:100%;text-align:left}
+.top[role=button]{cursor:pointer} .top[role=button]:hover{background:#fbfbfc}
+.n{font-size:18px;font-weight:650;letter-spacing:-.2px} .d{color:var(--muted);font-size:13px}
+.c{font-size:28px;font-weight:700;letter-spacing:-.6px;font-variant-numeric:tabular-nums;text-align:right;line-height:1}
+.c small{display:block;font-size:12px;font-weight:500;color:var(--muted);letter-spacing:0;margin-top:4px;white-space:nowrap}
+.hi .c{color:var(--hi)} .lo .c{color:var(--lo)} .am .c{color:var(--amber)} .c.zero{color:var(--faint)!important}
+.mini{display:flex;gap:2px;height:8px}
+.tog{width:8px;height:8px;border-right:1.5px solid var(--muted);border-bottom:1.5px solid var(--muted);transform:rotate(-135deg);margin-top:4px;justify-self:end;transition:transform .2s}
+.shut .tog{transform:rotate(45deg);margin-top:-4px} .tog.none{visibility:hidden}
+.fasec{margin-top:40px}
+.fasec .top{padding:14px 22px} .fasec .n{font-size:15px} .fasec .c{font-size:22px}
+/* carousel */
+.car{padding:0 22px 18px}
+.carhead{display:flex;justify-content:flex-end;align-items:center;gap:8px;margin:-6px 0 10px;color:var(--faint);font-size:12px}
+.arr{width:30px;height:30px;border-radius:50%;box-shadow:0 0 0 1px var(--line);display:grid;place-items:center;background:#fff}
+.arr:before{content:"";width:6px;height:6px;border-right:1.5px solid var(--ink2);border-bottom:1.5px solid var(--ink2)}
+.arr.l:before{transform:rotate(135deg);margin-left:3px} .arr.r:before{transform:rotate(-45deg);margin-right:3px}
+.arr:disabled{opacity:.35;cursor:default}
+.cards{display:grid;gap:12px}
+.cards.moved .ex{animation:in .25s ease-out}
+.ex{position:relative;display:flex;flex-direction:column;gap:14px;border-radius:12px;padding:14px 16px;background:var(--bg);min-width:0}
+.hi .ex{background:var(--hi-wash)} .am .ex{background:var(--amber-wash)}
+a.ex{transition:transform .15s,box-shadow .15s} a.ex:hover{transform:translateY(-2px);box-shadow:0 4px 14px rgba(15,23,42,.08)}
+a.ex:after{content:"";position:absolute;right:16px;bottom:22px;width:7px;height:7px;border-right:1.5px solid var(--ink2);border-bottom:1.5px solid var(--ink2);transform:rotate(-45deg)}
+.ex q{color:var(--ink);display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;font-size:13.5px}
+.ex .cl{font-size:12px;color:var(--amber);font-weight:500}
+.who{display:flex;align-items:center;gap:10px;margin-top:auto;padding-right:16px}
+.av{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:700;color:#fff;background:var(--lo)}
+.hi .av{background:var(--hi)} .am .av{background:var(--amber)}
+.nm{font-weight:600;font-size:13px;line-height:1.2} .dt{color:var(--muted);font-size:12px}
+/* transcript */
+.back{display:inline-flex;align-items:center;gap:8px;color:var(--muted);margin-bottom:18px}
+.back:before{content:"";width:7px;height:7px;border-left:1.5px solid var(--muted);border-bottom:1.5px solid var(--muted);transform:rotate(45deg)}
+.eyebrow{font-size:13px;color:var(--muted);font-weight:500;margin-bottom:2px}
+.ctx{display:grid;grid-template-columns:1fr 1fr 2fr;background:var(--card);border-radius:16px;box-shadow:0 0 0 1px var(--line);margin:14px 0 16px}
+.ctx > div{padding:16px 20px;border-left:1px solid var(--line)} .ctx > div:first-child{border-left:0}
+.ctx .wide{grid-column:1/-1;border-left:0;border-top:1px solid var(--line)}
+.k{font-size:12px;color:var(--faint);font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin-bottom:3px}
+.v{color:var(--ink2)} .v b{color:var(--ink)}
+.tr{background:var(--card);border-radius:16px;box-shadow:0 0 0 1px var(--line);padding:12px 24px 18px}
+.turn{display:grid;grid-template-columns:52px 1fr;gap:16px;padding:9px 0}
+.turn .t{color:var(--faint);font-variant-numeric:tabular-nums;font-size:13px;padding-top:1px}
+.turn .s{font-size:12px;font-weight:600;color:var(--faint);margin-bottom:1px}
+.turn.q .x{color:var(--muted)}
+.hit{border-radius:12px;padding:12px 14px}
+.hit.missed{background:var(--red-wash);box-shadow:inset 3px 0 0 var(--red)} .hit.false_alarm{background:var(--amber-wash);box-shadow:inset 3px 0 0 var(--amber-bar)}
+.hit .htag{display:inline-block;font-size:12px;font-weight:600;background:#fff;border-radius:999px;padding:2px 10px;margin-bottom:6px}
+.hit.missed .htag{color:var(--red)} .hit.false_alarm .htag{color:var(--amber)}
+.notes{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px}
+.note{border-radius:10px;padding:11px 13px}
+.note.rev{background:var(--blue-wash);box-shadow:inset 3px 0 0 var(--blue)} .note.rev .nt{color:var(--blue)}
+.note.agent{background:var(--violet-wash);box-shadow:inset 3px 0 0 var(--violet)} .note.agent .nt{color:var(--violet)}
+.nt{font-size:13px;font-weight:650} .ns{font-size:12px;color:var(--muted);margin:0 0 6px}
+.notfound{padding:40px 0;color:var(--muted)}
+/* tablet and phone */
+@media (max-width:900px){
+  .kpis{grid-template-columns:1fr}
+  .top{grid-template-columns:1fr 64px 18px}
+  .top .barcell{grid-column:1/-1;order:9}
+  .ctx{grid-template-columns:1fr 1fr} .ctx > div:nth-child(3){grid-column:1/-1;border-left:0;border-top:1px solid var(--line)}
+}
+@media (max-width:640px){
+  nav{padding:0 16px} main{padding:24px 16px 48px}
+  h1{font-size:28px} .big.miss{font-size:56px} .fa .big{font-size:40px}
+  .top{padding:14px 16px} .car{padding:0 16px 14px} .tr{padding:8px 16px 14px}
+  .notes{grid-template-columns:1fr} .turn{grid-template-columns:40px 1fr;gap:10px}
+  .ctx{grid-template-columns:1fr} .ctx > div{border-left:0!important;border-top:1px solid var(--line)} .ctx > div:first-child{border-top:0}
+}
+</style>
+</head>
+<body>
+<nav><div class="brand"><svg width="20" height="20" viewBox="0 0 22 22" aria-hidden="true"><rect x="1" y="1" width="20" height="20" rx="6" fill="#0f172a"/><path d="M6 11.5l3 3 7-7" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Content review engine</div><span class="badge">Illustrative</span></nav>
+<main id="app" aria-live="polite"></main>
+
+<script id="data" type="application/json"></script>
+
+<script id="calc">
+// Pure functions: every number on the page comes from these. Tests import this block.
+const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+function totals(d) {
+  let found = 0, missed = 0, falseAlarms = 0, highMissed = 0;
+  for (const c of d.categories) {
+    found += c.found; missed += c.missed; falseAlarms += c.false_alarms;
+    if (c.priority === "high") highMissed += c.missed;
+  }
+  const caught = found - missed;
+  return { sample: d.sample, found, caught, missed, falseAlarms, flags: caught + falseAlarms, highMissed };
+}
+// one row per category; base is caught (for misses) or confirmed flags (for false alarms), count is the error
+function rows(d, kind) {
+  return d.categories.map(c => ({ name: c.name, priority: c.priority, description: c.description,
+    base: c.found - c.missed, count: kind === "missed" ? c.missed : c.false_alarms }));
+}
+function barScale(rs) { return Math.max(...rs.map(r => r.base + r.count)); }
+function cardsFor(d, kind, category) { return d.cards.filter(x => x.kind === kind && x.category === category); }
+function perView(width) { return width < 720 ? 1 : width < 1000 ? 2 : 3; }
+function windowOf(n, start, per) {
+  const s = Math.max(0, Math.min(start, Math.max(0, n - per)));
+  return { start: s, end: Math.min(n, s + per) };
+}
+function initials(name) { return name.split(/\s+/).slice(0, 2).map(p => p[0]).join("").toUpperCase(); }
+function niceDate(iso) { const [y, m, dd] = iso.split("-").map(Number); return `${dd} ${MONTHS[m - 1]} ${y}`; }
+// consistency checks on the data; returns a list of problems (empty when all is well)
+function problems(d) {
+  const out = [];
+  for (const c of d.categories) {
+    for (const kind of ["missed", "false_alarm"]) {
+      const n = cardsFor(d, kind, c.name).length, max = kind === "missed" ? c.missed : c.false_alarms;
+      if (n > max) out.push(`${c.name}: ${n} ${kind} cards but only ${max}`);
+    }
+    if (c.missed > c.found) out.push(`${c.name}: more missed than found`);
+  }
+  for (const card of d.cards) {
+    const top = d.top.includes(card.category);
+    if (top !== Boolean(card.transcript)) out.push(`${card.name}: clickable must equal top category`);
+    if (card.transcript) {
+      const t = d.transcripts[card.transcript];
+      const turn = t && t.turns.find(x => x.ts === t.passage_ts);
+      if (!turn || turn.speaker !== "EXPERT" || !turn.text.includes(card.quote)) out.push(`${card.name}: quote not at the passage`);
+      if (t && (t.passage_ts !== card.ts || t.name !== card.name || t.date !== card.date)) out.push(`${card.name}: card and transcript differ`);
+    }
+  }
+  return out;
+}
+if (typeof module !== "undefined") module.exports = { totals, rows, barScale, cardsFor, perView, windowOf, initials, niceDate, problems };
+</script>
+
+<script>
+const D = JSON.parse(document.getElementById("data").textContent);
+const app = document.getElementById("app");
+const state = { offset: {}, shut: new Set(), per: perView(window.innerWidth), scroll: 0 };
+const esc = s => String(s).replace(/[&<>"]/g, ch => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[ch]));
+const KIND = { missed: { label: "missed", word: "Missed", colour: "var(--red)" }, false_alarm: { label: "false alarms", word: "False alarm", colour: "var(--amber-bar)" } };
+
+function card(c, level) {
+  const inner = `<q>${esc(c.quote)}</q>${c.cleared ? `<span class="cl">Cleared: ${esc(c.cleared)}</span>` : ""}
+    <div class="who"><span class="av" aria-hidden="true">${initials(c.name)}</span><div><div class="nm">${esc(c.name)}</div>
+    <div class="dt">${niceDate(c.date)} · ${c.ts}</div></div></div>`;
+  return c.transcript ? `<a class="ex" href="#t/${c.transcript}" aria-label="Open transcript: ${esc(c.name)}, ${niceDate(c.date)}">${inner}</a>`
+                      : `<div class="ex">${inner}</div>`;
+}
+
+function category(r, kind, scale, level) {
+  const key = `${kind}|${r.name}`, list = cardsFor(D, kind, r.name), has = list.length > 0, shut = state.shut.has(key);
+  const baseWord = kind === "missed" ? "caught" : "confirmed";
+  const bar = `<div class="mini" style="width:${((r.base + r.count) / scale * 100).toFixed(1)}%" title="${r.base} ${baseWord}, ${r.count} ${KIND[kind].label}">
+    <i style="flex:${r.base};background:var(--grey-bar)"></i>${r.count ? `<i style="flex:${r.count};background:${KIND[kind].colour}"></i>` : ""}</div>`;
+  const top = `<div class="top"${has ? ` role="button" tabindex="0" aria-expanded="${!shut}" data-toggle="${esc(key)}"` : ""}>
+    <div><div class="n">${esc(r.name)}</div><div class="d">${esc(r.description)}</div></div>
+    <div class="barcell">${bar}</div><div class="c${r.count ? "" : " zero"}">${r.count}<small>${KIND[kind].label}</small></div>
+    <span class="tog${has ? "" : " none"}" aria-hidden="true"></span></div>`;
+  let body = "";
+  if (has && !shut) {
+    const per = state.per, w = windowOf(list.length, state.offset[key] || 0, per);
+    const head = list.length > per ? `<div class="carhead"><span data-range>${w.start + 1}–${w.end} of ${list.length}</span>
+      <button class="arr l" data-move="${esc(key)}" data-step="-1" aria-label="Previous examples" ${w.start === 0 ? "disabled" : ""}></button>
+      <button class="arr r" data-move="${esc(key)}" data-step="1" aria-label="Next examples" ${w.end >= list.length ? "disabled" : ""}></button></div>` : "";
+    body = `<div class="car">${head}<div class="cards" style="grid-template-columns:repeat(${per},minmax(0,1fr))">${list.slice(w.start, w.end).map(c => card(c, level)).join("")}</div></div>`;
+  }
+  return `<div class="cat ${level}${shut ? " shut" : ""}" data-cat="${esc(key)}">${top}${body}</div>`;
+}
+
+function summary() {
+  const T = totals(D);
+  const miss = rows(D, "missed"), fa = rows(D, "false_alarm"), ms = barScale(miss), fs = barScale(fa);
+  const group = (rs, kind, scale, levelFor) => ["high", "lower"].map(p => `<div class="grp"><i style="background:var(--${p === "high" ? "hi" : "lo"})"></i>${p === "high" ? "High priority" : "Medium and low priority"}</div>` +
+    rs.filter(r => r.priority === p).map(r => category(r, kind, scale, levelFor(r))).join("")).join("");
+  return `<div class="view"><h1>AI performance benchmark</h1>
+  <p class="sub1">${T.sample.toLocaleString("en-GB")} transcripts reviewed by the AI and by human reviewers</p>
+  <div class="kpis">
+    <section class="kpi risk" aria-label="Compliance risks"><div class="kh">Compliance risks <span class="tag">Liability risk</span></div>
+      <div class="nums"><div><div class="big base" data-n="found">${T.found}</div><div class="lab">found by human reviewers</div></div>
+      <div><div class="big miss" data-n="missed">${T.missed}</div><div class="lab">missed by AI</div></div></div>
+      <div class="sbar" role="img" aria-label="${T.caught} caught by AI, ${T.missed} missed by AI"><i style="flex:${T.caught};background:var(--grey-bar)"></i><i style="flex:${T.missed};background:var(--red)"></i></div>
+      <div class="sleg"><span><i style="background:var(--grey-bar)"></i>Caught by AI <b data-n="caught">${T.caught}</b></span><span><i style="background:var(--red)"></i>Missed by AI <b>${T.missed}</b></span></div></section>
+    <section class="kpi fa" aria-label="False alarms"><div class="kh">False alarms <span class="tag">Operational risk</span></div>
+      <div class="nums"><div><div class="big" data-n="false">${T.falseAlarms}</div><div class="lab">flagged by AI, cleared by human reviewers</div></div></div>
+      <div class="sbar" role="img" aria-label="${T.caught} confirmed, ${T.falseAlarms} false alarms"><i style="flex:${T.caught};background:var(--grey-bar)"></i><i style="flex:${T.falseAlarms};background:var(--amber-bar)"></i></div>
+      <div class="sleg"><span><i style="background:var(--grey-bar)"></i>Confirmed <b>${T.caught}</b></span><span><i style="background:var(--amber-bar)"></i>False alarms <b>${T.falseAlarms}</b></span></div></section>
+  </div>
+  <h2>Missed by AI, by type</h2>${group(miss, "missed", ms, r => r.priority === "high" ? "hi" : "lo")}
+  <div class="fasec"><h2>False alarms, by type</h2>${group(fa, "false_alarm", fs, () => "am")}</div></div>`;
+}
+
+function transcript(id) {
+  const t = D.transcripts[id];
+  if (!t) return `<div class="view"><a class="back" href="#">Benchmark</a><p class="notfound">That transcript isn't in this benchmark.</p></div>`;
+  const k = KIND[t.kind];
+  const turns = t.turns.map(x => {
+    const expert = x.speaker === "EXPERT", hit = x.ts === t.passage_ts;
+    const text = hit ? `<div class="hit ${t.kind}" id="passage"><span class="htag">${k.word} · ${esc(t.category)}</span><div>${esc(x.text)}</div>
+      <div class="notes"><div class="note rev"><div class="nt">Reviewer's comment</div><div class="ns">Compliance reviewer</div>${esc(t.reviewer_comment)}</div>
+      <div class="note agent"><div class="nt">${t.kind === "missed" ? "Why the original AI didn't flag it" : "Why the original AI flagged it"}</div>
+      <div class="ns">Analysis by an independent agent, from the original AI's log</div>${esc(t.root_cause)}</div></div></div>` : `<div class="x">${esc(x.text)}</div>`;
+    return `<div class="turn${expert ? "" : " q"}"><span class="t">${x.ts}</span><div><div class="s">${expert ? "Expert" : x.speaker === "AI INTERVIEWER" ? "AI interviewer" : "Interviewer"}</div>${text}</div></div>`;
+  }).join("");
+  return `<div class="view"><a class="back" href="#">Benchmark</a><div class="eyebrow">Call topic</div><h1>${esc(t.topic)}</h1>
+    <div class="ctx"><div><div class="k">Expert</div><div class="v"><b>${esc(t.name)}</b></div></div>
+    <div><div class="k">Call date</div><div class="v">${niceDate(t.date)}</div></div>
+    <div><div class="k">Role</div><div class="v">${esc(t.role)}</div></div>
+    <div class="wide"><div class="k">Declared</div><div class="v">${esc(t.declaration)}</div></div></div>
+    <div class="tr">${turns}</div></div>`;
+}
+
+function render() {
+  const m = location.hash.match(/^#t\/(.+)$/);
+  app.innerHTML = m ? transcript(decodeURIComponent(m[1])) : summary();
+  document.title = m && D.transcripts[m[1]] ? `${D.transcripts[m[1]].topic} · AI performance benchmark` : "AI performance benchmark";
+  document.body.dataset.view = m ? "transcript" : "summary";
+  document.body.dataset.ready = "1";
+}
+
+app.addEventListener("click", e => {
+  const mv = e.target.closest("[data-move]");
+  if (mv) {
+    const key = mv.dataset.move, n = cardsFor(D, key.split("|")[0], key.split("|")[1]).length;
+    state.offset[key] = windowOf(n, (state.offset[key] || 0) + Number(mv.dataset.step), state.per).start;
+    const cat = mv.closest(".cat"), html = category(rows(D, key.split("|")[0]).find(r => r.name === key.split("|")[1]), key.split("|")[0],
+      barScale(rows(D, key.split("|")[0])), cat.classList.contains("hi") ? "hi" : cat.classList.contains("lo") ? "lo" : "am");
+    cat.outerHTML = html;
+    const fresh = app.querySelector(`[data-cat="${CSS.escape(key)}"]`);
+    fresh.querySelector(".cards").classList.add("moved");
+    fresh.querySelector(`[data-move][data-step="${mv.dataset.step}"]:not(:disabled)`)?.focus();
+    return;
+  }
+  const tg = e.target.closest("[data-toggle]");
+  if (tg) toggle(tg.dataset.toggle);
+});
+app.addEventListener("keydown", e => {
+  const tg = e.target.closest("[data-toggle]");
+  if (tg && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); toggle(tg.dataset.toggle); }
+});
+function toggle(key) {
+  state.shut.has(key) ? state.shut.delete(key) : state.shut.add(key);
+  const [kind, name] = key.split("|"), cat = app.querySelector(`[data-cat="${CSS.escape(key)}"]`);
+  cat.outerHTML = category(rows(D, kind).find(r => r.name === name), kind, barScale(rows(D, kind)),
+    cat.classList.contains("hi") ? "hi" : cat.classList.contains("lo") ? "lo" : "am");
+  app.querySelector(`[data-cat="${CSS.escape(key)}"] [data-toggle]`).focus();
+}
+window.addEventListener("hashchange", () => {
+  const toTranscript = location.hash.startsWith("#t/");
+  if (toTranscript && document.body.dataset.view === "summary") state.scroll = window.scrollY;
+  render();
+  window.scrollTo(0, toTranscript ? 0 : state.scroll);
+});
+window.addEventListener("resize", () => {
+  const per = perView(window.innerWidth);
+  if (per !== state.per) { state.per = per; if (document.body.dataset.view === "summary") render(); }
+});
+render();
+</script>
+</body>
+</html>
