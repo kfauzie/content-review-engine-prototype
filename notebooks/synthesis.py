@@ -1,8 +1,8 @@
 """pm-1 Step 2 (Answer): test the claims from the discovery call, one at a time, and compute every number the
 solution concept quotes. Run from the run folder: python3 notebooks/synthesis.py
 
-Sources: the 8 transcripts (profiles, declarations, transcripts; answer keys cut off), and figures Jason gave on the
-call (quoted in RUN.md). The answer keys are read only in the last section, to compute the concept's test cases.
+Sources: the 8 transcripts (profiles, declarations, transcripts; answer keys cut off). The claims come from a
+role-play call and are tested as hypotheses. The answer keys are read only in the last section, for the test cases.
 """
 import json
 import re
@@ -14,9 +14,6 @@ from data_review import SRC, MARKERS, markers, parse, people, words  # noqa: E40
 
 NOT_COMPANIES = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October",
                  "November", "December", "Europe", "Scotland", "North", "West", "UK", "EU", "US"}
-
-# From the call (Jason, in character). Quoted word for word in RUN.md.
-CALL = dict(easy_transcript_min=45, read_only_min=20, checks_per_call=(5, 6), audio_min=40)
 
 
 def companies(T):
@@ -59,39 +56,21 @@ def main():
     tot_co, tot_min = sum(r[1] for r in rows), sum(r[3] for r in rows)
     per_min = tot_co / tot_min
     print(f"answers naming a company: {tot_co} in {tot_min:.1f} minutes of calls = {per_min:.2f} a minute")
-    print(f"at that rate, a {CALL['audio_min']}-minute call has about {per_min * CALL['audio_min']:.0f} company mentions (estimate)")
     print(f"calls with no company named by the expert: {sum(1 for r in rows if r[1] == 0)} of {len(T)}")
     insider = [(t["num"], f"{ts // 60:02d}:{ts % 60:02d}") for t, ts, txt in A
                if t["current"] and re.search(r"\b(we|our|us)\b", txt, re.I) and not any(re.search(rf"\b{c}\b", txt) for c in C)]
     print(f"answers where a currently employed expert says we/our/us without naming a company: {len(insider)} {insider}")
 
-    print("\n== Claim 3: 'That's where a 20-minute read becomes 45 minutes.'")
-    ctx = CALL["easy_transcript_min"] - CALL["read_only_min"]
-    lo, hi = CALL["checks_per_call"]
-    print(f"context checking: {ctx} of {CALL['easy_transcript_min']} minutes ({ctx / CALL['easy_transcript_min']:.0%}); "
-          f"{ctx / hi:.1f} to {ctx / lo:.1f} minutes per check at {lo} to {hi} checks")
 
-    print("\n== Claim 4: 'PII matters too, but that's usually a simple redaction.'")
+    print("\n== Claim 3: 'PII matters too, but that's usually a simple redaction.'")
     for t, ts, txt in A:
         if people(txt, t):
             print(f"  T{t['num']} {ts // 60:02d}:{ts % 60:02d} person={people(txt, t)} "
                   f"insider source={'yes' if re.search(MARKERS['insider source'], txt) else 'no'}")
 
-    print("\n== Claim 5: 'The flagging tool ... flags every company mention, and reviewers learn to ignore it.'")
+    print("\n== Claim 4: 'The flagging tool ... flags every company mention, and reviewers learn to ignore it.'")
     print("not testable: no output from the current tool in the data. Needed: a month of its flags with reviewers' decisions.")
 
-    print("\n== Concept numbers (estimates, from the call's figures)")
-    confirm_min = 1.0  # ASSUMPTION: a reviewer confirms an inline declaration check in about a minute
-    checks = (lo + hi) / 2
-    stage1 = CALL["read_only_min"] + checks * confirm_min
-    print(f"stage 1 (declaration checks in the review tool, reviewers still read every line): "
-          f"{CALL['read_only_min']} + {checks} x {confirm_min:.0f} = {stage1:.1f} minutes, "
-          f"saving {CALL['easy_transcript_min'] - stage1:.1f} ({(CALL['easy_transcript_min'] - stage1) / CALL['easy_transcript_min']:.0%})")
-    print(f"per 1,000 easy transcripts: {(CALL['easy_transcript_min'] - stage1) * 1000 / 60:.0f} reviewer hours saved")
-    routed = [(t, ts, txt) for t, ts, txt in A if markers(txt, t) or any(re.search(rf"\b{c}\b", txt) for c in C)]
-    rw = sum(words(x[2]) for x in routed)
-    print(f"stage 2 (people read only answers with a marker or a company named): {len(routed)} of {len(A)} answers, "
-          f"{rw} of {aw} words ({rw / aw:.1%}) in this sample")
 
     print("\n== Test cases from the answer key (hidden test set)")
     keys = [json.loads(re.search(r"```json\n(.*?)\n```", b, re.S).group(1)) for b in SRC.read_text().split("\n## Transcript ")[1:]]
@@ -100,7 +79,7 @@ def main():
     iss = [i for k in keys for i in k["issues"]]
     print(f"issues: {len(iss)}; by category: {dict(Counter(i['category'] for i in iss))}")
     hi_cat = {"MNPI", "Current employer confidential", "Declaration conflict"}
-    print(f"issues in Jason's three zero-miss types: {sum(i['category'] in hi_cat for i in iss)}")
+    print(f"issues in the three zero-miss types (role-play hypothesis): {sum(i['category'] in hi_cat for i in iss)}")
     print(f"transcripts that must publish untouched (over-flag tests): {[k['transcript'] for k in keys if k['overall_decision'] == 'publish']}")
 
 

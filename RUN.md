@@ -20,7 +20,7 @@
 | 2. Discovery guide | `pm-2-discovery-interview` | [Notion page](https://app.notion.com/p/41d8f31ef05f815a882bd2360ee212a3) | Done |
 | 3. Interview | Kevin | Notes in the Notion page | Done |
 | 4. Research synthesis | `pm-1-data-discovery` (Answer) | Below; code in `notebooks/synthesis.py` | Done |
-| 5. Solution concept | `pm-3-problem-to-solution-concept` | [Notion page](https://app.notion.com/p/41e8f31ef05f8137b4bbddec89a6656c) | Done |
+| 5. Solution concept | `pm-3-problem-to-solution-concept` | [Notion page](https://app.notion.com/p/41e8f31ef05f8137b4bbddec89a6656c): eval plan and dry run, solution after the eval | Revised |
 | 6. Design | `pm-4-solution-design` | | |
 | 7. Prototype | `pm-5-mvp-build` | | |
 | 8. MVP review | `pm-6-mvp-review` | | |
@@ -65,26 +65,39 @@
 - Once the call is done, test each claim from the interview against the data (`pm-1` Step 2).
 
 ## 3. Interview
-Kevin ran the call with "Jason" (role-play), and the notes and transcript are in the Notion page. The quotes below come from that transcript, not from the AI summary.
+Kevin ran a role-play call with "Jason", and the notes and transcript are in the discovery page in Notion. **Treat it as hypotheses, not discovery.** Nothing below is a quote from the real Jason.
 
 ## 4. Research synthesis (pm-1, Answer)
-Every number comes from `notebooks/synthesis.py`. Each claim was tested on its own, in the order Jason made them.
+Every number comes from `notebooks/synthesis.py`. Each hypothesis from the role-play was tested on its own.
 
-| # | Claim (Jason, word for word) | Choices made | Result | Verdict |
+| # | Hypothesis (role-play) | Choices made | Result | Verdict |
 |---|---|---|---|---|
-| 1 | "Most of any transcript is harmless, but the problem is we don't know which 10% matters until we've read it." | Measured by expert answer and by word, using the four markers from Step 1 | 9 of 51 answers (17.6%) and 374 of 1,885 words (19.8%) carry a marker | **Supported**: most is harmless, though this sample is nearer 20% than 10% |
-| 2 | "Whenever an expert mentions a company, the reviewer has to stop ... Sometimes that happens 5 or 6 times in one call." | Counted answers that name any company, then scaled to a 40-minute call | 8 answers in 27.0 minutes of calls, 0.30 a minute. That's about 12 in a 40-minute call (estimate). The expert names a company in 6 of 8 calls | **Supported**: 5 or 6 checks fits about 12 mentions, if only some need the declaration |
-| 3 | "That's where a 20-minute read becomes 45 minutes." | Arithmetic on Jason's own figures | Context checking is 25 of 45 minutes (56%), or 4.2 to 5.0 minutes per check | **Supported** (his figures, not measured) |
-| 4 | "PII matters too, but that's usually a simple redaction." | Answers naming a private person, and whether the same answer cites an insider source | 2 answers. T8 names a person (a simple redaction). T6 names the insider who passed on information, so it's a sourcing problem, not only personal data | **Unclear**: 1 of 2 is more than a redaction |
-| 5 | "It doesn't know what the expert declared, so it flags every company mention, and reviewers learn to ignore it." | Not testable | The data holds no output from the current tool | **Unclear**: needs a month of the tool's flags next to analysts' decisions |
+| 1 | Most of a transcript is harmless, but nobody knows which part matters until they've read it | Measured by expert answer and by word, using the four markers from Step 1 | 9 of 51 answers (17.6%) and 374 of 1,885 words (19.8%) carry a marker | **Supported** in this sample |
+| 2 | Experts often mention companies, and each mention sends the reviewer to the profile system | Counted answers that name any company | 8 answers, in 6 of 8 calls | **Supported** that mentions are common. The time cost can't be tested here |
+| 3 | Personal data is usually a simple redaction | Answers naming a private person, and whether the same answer cites an insider source | 2 answers. T8 names a person. T6 names the insider who passed on information, so it's about the source, not only personal data | **Unclear**: 1 of 2 is more than a redaction |
+| 4 | The current tool flags every company mention | Not testable | The data holds no output from the current tool | **Unclear**: tested in the eval below with a stand-in |
 
-**Surprise, and a follow-up question.** 1 answer comes from a current employee talking about their employer as "us" without naming it (T3 01:34). A check that only starts when a company is named would miss it. *For Jason:* "When an expert says 'we' about their employer, how do reviewers catch it today?"
+**Surprise:** in 1 answer, a current employee talks about their employer as "us" without naming it (T3 01:34). A check that starts only when a company is named would miss it.
 
-**Figures Jason gave on the call** (used in the concept):
-- "about 40 minutes of audio"
-- "about 45 minutes for one transcript, and that was an easy one"
-- "a 20-minute read becomes 45 minutes"
-- "5 or 6 times in one call"
+## 5. Eval dry run (after Kevin's feedback on the first concept)
+Every number comes from `notebooks/eval.py`. Each expert answer is scored against the answer key as rightly flagged, a false alarm or missed, by issue type. The fourth outcome, missed by the human, needs a separate human verdict, which this data doesn't have.
+
+| Engine | Rightly flagged | False alarms | Missed | Missed in the three zero-miss types |
+|---|---|---|---|---|
+| Current tool, stand-in: flags every answer that names a company (built from the role-play description) | 3 | 5 | 4 | 2 of 4 (T3, T5) |
+| Declaration-aware reviewer: Claude, verdicts in `data/eval/ai_reviewer_verdicts.json`. **Not blind**: it had seen the answer key, so the score isn't evidence | 7 | 0 | 0 | 0 of 4 |
+
+**Failure analysis (stand-in):**
+- All 4 misses name no company. The expert points with "us", "we", "their" or "there".
+- All 5 false alarms name a company where that's fine:
+  - 3 name the expert's former employer and cite a public source
+  - 1 frames a takeover target as public talk
+  - 1 has the expert declining to say more
+- One root cause behind both: no declaration, and no check of the source.
+
+**Sizing the live test:** zero misses in n real issues of a type shows, with 95% confidence, a miss rate below 3 in n. That means 60 issues for 5%, 150 for 2% and 300 for 1%.
+
+**Solution concept, revised:** [Notion page](https://app.notion.com/p/41e8f31ef05f8137b4bbddec89a6656c). The order is eval, failure analysis, prioritise, live test, and only then a solution.
 
 ## Decisions I made (and what I turned down)
 
@@ -92,6 +105,7 @@ Every number comes from `notebooks/synthesis.py`. Each claim was tested on its o
 |---|---|---|
 | Use Kevin's 8 transcripts, not data I generate | Real-looking passages beat invented volumes, and the test set covers the hard cases (hedges, public figures, declaration conflicts) | A synthetic month of scores and volumes, built before the data arrived |
 | Hold back the answer key | Reviewers don't get one. Discovery should see what they see, and the key stays clean for testing the build | Reading the key's categories and expected actions into the findings |
-| Declaration-aware review first, risk routing earned per type | Jason put the time in context checking ("Fix that and you fix most of it") and wants "proof before anyone reads less" | Letting AI clear passages from day one (idea B), and process-only fixes (idea C; its second-read sample is kept) |
-| Start checks on insider voice ("we", "us") as well as company names | T3's pricing leak names no company | Starting checks only when a company is named, the way the current tool flags |
+| Eval before any solution (Kevin's feedback) | We don't know the real problem yet; an eval by issue type shows whether the tool is too cautious, not cautious enough, or keyed on the wrong signal | The first concept, which recommended declaration-aware review on role-play evidence |
+| Rulings on disagreements in the eval | Today's reviewers miss things too, so their verdicts can't count as the truth on their own | Scoring the tool against analysts' verdicts as they stand |
+| No estimates of time saved | No measured baseline; the figures came from a role-play | The 45-to-26-minute estimate and the hours saved per 1,000 transcripts |
 | Findings as questions, not answers | 8 transcripts can't size the problem; the interview has to | Proposing an AI and human split before discovery |
