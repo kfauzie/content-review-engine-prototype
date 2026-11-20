@@ -1,44 +1,78 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>AI review check (design)</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="design.css"><style>
-main{max-width:900px}
-.crumbs{color:var(--muted);font-size:13px;margin:4px 0 10px}
-.crumbs a{color:var(--muted)}
-h1{font-size:22px;margin:0 0 18px;letter-spacing:-.3px}
-.total{color:var(--muted);margin:-8px 0 20px}
-.total b{color:var(--ink);font-size:18px}
-.sec{background:var(--panel);border:1px solid var(--line);border-radius:10px;margin-bottom:16px}
-.sec.miss{border-top:4px solid var(--miss)}
-.sechead{display:flex;align-items:baseline;gap:14px;padding:16px 18px 6px;flex-wrap:wrap}
-.sechead .lab{font-weight:600;font-size:16px}
-.sechead .big{font-size:34px;font-weight:700;color:var(--miss);letter-spacing:-.5px;font-variant-numeric:tabular-nums}
-.sechead .rate{color:var(--muted)}
-.goal{margin:4px 18px 12px;padding:8px 12px;border-radius:8px;background:var(--miss-tint);border:1px solid var(--miss-line);color:var(--miss);font-weight:600;display:inline-block}
-table{width:100%;border-collapse:collapse}
-th,td{padding:11px 18px;border-top:1px solid var(--line);text-align:right;font-variant-numeric:tabular-nums}
-th{font-size:12px;font-weight:600;color:var(--muted);background:var(--soft)}
-td:first-child,th:first-child{text-align:left}
-th.grp{text-transform:uppercase;letter-spacing:.3px;font-size:11px;color:var(--ink)}
-td .name{font-weight:600} td .desc{color:var(--muted);font-size:13px}
-td.c{color:var(--miss);font-weight:700}
-tr.row td:last-child{width:28px}
-td.r{white-space:nowrap}
-.chev{display:inline-block;width:7px;height:7px;border-right:1.5px solid var(--muted);border-bottom:1.5px solid var(--muted);transform:rotate(-45deg)}
-.sec.alarm .sechead{padding-bottom:14px}
-.sec.alarm .sechead .lab{font-size:15px}
-.sec.alarm .sechead .big{font-size:22px;color:var(--alarm)}
-.sec.alarm .sechead .chev{margin-left:auto;transform:rotate(45deg)}
-.stats{color:var(--muted);margin:-10px 0 18px}
-.ex{display:grid;grid-template-columns:150px 1fr 16px;gap:14px;padding:12px 18px;align-items:center}
-.ex .where{color:var(--muted);font-size:13px}
-.part{padding:14px 18px}
-.part h2{font-size:12px;letter-spacing:.3px;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
-.line{display:grid;grid-template-columns:52px 120px 1fr;gap:10px;margin-bottom:8px}
-.line .t{color:var(--faint);font-variant-numeric:tabular-nums} .line .s{color:var(--muted);font-size:13px;padding-top:1px}
-.line.hit .q{background:var(--miss-tint);border-left:3px solid var(--miss);padding:4px 8px;border-radius:4px}
-.note{color:var(--muted);font-size:12px;margin-top:16px}
-</style></head><body><div class="top"><div class="mark"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><rect x="1" y="1" width="20" height="20" rx="5" fill="#1c2230"/><path d="M6 11.5l3 3 7-7" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="16.5" cy="16.5" r="2.4" fill="#3843c4" stroke="#fff" stroke-width="1.2"/></svg>Content review engine</div><div class="synth">Illustrative</div></div><main><h1>AI review check: 1,000 reviewed transcripts</h1>
-<div class="sec miss"><div class="sechead"><span class="lab">Missed by AI</span><span class="big">23</span>
-<span class="rate">8.8% of 262 real issues</span></div>
-<div class="goal">High priority missed by AI: 2 (goal: 0)</div>
-<table><tr><th class="grp">High priority</th><th>Missed</th><th>Miss rate</th><th>Share of misses</th><th></th></tr><tr class="row" onclick="location.href='2-category.html'"><td><div class="name">Material non-public information</div><div class="desc">Non-public facts about a listed company that could move its share price</div></td><td class="c">1</td><td class="r">2.6% <span style="color:var(--faint)">of 38</span></td><td>4.3%</td><td><span class="chev"></span></td></tr><tr class="row"><td><div class="name">Current-employer confidential</div><div class="desc">Non-public information about the expert's current employer</div></td><td class="c">1</td><td class="r">1.9% <span style="color:var(--faint)">of 52</span></td><td>4.3%</td><td><span class="chev"></span></td></tr><tr class="row"><td><div class="name">Declaration conflict</div><div class="desc">What the expert says contradicts their declaration</div></td><td>0</td><td class="r">0.0% <span style="color:var(--faint)">of 14</span></td><td>0.0%</td><td><span class="chev"></span></td></tr><tr><th class="grp">Other</th><th>Missed</th><th>Miss rate</th><th>Share of misses</th><th></th></tr><tr class="row"><td><div class="name">Source disclosure</div><div class="desc">Names a person inside a company as the source</div></td><td class="c">6</td><td class="r">20.7% <span style="color:var(--faint)">of 29</span></td><td>26.1%</td><td><span class="chev"></span></td></tr><tr class="row"><td><div class="name">Former-client confidential</div><div class="desc">Confidential information about a former client or employer</div></td><td class="c">4</td><td class="r">12.1% <span style="color:var(--faint)">of 33</span></td><td>17.4%</td><td><span class="chev"></span></td></tr><tr class="row"><td><div class="name">Personal data</div><div class="desc">Names or sensitive details of private individuals</div></td><td class="c">11</td><td class="r">11.5% <span style="color:var(--faint)">of 96</span></td><td>47.8%</td><td><span class="chev"></span></td></tr></table></div>
-<div class="sec alarm"><div class="sechead"><span class="lab">False alarms</span><span class="big">187</span>
-<span class="rate">43.9% of 426 AI flags</span><span class="chev"></span></div></div><p class="note">Illustrative: made-up counts; example from a synthetic test set.</p></main></body></html>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>AI performance benchmark (design)</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;650;700&display=swap" rel="stylesheet"><style>
+:root{--ink:#0f172a;--ink2:#334155;--muted:#64748b;--faint:#94a3b8;--line:#e8ecf2;--bg:#ffffff;--wash:#f8fafc;
+--risk:#c8331f;--risk-wash:#fdf1ef;--cost:#9a6a12;--cost-wash:#fbf6ea;--ok:#15803d;--ok-wash:#eefaf2}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 Inter,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+nav{display:flex;align-items:center;justify-content:space-between;padding:18px 40px;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:14px;letter-spacing:-.1px}
+.badge{font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:3px 10px}
+main{max-width:920px;margin:0 auto;padding:56px 40px 80px}
+.eyebrow{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+h1{font-size:34px;line-height:1.2;letter-spacing:-.8px;margin:10px 0 10px;font-weight:650}
+.lede{font-size:17px;color:var(--muted);margin:0 0 48px}
+.stats{display:grid;grid-template-columns:1.45fr 1fr;gap:20px;margin-bottom:64px}
+.stat{border-radius:18px;padding:26px 28px}
+.stat.risk{background:var(--risk-wash)} .stat.cost{background:var(--wash)}
+.stat .k{display:flex;align-items:center;gap:10px;font-weight:600}
+.stat .tag{font-size:12px;font-weight:600;padding:2px 9px;border-radius:999px}
+.risk .tag{color:var(--risk);background:#fff} .cost .tag{color:var(--cost);background:#fff}
+.stat .n{font-size:64px;font-weight:700;letter-spacing:-2px;line-height:1;margin:18px 0 6px;font-variant-numeric:tabular-nums}
+.risk .n{color:var(--risk)} .cost .n{font-size:44px;color:var(--ink2);letter-spacing:-1.2px}
+.stat .of{color:var(--muted)}
+.stat .hp{margin-top:18px;padding-top:16px;border-top:1px solid #f3d6d0;display:flex;align-items:baseline;gap:10px;color:var(--ink2)}
+.stat .hp b{font-size:22px;color:var(--risk)}
+h2{font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:0 0 6px}
+.group{margin:22px 0 8px;font-size:13px;font-weight:600;color:var(--ink2)}
+.rows{border-top:1px solid var(--line)}
+.r{display:grid;grid-template-columns:1fr 140px 120px 18px;align-items:center;gap:16px;padding:16px 4px;border-bottom:1px solid var(--line)}
+.r .name{font-weight:500}
+.r .bar{height:6px;border-radius:3px;background:var(--line);overflow:hidden}
+.r .bar i{display:block;height:100%;background:var(--risk);border-radius:3px}
+.r .c{text-align:right;font-variant-numeric:tabular-nums;color:var(--muted)}
+.r .c b{color:var(--ink);font-weight:600}
+.r .go{width:7px;height:7px;border-right:1.5px solid var(--faint);border-bottom:1.5px solid var(--faint);transform:rotate(-45deg)}
+.r.zero .bar i{background:transparent} .r.zero .c b{color:var(--faint)}
+.sec2{margin-top:72px}
+.sec2 .r .bar i{background:#d9b979}
+.sec2 .r .name{color:var(--ink2)}
+.sec2 .r{padding:10px 4px;font-size:14px}
+.sec2 h2{color:var(--faint)}
+.sec2 .group{font-size:12px;color:var(--muted);margin-top:16px}
+.card .go{width:7px;height:7px;border-right:1.5px solid var(--faint);border-bottom:1.5px solid var(--faint);transform:rotate(-45deg)}
+.back{display:inline-flex;align-items:center;gap:8px;color:var(--muted);font-size:14px;margin-bottom:28px}
+.back:before{content:"";width:7px;height:7px;border-left:1.5px solid var(--muted);border-bottom:1.5px solid var(--muted);transform:rotate(45deg)}
+.sub{color:var(--muted);margin:0 0 36px}
+.sub b{color:var(--risk)}
+.card{display:grid;grid-template-columns:1fr 18px;gap:16px;align-items:center;border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-bottom:12px}
+.card .t{font-weight:600} .card .m{color:var(--muted);font-size:13px;margin-bottom:6px}
+.card q{color:var(--ink2)}
+.legend{display:flex;gap:18px;margin:0 0 32px;font-size:13px;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.legend i{width:10px;height:10px;border-radius:3px;display:inline-block}
+.turn{display:grid;grid-template-columns:56px 1fr;gap:16px;padding:10px 0}
+.turn .ts{color:var(--faint);font-size:13px;font-variant-numeric:tabular-nums;padding-top:2px}
+.turn.q .txt{color:var(--muted)}
+.turn .who{font-size:12px;font-weight:600;color:var(--faint);letter-spacing:.04em;text-transform:uppercase;margin-bottom:2px}
+.mark{border-radius:12px;padding:12px 14px;margin:2px 0}
+.mark .lab{font-size:12px;font-weight:600;margin-bottom:4px}
+.mark.missed{background:var(--risk-wash);box-shadow:inset 3px 0 0 var(--risk)} .mark.missed .lab{color:var(--risk)}
+.mark.unneeded{background:var(--cost-wash);box-shadow:inset 3px 0 0 #d9b979} .mark.unneeded .lab{color:var(--cost)}
+.mark.correct{background:var(--ok-wash);box-shadow:inset 3px 0 0 var(--ok)} .mark.correct .lab{color:var(--ok)}
+.mark .why{margin-top:8px;font-size:13px;color:var(--ink2)}
+</style></head><body><nav><div class="brand"><svg width="20" height="20" viewBox="0 0 22 22" aria-hidden="true"><rect x="1" y="1" width="20" height="20" rx="6" fill="#0f172a"/><path d="M6 11.5l3 3 7-7" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Content review engine</div><span class="badge">Illustrative</span></nav><main><div class="eyebrow">AI performance benchmark</div>
+<h1>AI and human review compared on 1,000 transcripts</h1>
+<p class="lede">Where the AI misses issues, and where it over-flags.</p>
+<div class="stats">
+<div class="stat risk"><div class="k">Missed issues <span class="tag">Compliance risk</span></div>
+<div class="n">23</div><div class="of">of 262 real issues</div>
+<div class="hp"><b>2</b> high priority</div></div>
+<div class="stat cost"><div class="k">Unneeded flags <span class="tag">Operational cost</span></div>
+<div class="n">187</div><div class="of">of 426 AI flags</div></div>
+</div>
+<h2>Missed issues by category</h2>
+<div class="group">High priority</div><div class="rows"><a class="r" href="2-category.html"><span class="name">Material non-public information</span><span class="bar"><i style="width:9%"></i></span><span class="c"><b>1</b> of 38</span><span class="go"></span></a><a class="r"><span class="name">Current-employer confidential</span><span class="bar"><i style="width:9%"></i></span><span class="c"><b>1</b> of 52</span><span class="go"></span></a><a class="r zero"><span class="name">Declaration conflict</span><span class="bar"><i style="width:0%"></i></span><span class="c"><b>0</b> of 14</span><span class="go"></span></a></div>
+<div class="group">Other</div><div class="rows"><a class="r"><span class="name">Source disclosure</span><span class="bar"><i style="width:55%"></i></span><span class="c"><b>6</b> of 29</span><span class="go"></span></a><a class="r"><span class="name">Former-client confidential</span><span class="bar"><i style="width:36%"></i></span><span class="c"><b>4</b> of 33</span><span class="go"></span></a><a class="r"><span class="name">Personal data</span><span class="bar"><i style="width:100%"></i></span><span class="c"><b>11</b> of 96</span><span class="go"></span></a></div>
+<div class="sec2"><h2>Unneeded flags by category</h2>
+<div class="group">High priority</div><div class="rows"><a class="r"><span class="name">Material non-public information</span><span class="bar"><i style="width:100%"></i></span><span class="c"><b>60</b> of 97</span><span class="go"></span></a><a class="r"><span class="name">Current-employer confidential</span><span class="bar"><i style="width:50%"></i></span><span class="c"><b>30</b> of 81</span><span class="go"></span></a><a class="r"><span class="name">Declaration conflict</span><span class="bar"><i style="width:15%"></i></span><span class="c"><b>9</b> of 23</span><span class="go"></span></a></div>
+<div class="group">Other</div><div class="rows"><a class="r"><span class="name">Source disclosure</span><span class="bar"><i style="width:13%"></i></span><span class="c"><b>8</b> of 31</span><span class="go"></span></a><a class="r"><span class="name">Former-client confidential</span><span class="bar"><i style="width:33%"></i></span><span class="c"><b>20</b> of 49</span><span class="go"></span></a><a class="r"><span class="name">Personal data</span><span class="bar"><i style="width:100%"></i></span><span class="c"><b>60</b> of 145</span><span class="go"></span></a></div></div></main></body></html>
