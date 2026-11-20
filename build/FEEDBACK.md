@@ -1,3 +1,13 @@
+# Prototype feedback, round 10 (applied)
+
+1. **The false alarm box:** much smaller than the main box (about a quarter of the width), sized to its own content, not the same height.
+2. **The fix examples:** clickable through to their transcripts. Fix 2's examples are now Elena Vasquez and Hannah Booth, test-set passages with full transcripts (transcripts 6 and 8), so no new transcripts were invented. Their carousel cards became clickable too.
+3. **Example counts:** varied at 3, 2 and 4 per fix, not 2 each.
+4. **Each fix has three labelled parts:** Root cause, Examples (the quote boxes) and Next steps. The Expected impact boxes are smaller.
+5. **Issue categories:** "5 of 38" with "in this category" in small type beneath.
+
+---
+
 # Prototype feedback, round 9 (applied)
 
 1. **The compliance box:** a bigger label ("Compliance risks found in transcripts", 20px) and a bigger box than the false alarm box, because liability risk matters more than operational cost. It shows "239 found by AI" in green and "23 missed by AI" in big red with "Liability risk" beside it. The bar is green and red.

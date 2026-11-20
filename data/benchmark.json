@@ -59,6 +59,7 @@
   {
    "id": "declaration",
    "title": "Read each answer with the expert's declaration and the question before it",
+   "root_cause": "The AI judged answers on their own, so “we”, “their” and “the board” never linked back to the employer, client or former employer in the declaration.",
    "examples": [
     {
      "name": "Priya Natarajan",
@@ -66,7 +67,8 @@
      "quote": "For us specifically, we're moving list price up 12% on the mid-market tier from January. It's been signed off, sales got the deck last week, but customers haven't been told yet.",
      "date": "2026-11-04",
      "kind": "missed",
-     "category": "Current-employer confidential"
+     "category": "Current-employer confidential",
+     "transcript": "missed-priya-natarajan"
     },
     {
      "name": "Henrik Lindqvist",
@@ -74,7 +76,17 @@
      "quote": "The board approved the sale of the European tyre business on Tuesday. The announcement is planned for after the half-year results.",
      "date": "2026-11-05",
      "kind": "missed",
-     "category": "Material non-public information"
+     "category": "Material non-public information",
+     "transcript": "missed-henrik-lindqvist"
+    },
+    {
+     "name": "Olivia Grant",
+     "highlight": "the regulator's decision on their diabetes drug",
+     "quote": "Between us, the regulator's decision on their diabetes drug came back last week, and it's a rejection. They haven't announced it yet.",
+     "date": "2026-10-29",
+     "kind": "missed",
+     "category": "Material non-public information",
+     "transcript": "missed-olivia-grant"
     }
    ],
    "how": [
@@ -86,22 +98,25 @@
   {
    "id": "people",
    "title": "Check people and sources, not just companies",
+   "root_cause": "The AI only looked for company information, so private individuals and insiders named as sources went through.",
    "examples": [
     {
-     "name": "Sofia Marchetti",
-     "highlight": "I've got his personal mobile",
-     "quote": "Speak to Mark Doyle in their Leeds office. I've got his personal mobile if you want it.",
-     "date": "2026-10-31",
+     "name": "Elena Vasquez",
+     "highlight": "My contact Jamie Holt, who runs procurement there now, told me",
+     "quote": "My contact Jamie Holt, who runs procurement there now, told me last week they're giving notice to two of them in Q1.",
+     "date": "2026-11-09",
      "kind": "missed",
-     "category": "Personal data"
+     "category": "Source disclosure",
+     "transcript": "missed-elena-vasquez"
     },
     {
-     "name": "Owen Prendergast",
-     "highlight": "Their head of logistics, Carla, told me",
-     "quote": "Their head of logistics, Carla, told me over dinner that the Rotterdam site is being mothballed after Christmas.",
-     "date": "2026-10-28",
+     "name": "Hannah Booth",
+     "highlight": "Mark Ellison",
+     "quote": "I remember Mark Ellison, who led their financial crime team at the time, was signed off for months with a breakdown afterwards.",
+     "date": "2026-11-13",
      "kind": "missed",
-     "category": "Source disclosure"
+     "category": "Personal data",
+     "transcript": "missed-hannah-booth"
     }
    ],
    "how": [
@@ -113,6 +128,7 @@
   {
    "id": "sources",
    "title": "Check the source the expert cites before flagging",
+   "root_cause": "Most false alarms named a public source (an earnings call, a press release, a published report) that the AI never checked.",
    "examples": [
     {
      "name": "Ibrahim Yusuf",
@@ -120,7 +136,8 @@
      "quote": "Our prices are on the website. The standard tier is £40 a seat, and that hasn't changed this year.",
      "date": "2026-11-04",
      "kind": "false_alarm",
-     "category": "Current-employer confidential"
+     "category": "Current-employer confidential",
+     "transcript": "false-alarm-ibrahim-yusuf"
     },
     {
      "name": "Laura Bennett",
@@ -128,7 +145,26 @@
      "quote": "As their annual report says, they've been closing stores in the north for two years, so the shift to online isn't new.",
      "date": "2026-11-14",
      "kind": "false_alarm",
-     "category": "Material non-public information"
+     "category": "Material non-public information",
+     "transcript": "false-alarm-laura-bennett"
+    },
+    {
+     "name": "Robert Chen",
+     "highlight": "On their Q2 earnings call in August",
+     "quote": "Ardent is a good one because they're transparent. On their Q2 earnings call in August, they reported gross margin of 31.4%, up from 28.9% a year earlier, and guided to 32% to 33% for the full year.",
+     "date": "2026-11-12",
+     "kind": "false_alarm",
+     "category": "Material non-public information",
+     "transcript": "false-alarm-robert-chen"
+    },
+    {
+     "name": "Chloe Martin",
+     "highlight": "We announced the Leeds office in a press release",
+     "quote": "We announced the Leeds office in a press release last month, so it's no secret we're expanding in the north.",
+     "date": "2026-10-28",
+     "kind": "false_alarm",
+     "category": "Current-employer confidential",
+     "transcript": "false-alarm-chloe-martin"
     }
    ],
    "how": [
@@ -266,7 +302,7 @@
    "quote": "My contact Jamie Holt, who runs procurement there now, told me last week they're giving notice to two of them in Q1.",
    "source": "test set T6-01:34",
    "cleared": null,
-   "transcript": null,
+   "transcript": "missed-elena-vasquez",
    "fix": "people"
   },
   {
@@ -357,7 +393,7 @@
    "quote": "I remember Mark Ellison, who led their financial crime team at the time, was signed off for months with a breakdown afterwards.",
    "source": "test set T8-01:24",
    "cleared": null,
-   "transcript": null,
+   "transcript": "missed-hannah-booth",
    "fix": "people"
   },
   {
@@ -1274,6 +1310,172 @@
    "role": "Account Manager, Brayfield Telecom (2015 to 2021). Senior Account Director, Calder Facilities Services (2021 to present).",
    "reviewer": "Katerina Ioannou, Compliance Analyst"
   },
+  "missed-elena-vasquez": {
+   "topic": "Enterprise software buying",
+   "profile": "Elena Vasquez. Head of Procurement, Marrow Analytics (2019 to October 2024, per declaration). Independent procurement advisor (October 2024 to present). Industry: enterprise data and analytics software.",
+   "declaration": "Left Marrow Analytics in October 2024. No current employer. Not in contact with Marrow Analytics in a professional capacity. No conflicts declared.",
+   "turns": [
+    {
+     "ts": "00:00",
+     "speaker": "INTERVIEWER",
+     "text": "Elena, thanks for joining. I'm researching how large enterprises buy data and analytics software. What does a typical buying process look like?"
+    },
+    {
+     "ts": "00:14",
+     "speaker": "EXPERT",
+     "text": "Long. Six to twelve months for a big platform. You have IT, security, procurement and the business all involved. Security review alone can take two or three months."
+    },
+    {
+     "ts": "00:36",
+     "speaker": "INTERVIEWER",
+     "text": "Where do deals usually stall?"
+    },
+    {
+     "ts": "00:40",
+     "speaker": "EXPERT",
+     "text": "Security and legal. Vendors underestimate how many questions a large company's security team will ask, especially about where data is stored and who can access it."
+    },
+    {
+     "ts": "01:02",
+     "speaker": "INTERVIEWER",
+     "text": "How are enterprises approaching vendor consolidation?"
+    },
+    {
+     "ts": "01:06",
+     "speaker": "EXPERT",
+     "text": "Aggressively. Most companies have too many overlapping tools. At Marrow, our team is rolling out a consolidation programme next month, cutting the analytics stack from nine vendors to four. We've been building the business case since the summer."
+    },
+    {
+     "ts": "01:30",
+     "speaker": "INTERVIEWER",
+     "text": "Which vendors are likely to lose?"
+    },
+    {
+     "ts": "01:34",
+     "speaker": "EXPERT",
+     "text": "The niche dashboard tools. My contact Jamie Holt, who runs procurement there now, told me last week they're giving notice to two of them in Q1. The big platforms will win because they can bundle."
+    },
+    {
+     "ts": "01:55",
+     "speaker": "INTERVIEWER",
+     "text": "In general, how do vendors defend against consolidation?"
+    },
+    {
+     "ts": "01:59",
+     "speaker": "EXPERT",
+     "text": "Deep integration and proving usage. If a vendor can show that hundreds of people use the tool daily, it's hard to cut. If usage is concentrated in one team, it's an easy target."
+    },
+    {
+     "ts": "02:20",
+     "speaker": "INTERVIEWER",
+     "text": "What about pricing models?"
+    },
+    {
+     "ts": "02:24",
+     "speaker": "EXPERT",
+     "text": "Buyers are pushing back on per-seat pricing for analytics, because usage is uneven. Consumption-based pricing is growing, but finance teams worry about unpredictable bills, so many deals end up with a committed spend plus overage."
+    },
+    {
+     "ts": "02:50",
+     "speaker": "INTERVIEWER",
+     "text": "Thanks, Elena."
+    }
+   ],
+   "passage_ts": "01:34",
+   "reviewer_comment": "Names a current insider as the source of non-public vendor decisions, which also contradicts her declared lack of professional contact with Marrow. Transcript rejected; the expert is referred to the vetting team.",
+   "root_cause": "The AI checks for company names, and this answer names none: “there” points back to Marrow. It didn't treat “my contact Jamie Holt … told me” as an insider source, so nothing was flagged.",
+   "source": "test set, transcript 6",
+   "id": "missed-elena-vasquez",
+   "kind": "missed",
+   "category": "Source disclosure",
+   "name": "Elena Vasquez",
+   "date": "2026-11-09",
+   "role": "Head of Procurement, Marrow Analytics (2019 to October 2024, per declaration). Independent procurement advisor (October 2024 to present).",
+   "reviewer": "Eleni Papadaki, Compliance Analyst"
+  },
+  "missed-hannah-booth": {
+   "topic": "Financial crime (AI-led)",
+   "profile": "Hannah Booth. Senior Manager, Financial Crime Advisory, Kestrel Advisory (2016 to 2023), where she audited banks' anti-money-laundering controls. Head of Compliance, Pellow Insurance (2023 to present). Industry: financial crime compliance.",
+   "declaration": "Currently employed by Pellow Insurance; will not discuss Pellow. Left Kestrel Advisory in 2023. Bound by confidentiality to Kestrel's former clients. No conflicts declared.",
+   "turns": [
+    {
+     "ts": "00:00",
+     "speaker": "AI INTERVIEWER",
+     "text": "Thank you for joining. This interview focuses on anti-money-laundering controls in mid-sized UK banks. First question: what are the most common weaknesses you have seen?"
+    },
+    {
+     "ts": "00:15",
+     "speaker": "EXPERT",
+     "text": "The most common is customer due diligence, especially source of funds for higher-risk customers. Banks collect the documents at onboarding but don't refresh them. Second is transaction monitoring that generates too many false alerts, so analysts burn out and miss the real ones."
+    },
+    {
+     "ts": "00:48",
+     "speaker": "AI INTERVIEWER",
+     "text": "Can you give an example of how severe these gaps can be?"
+    },
+    {
+     "ts": "00:53",
+     "speaker": "EXPERT",
+     "text": "At one of the banks we audited, Fairhaven Credit, around 40% of the higher-risk customer files we sampled were missing source-of-funds documentation. It was in our final report to their board. They had to run a full remediation programme."
+    },
+    {
+     "ts": "01:20",
+     "speaker": "AI INTERVIEWER",
+     "text": "How do banks typically respond to findings like that?"
+    },
+    {
+     "ts": "01:24",
+     "speaker": "EXPERT",
+     "text": "A remediation programme, usually with external help, and a lot of pressure on the compliance team. It's tough on people. I remember Mark Ellison, who led their financial crime team at the time, was signed off for months with a breakdown afterwards."
+    },
+    {
+     "ts": "01:48",
+     "speaker": "AI INTERVIEWER",
+     "text": "What separates banks that manage this well?"
+    },
+    {
+     "ts": "01:52",
+     "speaker": "EXPERT",
+     "text": "Ownership in the first line. When relationship managers own the quality of customer files, rather than leaving it all to compliance, you get far better results. And good monitoring tuning: fewer, better alerts."
+    },
+    {
+     "ts": "02:15",
+     "speaker": "AI INTERVIEWER",
+     "text": "How is technology changing transaction monitoring?"
+    },
+    {
+     "ts": "02:19",
+     "speaker": "EXPERT",
+     "text": "Machine learning is reducing false positives in the better systems, sometimes significantly. But regulators want explainability. If a model closes an alert, the bank needs to show why. Black-box models are a hard sell to the regulator."
+    },
+    {
+     "ts": "02:45",
+     "speaker": "AI INTERVIEWER",
+     "text": "Final question: what should investors in bank technology watch?"
+    },
+    {
+     "ts": "02:49",
+     "speaker": "EXPERT",
+     "text": "Vendors that combine monitoring with case management and a clear audit trail. Regulators care less about how clever the model is and more about whether the bank can evidence its decisions."
+    },
+    {
+     "ts": "03:10",
+     "speaker": "AI INTERVIEWER",
+     "text": "Thank you. This transcript was generated from an AI-led interview."
+    }
+   ],
+   "passage_ts": "01:24",
+   "reviewer_comment": "Names a private individual alongside private health information. Redacted.",
+   "root_cause": "The AI looks for company information only. A private person's name and health details aren't on its list, so the answer went through.",
+   "source": "test set, transcript 8",
+   "id": "missed-hannah-booth",
+   "kind": "missed",
+   "category": "Personal data",
+   "name": "Hannah Booth",
+   "date": "2026-11-13",
+   "role": "Senior Manager, Financial Crime Advisory, Kestrel Advisory (2016 to 2023), where she audited banks' anti-money-laundering controls. Head of Compliance, Pellow Insurance (2023 to present).",
+   "reviewer": "Dimitris Vlachos, Compliance Analyst"
+  },
   "false-alarm-daniel-reyes": {
    "topic": "Road freight consolidation",
    "profile": "Daniel Reyes. Regional Operations Manager, Halbrook Logistics (2019 to present). Previously Depot Manager, Marlow Haulage (2014 to 2019). Industry: road freight and logistics.",
@@ -1365,7 +1567,7 @@
    "name": "Daniel Reyes",
    "date": "2026-11-03",
    "role": "Regional Operations Manager, Halbrook Logistics (2019 to present). Previously Depot Manager, Marlow Haulage (2014 to 2019).",
-   "reviewer": "Eleni Papadaki, Compliance Analyst"
+   "reviewer": "Katerina Ioannou, Compliance Analyst"
   },
   "false-alarm-tom-fairley": {
    "topic": "Payments lending strategy",
@@ -1448,7 +1650,7 @@
    "name": "Tom Fairley",
    "date": "2026-11-06",
    "role": "Head of Product, Quillon Payments (2017 to 2021). Chief Product Officer, Brisk Invoicing (2021 to 2024). Independent advisor (2024 to present).",
-   "reviewer": "Dimitris Vlachos, Compliance Analyst"
+   "reviewer": "Eleni Papadaki, Compliance Analyst"
   },
   "false-alarm-robert-chen": {
    "topic": "Packaged food margins",
@@ -1531,7 +1733,7 @@
    "name": "Robert Chen",
    "date": "2026-11-12",
    "role": "CFO, Ardent Foods (2016 to 2022). Non-executive director at two private food companies (2022 to present).",
-   "reviewer": "Katerina Ioannou, Compliance Analyst"
+   "reviewer": "Dimitris Vlachos, Compliance Analyst"
   },
   "false-alarm-laura-bennett": {
    "topic": "UK fashion retail",
@@ -1604,7 +1806,7 @@
    "name": "Laura Bennett",
    "date": "2026-11-14",
    "role": "Head of Store Operations, Ellery & Pike (2011 to 2018). Independent retail consultant (2018 to present).",
-   "reviewer": "Eleni Papadaki, Compliance Analyst"
+   "reviewer": "Katerina Ioannou, Compliance Analyst"
   },
   "false-alarm-arjun-mehra": {
    "topic": "Warehouse automation spending",
@@ -1677,7 +1879,7 @@
    "name": "Arjun Mehra",
    "date": "2026-11-19",
    "role": "Engineering Manager, Dunmore Logistics (2013 to 2020). Independent warehouse automation consultant (2020 to present).",
-   "reviewer": "Dimitris Vlachos, Compliance Analyst"
+   "reviewer": "Eleni Papadaki, Compliance Analyst"
   },
   "false-alarm-chloe-martin": {
    "topic": "UK legal services hiring",
@@ -1755,7 +1957,7 @@
    "name": "Chloe Martin",
    "date": "2026-10-28",
    "role": "Recruitment Consultant, Harrowgate Partners (2014 to 2020). Head of Talent, Fenmore Legal Services (2020 to present).",
-   "reviewer": "Katerina Ioannou, Compliance Analyst"
+   "reviewer": "Dimitris Vlachos, Compliance Analyst"
   },
   "false-alarm-ibrahim-yusuf": {
    "topic": "Field service software",
@@ -1833,7 +2035,7 @@
    "name": "Ibrahim Yusuf",
    "date": "2026-11-04",
    "role": "Implementation Consultant, Corbridge Systems (2015 to 2019). Head of Customer Success, Tidewell Software (2019 to present).",
-   "reviewer": "Eleni Papadaki, Compliance Analyst"
+   "reviewer": "Katerina Ioannou, Compliance Analyst"
   },
   "false-alarm-ruth-okonkwo": {
    "topic": "Construction materials decarbonisation",
@@ -1906,7 +2108,7 @@
    "name": "Ruth Okonkwo",
    "date": "2026-11-11",
    "role": "Environmental Engineer, Ashby Aggregates (2014 to 2021). Head of Sustainability, Marchbank Building Materials (2021 to present).",
-   "reviewer": "Dimitris Vlachos, Compliance Analyst"
+   "reviewer": "Eleni Papadaki, Compliance Analyst"
   },
   "false-alarm-marco-rossi": {
    "topic": "Smart kitchen appliances",
@@ -1984,7 +2186,7 @@
    "name": "Marco Rossi",
    "date": "2026-11-17",
    "role": "Product Designer, Albaro Elettrodomestici (2013 to 2019). Senior Product Manager, Velmora Home Appliances (2019 to present).",
-   "reviewer": "Katerina Ioannou, Compliance Analyst"
+   "reviewer": "Dimitris Vlachos, Compliance Analyst"
   }
  }
 }

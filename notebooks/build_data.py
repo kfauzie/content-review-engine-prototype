@@ -5,7 +5,7 @@ Sources (all ILLUSTRATIVE):
   counts         made up for a 1,000-transcript sample (Kevin's call), defined below
   examples       data/examples_illustrative.json (missed issues and false alarms; 7 quote the test set, the rest written)
   transcripts    5 from data/synthetic-expert-transcripts.md (test set), 13 from data/transcripts_illustrative.json (written)
-Clickable cards: only the top two categories (material non-public information, current-employer confidential).
+Clickable cards: every card in the top two categories, plus the fix examples from other categories.
 A clickable card's timestamp is taken from its transcript's passage, so the two always agree.
 """
 import json
@@ -44,6 +44,13 @@ TEST_SET_NOTES = {
     "T4-00:26": ("The expert left Quillon in 2021 and everything here is from the public investor day and filings. Cleared.",
                  "It matched \u201cQuillon\u201d, the expert's former employer, without checking that he left in 2021 or that he cites "
                  "the public investor day."),
+    "T6-01:34": ("Names a current insider as the source of non-public vendor decisions, which also contradicts her declared lack of "
+                 "professional contact with Marrow. Transcript rejected; the expert is referred to the vetting team.",
+                 "The AI checks for company names, and this answer names none: \u201cthere\u201d points back to Marrow. It didn't treat "
+                 "\u201cmy contact Jamie Holt \u2026 told me\u201d as an insider source, so nothing was flagged."),
+    "T8-01:24": ("Names a private individual alongside private health information. Redacted.",
+                 "The AI looks for company information only. A private person's name and health details aren't on its list, so the "
+                 "answer went through."),
     "T7-00:36": ("Precise figures, but all from the public Q2 earnings call and slides, which the expert confirms at 01:11. He left "
                  "Ardent in 2022. Cleared.",
                  "It matched \u201cArdent\u201d next to precise margin figures and flagged them, without checking the source the expert "
@@ -57,21 +64,29 @@ REVIEWERS = {"Material non-public information": ["Sophie Laurent, Legal Counsel"
 # the three fixes, from the reviewers' comments and the agents' root-cause analysis (Kevin's judgement in tagging)
 FIXES = [
     {"id": "declaration", "title": "Read each answer with the expert's declaration and the question before it",
-     "examples": [{"name": "Priya Natarajan", "highlight": "For us specifically"}, {"name": "Henrik Lindqvist", "highlight": "The board approved the sale"}],
+     "root_cause": "The AI judged answers on their own, so \u201cwe\u201d, \u201ctheir\u201d and \u201cthe board\u201d never linked back to the employer, client or former employer in the declaration.",
+     "examples": [{"name": "Priya Natarajan", "highlight": "For us specifically"}, {"name": "Henrik Lindqvist", "highlight": "The board approved the sale"},
+                  {"name": "Olivia Grant", "highlight": "the regulator's decision on their diabetes drug"}],
      "how": ["Give the AI the declaration and the preceding question with every answer",
              "Resolve \u201cwe\u201d, \u201cour\u201d and \u201ctheir\u201d to a named company before judging",
              "Check restrictions and leaving dates against what is said"]},
     {"id": "people", "title": "Check people and sources, not just companies",
-     "examples": [{"name": "Sofia Marchetti", "highlight": "I've got his personal mobile"}, {"name": "Owen Prendergast", "highlight": "Their head of logistics, Carla, told me"}],
+     "root_cause": "The AI only looked for company information, so private individuals and insiders named as sources went through.",
+     "examples": [{"name": "Elena Vasquez", "highlight": "My contact Jamie Holt, who runs procurement there now, told me"},
+                  {"name": "Hannah Booth", "highlight": "Mark Ellison"}],
      "how": ["Flag named private individuals alongside health, family or legal details",
              "Flag source phrases such as \u201cmy contact\u201d, \u201ctold me\u201d and \u201cI still speak to\u201d",
              "Route both to a reviewer with the name highlighted"]},
     {"id": "sources", "title": "Check the source the expert cites before flagging",
-     "examples": [{"name": "Ibrahim Yusuf", "highlight": "Our prices are on the website"}, {"name": "Laura Bennett", "highlight": "As their annual report says"}],
+     "root_cause": "Most false alarms named a public source (an earnings call, a press release, a published report) that the AI never checked.",
+     "examples": [{"name": "Ibrahim Yusuf", "highlight": "Our prices are on the website"}, {"name": "Laura Bennett", "highlight": "As their annual report says"},
+                  {"name": "Robert Chen", "highlight": "On their Q2 earnings call in August"},
+                  {"name": "Chloe Martin", "highlight": "We announced the Leeds office in a press release"}],
      "how": ["Detect cited sources in the answer",
              "Look them up in filings, press releases and the company's website",
              "Clear the passage when the fact is found there; keep it flagged when it isn't"]},
 ]
+FIX_EXAMPLE_NAMES = {x["name"] for f in FIXES for x in f["examples"]}
 FIX_OF = {  # card name -> fix id; cards not listed are not addressed by any of the three
     "Sanjay Mehta": "declaration", "Olivia Grant": "declaration", "Henrik Lindqvist": "declaration", "Nadia Rahimi": "declaration",
     "Benjamin Cole": "declaration", "Priya Natarajan": "declaration", "Grace Liu": "declaration",
@@ -109,7 +124,7 @@ def main():
             card = {"id": slug(f"{kind}-{e['name']}"), "kind": kind, "category": e["category"], "name": e["name"],
                     "date": e["date"], "ts": e["ts"], "quote": e["quote"], "source": e["source"],
                     "cleared": e.get("cleared"), "transcript": None, "fix": FIX_OF.get(e["name"])}
-            if e["category"] in TOP:
+            if e["category"] in TOP or e["name"] in FIX_EXAMPLE_NAMES:
                 tid = card["id"]
                 if e["source"].startswith("test set"):
                     n, pts = re.match(r"test set T(\d)-(\d\d:\d\d)", e["source"]).groups()
@@ -140,7 +155,7 @@ def main():
             "sample": SAMPLE, "top": TOP,
             "categories": [{"name": n, "priority": p, "description": d, "found": f, "missed": m, "false_alarms": fa}
                            for n, p, d, f, m, fa in CATEGORIES],
-            "fixes": [{**f, "examples": [{**x, **{k: by_name[x["name"]][k] for k in ("quote", "date", "kind", "category")}}
+            "fixes": [{**f, "examples": [{**x, **{k: by_name[x["name"]][k] for k in ("quote", "date", "kind", "category", "transcript")}}
                                          for x in f["examples"]]} for f in FIXES], "cards": cards, "transcripts": transcripts}
     out = ROOT / "data/benchmark.json"
     out.write_text(json.dumps(data, indent=1, ensure_ascii=False) + "\n")

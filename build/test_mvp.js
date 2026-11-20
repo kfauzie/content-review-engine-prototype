@@ -41,8 +41,9 @@ t("missed cards: 5, 4, 0, 4, 3, 7 (one per miss)", BRIEF.map(b => count("missed"
 t("false alarm cards: 5 and 4 in the top two categories, none elsewhere", BRIEF.map(b => count("false_alarm", b[0])).join() === "5,4,0,0,0,0");
 const names = D.cards.map(c => c.name);
 t("no person appears twice", new Set(names).size === names.length, `${names.length} cards`);
-t("only top-category cards open a transcript, and all of them do", D.cards.every(c => Boolean(c.transcript) === D.top.includes(c.category)));
-t("18 transcripts, one per clickable card", Object.keys(D.transcripts).length === 18 && D.cards.filter(c => c.transcript).length === 18);
+const fixNames = new Set(D.fixes.flatMap(f => f.examples.map(x => x.name)));
+t("every top-category card opens a transcript; elsewhere only fix examples do", D.cards.every(c => Boolean(c.transcript) === (D.top.includes(c.category) || fixNames.has(c.name))));
+t("20 transcripts, one per clickable card (18 top-category, 2 fix examples)", Object.keys(D.transcripts).length === 20 && D.cards.filter(c => c.transcript).length === 20);
 t("test-set quotes are word for word from the test set", D.cards.filter(c => c.source.startsWith("test set")).every(c => SRC.includes(c.quote)));
 t("test-set transcripts match the test set turn for turn", Object.values(D.transcripts).filter(x => x.source.startsWith("test set")).every(x =>
   x.turns.every(u => SRC.includes(`[${u.ts}] ${u.speaker}: ${u.text}`))));
@@ -61,7 +62,9 @@ t("fix 3, cited sources: no change to misses, about 78 fewer false alarms (60 x 
   imp[2].id === "sources" && imp[2].missed === 0 && imp[2].falseAlarms === 78, JSON.stringify(imp[2]));
 t("the fixes never claim more misses than exist, and 2 misses stay uncovered", imp.reduce((s, x) => s + x.missed, 0) === 21 &&
   D.cards.filter(c => c.kind === "missed" && !c.fix).map(c => c.name).join() === "Mateo Alvarez,Siobhan Kelly");
-t("each fix has a title, two examples and three how steps", D.fixes.length === 3 && D.fixes.every(f => f.title && f.how.length === 3 && f.examples.length === 2));
+t("each fix has a title, a root cause, 2 to 4 examples and three next steps", D.fixes.length === 3 && D.fixes.every(f => f.title && f.root_cause && f.how.length === 3 && f.examples.length >= 2 && f.examples.length <= 4));
+t("the number of examples varies across fixes (3, 2, 4)", D.fixes.map(f => f.examples.length).join() === "3,2,4");
+t("every fix example opens its transcript", D.fixes.every(f => f.examples.every(x => x.transcript && D.transcripts[x.transcript] && D.transcripts[x.transcript].name === x.name)));
 t("each fix example quotes its card word for word, highlights a phrase in it, and is tagged to that fix", D.fixes.every(f => f.examples.every(x => {
   const c = D.cards.find(k => k.name === x.name); return c && c.quote === x.quote && c.date === x.date && x.quote.includes(x.highlight) && c.fix === f.id; })));
 t("every transcript names its reviewer and title", Object.values(D.transcripts).every(x => /^[A-Z][a-z]+ [A-Z][a-z]+, [A-Z]/.test(x.reviewer)));

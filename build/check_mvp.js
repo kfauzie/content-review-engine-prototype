@@ -48,15 +48,21 @@ const t = (name, ok, got) => { if (!ok) fail++; console.log(`${ok ? "PASS" : "FA
     (await p.locator(".fa .lab").textContent()) === "flagged by AI, marked as non-risk by human reviewers" && await p.locator(".fa .sbar").count() === 0);
   t("no legends, no \"Confirmed\"", await p.locator(".sleg").count() === 0 && !(await p.locator("main").textContent()).includes("Confirmed"));
   t("subtitle", (await p.locator(".sub1").textContent()) === "We compared AI and human review across 1,000 transcripts to see where the AI misses compliance risks, and where it raises false alarms");
-  t("three fixes, each with two highlighted example quotes (initials and date) and three steps", await p.locator(".fix").count() === 3 &&
-    await p.locator(".fix .fq mark").count() === 6 && await p.locator(".fix li").count() === 9 && await p.locator(".fix .fq a").count() === 0);
+  t("three fixes, each with root cause, examples and next steps", await p.locator(".fix").count() === 3 &&
+    (await p.locator(".fix").first().locator(".fl").allTextContents()).join("|") === "Root cause|Examples|Next steps" && await p.locator(".fix li").count() === 9);
+  t("9 example quotes (3, 2, 4), each highlighted and linking to its transcript", await p.locator(".fix .fq mark").count() === 9 &&
+    (await p.locator(".fix a.fq").evaluateAll(a => a.map(x => x.getAttribute("href")))).every(h => /^#t\//.test(h)) &&
+    (await p.evaluate(() => [...document.querySelectorAll(".fix")].map(f => f.querySelectorAll(".fq").length).join())) === "3,2,4");
+  const fb = await p.evaluate(() => [".risk", ".fa"].map(s => { const r = document.querySelector(s).getBoundingClientRect(); return [r.width, r.height]; }));
+  t("false alarm box is much smaller: under half the width and shorter", fb[1][0] < fb[0][0] / 2 && fb[1][1] < fb[0][1], fb.map(x => x.map(Math.round).join("x")).join(" vs "));
   t("expected impact boxes, no grey placeholders", (await p.locator(".fix .ih").allTextContents()).every(x => x === "Expected impact") &&
     (await p.locator(".fix [data-imp]").allTextContents()).join("|") ===
     "Reduces missed by AI by 107 high priority|Cuts false alarms by 12|Reduces missed by AI by 11|Cuts false alarms by 78" &&
     !/no change|not estimated/.test(await p.locator(".fixes").textContent()));
-  t("category rows: a big number with \"out of\", no bars", await p.locator(".mini").count() === 0 &&
-    (await p.locator('[data-cat="missed|Material non-public information"] .c').textContent()) === "5out of 38" &&
-    (await p.locator('[data-cat="false_alarm|Material non-public information"] .c').textContent()) === "60out of 93");
+  t("category rows: a big number, \"of N\" and \"in this category\" beneath, no bars", await p.locator(".mini").count() === 0 &&
+    (await p.locator('[data-cat="missed|Material non-public information"] .c').textContent()) === "5of 38" &&
+    (await p.locator('[data-cat="false_alarm|Material non-public information"] .c').textContent()) === "60of 93" &&
+    (await p.locator('[data-cat="missed|Material non-public information"] .cin').textContent()) === "in this category");
 
   const mnpi = p.locator('[data-cat="missed|Material non-public information"]');
   t("MNPI missed shows 3 of its 5 cards", await mnpi.locator(".ex").count() === 3 && (await mnpi.locator("[data-range]").textContent()) === "1–3 of 5");
@@ -73,7 +79,8 @@ const t = (name, ok, got) => { if (!ok) fail++; console.log(`${ok ? "PASS" : "FA
   await p.keyboard.press("Enter");
   t("Enter on the focused category shows them again", await p.locator('[data-cat="missed|Personal data"] .ex').count() === 3);
   t("declaration conflict (0 missed) has no tiles and no toggle", await p.locator('[data-cat="missed|Declaration conflict"] [data-toggle]').count() === 0);
-  t("lower-priority cards don't open a transcript", await p.locator('[data-cat="missed|Personal data"] a.ex').count() === 0);
+  t("outside the top categories, only fix examples open a transcript", await p.locator('[data-cat="missed|Personal data"] a.ex').count() === 1 &&
+    (await p.locator('[data-cat="missed|Personal data"] a.ex .nm').textContent()) === "Hannah Booth" && await p.locator('[data-cat="missed|Former-client confidential"] a.ex').count() === 0);
   t("false alarms: top two have carousels, the rest show counts only",
     await p.locator('[data-cat="false_alarm|Material non-public information"] a.ex').count() === 3 && await p.locator('[data-cat="false_alarm|Personal data"] .ex').count() === 0);
 
@@ -102,6 +109,9 @@ const t = (name, ok, got) => { if (!ok) fail++; console.log(`${ok ? "PASS" : "FA
   await p.waitForSelector('body[data-view="transcript"]');
   t("false alarm: amber passage, note titled \"Why the original AI flagged it\"",
     await p.locator(".hit.false_alarm").count() === 1 && (await p.locator(".note.agent .nt").textContent()) === "Why the original AI flagged it");
+  await p.goto(url); await p.waitForSelector('body[data-view="summary"]');
+  await p.locator('.fix[data-fix="people"] a.fq').first().click(); await p.waitForSelector('body[data-view="transcript"]');
+  t("clicking a fix example opens its transcript", (await p.locator(".ctx .v b").textContent()) === "Elena Vasquez" && (await p.locator(".htag").textContent()) === "Missed · Source disclosure");
   await p.goto(`${url}#t/nope`); await p.waitForSelector('body[data-ready="1"]');
   t("an unknown transcript link says so and offers the way back", (await p.locator(".notfound").count()) === 1);
   t(`main flow in ${((Date.now() - t0) / 1000).toFixed(1)} s`, Date.now() - t0 < 20000);
