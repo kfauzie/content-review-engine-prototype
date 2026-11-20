@@ -1,6 +1,6 @@
 # Run: Dialectica Legal & Compliance, content review engine
 
-> **Role-play on synthetic data.** Kevin plays the Lead AI Product Developer reporting to Dialectica's Chief Legal & Regulatory Officer. The transcripts, experts and companies are fictional (Kevin's test set). Nothing here is Dialectica's data, policy or product.
+> **All made up.** The call is a role-play, the transcripts are synthetic, and nothing is known about Dialectica's current tool. Kevin plays the Lead AI Product Developer reporting to Dialectica's Chief Legal & Regulatory Officer. The transcripts, experts and companies are fictional (Kevin's test set). Nothing here is Dialectica's data, policy or product.
 
 ## The ask, word for word
 > "pretend for this role i am a lead ai developer reporting to chief legal officer. I want to balance between ai and human review. making sure there is never confidential information breach while not passing more to human reviews than needed"
@@ -75,14 +75,14 @@ Every number comes from `notebooks/synthesis.py`. Each hypothesis from the role-
 | 1 | Most of a transcript is harmless, but nobody knows which part matters until they've read it | Measured by expert answer and by word, using the four markers from Step 1 | 9 of 51 answers (17.6%) and 374 of 1,885 words (19.8%) carry a marker | **Consistent** with the test set (not evidence) |
 | 2 | Experts often mention companies, and each mention sends the reviewer to the profile system | Counted answers that name any company | 8 answers, in 6 of 8 calls | **Consistent** with the test set (not evidence). The time cost can't be tested here |
 | 3 | Personal data is usually a simple redaction | Answers naming a private person, and whether the same answer cites an insider source | 2 answers. T8 names a person. T6 names the insider who passed on information, so it's about the source, not only personal data | **Not consistent**: in the test set, 1 of 2 is more than a redaction |
-| 4 | The current tool flags every company mention | Not testable | The data holds no output from the current tool | **Unclear**: tested in the eval below with a stand-in |
+| 4 | The current tool flags every company mention | Not testable | The data holds no output from the current tool | **Unknown**: nothing is known about the current tool. The engine in the eval demo is made up |
 
 **Surprise:** in 1 answer, a current employee talks about their employer as "us" without naming it (T3 01:34). A check that starts only when a company is named would miss it.
 
 ## 5. Eval demo (after Kevin's feedback on the first concept)
 `notebooks/eval.py` scores each expert answer against the answer key as rightly flagged, a false alarm or missed, by issue type. The fourth outcome, missed by the human, needs a separate human verdict, which this data doesn't have.
 
-**This demonstrates the method, not a result.** The stand-in flags every answer that names a company, and the test transcripts were written with issues that don't name companies. So its score (3 rightly flagged, 5 false alarms, 4 missed) is built in, and says nothing about Dialectica's tool.
+**This demonstrates the method, not a result.** The engine is made up, not a model of Dialectica's tool (nothing is known about how that works). It flags every answer that names a company, and the test transcripts were written with issues that don't name companies. So its score (3 rightly flagged, 5 false alarms, 4 missed) is built in, and says nothing about Dialectica's tool.
 
 **Pipeline check only:** `data/eval/ai_reviewer_verdicts.json` holds verdicts written by Claude after it had seen the answer key. They only confirm that the scorer reads verdicts and computes the outcomes. The score isn't reported anywhere.
 

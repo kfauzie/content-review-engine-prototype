@@ -3,8 +3,8 @@ It demonstrates the method; its numbers are not results (the stand-in's misses a
 Run from the run folder: python3 notebooks/eval.py
 
 Engines compared:
-  1. Current tool (stand-in): flags every expert answer that names a company. Built from the role-play
-     description ("it flags every company mention"), not from the real tool.
+  1. Made-up engine: flags every expert answer that names a company. Not a model of Dialectica's tool, about which
+     nothing is known.
   2. Pipeline check: data/eval/ai_reviewer_verdicts.json, written after seeing the answer key. It only checks that
      verdicts load and score; its numbers are not reported.
 
@@ -49,7 +49,7 @@ def main():
 
     print(f"expert answers: {len(A)}; answers with an issue in the answer key: {len(truth)}")
     results = {}
-    for name, flags in [("Current tool (stand-in)", current), ("Pipeline check (saw the answer key; not a result)", reviewer)]:
+    for name, flags in [("Made-up engine (flags company names)", current), ("Pipeline check (saw the answer key; not a result)", reviewer)]:
         tp = [a for a in flags if flags[a] and a in truth]
         fp = [a for a in flags if flags[a] and a not in truth]
         fn = [a for a in flags if not flags[a] and a in truth]
@@ -80,8 +80,8 @@ def main():
             print(f"  T{n}: reviewer {d}, answer key {k['overall_decision']}")
     print(f"transcript decisions matching the answer key: {dec_ok} of {len(keys)}")
 
-    print("\n== Failure analysis: current tool (stand-in)")
-    cur = results["Current tool (stand-in)"]
+    print("\n== Failure analysis: made-up engine")
+    cur = results["Made-up engine (flags company names)"]
     by_ts = {aid(t, ts): (t, txt) for t, ts, txt in A}
     for a in cur["fn"]:
         t, txt = by_ts[a]
