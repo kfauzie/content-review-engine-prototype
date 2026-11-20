@@ -11,6 +11,7 @@ A clickable card's timestamp is taken from its transcript's passage, so the two 
 import json
 import re
 import sys
+from datetime import date, timedelta
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -61,6 +62,7 @@ TEST_SET_NOTES = {
 # made-up reviewers (Athens compliance team and Legal), assigned in turn; possible MNPI goes to Legal
 REVIEWERS = {"Material non-public information": ["Sophie Laurent, Legal Counsel", "Nikos Andreou, Senior Compliance Manager"],
              "other": ["Eleni Papadaki, Compliance Analyst", "Dimitris Vlachos, Compliance Analyst", "Katerina Ioannou, Compliance Analyst"]}
+REVIEW_TIMES = ["09:42", "11:17", "14:05", "16:38", "10:26", "12:51", "15:09"]  # made up
 # the three fixes, from the reviewers' comments and the agents' root-cause analysis (Kevin's judgement in tagging)
 FIXES = [
     {"id": "declaration", "title": "Read each answer in context", "cause_label": "Why the AI missed it",
@@ -142,8 +144,11 @@ def main():
                     tr = {k: w[k] for k in ("topic", "profile", "declaration", "turns", "passage_ts", "reviewer_comment", "root_cause")}
                     tr["source"] = "written for the prototype"
                 pool = REVIEWERS.get(e["category"], REVIEWERS["other"]) if kind == "missed" else REVIEWERS["other"]
+                n = len(transcripts)  # made-up review time: one or two days after the call, during Athens office hours
+                reviewed = date.fromisoformat(e["date"]) + timedelta(days=1 + n % 2)
                 tr.update({"id": tid, "kind": kind, "category": e["category"], "name": e["name"], "date": e["date"],
-                           "role": role_of(tr["profile"]), "reviewer": pool[len(transcripts) % len(pool)]})
+                           "role": role_of(tr["profile"]), "reviewer": pool[n % len(pool)],
+                           "reviewed_at": f"{reviewed.isoformat()}T{REVIEW_TIMES[n % len(REVIEW_TIMES)]}"})
                 transcripts[tid] = tr
                 card["transcript"] = tid
                 card["ts"] = tr["passage_ts"]
@@ -158,7 +163,7 @@ def main():
             "sample": SAMPLE, "top": TOP,
             "categories": [{"name": n, "priority": p, "description": d, "found": f, "missed": m, "false_alarms": fa}
                            for n, p, d, f, m, fa in CATEGORIES],
-            "fixes": [{**f, "examples": [{**x, **{k: by_name[x["name"]][k] for k in ("quote", "date", "kind", "category", "transcript")}}
+            "fixes": [{**f, "examples": [{**x, **{k: by_name[x["name"]][k] for k in ("quote", "date", "ts", "kind", "category", "transcript")}}
                                          for x in f["examples"]]} for f in FIXES], "cards": cards, "transcripts": transcripts}
     out = ROOT / "data/benchmark.json"
     out.write_text(json.dumps(data, indent=1, ensure_ascii=False) + "\n")

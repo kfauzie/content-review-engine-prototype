@@ -1,3 +1,13 @@
+# Prototype feedback, round 12 (applied)
+
+1. **Fixes section title:** "Possible improvements", with the "Estimated from…" note removed.
+2. **The top layout, based on common dashboard guidance:** one summary panel split about 70/30 by a divider. The primary metric sits top-left, largest and highest contrast. The secondary metric sits beside it at medium emphasis, on a quieter amber tint, at the same height, centred. This replaces two separate cards of different heights. Guidance sources: Improvado, Klipfolio, Geckoboard, Splunk Dashboard Studio (vendor guides, not research). No "Also measured" label.
+3. **The compliance zone:** headed "262 compliance risks found in the transcripts". The big red 23 "missed by AI" with "Liability risk" beside it. The 239 is no longer a big number: it's a small caption under the bar, "239 found by AI", with a green dot. A main number needs context beside it, not a rival.
+4. **Reviewer comments** carry a date and time ("Sophie Laurent, Legal Counsel · 13 Nov 2026, 09:42"). They're made up, one or two days after the call, during Athens office hours.
+5. **Recommendation examples** show the call date and timestamp ("4 Nov 2026 · 01:34"), matching the card and the transcript passage.
+
+---
+
 # Prototype feedback, round 11 (applied)
 
 Kevin rewrote the fix copy in plain terms for a senior lawyer. It's applied word for word:

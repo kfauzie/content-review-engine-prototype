@@ -36,12 +36,14 @@ const t = (name, ok, got) => { if (!ok) fail++; console.log(`${ok ? "PASS" : "FA
   t("header numbers: 239 found by AI, 23 missed by AI, 187 false alarms",
     await num("caught") === "239" && await num("missed") === "23" && await num("false") === "187");
   const sizes = await p.evaluate(() => ["caught", "missed", "false"].map(k => parseFloat(getComputedStyle(document.querySelector(`[data-n="${k}"]`)).fontSize)));
-  t("missed by AI is the largest number", sizes[1] > sizes[0] && sizes[1] > sizes[2], sizes.join("/"));
+  t("missed by AI is the largest number; 239 is a small caption", sizes[1] > sizes[2] && sizes[0] <= 14, sizes.join("/"));
+  t("caption under the bar: 239 found by AI", (await p.locator(".risk .cap").textContent()) === "239 found by AI");
+  t("no \"Also measured\" label", !(await p.locator("main").textContent()).includes("Also measured"));
   const boxes = await p.evaluate(() => [".risk", ".fa"].map(s => document.querySelector(s).getBoundingClientRect().width));
-  t("the compliance box is bigger than the false alarm box", boxes[0] > boxes[1] * 1.4, boxes.map(Math.round).join("/"));
-  t("compliance heading, larger type", (await p.locator(".kh").textContent()) === "Compliance risks found in transcripts" &&
+  t("the compliance zone is bigger than the false alarm zone", boxes[0] > boxes[1] * 1.8, boxes.map(Math.round).join("/"));
+  t("compliance heading, larger type", (await p.locator(".kh").textContent()) === "262 compliance risks found in the transcripts" &&
     await p.evaluate(() => parseFloat(getComputedStyle(document.querySelector(".kh")).fontSize)) >= 20);
-  t("labels: found by AI, missed by AI", (await p.locator(".risk .lab").allTextContents()).join("|") === "found by AI|missed by AI");
+  t("label: missed by AI", (await p.locator(".risk .lab").allTextContents()).join("|") === "missed by AI");
   t("Liability risk next to 23; Operational cost in the false alarm box",
     (await p.locator(".risk .bigrow .tag").textContent()) === "Liability risk" && (await p.locator(".fa .tag").textContent()) === "Operational cost");
   t("false alarm box shows only 187 false alarms and its description", (await p.locator(".fa .fal").textContent()) === "false alarms" &&
@@ -49,14 +51,18 @@ const t = (name, ok, got) => { if (!ok) fail++; console.log(`${ok ? "PASS" : "FA
   t("no legends, no \"Confirmed\"", await p.locator(".sleg").count() === 0 && !(await p.locator("main").textContent()).includes("Confirmed"));
   t("subtitle", (await p.locator(".sub1").textContent()) === "We compared AI and human review across 1,000 transcripts to see where the AI misses compliance risks, and where it raises false alarms");
   t("fix titles", (await p.locator(".fix h3").allTextContents()).join("|") === "Read each answer in context|Check for people and sources, not just companies|Check the expert's cited source before flagging");
+  t("recommendation examples show date and call timestamp", (await p.locator('.fix[data-fix="declaration"] .fq .by').first().textContent()) === "PN4 Nov 2026 · 01:34");
   t("first example reads as written", (await p.locator('.fix[data-fix="declaration"] .fq').first().textContent()).startsWith("\u201cFor us specifically, we're moving list price up 12% on the mid-market tier from January.\u201d"));
   t("three fixes, each with root cause, examples and next steps", await p.locator(".fix").count() === 3 &&
     (await p.locator(".fix .fl").allTextContents()).join("|") === "Why the AI missed it|Examples|What we'll change|Why the AI missed it|Examples|What we'll change|Why the AI raised a false alarm|Examples|What we'll change" && await p.locator(".fix li").count() === 9);
   t("9 example quotes (3, 2, 4), each highlighted and linking to its transcript", await p.locator(".fix .fq mark").count() === 9 &&
     (await p.locator(".fix a.fq").evaluateAll(a => a.map(x => x.getAttribute("href")))).every(h => /^#t\//.test(h)) &&
     (await p.evaluate(() => [...document.querySelectorAll(".fix")].map(f => f.querySelectorAll(".fq").length).join())) === "3,2,4");
-  const fb = await p.evaluate(() => [".risk", ".fa"].map(s => { const r = document.querySelector(s).getBoundingClientRect(); return [r.width, r.height]; }));
-  t("false alarm box is much smaller: under half the width and shorter", fb[1][0] < fb[0][0] / 2 && fb[1][1] < fb[0][1], fb.map(x => x.map(Math.round).join("x")).join(" vs "));
+  const fb = await p.evaluate(() => [".risk", ".fa"].map(s => { const r = document.querySelector(s).getBoundingClientRect(); return [r.width, r.height, r.top]; }));
+  t("one summary panel: false alarms beside the hero at about 30% width, same row height", fb[1][0] < fb[0][0] / 2 && Math.abs(fb[1][1] - fb[0][1]) < 2 && Math.abs(fb[1][2] - fb[0][2]) < 2,
+    fb.map(x => x.slice(0, 2).map(Math.round).join("x")).join(" vs "));
+  t("secondary number is at most half the hero number", sizes[2] <= sizes[1] / 2, sizes.join("/"));
+  t("section title \"Possible improvements\", no estimate note", (await p.locator(".fixes").evaluate(e => e.previousElementSibling.textContent)) === "Possible improvements" && await p.locator(".est").count() === 0);
   t("expected impact boxes, no grey placeholders", (await p.locator(".fix .ih").allTextContents()).every(x => x === "Expected impact") &&
     (await p.locator(".fix [data-imp]").allTextContents()).join("|") ===
     "10 fewer risks missed by AI, 7 of them high priority|12 fewer false alarms|11 fewer risks missed by AI|78 fewer false alarms" &&
@@ -103,6 +109,7 @@ const t = (name, ok, got) => { if (!ok) fail++; console.log(`${ok ? "PASS" : "FA
   await p.locator('[data-cat="missed|Material non-public information"] a.ex').first().click();
   await p.waitForSelector('body[data-view="transcript"]');
   t("clicking a card opens its transcript", (await p.locator(".htag").textContent()).startsWith("Missed · Material non-public information"));
+  t("reviewer's comment shows name, title, date and time", /^[A-Z][a-z]+ [A-Z][a-z]+, [A-Za-z ]+ · \d{1,2} [A-Z][a-z]{2} \d{4}, \d\d:\d\d$/.test(await p.locator(".note.rev .ns").textContent()), await p.locator(".note.rev .ns").textContent());
   t("missed: note titled \"Why the original AI didn't flag it\"", (await p.locator(".note.agent .nt").textContent()) === "Why the original AI didn't flag it");
   t("call context: expert, call date, role, declared", await p.locator(".ctx .k").allTextContents().then(k => k.join("|")) === "Expert|Call date|Role|Declared");
   await p.locator(".back").click(); await p.waitForSelector('body[data-view="summary"]');

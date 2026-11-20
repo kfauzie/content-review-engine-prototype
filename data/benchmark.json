@@ -67,6 +67,7 @@
      "highlight": "For us specifically",
      "quote": "For us specifically, we're moving list price up 12% on the mid-market tier from January. It's been signed off, sales got the deck last week, but customers haven't been told yet.",
      "date": "2026-11-04",
+     "ts": "01:34",
      "kind": "missed",
      "category": "Current-employer confidential",
      "transcript": "missed-priya-natarajan"
@@ -76,6 +77,7 @@
      "highlight": "The board approved the sale",
      "quote": "The board approved the sale of the European tyre business on Tuesday. The announcement is planned for after the half-year results.",
      "date": "2026-11-05",
+     "ts": "02:10",
      "kind": "missed",
      "category": "Material non-public information",
      "transcript": "missed-henrik-lindqvist"
@@ -85,6 +87,7 @@
      "highlight": "the regulator's decision on their diabetes drug",
      "quote": "Between us, the regulator's decision on their diabetes drug came back last week, and it's a rejection. They haven't announced it yet.",
      "date": "2026-10-29",
+     "ts": "02:17",
      "kind": "missed",
      "category": "Material non-public information",
      "transcript": "missed-olivia-grant"
@@ -107,6 +110,7 @@
      "highlight": "My contact Jamie Holt, who runs procurement there now, told me",
      "quote": "My contact Jamie Holt, who runs procurement there now, told me last week they're giving notice to two of them in Q1.",
      "date": "2026-11-09",
+     "ts": "01:34",
      "kind": "missed",
      "category": "Source disclosure",
      "transcript": "missed-elena-vasquez"
@@ -116,6 +120,7 @@
      "highlight": "Mark Ellison",
      "quote": "I remember Mark Ellison, who led their financial crime team at the time, was signed off for months with a breakdown afterwards.",
      "date": "2026-11-13",
+     "ts": "01:24",
      "kind": "missed",
      "category": "Personal data",
      "transcript": "missed-hannah-booth"
@@ -138,6 +143,7 @@
      "highlight": "Our prices are on the website",
      "quote": "Our prices are on the website. The standard tier is £40 a seat, and that hasn't changed this year.",
      "date": "2026-11-04",
+     "ts": "01:56",
      "kind": "false_alarm",
      "category": "Current-employer confidential",
      "transcript": "false-alarm-ibrahim-yusuf"
@@ -147,6 +153,7 @@
      "highlight": "As their annual report says",
      "quote": "As their annual report says, they've been closing stores in the north for two years, so the shift to online isn't new.",
      "date": "2026-11-14",
+     "ts": "00:51",
      "kind": "false_alarm",
      "category": "Material non-public information",
      "transcript": "false-alarm-laura-bennett"
@@ -156,6 +163,7 @@
      "highlight": "On their Q2 earnings call in August",
      "quote": "Ardent is a good one because they're transparent. On their Q2 earnings call in August, they reported gross margin of 31.4%, up from 28.9% a year earlier, and guided to 32% to 33% for the full year.",
      "date": "2026-11-12",
+     "ts": "00:36",
      "kind": "false_alarm",
      "category": "Material non-public information",
      "transcript": "false-alarm-robert-chen"
@@ -165,6 +173,7 @@
      "highlight": "We announced the Leeds office in a press release",
      "quote": "We announced the Leeds office in a press release last month, so it's no secret we're expanding in the north.",
      "date": "2026-10-28",
+     "ts": "01:20",
      "kind": "false_alarm",
      "category": "Current-employer confidential",
      "transcript": "false-alarm-chloe-martin"
@@ -677,7 +686,8 @@
    "name": "Sanjay Mehta",
    "date": "2026-11-12",
    "role": "Finance Director, Northwind Biomedical (2018 to March 2026). Independent consultant (March 2026 to present).",
-   "reviewer": "Sophie Laurent, Legal Counsel"
+   "reviewer": "Sophie Laurent, Legal Counsel",
+   "reviewed_at": "2026-11-13T09:42"
   },
   "missed-olivia-grant": {
    "topic": "Diabetes drug approvals",
@@ -750,7 +760,8 @@
    "name": "Olivia Grant",
    "date": "2026-10-29",
    "role": "Regulatory Affairs Manager, Pellham Biosciences (2016 to 2022). Principal Consultant, Ashgrove Regulatory Partners (2022 to present).",
-   "reviewer": "Nikos Andreou, Senior Compliance Manager"
+   "reviewer": "Nikos Andreou, Senior Compliance Manager",
+   "reviewed_at": "2026-10-31T11:17"
   },
   "missed-henrik-lindqvist": {
    "topic": "European tyre market",
@@ -828,7 +839,8 @@
    "name": "Henrik Lindqvist",
    "date": "2026-11-05",
    "role": "Plant Manager, Nordvik Rubber (2012 to 2019). Head of Corporate Strategy, Brannholt Automotive (2019 to present).",
-   "reviewer": "Sophie Laurent, Legal Counsel"
+   "reviewer": "Sophie Laurent, Legal Counsel",
+   "reviewed_at": "2026-11-06T14:05"
   },
   "missed-nadia-rahimi": {
    "topic": "Food packaging supply",
@@ -906,7 +918,8 @@
    "name": "Nadia Rahimi",
    "date": "2026-11-10",
    "role": "Account Manager, Fenwick Cartons (2014 to 2018). Key Account Director, Stellan Packaging (2018 to August 2026). Independent packaging consultant (August 2026 to present).",
-   "reviewer": "Nikos Andreou, Senior Compliance Manager"
+   "reviewer": "Nikos Andreou, Senior Compliance Manager",
+   "reviewed_at": "2026-11-12T16:38"
   },
   "missed-benjamin-cole": {
    "topic": "Industrial pumps distribution",
@@ -984,7 +997,8 @@
    "name": "Benjamin Cole",
    "date": "2026-11-16",
    "role": "Regional Sales Manager, Hartwell Pumps (2014 to 2021). Commercial Director, Ridgeway Industrial Supply (2021 to present).",
-   "reviewer": "Sophie Laurent, Legal Counsel"
+   "reviewer": "Sophie Laurent, Legal Counsel",
+   "reviewed_at": "2026-11-17T10:26"
   },
   "missed-priya-natarajan": {
    "topic": "Workforce SaaS pricing",
@@ -1077,7 +1091,8 @@
    "name": "Priya Natarajan",
    "date": "2026-11-04",
    "role": "VP Sales EMEA, Teallight Software (2021 to present). Previously Sales Director, Orbisoft (2016 to 2021).",
-   "reviewer": "Katerina Ioannou, Compliance Analyst"
+   "reviewer": "Katerina Ioannou, Compliance Analyst",
+   "reviewed_at": "2026-11-06T12:51"
   },
   "missed-grace-liu": {
    "topic": "UK household goods manufacturing",
@@ -1155,7 +1170,8 @@
    "name": "Grace Liu",
    "date": "2026-10-30",
    "role": "Production Engineer, Thornbury Plastics (2015 to 2020). Operations Director, Kelsall Home Products (2020 to present).",
-   "reviewer": "Eleni Papadaki, Compliance Analyst"
+   "reviewer": "Eleni Papadaki, Compliance Analyst",
+   "reviewed_at": "2026-10-31T15:09"
   },
   "missed-mateo-alvarez": {
    "topic": "Retail point-of-sale software",
@@ -1233,7 +1249,8 @@
    "name": "Mateo Alvarez",
    "date": "2026-11-07",
    "role": "Software Engineer, Plinth Systems (2014 to 2019). Engineering Manager, Quayside Retail Software (2019 to present).",
-   "reviewer": "Dimitris Vlachos, Compliance Analyst"
+   "reviewer": "Dimitris Vlachos, Compliance Analyst",
+   "reviewed_at": "2026-11-09T09:42"
   },
   "missed-siobhan-kelly": {
    "topic": "Outsourced facilities management",
@@ -1311,7 +1328,8 @@
    "name": "Siobhan Kelly",
    "date": "2026-11-18",
    "role": "Account Manager, Brayfield Telecom (2015 to 2021). Senior Account Director, Calder Facilities Services (2021 to present).",
-   "reviewer": "Katerina Ioannou, Compliance Analyst"
+   "reviewer": "Katerina Ioannou, Compliance Analyst",
+   "reviewed_at": "2026-11-19T11:17"
   },
   "missed-elena-vasquez": {
    "topic": "Enterprise software buying",
@@ -1394,7 +1412,8 @@
    "name": "Elena Vasquez",
    "date": "2026-11-09",
    "role": "Head of Procurement, Marrow Analytics (2019 to October 2024, per declaration). Independent procurement advisor (October 2024 to present).",
-   "reviewer": "Eleni Papadaki, Compliance Analyst"
+   "reviewer": "Eleni Papadaki, Compliance Analyst",
+   "reviewed_at": "2026-11-11T14:05"
   },
   "missed-hannah-booth": {
    "topic": "Financial crime (AI-led)",
@@ -1477,7 +1496,8 @@
    "name": "Hannah Booth",
    "date": "2026-11-13",
    "role": "Senior Manager, Financial Crime Advisory, Kestrel Advisory (2016 to 2023), where she audited banks' anti-money-laundering controls. Head of Compliance, Pellow Insurance (2023 to present).",
-   "reviewer": "Dimitris Vlachos, Compliance Analyst"
+   "reviewer": "Dimitris Vlachos, Compliance Analyst",
+   "reviewed_at": "2026-11-14T16:38"
   },
   "false-alarm-daniel-reyes": {
    "topic": "Road freight consolidation",
@@ -1570,7 +1590,8 @@
    "name": "Daniel Reyes",
    "date": "2026-11-03",
    "role": "Regional Operations Manager, Halbrook Logistics (2019 to present). Previously Depot Manager, Marlow Haulage (2014 to 2019).",
-   "reviewer": "Katerina Ioannou, Compliance Analyst"
+   "reviewer": "Katerina Ioannou, Compliance Analyst",
+   "reviewed_at": "2026-11-05T10:26"
   },
   "false-alarm-tom-fairley": {
    "topic": "Payments lending strategy",
@@ -1653,7 +1674,8 @@
    "name": "Tom Fairley",
    "date": "2026-11-06",
    "role": "Head of Product, Quillon Payments (2017 to 2021). Chief Product Officer, Brisk Invoicing (2021 to 2024). Independent advisor (2024 to present).",
-   "reviewer": "Eleni Papadaki, Compliance Analyst"
+   "reviewer": "Eleni Papadaki, Compliance Analyst",
+   "reviewed_at": "2026-11-07T12:51"
   },
   "false-alarm-robert-chen": {
    "topic": "Packaged food margins",
@@ -1736,7 +1758,8 @@
    "name": "Robert Chen",
    "date": "2026-11-12",
    "role": "CFO, Ardent Foods (2016 to 2022). Non-executive director at two private food companies (2022 to present).",
-   "reviewer": "Dimitris Vlachos, Compliance Analyst"
+   "reviewer": "Dimitris Vlachos, Compliance Analyst",
+   "reviewed_at": "2026-11-14T15:09"
   },
   "false-alarm-laura-bennett": {
    "topic": "UK fashion retail",
@@ -1809,7 +1832,8 @@
    "name": "Laura Bennett",
    "date": "2026-11-14",
    "role": "Head of Store Operations, Ellery & Pike (2011 to 2018). Independent retail consultant (2018 to present).",
-   "reviewer": "Katerina Ioannou, Compliance Analyst"
+   "reviewer": "Katerina Ioannou, Compliance Analyst",
+   "reviewed_at": "2026-11-15T09:42"
   },
   "false-alarm-arjun-mehra": {
    "topic": "Warehouse automation spending",
@@ -1882,7 +1906,8 @@
    "name": "Arjun Mehra",
    "date": "2026-11-19",
    "role": "Engineering Manager, Dunmore Logistics (2013 to 2020). Independent warehouse automation consultant (2020 to present).",
-   "reviewer": "Eleni Papadaki, Compliance Analyst"
+   "reviewer": "Eleni Papadaki, Compliance Analyst",
+   "reviewed_at": "2026-11-21T11:17"
   },
   "false-alarm-chloe-martin": {
    "topic": "UK legal services hiring",
@@ -1960,7 +1985,8 @@
    "name": "Chloe Martin",
    "date": "2026-10-28",
    "role": "Recruitment Consultant, Harrowgate Partners (2014 to 2020). Head of Talent, Fenmore Legal Services (2020 to present).",
-   "reviewer": "Dimitris Vlachos, Compliance Analyst"
+   "reviewer": "Dimitris Vlachos, Compliance Analyst",
+   "reviewed_at": "2026-10-29T14:05"
   },
   "false-alarm-ibrahim-yusuf": {
    "topic": "Field service software",
@@ -2038,7 +2064,8 @@
    "name": "Ibrahim Yusuf",
    "date": "2026-11-04",
    "role": "Implementation Consultant, Corbridge Systems (2015 to 2019). Head of Customer Success, Tidewell Software (2019 to present).",
-   "reviewer": "Katerina Ioannou, Compliance Analyst"
+   "reviewer": "Katerina Ioannou, Compliance Analyst",
+   "reviewed_at": "2026-11-06T16:38"
   },
   "false-alarm-ruth-okonkwo": {
    "topic": "Construction materials decarbonisation",
@@ -2111,7 +2138,8 @@
    "name": "Ruth Okonkwo",
    "date": "2026-11-11",
    "role": "Environmental Engineer, Ashby Aggregates (2014 to 2021). Head of Sustainability, Marchbank Building Materials (2021 to present).",
-   "reviewer": "Eleni Papadaki, Compliance Analyst"
+   "reviewer": "Eleni Papadaki, Compliance Analyst",
+   "reviewed_at": "2026-11-12T10:26"
   },
   "false-alarm-marco-rossi": {
    "topic": "Smart kitchen appliances",
@@ -2189,7 +2217,8 @@
    "name": "Marco Rossi",
    "date": "2026-11-17",
    "role": "Product Designer, Albaro Elettrodomestici (2013 to 2019). Senior Product Manager, Velmora Home Appliances (2019 to present).",
-   "reviewer": "Dimitris Vlachos, Compliance Analyst"
+   "reviewer": "Dimitris Vlachos, Compliance Analyst",
+   "reviewed_at": "2026-11-19T12:51"
   }
  }
 }

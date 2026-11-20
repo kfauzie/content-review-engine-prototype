@@ -69,6 +69,11 @@ t("every fix example opens its transcript", D.fixes.every(f => f.examples.every(
 t("each fix example quotes its card word for word, highlights a phrase in it, and is tagged to that fix", D.fixes.every(f => f.examples.every(x => {
   const c = D.cards.find(k => k.name === x.name); return c && c.quote === x.quote && c.date === x.date && x.quote.includes(x.highlight) && c.fix === f.id; })));
 t("every transcript names its reviewer and title", Object.values(D.transcripts).every(x => /^[A-Z][a-z]+ [A-Z][a-z]+, [A-Z]/.test(x.reviewer)));
+t("each reviewer comment is timestamped one or two days after the call", Object.values(D.transcripts).every(x => {
+  const gap = (new Date(x.reviewed_at.split("T")[0]) - new Date(x.date)) / 864e5; return /^\d{4}-\d\d-\d\dT\d\d:\d\d$/.test(x.reviewed_at) && (gap === 1 || gap === 2); }));
+t("each fix example carries its call timestamp, matching its card and transcript passage", D.fixes.every(f => f.examples.every(x =>
+  x.ts === D.cards.find(c => c.name === x.name).ts && x.ts === D.transcripts[x.transcript].passage_ts)));
+t("date and time format", C.niceDateTime("2026-11-13T11:17") === "13 Nov 2026, 11:17");
 t("carousel window clamps at the ends", JSON.stringify(C.windowOf(5, 4, 3)) === '{"start":2,"end":5}' && JSON.stringify(C.windowOf(5, -1, 3)) === '{"start":0,"end":3}');
 t("three cards on desktop, two on tablet, one on phone", C.perView(1280) === 3 && C.perView(800) === 2 && C.perView(390) === 1);
 t("initials and dates", C.initials("Mei Lin Tan") === "ML" && C.niceDate("2026-11-04") === "4 Nov 2026");
