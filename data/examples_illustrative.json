@@ -1,44 +1,272 @@
 {
-  "note": "ILLUSTRATIVE. Missed-issue examples for the benchmark design. Entries with source 'test set' quote the synthetic transcripts in synthetic-expert-transcripts.md word for word. Entries with source 'written for the design' are new fictional passages: people, companies and dates are invented. All call dates are invented.",
-  "examples": [
-    {"category": "Material non-public information", "name": "Sanjay Mehta", "date": "2026-11-12", "ts": "01:24", "source": "test set T5-01:24",
-     "quote": "Look, I'm not saying anything specific, but if I were you I'd watch their Q3 numbers closely. Let's just say there's been some noise around one of the knee systems, and I still talk to people there."},
-    {"category": "Current-employer confidential", "name": "Priya Natarajan", "date": "2026-11-04", "ts": "01:34", "source": "test set T3-01:34",
-     "quote": "For us specifically, we're moving list price up 12% on the mid-market tier from January. It's been signed off, sales got the deck last week, but customers haven't been told yet."},
-
-    {"category": "Source disclosure", "name": "Elena Vasquez", "date": "2026-11-09", "ts": "01:34", "source": "test set T6-01:34",
-     "quote": "My contact Jamie Holt, who runs procurement there now, told me last week they're giving notice to two of them in Q1."},
-    {"category": "Source disclosure", "name": "Owen Prendergast", "date": "2026-10-28", "ts": "14:52", "source": "written for the design",
-     "quote": "Their head of logistics, Carla, told me over dinner that the Rotterdam site is being mothballed after Christmas."},
-    {"category": "Source disclosure", "name": "Mei Lin Tan", "date": "2026-11-02", "ts": "22:07", "source": "written for the design",
-     "quote": "I still speak to the plant manager at Ostrava most weeks, and he says the line restart has slipped to February."},
-    {"category": "Source disclosure", "name": "Farid Haddad", "date": "2026-11-15", "ts": "09:41", "source": "written for the design",
-     "quote": "Someone on their pricing committee sent me the new rate card before it went out, so I know the increases are double digit."},
-    {"category": "Source disclosure", "name": "Joanna Kowalczyk", "date": "2026-11-17", "ts": "31:18", "source": "written for the design",
-     "quote": "A friend in their treasury team mentioned they drew down the revolving credit facility last month, which tells you how tight cash is."},
-
-    {"category": "Former-client confidential", "name": "Thomas Achebe", "date": "2026-10-30", "ts": "18:26", "source": "written for the design",
-     "quote": "When we did their carve-out work, the stranded costs came out at nearly twice what management told the board."},
-    {"category": "Former-client confidential", "name": "Ingrid Solberg", "date": "2026-11-06", "ts": "11:03", "source": "written for the design",
-     "quote": "One bank I advised had its core banking migration fail twice. It never went public, but it cost them most of a year."},
-    {"category": "Former-client confidential", "name": "Ravi Chandran", "date": "2026-11-11", "ts": "26:40", "source": "written for the design",
-     "quote": "I rebuilt their churn model last year as a consultant, and the real number was well above what they show investors."},
-    {"category": "Former-client confidential", "name": "Claire Dufresne", "date": "2026-11-18", "ts": "07:55", "source": "written for the design",
-     "quote": "At the insurer I worked with, the claims backlog was about 40,000 files at year end, and none of that is in their reporting."},
-
-    {"category": "Personal data", "name": "Hannah Booth", "date": "2026-11-13", "ts": "01:24", "source": "test set T8-01:24",
-     "quote": "I remember Mark Ellison, who led their financial crime team at the time, was signed off for months with a breakdown afterwards."},
-    {"category": "Personal data", "name": "Marcus Webb", "date": "2026-10-27", "ts": "16:12", "source": "written for the design",
-     "quote": "Their finance director, Tom Reyes, has been going through a difficult divorce, which is why he's been so distracted this year."},
-    {"category": "Personal data", "name": "Sofia Marchetti", "date": "2026-10-31", "ts": "05:48", "source": "written for the design",
-     "quote": "Speak to Mark Doyle in their Leeds office. I've got his personal mobile if you want it."},
-    {"category": "Personal data", "name": "Kwame Mensah", "date": "2026-11-03", "ts": "28:33", "source": "written for the design",
-     "quote": "The head of sales there, Aisha Rahman, went on long-term sick leave after surgery in the spring."},
-    {"category": "Personal data", "name": "Lena Hoffmann", "date": "2026-11-08", "ts": "12:19", "source": "written for the design",
-     "quote": "One of their senior engineers, Pieter van Dam, was let go after a drink-driving conviction, which hit the project hard."},
-    {"category": "Personal data", "name": "Daniel Osei", "date": "2026-11-14", "ts": "20:04", "source": "written for the design",
-     "quote": "Their compliance officer, Rachel Lim, is on maternity leave until next summer, so the team is stretched."},
-    {"category": "Personal data", "name": "Aoife Brennan", "date": "2026-11-19", "ts": "33:47", "source": "written for the design",
-     "quote": "The founder's son is only nineteen, and he's been put on the payroll as a director at the Dublin subsidiary."}
-  ]
+ "note": "ILLUSTRATIVE. Examples for the benchmark design: 'examples' are missed issues, 'unneeded' are unneeded flags. Entries with a 'test set' source quote synthetic-expert-transcripts.md word for word; entries 'written for the design' are new fictional passages. People, companies and all call dates are invented. No person appears twice.",
+ "examples": [
+  {
+   "category": "Material non-public information",
+   "name": "Sanjay Mehta",
+   "date": "2026-11-12",
+   "ts": "01:24",
+   "source": "test set T5-01:24",
+   "quote": "Look, I'm not saying anything specific, but if I were you I'd watch their Q3 numbers closely. Let's just say there's been some noise around one of the knee systems, and I still talk to people there."
+  },
+  {
+   "category": "Material non-public information",
+   "name": "Olivia Grant",
+   "date": "2026-10-29",
+   "ts": "19:36",
+   "source": "written for the design",
+   "quote": "Between us, the regulator's decision on their diabetes drug came back last week, and it's a rejection. They haven't announced it yet."
+  },
+  {
+   "category": "Material non-public information",
+   "name": "Henrik Lindqvist",
+   "date": "2026-11-05",
+   "ts": "08:14",
+   "source": "written for the design",
+   "quote": "The board approved the sale of the European tyre business on Tuesday. The announcement is planned for after the half-year results."
+  },
+  {
+   "category": "Material non-public information",
+   "name": "Nadia Rahimi",
+   "date": "2026-11-10",
+   "ts": "27:02",
+   "source": "written for the design",
+   "quote": "Their biggest customer has given notice on the five-year supply deal. That's about a fifth of revenue, and the market doesn't know."
+  },
+  {
+   "category": "Material non-public information",
+   "name": "Benjamin Cole",
+   "date": "2026-11-16",
+   "ts": "12:48",
+   "source": "written for the design",
+   "quote": "I'd expect them to miss guidance. The October order book I saw was down about 15% on last year."
+  },
+  {
+   "category": "Current-employer confidential",
+   "name": "Priya Natarajan",
+   "date": "2026-11-04",
+   "ts": "01:34",
+   "source": "test set T3-01:34",
+   "quote": "For us specifically, we're moving list price up 12% on the mid-market tier from January. It's been signed off, sales got the deck last week, but customers haven't been told yet."
+  },
+  {
+   "category": "Current-employer confidential",
+   "name": "Grace Liu",
+   "date": "2026-10-30",
+   "ts": "23:15",
+   "source": "written for the design",
+   "quote": "We're closing the Manchester plant in March. The staff haven't been told yet, so please keep that between us."
+  },
+  {
+   "category": "Current-employer confidential",
+   "name": "Mateo Alvarez",
+   "date": "2026-11-07",
+   "ts": "16:39",
+   "source": "written for the design",
+   "quote": "Our roadmap has the analytics module launching in Q2, which is why we've been hiring so many data engineers."
+  },
+  {
+   "category": "Current-employer confidential",
+   "name": "Siobhan Kelly",
+   "date": "2026-11-18",
+   "ts": "10:27",
+   "source": "written for the design",
+   "quote": "We're about to lose our second-largest customer. I'm on the account team, and the renewal isn't going to happen."
+  },
+  {
+   "category": "Source disclosure",
+   "name": "Elena Vasquez",
+   "date": "2026-11-09",
+   "ts": "01:34",
+   "source": "test set T6-01:34",
+   "quote": "My contact Jamie Holt, who runs procurement there now, told me last week they're giving notice to two of them in Q1."
+  },
+  {
+   "category": "Source disclosure",
+   "name": "Owen Prendergast",
+   "date": "2026-10-28",
+   "ts": "14:52",
+   "source": "written for the design",
+   "quote": "Their head of logistics, Carla, told me over dinner that the Rotterdam site is being mothballed after Christmas."
+  },
+  {
+   "category": "Source disclosure",
+   "name": "Mei Lin Tan",
+   "date": "2026-11-02",
+   "ts": "22:07",
+   "source": "written for the design",
+   "quote": "I still speak to the plant manager at Ostrava most weeks, and he says the line restart has slipped to February."
+  },
+  {
+   "category": "Source disclosure",
+   "name": "Farid Haddad",
+   "date": "2026-11-15",
+   "ts": "09:41",
+   "source": "written for the design",
+   "quote": "Someone on their pricing committee sent me the new rate card before it went out, so I know the increases are double digit."
+  },
+  {
+   "category": "Former-client confidential",
+   "name": "Thomas Achebe",
+   "date": "2026-10-30",
+   "ts": "18:26",
+   "source": "written for the design",
+   "quote": "When we did their carve-out work, the stranded costs came out at nearly twice what management told the board."
+  },
+  {
+   "category": "Former-client confidential",
+   "name": "Ingrid Solberg",
+   "date": "2026-11-06",
+   "ts": "11:03",
+   "source": "written for the design",
+   "quote": "One bank I advised had its core banking migration fail twice. It never went public, but it cost them most of a year."
+  },
+  {
+   "category": "Former-client confidential",
+   "name": "Ravi Chandran",
+   "date": "2026-11-11",
+   "ts": "26:40",
+   "source": "written for the design",
+   "quote": "I rebuilt their churn model last year as a consultant, and the real number was well above what they show investors."
+  },
+  {
+   "category": "Personal data",
+   "name": "Hannah Booth",
+   "date": "2026-11-13",
+   "ts": "01:24",
+   "source": "test set T8-01:24",
+   "quote": "I remember Mark Ellison, who led their financial crime team at the time, was signed off for months with a breakdown afterwards."
+  },
+  {
+   "category": "Personal data",
+   "name": "Marcus Webb",
+   "date": "2026-10-27",
+   "ts": "16:12",
+   "source": "written for the design",
+   "quote": "Their finance director, Tom Reyes, has been going through a difficult divorce, which is why he's been so distracted this year."
+  },
+  {
+   "category": "Personal data",
+   "name": "Sofia Marchetti",
+   "date": "2026-10-31",
+   "ts": "05:48",
+   "source": "written for the design",
+   "quote": "Speak to Mark Doyle in their Leeds office. I've got his personal mobile if you want it."
+  },
+  {
+   "category": "Personal data",
+   "name": "Kwame Mensah",
+   "date": "2026-11-03",
+   "ts": "28:33",
+   "source": "written for the design",
+   "quote": "The head of sales there, Aisha Rahman, went on long-term sick leave after surgery in the spring."
+  },
+  {
+   "category": "Personal data",
+   "name": "Lena Hoffmann",
+   "date": "2026-11-08",
+   "ts": "12:19",
+   "source": "written for the design",
+   "quote": "One of their senior engineers, Pieter van Dam, was let go after a drink-driving conviction, which hit the project hard."
+  },
+  {
+   "category": "Personal data",
+   "name": "Daniel Osei",
+   "date": "2026-11-14",
+   "ts": "20:04",
+   "source": "written for the design",
+   "quote": "Their compliance officer, Rachel Lim, is on maternity leave until next summer, so the team is stretched."
+  },
+  {
+   "category": "Personal data",
+   "name": "Aoife Brennan",
+   "date": "2026-11-19",
+   "ts": "33:47",
+   "source": "written for the design",
+   "quote": "The founder's son is only nineteen, and he's been put on the payroll as a director at the Dublin subsidiary."
+  }
+ ],
+ "unneeded": [
+  {
+   "name": "Daniel Reyes",
+   "date": "2026-11-03",
+   "ts": "01:19",
+   "source": "test set T2-01:19",
+   "quote": "Publicly, people talk about the mid-sized regional players. Corvane Freight is the one everyone mentions, they're strong in the North West and Scotland.",
+   "cleared": "Public speculation about a takeover target, not the expert's employer",
+   "category": "Material non-public information"
+  },
+  {
+   "name": "Tom Fairley",
+   "date": "2026-11-06",
+   "ts": "00:26",
+   "source": "test set T4-00:26",
+   "quote": "Quillon laid out the lending strategy at their 2024 investor day. The logic is straightforward: they already see merchants' transaction data, so they can underwrite small loans with better information than a bank.",
+   "cleared": "Former employer, left in 2021; cites the public investor day",
+   "category": "Material non-public information"
+  },
+  {
+   "name": "Robert Chen",
+   "date": "2026-11-12",
+   "ts": "00:36",
+   "source": "test set T7-00:36",
+   "quote": "Ardent is a good one because they're transparent. On their Q2 earnings call in August, they reported gross margin of 31.4%, up from 28.9% a year earlier, and guided to 32% to 33% for the full year.",
+   "cleared": "Figures from the public Q2 earnings call",
+   "category": "Material non-public information"
+  },
+  {
+   "name": "Laura Bennett",
+   "date": "2026-11-14",
+   "ts": "17:21",
+   "source": "written for the design",
+   "quote": "As their annual report says, they've been closing stores in the north for two years, so the shift to online isn't new.",
+   "cleared": "Cites the published annual report",
+   "category": "Material non-public information"
+  },
+  {
+   "name": "Arjun Mehra",
+   "date": "2026-11-19",
+   "ts": "06:52",
+   "source": "written for the design",
+   "quote": "The chief executive said on the results call that capital spending would rise next year, mostly on automation.",
+   "cleared": "A public statement on the results call",
+   "category": "Material non-public information"
+  },
+  {
+   "category": "Current-employer confidential",
+   "name": "Chloe Martin",
+   "date": "2026-10-28",
+   "ts": "11:42",
+   "source": "written for the design",
+   "quote": "We announced the Leeds office in a press release last month, so it's no secret we're expanding in the north.",
+   "cleared": "Announced in a press release"
+  },
+  {
+   "category": "Current-employer confidential",
+   "name": "Ibrahim Yusuf",
+   "date": "2026-11-04",
+   "ts": "24:09",
+   "source": "written for the design",
+   "quote": "Our prices are on the website. The standard tier is £40 a seat, and that hasn't changed this year.",
+   "cleared": "Published list price"
+  },
+  {
+   "category": "Current-employer confidential",
+   "name": "Ruth Okonkwo",
+   "date": "2026-11-11",
+   "ts": "03:57",
+   "source": "written for the design",
+   "quote": "I can only tell you what's in our published sustainability report: we cut emissions by about a tenth last year.",
+   "cleared": "From the published sustainability report"
+  },
+  {
+   "category": "Current-employer confidential",
+   "name": "Marco Rossi",
+   "date": "2026-11-17",
+   "ts": "29:30",
+   "source": "written for the design",
+   "quote": "Our chief executive showed the new product on stage at the trade show in September, so it's public now.",
+   "cleared": "Shown publicly at a trade show"
+  }
+ ]
 }

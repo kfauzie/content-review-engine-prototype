@@ -3,7 +3,7 @@
   design/1-summary.html     header, missed issues by type with a carousel of examples per type, unneeded flags
   design/2-transcript.html  call context, full transcript, missed passage with issue type, reviewer comment, root cause
 
-Counts are MADE UP for a 1,000-transcript sample (Kevin's call). Examples come from data/examples_illustrative.json:
+Counts are MADE UP for a 1,000-transcript sample (Kevin's call); misses moved to the top two types in round 6, total kept at 23. Examples come from data/examples_illustrative.json:
 four quote the synthetic test set word for word, the rest were written for the design. Call dates are invented.
 The transcript page uses synthetic transcript 5, whose 01:24 passage the made-up rules engine missed (notebooks/eval.py);
 the reviewer comment is the answer key's rationale for that passage.
@@ -22,21 +22,31 @@ from eval import load, runs  # noqa: E402
 
 SAMPLE = 1000
 # category, short description, found by reviewers, missed by AI -- made up
-HIGH = [("Material non-public information", "Non-public facts that could move a listed company's share price", 38, 1),
-        ("Current-employer confidential", "Non-public information about the expert's current employer", 52, 1),
+HIGH = [("Material non-public information", "Non-public facts that could move a listed company's share price", 38, 5),
+        ("Current-employer confidential", "Non-public information about the expert's current employer", 52, 4),
         ("Declaration conflict", "Contradicts what the expert declared", 14, 0)]
-LOWER = [("Source disclosure", "Names an insider as the source", 29, 6),
-         ("Former-client confidential", "Confidential details from a former client or employer", 33, 4),
-         ("Personal data", "Names or sensitive details of private individuals", 96, 11)]
-UNNEEDED = 187  # made up
+LOWER = [("Source disclosure", "Names an insider as the source", 29, 4),
+         ("Former-client confidential", "Confidential details from a former client or employer", 33, 3),
+         ("Personal data", "Names or sensitive details of private individuals", 96, 7)]
+UNNEEDED_BY = {"Material non-public information": 60, "Current-employer confidential": 30, "Declaration conflict": 9,
+               "Source disclosure": 8, "Former-client confidential": 20, "Personal data": 60}  # made up
+UNNEEDED = sum(UNNEEDED_BY.values())
+TOP = ("Material non-public information", "Current-employer confidential")  # cards open a transcript
 FOUND = sum(r[2] for r in HIGH + LOWER)
 MISSED = sum(r[3] for r in HIGH + LOWER)
 CAUGHT = FOUND - MISSED
 assert (FOUND, CAUGHT, MISSED) == (262, 239, 23)
 
+DATA = json.loads(Path("data/examples_illustrative.json").read_text())
 EXAMPLES = defaultdict(list)
-for e in json.loads(Path("data/examples_illustrative.json").read_text())["examples"]:
+for e in DATA["examples"]:
     EXAMPLES[e["category"]].append(e)
+UNNEEDED_EX = defaultdict(list)
+for e in DATA["unneeded"]:
+    UNNEEDED_EX[e["category"]].append(e)
+assert UNNEEDED == 187
+for grp in list(EXAMPLES.values()) + list(UNNEEDED_EX.values()):
+    assert len({e["name"] for e in grp}) == len(grp), "one person per example"
 for name, _, _, missed in HIGH + LOWER:
     assert len(EXAMPLES[name]) <= missed, f"{name}: more examples than misses"
 
@@ -127,8 +137,19 @@ h2{font-size:18px;margin:0 0 14px;font-weight:650}
 .hit{border-radius:12px;background:var(--red-wash);box-shadow:inset 3px 0 0 var(--red);padding:12px 14px}
 .hit .tag{display:inline-block;font-size:12px;font-weight:600;color:var(--red);background:#fff;border-radius:999px;padding:2px 10px;margin-bottom:6px}
 .notes{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px}
-.note{background:#fff;border-radius:10px;padding:10px 12px;box-shadow:0 0 0 1px #f6d4d1}
-.note .k{font-size:12px;font-weight:600;color:var(--muted);margin-bottom:2px}
+.note{border-radius:10px;padding:11px 13px}
+.note.rev{background:#eef4ff;box-shadow:inset 3px 0 0 #2f62c9} .note.rev .k{color:#2f62c9}
+.note.agent{background:#f4f0ff;box-shadow:inset 3px 0 0 #6d4bd1} .note.agent .k{color:#6d4bd1}
+.note .k{font-size:13px;font-weight:650} .note .sub{font-size:12px;color:var(--muted);margin:0 0 6px}
+.ufsec{margin-top:36px}
+.ufsec h2{font-size:16px;display:flex;align-items:center;gap:10px}
+.ufsec h2 .num{color:var(--amber)} .ufsec h2 .tag{font-size:12px;font-weight:600;color:var(--amber);background:var(--amber-wash);border-radius:999px;padding:2px 9px}
+.cat.am{box-shadow:inset 4px 0 0 #d9b979,0 0 0 1px var(--line)} .cat.am .ex{background:var(--amber-wash)} .cat.am .av{background:#b7791f}
+.cat.am .car{padding-top:16px}
+.ex .cl{font-size:12px;color:var(--amber);font-weight:500}
+.ex{position:relative}
+.ex.open:after{content:"";position:absolute;right:16px;bottom:22px;width:7px;height:7px;border-right:1.5px solid var(--ink2);border-bottom:1.5px solid var(--ink2);transform:rotate(-45deg)}
+.ufsec .cat .top{padding:13px 22px} .ufsec .cat .n{font-size:15px} .ufsec .cat .c{font-size:20px;color:var(--amber)} .ufsec .cat .c.zero{color:var(--faint)}
 """
 NAV = ('<nav><div class="brand"><svg width="20" height="20" viewBox="0 0 22 22" aria-hidden="true"><rect x="1" y="1" width="20" height="20" '
        'rx="6" fill="#0f172a"/><path d="M6 11.5l3 3 7-7" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round" '
@@ -141,19 +162,21 @@ def page(title, body):
             f'rel="stylesheet"><style>{CSS}</style></head><body>{NAV}<main>{body}</main></body></html>')
 
 
-def cat(name, desc, found, missed, level):
-    ex = EXAMPLES[name]
-    c = f'<div class="c{" zero" if not missed else ""}">{missed}<small>missed</small></div>'
+def card(e, kind):
+    clickable = e["category"] in TOP
+    href = ' href="2-transcript.html"' if e["source"] == f"test set T{EX}-{EX_TS}" else ""
+    extra = f'<span class="cl">Cleared: {html.escape(e["cleared"])}</span>' if kind == "unneeded" else ""
+    return (f'<a class="ex{" open" if clickable else ""}"{href}><q>{html.escape(e["quote"])}</q>{extra}<div class="who">'
+            f'<span class="av">{initials(e["name"])}</span><div><div class="nm">{e["name"]}</div>'
+            f'<div class="dt">{nice(e["date"])} · {e["ts"]}</div></div></div></a>')
+
+
+def cat(name, desc, count, label, level, ex, kind, carousel=True):
+    c = f'<div class="c{" zero" if not count else ""}">{count}<small>{label}</small></div>'
     out = f'<div class="cat {level}"><div class="top"><div><div class="n">{name}</div><div class="d">{desc}</div></div>{c}</div>'
-    if ex:
-        cards = []
-        for e in ex[:3]:
-            href = ' href="2-transcript.html"' if e["source"] == f"test set T{EX}-{EX_TS}" else ""
-            cards.append(f'<a class="ex"{href}><q>{html.escape(e["quote"])}</q><div class="who"><span class="av">{initials(e["name"])}</span>'
-                         f'<div><div class="nm">{e["name"]}</div><div class="dt">{nice(e["date"])} · {e["ts"]}</div></div></div></a>')
-        nav = (f'<div class="carhead">1–{min(3, len(ex))} of {len(ex)}<span class="arr l off"></span>'
-               f'<span class="arr r{" off" if len(ex) <= 3 else ""}"></span></div>') if len(ex) > 3 else ""
-        out += f'<div class="car">{nav}<div class="cards">{"".join(cards)}</div></div>'
+    if ex and carousel:
+        nav = (f'<div class="carhead">1–3 of {len(ex)}<span class="arr l off"></span><span class="arr r"></span></div>') if len(ex) > 3 else ""
+        out += f'<div class="car">{nav}<div class="cards">{"".join(card(e, kind) for e in ex[:3])}</div></div>'
     return out + "</div>"
 
 
@@ -163,8 +186,9 @@ def summary():
 <span class="sep">·</span><span>AI caught <b>{CAUGHT}</b></span><span class="missed">missed <b>{MISSED}</b></span></div></div>
 <div class="uf"><b>{UNNEEDED}</b> unneeded flags <span class="tag">Operational cost</span></div></div>
 <h2>Missed issues by type</h2>
-<div class="grp"><i style="background:var(--hi)"></i>High priority</div>{"".join(cat(*r, "hi") for r in HIGH)}
-<div class="grp"><i style="background:var(--lo)"></i>Medium and low priority</div>{"".join(cat(*r, "lo") for r in LOWER)}'''
+<div class="grp"><i style="background:var(--hi)"></i>High priority</div>{"".join(cat(n, d, m, "missed", "hi", EXAMPLES[n], "missed") for n, d, f, m in HIGH)}
+<div class="grp"><i style="background:var(--lo)"></i>Medium and low priority</div>{"".join(cat(n, d, m, "missed", "lo", EXAMPLES[n], "missed") for n, d, f, m in LOWER)}
+<div class="ufsec"><h2>Unneeded flags <span class="num">{UNNEEDED}</span><span class="tag">Operational cost</span></h2>{"".join(cat(n, d, UNNEEDED_BY[n], "unneeded", "am", UNNEEDED_EX[n], "unneeded", carousel=n in TOP) for n, d, *_ in HIGH + LOWER)}</div>'''
     return page("AI performance benchmark (design)", body)
 
 
@@ -177,8 +201,8 @@ def transcript():
         spk = "Expert" if who == "EXPERT" else "Interviewer"
         if ts(s) == EX_TS:
             x = (f'<div class="hit"><span class="tag">Missed · {EX_TYPE}</span><div>{html.escape(txt)}</div>'
-                 f'<div class="notes"><div class="note"><div class="k">Reviewer\'s comment</div>{html.escape(REVIEWER)}</div>'
-                 f'<div class="note"><div class="k">Why the AI didn\'t flag it</div>{html.escape(ROOT_CAUSE)}</div></div></div>')
+                 f'<div class="notes"><div class="note rev"><div class="k">Reviewer\'s comment</div><div class="sub">Compliance reviewer</div>{html.escape(REVIEWER)}</div>'
+                 f'<div class="note agent"><div class="k">Why the original AI didn\'t flag it</div><div class="sub">Analysis by an independent agent, from the original AI\'s log</div>{html.escape(ROOT_CAUSE)}</div></div></div>')
         else:
             x = f'<div class="x">{html.escape(txt)}</div>'
         turns.append(f'<div class="turn{" q" if who != "EXPERT" else ""}"><span class="t">{ts(s)}</span><div><div class="s">{spk}</div>{x}</div></div>')
