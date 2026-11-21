@@ -1,3 +1,24 @@
+# Prototype polish, round 17: example cards toned down (presentation only)
+
+**The convention found:** comparable products keep list items neutral and use one highlight colour on the trigger words. Status colour goes on the container, not the item.
+- **Braintrust and LangSmith:** one row per trace, in a plain, filterable table.
+- **Microsoft Purview:** the condition that caused the flag appears in a yellow banner.
+- **Mimecast:** highlights matches in the message subject and body.
+- **Veritas/Cohesity:** highlights hot words.
+- **Smarsh:** is adding whole-sentence highlights.
+- **Inbox list guidance:** a neutral avatar, a title and preview, and muted time.
+
+**Applied to the example cards (and the recommendation examples, which share the component):**
+- **Cards:** white, with a fine neutral border and no coloured edge.
+- **Highlight:** one soft yellow marker on the telling phrase.
+- **Avatars, dates and arrows:** grey.
+- **"Cleared" line:** muted grey.
+- **Category containers:** keep their status edge.
+
+No words, numbers or layout changed.
+
+---
+
 # Prototype feedback, round 16 (applied)
 
 1. **Three more examples in each of the last three false alarm types.** The expert's own opinion goes from 0 to 3, former employer left long ago from 1 to 4, and public market talk from 1 to 4. All 9 are written for the design, from fictional experts, each with a highlight and a "Cleared" reason.
