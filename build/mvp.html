@@ -216,6 +216,20 @@ h2{font-family:var(--serif);font-weight:650;font-size:20px;letter-spacing:-.3px;
 .fq .by{color:var(--faint)}
 .fq:after{border-color:var(--faint)!important}
 .fq .cl{color:var(--muted)!important;font-weight:500}
+
+/* ---- category examples as rows (list convention: neutral rows, one highlight, muted time on the right) ---- */
+.exrows{margin:0 22px 14px;border-top:1px solid var(--line)}
+.rx{display:grid;grid-template-columns:26px 1fr auto 12px;gap:14px;align-items:start;padding:12px 6px;border-bottom:1px solid var(--line)}
+.rx:last-child{border-bottom:0}
+a.rx{transition:background-color .15s} a.rx:hover{background:#faf8f2}
+.rx .av{width:26px;height:26px;font-size:10px;background:#e9e5dc;color:var(--ink2);font-weight:650;margin-top:1px}
+.rx .rq{font-size:14px;line-height:1.5;color:var(--ink)}
+.rx .rq mark{background:linear-gradient(transparent 50%,#fbeaa6 50%);color:var(--ink);padding:0 1px}
+.rx .cl{display:block;margin-top:3px;font-size:12px;color:var(--muted);font-weight:500}
+.rx .when{font-size:12px;color:var(--faint);white-space:nowrap;padding-top:3px;font-variant-numeric:tabular-nums}
+.rx .go{width:7px;height:7px;margin-top:8px;border-right:1.5px solid var(--faint);border-bottom:1.5px solid var(--faint);transform:rotate(-45deg)}
+div.rx .go{visibility:hidden}
+@media (max-width:640px){.exrows{margin:0 16px 12px} .rx{grid-template-columns:26px 1fr 12px;gap:10px} .rx .when{grid-column:2;grid-row:2;padding-top:0} .rx .go{grid-column:3;grid-row:1}}
 </style>
 </head>
 <body>
@@ -315,8 +329,13 @@ function exampleCard(e, extra = "", cls = "") {
                       : `<div class="fq nolink ${cls}">${inner}</div>`;
 }
 
-function card(c, level) {
-  return exampleCard(c, c.cleared ? `<span class="cl">Cleared: ${esc(c.cleared)}</span>` : "", "ex");
+// an example as a row: same quote, highlight, initials, date and call time as the recommendation cards
+function card(c) {
+  const inner = `<span class="av" title="${esc(c.name)}">${initials(c.name)}</span>
+    <span class="rq">\u201c${quote(c)}\u201d${c.cleared ? `<span class="cl">Cleared: ${esc(c.cleared)}</span>` : ""}</span>
+    <span class="when">${niceDate(c.date)} · ${c.ts}</span><span class="go" aria-hidden="true"></span>`;
+  return c.transcript ? `<a class="rx ex" href="#t/${c.transcript}" aria-label="Open transcript: ${esc(c.name)}, ${niceDate(c.date)}">${inner}</a>`
+                      : `<div class="rx ex">${inner}</div>`;
 }
 
 function category(r, kind, scale, level) {
@@ -328,11 +347,7 @@ function category(r, kind, scale, level) {
     <span class="tog${has ? "" : " none"}" aria-hidden="true"></span></div>`;
   let body = "";
   if (has && !shut) {
-    const per = state.per, w = windowOf(list.length, state.offset[key] || 0, per);
-    const head = list.length > per ? `<div class="carhead"><span data-range>${w.start + 1}–${w.end} of ${list.length}</span>
-      <button class="arr l" data-move="${esc(key)}" data-step="-1" aria-label="Previous examples" ${w.start === 0 ? "disabled" : ""}></button>
-      <button class="arr r" data-move="${esc(key)}" data-step="1" aria-label="Next examples" ${w.end >= list.length ? "disabled" : ""}></button></div>` : "";
-    body = `<div class="car">${head}<div class="cards" style="grid-template-columns:repeat(${per},minmax(0,1fr))">${list.slice(w.start, w.end).map(c => card(c, level)).join("")}</div></div>`;
+    body = `<div class="exrows">${list.map(c => card(c)).join("")}</div>`;
   }
   return `<div class="cat ${level}${shut ? " shut" : ""}" data-cat="${esc(key)}">${top}${body}</div>`;
 }
@@ -361,11 +376,7 @@ function faType(ty) {
     <span class="tog${has ? "" : " none"}" aria-hidden="true"></span></div>`;
   let body = "";
   if (has && !shut) {
-    const per = state.per, w = windowOf(list.length, state.offset[key] || 0, per);
-    const head = list.length > per ? `<div class="carhead"><span data-range>${w.start + 1}–${w.end} of ${list.length}</span>
-      <button class="arr l" data-move="${esc(key)}" data-step="-1" aria-label="Previous examples" ${w.start === 0 ? "disabled" : ""}></button>
-      <button class="arr r" data-move="${esc(key)}" data-step="1" aria-label="Next examples" ${w.end >= list.length ? "disabled" : ""}></button></div>` : "";
-    body = `<div class="car">${head}<div class="cards" style="grid-template-columns:repeat(${per},minmax(0,1fr))">${list.slice(w.start, w.end).map(c => card(c, "am")).join("")}</div></div>`;
+    body = `<div class="exrows">${list.map(c => card(c)).join("")}</div>`;
   }
   return `<div class="cat am${shut ? " shut" : ""}" data-cat="${esc(key)}">${top}${body}</div>`;
 }

@@ -76,9 +76,10 @@ const t = (name, ok, got) => { if (!ok) fail++; console.log(`${ok ? "PASS" : "FA
 
   const fams = await p.evaluate(() => [...new Set([...document.querySelectorAll("h1,h2,.kh,.n,.fq,.lab,.d")].map(e => getComputedStyle(e).fontFamily.split(",")[0].replace(/["']/g, "").trim()))]);
   t("one font family throughout", fams.length === 1, fams.join(" | "));
-  t("category cards match the recommendation examples: no names, a highlight, initials, date and call time",
-    await p.locator(".cat .ex.fq").count() > 0 && await p.locator(".cat .nm").count() === 0 &&
-    (await p.locator(".cat .ex").evaluateAll(a => a.every(x => x.querySelector("mark") && /^[A-Z]{2}\d{1,2} [A-Z][a-z]{2} \d{4} · \d\d:\d\d$/.test(x.querySelector(".by").textContent)))));
+  t("category examples are rows: initials, quote with highlight, date and call time, no names",
+    await p.locator(".cat .rx").count() === 41 && await p.locator(".cat .nm, .cat .fq").count() === 0 &&
+    (await p.locator(".cat .rx").evaluateAll(a => a.every(x => x.querySelector("mark") && /^[A-Z]{2}$/.test(x.querySelector(".av").textContent) &&
+      /^\d{1,2} [A-Z][a-z]{2} \d{4} · \d\d:\d\d$/.test(x.querySelector(".when").textContent)))));
   const inView = id => p.evaluate(i => { const r = document.getElementById(i).getBoundingClientRect(); return r.top >= 0 && r.top < innerHeight; }, id);
   await p.locator(".risk.jump").click(); await p.waitForTimeout(900);
   t("clicking the compliance box scrolls to \"Missed by AI, by type\"", await inView("sec-missed"));
@@ -88,25 +89,18 @@ const t = (name, ok, got) => { if (!ok) fail++; console.log(`${ok ? "PASS" : "FA
   t("Enter on the focused compliance box does the same", await inView("sec-missed"));
   await p.evaluate(() => scrollTo(0, 0));
   const mnpi = p.locator('[data-cat="missed|Material non-public information"]');
-  t("MNPI missed shows 3 of its 5 cards", await mnpi.locator(".ex").count() === 3 && (await mnpi.locator("[data-range]").textContent()) === "1–3 of 5");
-  await mnpi.locator('.arr.r').click();
-  t("next arrow moves the carousel by one", (await p.locator('[data-cat="missed|Material non-public information"] [data-range]').textContent()) === "2–4 of 5");
-  await p.locator('[data-cat="missed|Material non-public information"] .arr.r').click();
-  t("last page disables next", await p.locator('[data-cat="missed|Material non-public information"] .arr.r').isDisabled());
-  await p.locator('[data-cat="missed|Material non-public information"] .arr.l').click();
-  t("previous arrow moves back", (await p.locator('[data-cat="missed|Material non-public information"] [data-range]').textContent()) === "2–4 of 5");
-
+  t("MNPI missed lists all 5 examples as rows, no carousel", await mnpi.locator(".rx").count() === 5 && await p.locator(".arr, [data-range]").count() === 0);
   await p.locator('[data-cat="missed|Personal data"] .top').click();
   t("clicking a category hides its tiles", await p.locator('[data-cat="missed|Personal data"] .ex').count() === 0 &&
     (await p.locator('[data-cat="missed|Personal data"] .top').getAttribute("aria-expanded")) === "false");
   await p.keyboard.press("Enter");
-  t("Enter on the focused category shows them again", await p.locator('[data-cat="missed|Personal data"] .ex').count() === 3);
+  t("Enter on the focused category shows them again", await p.locator('[data-cat="missed|Personal data"] .ex').count() === 7);
   t("declaration conflict (0 missed) has no tiles and no toggle", await p.locator('[data-cat="missed|Declaration conflict"] [data-toggle]').count() === 0);
   t("outside the top categories, only fix examples open a transcript", await p.locator('[data-cat="missed|Personal data"] a.ex').count() === 1 &&
     (await p.locator('[data-cat="missed|Personal data"] a.ex .av').getAttribute("title")) === "Hannah Booth" && await p.locator('[data-cat="missed|Former-client confidential"] a.ex').count() === 0);
   t("false alarms are grouped by type of false alarm, with examples where there are some",
     (await p.locator('[data-cat^="fatype|"] .n').allTextContents()).join("|") === "Public source cited|The expert's own opinion or estimate|Former employer, left long ago|Public market talk" &&
-    await p.locator('[data-cat="fatype|public-source"] a.ex').count() === 3 && await p.locator('[data-cat="fatype|own-view"] .ex').count() === 3 && await p.locator('[data-cat="fatype|own-view"] a.ex').count() === 0 &&
+    await p.locator('[data-cat="fatype|public-source"] a.ex').count() === 7 && await p.locator('[data-cat="fatype|own-view"] .ex').count() === 3 && await p.locator('[data-cat="fatype|own-view"] a.ex').count() === 0 &&
     await p.locator('[data-cat^="false_alarm|"]').count() === 0);
 
   const links = await p.locator("a.ex").evaluateAll(a => a.map(x => x.getAttribute("href")));
@@ -131,8 +125,6 @@ const t = (name, ok, got) => { if (!ok) fail++; console.log(`${ok ? "PASS" : "FA
   t("call context: expert, call date, role, declared", await p.locator(".ctx .k").allTextContents().then(k => k.join("|")) === "Expert|Call date|Role|Declared");
   await p.locator(".back").click(); await p.waitForSelector('body[data-view="summary"]');
   t("back returns to the benchmark", await p.locator("h1").textContent() === "Content review AI: performance benchmark");
-  await p.locator('[data-cat="fatype|public-source"] .arr.r').click();
-  t("false alarm carousel moves", (await p.locator('[data-cat="fatype|public-source"] [data-range]').textContent()) === "2–4 of 7");
   await p.locator('[data-cat="fatype|public-source"] a.ex').first().click();
   await p.waitForSelector('body[data-view="transcript"]');
   t("false alarm: amber passage, note titled \"Why the original AI flagged it\"",
@@ -153,7 +145,7 @@ const t = (name, ok, got) => { if (!ok) fail++; console.log(`${ok ? "PASS" : "FA
     }
   }
   await p.setViewportSize({ width: 390, height: 844 }); await p.goto(url); await p.waitForSelector('body[data-ready="1"]');
-  t("phone shows one card at a time", await p.locator('[data-cat="missed|Material non-public information"] .ex').count() === 1);
+  t("phone lists every example as a row", await p.locator('[data-cat="missed|Material non-public information"] .rx').count() === 5);
 
   await p.setViewportSize({ width: 1280, height: 900 }); await p.goto(url); await p.waitForSelector('body[data-ready="1"]');
   t("top bar and badge", (await p.locator(".brand").textContent()) === "Content review engine· AI benchmark" && (await p.locator(".badge").textContent()) === "Illustrative · synthetic data");

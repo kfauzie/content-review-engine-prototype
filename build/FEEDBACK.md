@@ -1,3 +1,14 @@
+# Prototype feedback, round 18 (applied): category examples as rows
+
+Kevin agreed to switch the category examples from carousels to rows, the convention in comparable products (Braintrust and LangSmith trace tables, inbox lists).
+
+- **Each row:** the initials, the quote at full width with its highlight (plus the "Cleared" reason for false alarms), the date and call time on the right, and an arrow only when the row opens a transcript.
+- **No paging:** every example in a category is visible, and clicking the category header still hides or shows them.
+- **Phone:** the time moves under the quote.
+- **Unchanged:** the recommendation examples stay as cards, as do all words, numbers, highlights and links.
+
+---
+
 # Prototype polish, round 17: example cards toned down (presentation only)
 
 **The convention found:** comparable products keep list items neutral and use one highlight colour on the trigger words. Status colour goes on the container, not the item.
