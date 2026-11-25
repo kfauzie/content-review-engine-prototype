@@ -26,74 +26,63 @@ SAMPLE = 1000
 TOP = ["Material non-public information", "Current-employer confidential"]
 # name, priority, description, found by human reviewers, missed by AI, false alarms -- made up
 CATEGORIES = [
-    ("Material non-public information", "high", "Non-public facts that could move a listed company's share price", 38, 5, 60),
+    ("Material non-public information", "high", "Non-public information that could move a listed company's share price", 38, 5, 60),
     ("Current-employer confidential", "high", "Non-public information about the expert's current employer", 52, 4, 30),
-    ("Declaration conflict", "high", "Contradicts what the expert declared", 14, 0, 9),
-    ("Source disclosure", "lower", "Names an insider as the source", 29, 4, 8),
-    ("Former-client confidential", "lower", "Confidential details from a former client or employer", 33, 3, 20),
-    ("Personal data", "lower", "Names or sensitive details of private individuals", 96, 7, 60),
+    ("Declaration conflict", "high", "Statements that contradict the expert's declaration", 14, 0, 9),
+    ("Source disclosure", "medium", "The expert names an insider as the source", 29, 4, 8),
+    ("Former-client confidential", "low", "Confidential information about a former client or employer", 33, 3, 20),
+    ("Personal data", "medium", "Names or sensitive details of private individuals", 96, 7, 60),
 ]
 # reviewer comments and root causes for the 5 test-set transcripts (the 13 written ones carry their own)
 TEST_SET_NOTES = {
-    "T5-01:24": ("Hedged, but points to a possible undisclosed product quality issue at a listed former employer, sourced from current "
-                 "contacts there. Too uncertain for AI to clear or reject; needs a compliance reviewer.",
-                 "The AI looks for named companies, and none is named: the expert says \u201ctheir\u201d. Linking it to Northwind, a listed "
-                 "company he left in March 2026, needs the question before it and his declaration."),
-    "T3-01:34": ("Non-public pricing decision at the expert's current employer, not yet told to customers, in breach of her declaration. "
-                 "Redacted; the expert gets a reminder of her restrictions.",
-                 "The AI only checks passages that name a company. This one says \u201cfor us\u201d, and linking that to Teallight, her "
-                 "current employer, needs her declaration, which the AI didn't read."),
-    "T2-01:19": ("Naming Corvane as a commonly mentioned target is public speculation, and Corvane isn't the expert's employer. Cleared.",
-                 "The AI flags any passage that names a company. It matched \u201cCorvane Freight\u201d and didn't weigh that the expert "
-                 "framed it as public talk."),
-    "T4-00:26": ("The expert left Quillon in 2021 and everything here is from the public investor day and filings. Cleared.",
-                 "It matched \u201cQuillon\u201d, the expert's former employer, without checking that he left in 2021 or that he cites "
-                 "the public investor day."),
-    "T6-01:34": ("Names a current insider as the source of non-public vendor decisions, which also contradicts her declared lack of "
-                 "professional contact with Marrow. Transcript rejected; the expert is referred to the vetting team.",
-                 "The AI checks for company names, and this answer names none: \u201cthere\u201d points back to Marrow. It didn't treat "
-                 "\u201cmy contact Jamie Holt \u2026 told me\u201d as an insider source, so nothing was flagged."),
-    "T8-01:24": ("Names a private individual alongside private health information. Redacted.",
-                 "The AI looks for company information only. A private person's name and health details aren't on its list, so the "
-                 "answer went through."),
-    "T7-00:36": ("Precise figures, but all from the public Q2 earnings call and slides, which the expert confirms at 01:11. He left "
-                 "Ardent in 2022. Cleared.",
-                 "It matched \u201cArdent\u201d next to precise margin figures and flagged them, without checking the source the expert "
-                 "gave: the public Q2 earnings call."),
+    "T5-01:24": ("The expert left Northwind Biomedical, a listed company, in March 2026 and says he still speaks to people there. He hints at a quality problem with one of its knee systems that has not yet shown in its results. The hedging does not make it safe: this may be inside information. We redacted the passage and referred it to Legal.",
+                 "The AI only checks answers that name a company. This answer says “their” instead. To link it to Northwind Biomedical, the AI needed the question before it and the expert's declaration, and it reads neither."),
+    "T3-01:34": ("The expert disclosed a price increase at her current employer that customers have not yet been told about. This breaches her declaration. We redacted the passage and reminded her of her restrictions.",
+                 "The AI only checks answers that name a company. This answer says “for us”. Linking it to Teallight Software, her current employer, needed her declaration, which the AI does not read."),
+    "T6-01:34": ("The expert names a current insider as the source of non-public decisions about suppliers. This also contradicts her declaration that she has no professional contact with Marrow Analytics. We rejected the transcript and referred the expert to the vetting team.",
+                 "The AI checks for company names, and the answer names none: “there” refers back to Marrow Analytics. It did not treat “my contact Jamie Holt … told me” as naming an inside source."),
+    "T8-01:24": ("The expert names a private individual together with details of their health. We redacted the passage.",
+                 "The AI only looks for information about companies. A private individual's name and health details are outside what it checks, so the answer passed."),
+    "T2-01:19": ("The expert repeats market speculation that Corvane Freight is a likely target. It is public talk, and Corvane Freight is not his employer. Cleared.",
+                 "The AI flags every answer that names a company. It matched “Corvane Freight” and did not consider that the expert presented it as public talk."),
+    "T4-00:26": ("The expert left Quillon Payments in 2021. Everything he says comes from its public investor day and filings. Cleared.",
+                 "The AI matched “Quillon Payments”, the expert's former employer. It did not check that he left in 2021, or that he cites the public investor day."),
+    "T7-00:36": ("The figures are precise but come from the public Q2 earnings call and slides, as the expert confirms at 01:11. He left Ardent Foods in 2022. Cleared.",
+                 "The AI matched “Ardent Foods” next to precise margin figures. It did not check the source the expert gave: the public Q2 earnings call."),
 }
 
 
 # made-up reviewers (Athens compliance team and Legal), assigned in turn; possible MNPI goes to Legal
-REVIEWERS = {"Material non-public information": ["Sophie Laurent, Legal Counsel", "Nikos Andreou, Senior Compliance Manager"],
-             "other": ["Eleni Papadaki, Compliance Analyst", "Dimitris Vlachos, Compliance Analyst", "Katerina Ioannou, Compliance Analyst"]}
+REVIEWERS = {"Material non-public information": ["Sophie Laurent, Legal Counsel (internal)", "Nikos Andreou, Senior Compliance Manager (internal)"],
+             "other": ["Eleni Papadaki, Compliance Analyst (internal)", "Dimitris Vlachos, Compliance Analyst (internal)", "Katerina Ioannou, Compliance Analyst (internal)"]}
 REVIEW_TIMES = ["09:42", "11:17", "14:05", "16:38", "10:26", "12:51", "15:09"]  # made up
 # the three fixes, from the reviewers' comments and the agents' root-cause analysis (Kevin's judgement in tagging)
 FIXES = [
-    {"id": "declaration", "title": "Read each answer in context", "cause_label": "Why the AI missed it",
-     "root_cause": "The AI read each answer in isolation. When an expert said \u201cwe\u201d, \u201ctheir\u201d or \u201cthe board\u201d, it didn't know "
-                   "which company they meant, so it couldn't tell that the expert was talking about their own employer, a client or a former employer.",
+    {"id": "declaration", "title": "Give the AI the expert's declaration", "cause_label": "Why the AI missed it",
+     "root_cause": "The AI read each answer in isolation. When an expert said \u201cwe\u201d, \u201ctheir\u201d or \u201cthe board\u201d, it could not tell "
+                   "which company was meant, so it missed that the expert was talking about their own employer, a client or a former employer.",
      "examples": [{"name": "Priya Natarajan", "highlight": "For us specifically"}, {"name": "Henrik Lindqvist", "highlight": "The board approved the sale"},
                   {"name": "Olivia Grant", "highlight": "the regulator's decision on their diabetes drug"}],
-     "how": ["Give the AI the expert's declaration and the question asked alongside every answer.",
-             "Work out which company \u201cwe\u201d, \u201cour\u201d or \u201ctheir\u201d refers to before judging the answer.",
-             "Check what was said against the expert's restrictions and the date they left each company."]},
-    {"id": "people", "title": "Check for people and sources, not just companies", "cause_label": "Why the AI missed it",
-     "root_cause": "The AI only looked for information about companies. It didn't catch private individuals being named, or experts naming "
-                   "insiders as their source.",
+     "how": ["Give the AI the question and the expert's declaration with every answer.",
+             "Identify the company that \u201cwe\u201d, \u201cour\u201d or \u201ctheir\u201d refers to before assessing the answer.",
+             "Check the answer against the expert's restrictions and the date they left each company."]},
+    {"id": "people", "title": "Flag possible insider contacts", "cause_label": "Why the AI missed it",
+     "root_cause": "The AI only looked for information about companies. It missed answers that name private individuals, and answers in which "
+                   "the expert names an insider as the source.",
      "examples": [{"name": "Elena Vasquez", "highlight": "My contact Jamie Holt, who runs procurement there now, told me"},
                   {"name": "Hannah Booth", "highlight": "Mark Ellison"}],
-     "how": ["Flag any named private individual mentioned alongside health, family or legal details.",
+     "how": ["Flag any named private individual mentioned with health, family or legal details.",
              "Flag phrases that point to an inside source, such as \u201cmy contact\u201d, \u201ctold me\u201d and \u201cI still speak to\u201d.",
              "Send both to a reviewer, with the name highlighted."]},
-    {"id": "sources", "title": "Check the expert's cited source before flagging", "cause_label": "Why the AI raised a false alarm",
+    {"id": "sources", "title": "Check if the cited source is already public", "cause_label": "Why the AI raised a false alarm",
      "root_cause": "Most false alarms were statements the expert attributed to a public source, such as an earnings call, a press release or an "
-                   "annual report. The AI flagged them without checking whether the information really was public.",
+                   "annual report. The AI flagged them without checking whether the information was in fact public.",
      "examples": [{"name": "Ibrahim Yusuf", "highlight": "Our prices are on the website"}, {"name": "Laura Bennett", "highlight": "As their annual report says"},
                   {"name": "Robert Chen", "highlight": "On their Q2 earnings call in August"},
                   {"name": "Chloe Martin", "highlight": "We announced the Leeds office in a press release"}],
-     "how": ["Spot when an expert cites a source.",
+     "how": ["Detect when an expert cites a source.",
              "Check that source: filings, press releases or the company's website.",
-             "Clear the statement if the information is there. Keep it flagged if it isn't."]},
+             "Clear the statement if the information is there; keep it flagged if it is not."]},
 ]
 # the telling phrase in each card's quote (fix examples reuse the same phrase); checked to appear word for word
 HIGHLIGHT = {
@@ -126,9 +115,9 @@ HIGHLIGHT = {
 }
 # false alarms grouped by why the AI raised them; counts made up (they sum to 187), examples tagged by Kevin's judgement
 FALSE_ALARM_TYPES = [
-    {"id": "public-source", "name": "Public source cited", "description": "The expert attributed it to a filing, earnings call, press release or website", "count": 98},
+    {"id": "public-source", "name": "Public source cited", "description": "The expert attributed the information to a filing, an earnings call, a press release or a website", "count": 98},
     {"id": "own-view", "name": "The expert's own opinion or estimate", "description": "A personal view or estimate, not based on inside information", "count": 41},
-    {"id": "former-employer", "name": "Former employer, left long ago", "description": "About a company the expert left years ago, with nothing current", "count": 27},
+    {"id": "former-employer", "name": "Former employer, left long ago", "description": "About a company the expert left years ago; nothing current", "count": 27},
     {"id": "market-talk", "name": "Public market talk", "description": "Speculation already circulating in the market", "count": 21},
 ]
 FALSE_ALARM_TYPE_OF = {"Robert Chen": "public-source", "Laura Bennett": "public-source", "Arjun Mehra": "public-source", "Chloe Martin": "public-source",

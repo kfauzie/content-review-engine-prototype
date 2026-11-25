@@ -135,9 +135,11 @@ Kevin asked for a release gate on the benchmark prototype, with names masked eve
 
 | Version | Flags | Found | False alarms | Missed | Gate |
 |---|---|---|---|---|---|
-| v1.0 current production | 8 | 3 of 7 | 5 | current-employer confidential (T3), MNPI (T5), source disclosure (T6), personal data (T8) | Blocked |
-| v1.1 candidate | 7 | 7 of 7 | 0 | none | Passed |
-| v1.2 candidate | 6 | 6 of 7 | 0 | MNPI (T5-01:24) | Blocked |
+| v1.0 current production | 8 | 3 of 7 | 5 (3 public source cited, 1 harmless company mention, 1 public market talk) | current-employer confidential (T3), MNPI (T5), source disclosure (T6), personal data (T8) | Blocked |
+| v1.1 candidate | 9 | 7 of 7 | 2 (1 public source cited, 1 harmless company mention) | none | Ready for shadow testing |
+| v1.2 candidate | 8 | 6 of 7 | 2 | MNPI (T5-01:24) | Not ready |
+
+Round 20 (Kevin's polish): v1.1 is made realistic with two over-cautious flags on clean answers (T5-01:03, T7-00:36), so it catches all 7 issues but raises 2 false alarms. False alarms are grouped by why the answer was clean, from reviewer notes in `data/eval/clean_answers.json`; the scoring fails if a flagged clean answer has no note. The page no longer says "release gate": it is "Test a new version against current production".
 
 v1.0's score on the masked text matches the unmasked rules baseline exactly, so the IDs keep what the rule needs. The hedged hint is in transcript 5 (medical devices), not transcript 4 as first described; the gate message is generated from the scoring, so it says transcript 5.
 

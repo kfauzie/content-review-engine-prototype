@@ -1,3 +1,30 @@
+# Prototype feedback, round 20 (applied): light polish, copy, colour, version testing
+
+1. **Copy, rewritten as a senior lawyer would write it.** This covers all 20 human reviewer comments, all 20 "Why the original AI didn't flag it" notes, the 18 "Cleared" reasons, the category and false alarm descriptions, the fix copy, the note subtitles and the legend.
+   - **Style:** short sentences, plain words, and jargon explained ("its published forecast (its guidance)").
+   - **Reviewers:** comments don't name the company we work for. Reviewers are labelled as human and internal: the box is "Human reviewer's comment", signed e.g. "Reviewer 6689, Legal Counsel (internal)".
+   - **Fix titles (Kevin's wording):** "Give the AI the expert's declaration", "Flag possible insider contacts", "Check if the cited source is already public".
+2. **One colour system with soft tints.**
+   - **Purple:** only the Run button, links, the selected tab and the selected version.
+   - **Masked IDs:** experts light blue, companies light amber, people light grey.
+   - **Passage notes:** the human reviewer's comment is light green; the AI note is light rose.
+   - **Priority tags:** high red, medium amber, low grey. Source disclosure and personal data are medium; former-client confidential is low.
+   - **Layout:** each section is a white card on a very light grey page.
+3. **List hierarchy:** the issue type is bold and the description normal weight. Quotes have a thin left rule, and there's more space between issues. The list layout is unchanged.
+4. **Version page, "Test a new version against current production".** The term "release gate" is gone from the screen.
+   - **Order:** the picker and Run button, the selected version's description, the comparison, the results, then the release log.
+   - **Version labels:** "Current production (v1.0)", "New version: reads the expert's declaration (v1.1)", "New version: cheaper model (v1.2)".
+   - **Loading state:** "Running on 8 transcripts…".
+   - **Results:** green "Ready for shadow testing", or red "Not ready: missed MNPI in transcript 5" with a link to the passage. It's transcript 5, not 4: the line comes from the scoring.
+5. **Comparison as two measures, current production next to the new version.**
+   - **Misses:** "N of 7 actual issues caught" and "N missed (N high priority)", with misses by issue type underneath.
+   - **False alarms:** "N false alarms", with the count by type of non-issue underneath (public source cited, harmless company mention, public market talk).
+   - **Zeros:** every number is labelled, e.g. "0 missed".
+   - **v1.1:** now catches all 7 issues and raises 2 false alarms. The results list shows each one with the answer key's note and what v1.1 said.
+   - **Source of the numbers:** all of them come from the scoring code, and a test checks the page against the Python eval.
+
+---
+
 # Prototype feedback, round 19 (applied): release gate and PII masking
 
 Kevin asked for a release gate on the benchmark, with names masked everywhere. Existing pages keep working.

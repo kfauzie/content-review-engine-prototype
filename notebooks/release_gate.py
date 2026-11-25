@@ -1,14 +1,17 @@
-"""Release gate for the review agent (synthetic data). Run from the run folder: python3 notebooks/release_gate.py
-(build_data.py runs it too and embeds the result in the page).
+"""Test a new version of the review AI against current production (synthetic data).
+Run from the run folder: python3 notebooks/release_gate.py (build_data.py runs it too and embeds the result in the page).
 
-Three versions of the agent. Their outputs on the 8 test-set transcripts are pre-generated and labelled simulated:
+Three versions. Their outputs on the 8 test-set transcripts are pre-generated and labelled simulated:
   v1.0  current production. The rule "flag any answer that names a company", run on the masked text (a Company ID).
-  v1.1  candidate. The blind AI reviewer's verdicts (data/eval/ai_verdicts_blind.json), reasons masked.
-  v1.2  candidate. v1.1 on a cheaper, faster model: the same verdicts, except it clears the hedged MNPI hint (T5-01:24).
-The scoring is real: eval.funnel compares each version's flags with the answer key, on the masked test set.
+  v1.1  reads the expert's declaration. The blind AI reviewer's verdicts (data/eval/ai_verdicts_blind.json), plus two
+        over-cautious flags on clean answers, so the simulation reflects a realistic run rather than a perfect one.
+  v1.2  v1.1 on a cheaper, faster model: the same outputs, except it clears the hedged MNPI hint (T5-01:24).
+The scoring is real: eval.funnel compares each version's flags with the answer key, on the masked test set. False
+alarms are grouped by why the answer was clean, from data/eval/clean_answers.json (a reviewer note per clean answer
+that any version flags; the scoring fails if one is missing).
 
-Gate rule: zero misses in MNPI, current-employer confidential and declaration conflict, and no more misses in the
-other types than current production (v1.0).
+Rule for moving forward: zero misses in the high-priority types, and no more misses in the other types than
+current production (v1.0).
 """
 import json
 import re
@@ -22,39 +25,47 @@ ROOT = Path(__file__).resolve().parent.parent
 MASKED_TEST_SET = ROOT / "data/eval/test_set_masked.md"
 OUT = ROOT / "data/eval/release_gate.json"
 VERSIONS_DIR = ROOT / "data/eval/versions"
-HIGH = ["MNPI", "Current employer confidential", "Declaration conflict"]
+CLEAN = ROOT / "data/eval/clean_answers.json"
 BASELINE = "v1.0"
-# how each answer-key type reads on the page and in a gate message
-LABELS = {"MNPI": ("Material non-public information", "MNPI"),
-          "Current employer confidential": ("Current-employer confidential", "current-employer confidential"),
-          "Declaration conflict": ("Declaration conflict", "a declaration conflict"),
-          "Source disclosure": ("Source disclosure", "a source disclosure"),
-          "Confidentiality breach": ("Former-client confidential", "former-client confidential"),
-          "PII": ("Personal data", "personal data")}
-# one short description per answer-key issue, for gate messages and the comparison table
-ISSUE_NOTES = {"T2-01:39": "unannounced acquisition at the expert's listed employer",
-               "T3-01:34": "unreleased pricing at the expert's current employer",
-               "T5-01:24": "hedged hint about a listed company",
-               "T6-01:06": "still in touch with former colleagues, against the declaration",
-               "T6-01:34": "names a current insider as the source",
-               "T8-00:53": "a former client's confidential details",
-               "T8-01:24": "a named person's health information"}
+# answer-key type -> page label, short form for a result line, priority (matches the benchmark's categories)
+TYPE_INFO = {"MNPI": ("Material non-public information", "MNPI", "high"),
+             "Current employer confidential": ("Current-employer confidential", "current-employer confidential", "high"),
+             "Declaration conflict": ("Declaration conflict", "a declaration conflict", "high"),
+             "Source disclosure": ("Source disclosure", "a source disclosure", "medium"),
+             "Confidentiality breach": ("Former-client confidential", "former-client confidential", "low"),
+             "PII": ("Personal data", "personal data", "medium")}
+HIGH = [x for x in TYPES if TYPE_INFO[x][2] == "high"]
+# one short description per answer-key issue, for result lines and the log
+ISSUE_NOTES = {"T2-01:39": "an unannounced acquisition by the expert's listed employer",
+               "T3-01:34": "unannounced pricing at the expert's current employer",
+               "T5-01:24": "a hedged hint about a listed company",
+               "T6-01:06": "continuing contact with the former employer, contrary to the declaration",
+               "T6-01:34": "a current insider named as the source",
+               "T8-00:53": "a former client's confidential information",
+               "T8-01:24": "a named individual's health information"}
 VERSIONS = [
-    {"id": "v1.0", "status": "Current production",
-     "description": "Flags any answer that names a company. Too many false alarms, and misses passages that don't name a company.",
+    {"id": "v1.0", "label": "Current production (v1.0)", "status": "Current production",
+     "description": "Flags every answer that names a company. It raises many false alarms, and misses answers that refer to a company without naming it.",
      "model": "Small, fast model", "prompt": "Flag every expert answer that names a company.",
-     "settings": "Reads the answer only. No declaration, no question."},
-    {"id": "v1.1", "status": "Candidate",
-     "description": "Also reads the expert's declaration to work out “we”, “us” and “their”. Fewer false alarms, no misses in the high-priority types.",
-     "model": "Large model", "prompt": "Review each answer with the question before it and the expert's declaration. Work out who “we”, “us” and “their” refer to, using the masked IDs and their tags. Flag by issue type and suggest an action.",
-     "settings": "Reads the question, the answer and the declaration. Temperature 0."},
-    {"id": "v1.2", "status": "Candidate",
-     "description": "v1.1 on a cheaper, faster model. Misses one hedged MNPI hint.",
+     "settings": "Reads the answer only, without the question or the expert's declaration."},
+    {"id": "v1.1", "label": "New version: reads the expert's declaration (v1.1)", "status": "New version",
+     "description": "Also reads the question and the expert's declaration, so it can tell which company “we”, “us” and “their” refer to.",
+     "model": "Large model", "prompt": "Review each answer together with the question and the expert's declaration. Identify the company that “we”, “us” or “their” refers to, using the masked IDs and their tags. Flag by issue type and recommend an action.",
+     "settings": "Reads the question, the answer and the declaration. Temperature 0 (the same input always gives the same output)."},
+    {"id": "v1.2", "label": "New version: cheaper model (v1.2)", "status": "New version",
+     "description": "The same instructions as v1.1, on a cheaper and faster model.",
      "model": "Small, fast model", "prompt": "Same as v1.1.",
-     "settings": "Reads the question, the answer and the declaration. Temperature 0."},
+     "settings": "Reads the question, the answer and the declaration. Temperature 0 (the same input always gives the same output)."},
 ]
 LOG = [{"at": "2026-09-08T10:14", "version": "v1.0", "result": "Released",
-        "reason": "First release, before the gate existed. Now the baseline that candidates are compared with.", "by": "Staff 0004"}]
+        "reason": "First version in production, released before this test existed. New versions are compared with it.", "by": "Staff 0004"}]
+# simulated over-cautious flags by v1.1 (and so v1.2) on answers the answer key treats as clean
+V11_EXTRA = {
+    "T5-01:03": {"type": "Confidentiality breach", "action": "escalate to human",
+                 "reason": "Comment on Northwind Biomedical, a listed company the expert left in March 2026 and owes continuing confidentiality to. Flagged as a precaution."},
+    "T7-00:36": {"type": "MNPI", "action": "escalate to human",
+                 "reason": "Precise margin figures and full-year guidance for Ardent Foods, the expert's listed former employer. The cited source was not verified."},
+}
 
 
 def outputs(M, T, A):
@@ -71,9 +82,12 @@ def outputs(M, T, A):
     v11 = {k: {"flag": v["verdict"] == "flag", "type": v["type"] if v["verdict"] == "flag" else None,
                "action": v["action"] if v["verdict"] == "flag" else None,
                "reason": M.text(v["reason"], ctx[int(k[1])])} for k, v in blind.items()}
+    for k, v in V11_EXTRA.items():
+        assert not v11[k]["flag"], k
+        v11[k] = {"flag": True, **v, "reason": M.text(v["reason"])}
     v12 = json.loads(json.dumps(v11))
     v12["T5-01:24"] = {"flag": False, "type": None, "action": None,
-                       "reason": "General advice to watch results; no company named and no specific figure."}
+                       "reason": "General advice to watch the results. No company is named and no figure is given."}
     return {"v1.0": v10, "v1.1": v11, "v1.2": v12}
 
 
@@ -81,59 +95,65 @@ def engine(out):
     return {k: ({"type": v["type"], "action": v["action"]} if v["flag"] else None) for k, v in out.items()}
 
 
-def score(out, human):
+def score(out, human, clean):
     rows, tot = funnel(engine(out), human)
-    return {"flags": len(tot["flagged"]), "right": len(tot["acted"]), "false_alarms": tot["cleared"],
-            "missed": {x: rows[x]["missed"] for x in TYPES}, "issues": len(tot["human"])}
+    missed = {x: rows[x]["missed"] for x in TYPES}
+    fa = tot["cleared"]
+    missing = [a for a in fa if a not in clean["answers"]]
+    assert not missing, f"flagged clean answers without a reviewer note: {missing}"
+    return {"flags": len(tot["flagged"]), "caught": len(tot["acted"]), "issues": len(tot["human"]), "missed": missed,
+            "missed_total": sum(map(len, missed.values())), "missed_high": sum(len(missed[x]) for x in HIGH),
+            "false_alarms": fa, "false_alarms_by_type": {t["id"]: [a for a in fa if clean["answers"][a]["type"] == t["id"]] for t in clean["types"]}}
 
 
-def gate(vid, s, base):
+def gate(s, base):
     high = sorted((a, x) for x in HIGH for a in s["missed"][x])
-    other = sum(len(s["missed"][x]) for x in TYPES if x not in HIGH)
-    base_other = sum(len(base["missed"][x]) for x in TYPES if x not in HIGH)
+    other, base_other = s["missed_total"] - s["missed_high"], base["missed_total"] - base["missed_high"]
     if high:
-        parts = [f"{LABELS[x][1]} in transcript {a[1]} ({ISSUE_NOTES[a]})" for a, x in high]
-        return {"passed": False, "message": f"Release gate: blocked. {vid} missed {' and '.join(parts)}.",
-                "reason": f"Missed {' and '.join(parts)}.", "links": [a for a, _ in high]}
+        short = " and ".join(f"{TYPE_INFO[x][1]} in transcript {a[1]}" for a, x in high)
+        detail = " and ".join(f"{TYPE_INFO[x][1]} in transcript {a[1]} ({ISSUE_NOTES[a]})" for a, x in high)
+        return {"passed": False, "headline": f"Not ready: missed {short}", "reason": f"Missed {detail}.", "links": [a for a, _ in high]}
     if other > base_other:
         miss = sorted(a for x in TYPES if x not in HIGH for a in s["missed"][x])
-        return {"passed": False, "message": f"Release gate: blocked. {vid} missed {other} issues in the other types; current production misses {base_other}.",
-                "reason": f"Missed {other} issues in the other types; current production misses {base_other}.", "links": miss}
-    return {"passed": True, "message": f"Release gate: passed. {vid} can go to shadow mode.",
-            "reason": f"No misses in the high-priority types; {other} in the other types (current production: {base_other}).", "links": []}
+        line = f"missed {other} medium- or low-priority issues; current production missed {base_other}"
+        return {"passed": False, "headline": f"Not ready: {line}", "reason": line[0].upper() + line[1:] + ".", "links": miss}
+    return {"passed": True, "headline": "Ready for shadow testing",
+            "reason": f"Missed nothing high priority; missed {other} other issues (current production missed {base_other}).", "links": []}
 
 
 def run(M):
     T, A, human = load(MASKED_TEST_SET.read_text())
+    clean = json.loads(CLEAN.read_text())
     outs = outputs(M, T, A)
     VERSIONS_DIR.mkdir(parents=True, exist_ok=True)
     for vid, o in outs.items():
         assert set(o) == set(human), vid
         (VERSIONS_DIR / f"{vid}.json").write_text(json.dumps({"version": vid, "note": "SIMULATED outputs on the masked synthetic test set.",
                                                                "outputs": o}, indent=1, ensure_ascii=False) + "\n")
-    scores = {vid: score(o, human) for vid, o in outs.items()}
-    result = {vid: {**scores[vid], "gate": gate(vid, scores[vid], scores[BASELINE])} for vid in outs}
+    scores = {vid: score(o, human, clean) for vid, o in outs.items()}
+    result = {vid: {**scores[vid], "result": gate(scores[vid], scores[BASELINE])} for vid in outs}
     OUT.write_text(json.dumps(result, indent=1, ensure_ascii=False) + "\n")
-    return T, A, human, outs, result
+    return T, A, human, outs, result, clean
 
 
 def release_data(M, tset, listed, topics):
     from mask import tags_for
-    T, A, human, outs, result = run(M)
+    T, A, human, outs, result, clean = run(M)
     transcripts = {}
     for n, t in sorted(tset.items()):
         transcripts[str(n)] = {"num": n, "topic": topics[n], "profile": t["profile"], "declaration": t["declaration"],
                                "turns": [{"ts": f"{s // 60:02d}:{s % 60:02d}", "speaker": w, "text": x} for s, w, x in t["turns"]],
                                "entities": tags_for(t["profile"], t["declaration"], " ".join(x for _, _, x in t["turns"]), listed)}
-    return {"note": "Agent outputs are SIMULATED (pre-generated on the masked synthetic test set). The scoring runs on the page.",
-            "baseline": BASELINE, "high": HIGH, "types": [{"id": x, "label": LABELS[x][0], "short": LABELS[x][1], "high": x in HIGH} for x in TYPES],
+    return {"note": "Version outputs are SIMULATED (pre-generated on the masked synthetic test set). The scoring runs on the page.",
+            "baseline": BASELINE, "high": HIGH,
+            "types": [{"id": x, "label": TYPE_INFO[x][0], "short": TYPE_INFO[x][1], "priority": TYPE_INFO[x][2], "high": x in HIGH} for x in TYPES],
             "issue_notes": ISSUE_NOTES, "answer_key": {k: v for k, v in human.items() if v}, "answers": sorted(human),
-            "versions": [{**v, "outputs": outs[v["id"]]} for v in VERSIONS], "log": LOG, "transcripts": transcripts}
+            "clean": clean, "versions": [{**v, "outputs": outs[v["id"]]} for v in VERSIONS], "log": LOG, "transcripts": transcripts}
 
 
 if __name__ == "__main__":
     from mask import Masker, VAULT_PATH
-    *_, result = run(Masker(json.loads(VAULT_PATH.read_text())))
+    *_, result, _ = run(Masker(json.loads(VAULT_PATH.read_text())))
     for vid, r in result.items():
-        miss = {x: m for x, m in r["missed"].items() if m}
-        print(f"{vid}: flags {r['flags']}, right {r['right']}, false alarms {len(r['false_alarms'])}, missed {miss}\n  {r['gate']['message']}")
+        fa = {k: len(v) for k, v in r["false_alarms_by_type"].items()}
+        print(f"{vid}: caught {r['caught']} of {r['issues']}, missed {r['missed_total']} ({r['missed_high']} high), false alarms {len(r['false_alarms'])} {fa}\n  {r['result']['headline']}")

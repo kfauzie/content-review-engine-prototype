@@ -67,8 +67,8 @@
     }
    ],
    "passage_ts": "02:17",
-   "reviewer_comment": "The expert advises Torvane on its submissions and disclosed an unannounced regulatory rejection, which is plainly material and non-public. We redacted the passage, held the transcript back from the client and referred the expert to the vetting team.",
-   "root_cause": "The AI assessed each expert turn on its own, and this turn names no company: 'their' points back to Torvane in the interviewer's question. Without that link it never matched the passage to the client listed in the declaration, and read 'the regulator's decision' as general regulatory commentary."
+   "reviewer_comment": "The expert advises Torvane Pharma on its regulatory submissions. He disclosed that the regulator has rejected its diabetes drug, which has not been announced. That is inside information. We redacted the passage, withheld the transcript from the client and referred the expert to the vetting team.",
+   "root_cause": "The AI assessed the answer on its own. The answer names no company: “their” refers back to Torvane Pharma in the question. Without that link, the AI did not connect the answer to the client named in the declaration, and treated “the regulator's decision” as general comment."
   },
   {
    "name": "Henrik Lindqvist",
@@ -141,8 +141,8 @@
     }
    ],
    "passage_ts": "02:10",
-   "reviewer_comment": "Henrik heads strategy at Brannholt, a listed company, and disclosed a board-approved sale of its European tyre business ahead of the announcement. We rejected the transcript and escalated the expert for breaching his declaration.",
-   "root_cause": "The expert said 'the board' rather than 'our board' and never named Brannholt, so the AI read the answer as commentary on consolidation among peers. The issue only shows against the declaration, which says he works in strategy at a listed group that owns a European tyre business, and the AI did not make that comparison."
+   "reviewer_comment": "Henrik Lindqvist heads strategy at Brannholt Automotive, a listed company. He disclosed that its board has approved the sale of its European tyre business, before any announcement. We rejected the transcript and escalated the expert for breaching his declaration.",
+   "root_cause": "The expert said “the board”, not “our board”, and did not name Brannholt Automotive, so the AI read the answer as comment on the sector. The problem only shows against the declaration, which says he works in strategy at a listed group with a European tyre business. The AI did not make that comparison."
   },
   {
    "name": "Nadia Rahimi",
@@ -215,8 +215,8 @@
     }
    ],
    "passage_ts": "02:07",
-   "reviewer_comment": "The expert left Stellan, a listed company, only in August and disclosed that its largest customer has given notice on a contract worth about a fifth of revenue, which she says the market does not know. We redacted the passage and referred the expert to the vetting team.",
-   "root_cause": "The AI's log scored the turn as a continuation of the expert's general point about customer concentration and labelled it an illustrative industry example. It gave no weight to 'the market doesn't know' and did not check that she had left Stellan, a listed company, three months before the call."
+   "reviewer_comment": "The expert left Stellan Packaging, a listed company, in August. She disclosed that its largest customer, worth about a fifth of revenue, has given notice, and said the market does not know. We redacted the passage and referred the expert to the vetting team.",
+   "root_cause": "The AI treated the answer as an example of the expert's general point about customer concentration. It gave no weight to “the market doesn't know”, and did not check that she had left Stellan Packaging three months before the call."
   },
   {
    "name": "Benjamin Cole",
@@ -289,8 +289,8 @@
     }
    ],
    "passage_ts": "02:03",
-   "reviewer_comment": "As Corran's main distributor, the expert has access to its order data, and he disclosed a non-public order book trend that points to a guidance miss at a listed company. We redacted the passage and reminded the expert of his restrictions.",
-   "root_cause": "The AI logged 'I'd expect them to miss guidance' as the expert's own forecast and classified the passage as opinion. It folded the 15% figure into that view and missed that 'the order book I saw' means he had seen Corran's internal data through the distribution relationship set out in his declaration."
+   "reviewer_comment": "The expert is Corran Engineering's main distributor and sees its order data. He disclosed a fall in its order book that points to the company missing its published forecast (its guidance). Corran Engineering is listed. We redacted the passage and reminded the expert of his restrictions.",
+   "root_cause": "The AI recorded “I'd expect them to miss guidance” as the expert's own forecast and treated the passage as opinion. It missed that “the order book I saw” means he had seen Corran Engineering's internal data, through the distribution relationship recorded in his declaration."
   },
   {
    "name": "Grace Liu",
@@ -363,8 +363,8 @@
     }
    ],
    "passage_ts": "01:56",
-   "reviewer_comment": "The expert works at Kelsall and disclosed an unannounced plant closure that even the staff have not been told about, which her declaration clearly bars. We redacted the passage and sent her a reminder of her restrictions.",
-   "root_cause": "The AI's log labelled the turn as an example of the sector-wide site consolidation the expert had just described, reading 'we' as the industry. It never resolved 'we' to Kelsall from the declaration, and logged 'keep that between us' as a conversational aside rather than a sign the information is confidential."
+   "reviewer_comment": "The expert works at Kelsall Home Products. She disclosed a plant closure that has not been announced, even to staff. Her declaration prohibits this. We redacted the passage and reminded her of her restrictions.",
+   "root_cause": "The AI read “we” as the industry and treated the answer as an example of the sector-wide closures the expert had just described. It did not use the declaration to link “we” to Kelsall Home Products, and took “keep that between us” as a figure of speech rather than a sign that the information is confidential."
   },
   {
    "name": "Mateo Alvarez",
@@ -437,8 +437,8 @@
     }
    ],
    "passage_ts": "02:00",
-   "reviewer_comment": "The expert works at Quayside and gave a non-public launch date from its product roadmap, which his declaration bars. We redacted the passage; the general hiring discussion around it was fine.",
-   "root_cause": "The AI's log grouped this turn with the hiring discussion in the previous two turns and classified it as labour market commentary, which the declaration allows. It did not separate out the roadmap launch date attached to the hiring point, which is the confidential part."
+   "reviewer_comment": "The expert works at Quayside Retail Software. He gave the launch date of a product on its roadmap, which is not public and which his declaration prohibits. We redacted that sentence; the discussion of hiring around it was acceptable.",
+   "root_cause": "The AI grouped this answer with the two before it, which were about hiring, and treated it as comment on the labour market, which the declaration permits. It did not pick out the launch date, which is the confidential part."
   },
   {
    "name": "Siobhan Kelly",
@@ -511,8 +511,8 @@
     }
    ],
    "passage_ts": "01:56",
-   "reviewer_comment": "The expert is on the account team at Calder, her current employer, and disclosed the imminent loss of its second-largest customer, which is non-public customer information under her declaration. We redacted the passage and sent her a reminder of her restrictions.",
-   "root_cause": "The AI's confidentiality check looked for specifics such as a customer name, a contract value or a date, found none, and scored the turn as low risk. It missed that a current employee saying a major customer is about to leave is confidential company information in itself."
+   "reviewer_comment": "The expert is on the account team at Calder Facilities Services, her current employer. She disclosed that it is about to lose its second-largest customer. Under her declaration, that is confidential customer information. We redacted the passage and reminded her of her restrictions.",
+   "root_cause": "The AI's confidentiality check looks for specifics such as a customer name, a contract value or a date. It found none and scored the answer as low risk. It missed that an employee saying a major customer is about to leave is confidential in itself."
   },
   {
    "name": "Laura Bennett",
@@ -580,8 +580,8 @@
     }
    ],
    "passage_ts": "00:51",
-   "reviewer_comment": "The store closures are set out in Hollin's published annual report, which the expert cites directly, and she has no connection to the company. Nothing here is non-public, so we cleared it.",
-   "root_cause": "The AI keyed on 'closing stores', which its rules treat as a restructuring signal, and on Hollin being a listed company named in the question. It did not check the attribution at the start of the sentence: the closures are in Hollin's published annual report, and the expert has no link to the company."
+   "reviewer_comment": "The store closures are set out in Hollin Stores's published annual report, which the expert cites. She has no connection to the company. Nothing here is non-public. Cleared.",
+   "root_cause": "The AI's rules treat “closing stores” as a sign of restructuring, and Hollin Stores is a listed company named in the question. The AI did not read the start of the sentence, which attributes the closures to the published annual report."
   },
   {
    "name": "Arjun Mehra",
@@ -649,8 +649,8 @@
     }
    ],
    "passage_ts": "01:30",
-   "reviewer_comment": "The expert is repeating what the chief executive said on Penrose's public results call, and he has no connection to the company. We checked the published transcript and cleared the passage.",
-   "root_cause": "The AI keyed on the forward-looking statement about next year's capital spending and the mention of the chief executive, and scored it as possible insider guidance. It did not treat 'on the results call' as a public source, even though the expert adds that the comment is in the published transcript."
+   "reviewer_comment": "The expert repeats what the chief executive said on Penrose Distribution's public results call. He has no connection to the company. We checked the published transcript of the call. Cleared.",
+   "root_cause": "The AI read the statement about next year's capital spending, and the reference to the chief executive, as possible inside information about the company's plans. It did not treat “on the results call” as a public source, although the expert adds that the comment is in the published transcript."
   },
   {
    "name": "Chloe Martin",
@@ -723,8 +723,8 @@
     }
    ],
    "passage_ts": "01:20",
-   "reviewer_comment": "Fenmore announced the Leeds office in a public press release in September, which we confirmed on its website. The expert is repeating public news about her employer, so we cleared it.",
-   "root_cause": "The AI's employer rule fired on 'we' together with a new office, which it matched to the declaration's ban on Fenmore's non-public plans. It did not check the press release the expert cites, which Fenmore published the month before the call."
+   "reviewer_comment": "Fenmore Legal Services announced the Leeds office in a press release in September, which we confirmed on its website. The expert is repeating public news about her employer. Cleared.",
+   "root_cause": "The AI matched “we” and a new office to the declaration's ban on Fenmore Legal Services's non-public plans. It did not check the press release the expert cites, published the month before the call."
   },
   {
    "name": "Ibrahim Yusuf",
@@ -797,8 +797,8 @@
     }
    ],
    "passage_ts": "01:56",
-   "reviewer_comment": "The £40 standard tier is on Tidewell's public pricing page, which we checked. A published list price is not confidential, so we cleared it.",
-   "root_cause": "The AI keyed on a precise price for the expert's current employer, 'our' plus '£40 a seat', and matched it to the declaration's ban on non-public pricing. It did not treat 'Our prices are on the website' as a source to check, and so did not tell a published list price apart from internal pricing."
+   "reviewer_comment": "The £40 standard tier is on Tidewell Software's public pricing page, which we checked. A published list price is not confidential. Cleared.",
+   "root_cause": "The AI matched a precise price at the expert's current employer to the declaration's ban on non-public pricing. It did not treat “Our prices are on the website” as a source to check, so it could not tell a published price from internal pricing."
   },
   {
    "name": "Ruth Okonkwo",
@@ -866,8 +866,8 @@
     }
    ],
    "passage_ts": "00:52",
-   "reviewer_comment": "The figure comes straight from Marchbank's published sustainability report, which the expert names, and the report confirms an emissions cut of about a tenth. Public information, so we cleared it.",
-   "root_cause": "The AI's log shows it split the sentence at the colon and assessed 'we cut emissions by about a tenth last year' on its own, as a quantified internal metric about the current employer. The attribution to the published sustainability report sat in the first half of the sentence and was lost."
+   "reviewer_comment": "The figure is in Marchbank Building Materials's published sustainability report, which the expert names. The report confirms emissions fell by about a tenth. Public information. Cleared.",
+   "root_cause": "The AI split the sentence at the colon and assessed “we cut emissions by about a tenth last year” on its own, as an internal figure about the current employer. The reference to the published report was in the first half of the sentence, and the AI lost it."
   },
   {
    "name": "Marco Rossi",
@@ -940,8 +940,8 @@
     }
    ],
    "passage_ts": "01:22",
-   "reviewer_comment": "The oven was launched on stage at a public trade show in September and covered in the trade press, and the expert stuck to what was shown there. Nothing confidential, so we cleared it.",
-   "root_cause": "The AI matched 'new product' to the declaration's ban on non-public product plans and read 'so it's public now' as the expert justifying a disclosure, a pattern its rules mark as higher risk. It did not check the September trade show, where the oven was shown on stage and widely reported."
+   "reviewer_comment": "The oven was launched on stage at a public trade show in September and reported in the trade press. The expert kept to what was shown there. Cleared.",
+   "root_cause": "The AI matched “new product” to the declaration's ban on non-public product plans, and read “so it's public now” as the expert justifying a disclosure, which its rules treat as higher risk. It did not check the September trade show."
   }
  ]
 }

@@ -1,14 +1,8 @@
 {
  "v1.0": {
   "flags": 8,
-  "right": 3,
-  "false_alarms": [
-   "T2-01:19",
-   "T4-00:26",
-   "T4-02:03",
-   "T5-01:03",
-   "T7-00:36"
-  ],
+  "caught": 3,
+  "issues": 7,
   "missed": {
    "MNPI": [
     "T5-01:24"
@@ -25,11 +19,32 @@
     "T8-01:24"
    ]
   },
-  "issues": 7,
-  "gate": {
+  "missed_total": 4,
+  "missed_high": 2,
+  "false_alarms": [
+   "T2-01:19",
+   "T4-00:26",
+   "T4-02:03",
+   "T5-01:03",
+   "T7-00:36"
+  ],
+  "false_alarms_by_type": {
+   "public-source": [
+    "T4-00:26",
+    "T4-02:03",
+    "T7-00:36"
+   ],
+   "company-mention": [
+    "T5-01:03"
+   ],
+   "market-talk": [
+    "T2-01:19"
+   ]
+  },
+  "result": {
    "passed": false,
-   "message": "Release gate: blocked. v1.0 missed current-employer confidential in transcript 3 (unreleased pricing at the expert's current employer) and MNPI in transcript 5 (hedged hint about a listed company).",
-   "reason": "Missed current-employer confidential in transcript 3 (unreleased pricing at the expert's current employer) and MNPI in transcript 5 (hedged hint about a listed company).",
+   "headline": "Not ready: missed current-employer confidential in transcript 3 and MNPI in transcript 5",
+   "reason": "Missed current-employer confidential in transcript 3 (unannounced pricing at the expert's current employer) and MNPI in transcript 5 (a hedged hint about a listed company).",
    "links": [
     "T3-01:34",
     "T5-01:24"
@@ -37,9 +52,9 @@
   }
  },
  "v1.1": {
-  "flags": 7,
-  "right": 7,
-  "false_alarms": [],
+  "flags": 9,
+  "caught": 7,
+  "issues": 7,
   "missed": {
    "MNPI": [],
    "Current employer confidential": [],
@@ -48,18 +63,32 @@
    "Confidentiality breach": [],
    "PII": []
   },
-  "issues": 7,
-  "gate": {
+  "missed_total": 0,
+  "missed_high": 0,
+  "false_alarms": [
+   "T5-01:03",
+   "T7-00:36"
+  ],
+  "false_alarms_by_type": {
+   "public-source": [
+    "T7-00:36"
+   ],
+   "company-mention": [
+    "T5-01:03"
+   ],
+   "market-talk": []
+  },
+  "result": {
    "passed": true,
-   "message": "Release gate: passed. v1.1 can go to shadow mode.",
-   "reason": "No misses in the high-priority types; 0 in the other types (current production: 2).",
+   "headline": "Ready for shadow testing",
+   "reason": "Missed nothing high priority; missed 0 other issues (current production missed 2).",
    "links": []
   }
  },
  "v1.2": {
-  "flags": 6,
-  "right": 6,
-  "false_alarms": [],
+  "flags": 8,
+  "caught": 6,
+  "issues": 7,
   "missed": {
    "MNPI": [
     "T5-01:24"
@@ -70,11 +99,25 @@
    "Confidentiality breach": [],
    "PII": []
   },
-  "issues": 7,
-  "gate": {
+  "missed_total": 1,
+  "missed_high": 1,
+  "false_alarms": [
+   "T5-01:03",
+   "T7-00:36"
+  ],
+  "false_alarms_by_type": {
+   "public-source": [
+    "T7-00:36"
+   ],
+   "company-mention": [
+    "T5-01:03"
+   ],
+   "market-talk": []
+  },
+  "result": {
    "passed": false,
-   "message": "Release gate: blocked. v1.2 missed MNPI in transcript 5 (hedged hint about a listed company).",
-   "reason": "Missed MNPI in transcript 5 (hedged hint about a listed company).",
+   "headline": "Not ready: missed MNPI in transcript 5",
+   "reason": "Missed MNPI in transcript 5 (a hedged hint about a listed company).",
    "links": [
     "T5-01:24"
    ]

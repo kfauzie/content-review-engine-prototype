@@ -9,7 +9,7 @@
   {
    "name": "Material non-public information",
    "priority": "high",
-   "description": "Non-public facts that could move a listed company's share price",
+   "description": "Non-public information that could move a listed company's share price",
    "found": 38,
    "missed": 5,
    "false_alarms": 60
@@ -25,30 +25,30 @@
   {
    "name": "Declaration conflict",
    "priority": "high",
-   "description": "Contradicts what the expert declared",
+   "description": "Statements that contradict the expert's declaration",
    "found": 14,
    "missed": 0,
    "false_alarms": 9
   },
   {
    "name": "Source disclosure",
-   "priority": "lower",
-   "description": "Names an insider as the source",
+   "priority": "medium",
+   "description": "The expert names an insider as the source",
    "found": 29,
    "missed": 4,
    "false_alarms": 8
   },
   {
    "name": "Former-client confidential",
-   "priority": "lower",
-   "description": "Confidential details from a former client or employer",
+   "priority": "low",
+   "description": "Confidential information about a former client or employer",
    "found": 33,
    "missed": 3,
    "false_alarms": 20
   },
   {
    "name": "Personal data",
-   "priority": "lower",
+   "priority": "medium",
    "description": "Names or sensitive details of private individuals",
    "found": 96,
    "missed": 7,
@@ -59,7 +59,7 @@
   {
    "id": "public-source",
    "name": "Public source cited",
-   "description": "The expert attributed it to a filing, earnings call, press release or website",
+   "description": "The expert attributed the information to a filing, an earnings call, a press release or a website",
    "count": 98
   },
   {
@@ -71,7 +71,7 @@
   {
    "id": "former-employer",
    "name": "Former employer, left long ago",
-   "description": "About a company the expert left years ago, with nothing current",
+   "description": "About a company the expert left years ago; nothing current",
    "count": 27
   },
   {
@@ -84,9 +84,9 @@
  "fixes": [
   {
    "id": "declaration",
-   "title": "Read each answer in context",
+   "title": "Give the AI the expert's declaration",
    "cause_label": "Why the AI missed it",
-   "root_cause": "The AI read each answer in isolation. When an expert said “we”, “their” or “the board”, it didn't know which company they meant, so it couldn't tell that the expert was talking about their own employer, a client or a former employer.",
+   "root_cause": "The AI read each answer in isolation. When an expert said “we”, “their” or “the board”, it could not tell which company was meant, so it missed that the expert was talking about their own employer, a client or a former employer.",
    "examples": [
     {
      "name": "Expert 1342",
@@ -120,16 +120,16 @@
     }
    ],
    "how": [
-    "Give the AI the expert's declaration and the question asked alongside every answer.",
-    "Work out which company “we”, “our” or “their” refers to before judging the answer.",
-    "Check what was said against the expert's restrictions and the date they left each company."
+    "Give the AI the question and the expert's declaration with every answer.",
+    "Identify the company that “we”, “our” or “their” refers to before assessing the answer.",
+    "Check the answer against the expert's restrictions and the date they left each company."
    ]
   },
   {
    "id": "people",
-   "title": "Check for people and sources, not just companies",
+   "title": "Flag possible insider contacts",
    "cause_label": "Why the AI missed it",
-   "root_cause": "The AI only looked for information about companies. It didn't catch private individuals being named, or experts naming insiders as their source.",
+   "root_cause": "The AI only looked for information about companies. It missed answers that name private individuals, and answers in which the expert names an insider as the source.",
    "examples": [
     {
      "name": "Expert 6378",
@@ -153,16 +153,16 @@
     }
    ],
    "how": [
-    "Flag any named private individual mentioned alongside health, family or legal details.",
+    "Flag any named private individual mentioned with health, family or legal details.",
     "Flag phrases that point to an inside source, such as “my contact”, “told me” and “I still speak to”.",
     "Send both to a reviewer, with the name highlighted."
    ]
   },
   {
    "id": "sources",
-   "title": "Check the expert's cited source before flagging",
+   "title": "Check if the cited source is already public",
    "cause_label": "Why the AI raised a false alarm",
-   "root_cause": "Most false alarms were statements the expert attributed to a public source, such as an earnings call, a press release or an annual report. The AI flagged them without checking whether the information really was public.",
+   "root_cause": "Most false alarms were statements the expert attributed to a public source, such as an earnings call, a press release or an annual report. The AI flagged them without checking whether the information was in fact public.",
    "examples": [
     {
      "name": "Expert 1578",
@@ -206,9 +206,9 @@
     }
    ],
    "how": [
-    "Spot when an expert cites a source.",
+    "Detect when an expert cites a source.",
     "Check that source: filings, press releases or the company's website.",
-    "Clear the statement if the information is there. Keep it flagged if it isn't."
+    "Clear the statement if the information is there; keep it flagged if it is not."
    ]
   }
  ],
@@ -567,7 +567,7 @@
    "ts": "01:19",
    "quote": "Publicly, people talk about the mid-sized regional players. Company 0615 is the one everyone mentions, they're strong in the North West and Scotland.",
    "source": "test set T2-01:19",
-   "cleared": "Public speculation about a takeover target, not the expert's employer",
+   "cleared": "Market speculation about a possible target; not the expert's employer",
    "transcript": "false-alarm-expert-9432",
    "fix": "sources",
    "highlight": "Publicly, people talk about",
@@ -582,7 +582,7 @@
    "ts": "00:26",
    "quote": "Company 9728 laid out the lending strategy at their 2024 investor day. The logic is straightforward: they already see merchants' transaction data, so they can underwrite small loans with better information than a bank.",
    "source": "test set T4-00:26",
-   "cleared": "Former employer, left in 2021; cites the public investor day",
+   "cleared": "Left in 2021; cites the public investor day",
    "transcript": "false-alarm-expert-0383",
    "fix": "declaration",
    "highlight": "at their 2024 investor day",
@@ -627,7 +627,7 @@
    "ts": "01:30",
    "quote": "The chief executive said on the results call that capital spending would rise next year, mostly on automation.",
    "source": "written for the design",
-   "cleared": "A public statement on the results call",
+   "cleared": "Said publicly on the results call",
    "transcript": "false-alarm-expert-2518",
    "fix": "sources",
    "highlight": "said on the results call",
@@ -702,7 +702,7 @@
    "ts": "07:41",
    "quote": "My own estimate is that their margins are nearer 20% than 25%, based on industry benchmarks, not anything I worked on.",
    "source": "written for the design",
-   "cleared": "The expert's own estimate from public benchmarks",
+   "cleared": "The expert's own estimate, based on public benchmarks",
    "transcript": null,
    "fix": null,
    "highlight": "My own estimate",
@@ -717,7 +717,7 @@
    "ts": "13:22",
    "quote": "Nobody told me this, but my view is they'll have to raise prices within a year.",
    "source": "written for the design",
-   "cleared": "A personal view, not from a source",
+   "cleared": "A personal view, not attributed to any source",
    "transcript": null,
    "fix": null,
    "highlight": "Nobody told me this, but my view is",
@@ -732,7 +732,7 @@
    "ts": "19:58",
    "quote": "I think their new chief executive, Person 1134, is the right person for the turnaround, though that's only my opinion.",
    "source": "written for the design",
-   "cleared": "An opinion about a public figure in a public role",
+   "cleared": "An opinion about a public figure acting in a public role",
    "transcript": null,
    "fix": null,
    "highlight": "that's only my opinion",
@@ -762,7 +762,7 @@
    "ts": "04:37",
    "quote": "I left Company 7660 in 2017, and back then the plant ran three shifts.",
    "source": "written for the design",
-   "cleared": "Matches the declaration; nine-year-old detail",
+   "cleared": "Consistent with the declaration; the detail is nine years old",
    "transcript": null,
    "fix": null,
    "highlight": "I left Company 7660 in 2017",
@@ -777,7 +777,7 @@
    "ts": "22:45",
    "quote": "My old manager at Company 5364, back in 2014, always said the network was over-built.",
    "source": "written for the design",
-   "cleared": "A decade-old opinion from a former employer",
+   "cleared": "A ten-year-old opinion about a former employer",
    "transcript": null,
    "fix": null,
    "highlight": "back in 2014",
@@ -807,7 +807,7 @@
    "ts": "11:36",
    "quote": "A few people I met at the trade show think the merger will happen, but that's just the chatter going round.",
    "source": "written for the design",
-   "cleared": "General market rumour, no insider named",
+   "cleared": "General market rumour; no insider named",
    "transcript": null,
    "fix": null,
    "highlight": "that's just the chatter going round",
@@ -902,8 +902,8 @@
     }
    ],
    "passage_ts": "01:24",
-   "reviewer_comment": "Hedged, but points to a possible undisclosed product quality issue at a listed former employer, sourced from current contacts there. Too uncertain for AI to clear or reject; needs a compliance reviewer.",
-   "root_cause": "The AI looks for named companies, and none is named: the expert says “their”. Linking it to Company 3966, a listed company he left in March 2026, needs the question before it and his declaration.",
+   "reviewer_comment": "The expert left Company 3966, a listed company, in March 2026 and says he still speaks to people there. He hints at a quality problem with one of its knee systems that has not yet shown in its results. The hedging does not make it safe: this may be inside information. We redacted the passage and referred it to Legal.",
+   "root_cause": "The AI only checks answers that name a company. This answer says “their” instead. To link it to Company 3966, the AI needed the question before it and the expert's declaration, and it reads neither.",
    "source": "test set, transcript 5",
    "id": "missed-expert-9928",
    "kind": "missed",
@@ -911,7 +911,7 @@
    "name": "Expert 9928",
    "date": "2026-11-12",
    "role": "Finance Director, Company 3966 (2018 to March 2026). Independent consultant (March 2026 to present).",
-   "reviewer": "Reviewer 6689, Legal Counsel",
+   "reviewer": "Reviewer 6689, Legal Counsel (internal)",
    "reviewed_at": "2026-11-13T09:42",
    "entities": {
     "Company 3966": [
@@ -985,8 +985,8 @@
     }
    ],
    "passage_ts": "02:17",
-   "reviewer_comment": "The expert advises Company 4354 on its submissions and disclosed an unannounced regulatory rejection, which is plainly material and non-public. We redacted the passage, held the transcript back from the client and referred the expert to the vetting team.",
-   "root_cause": "The AI assessed each expert turn on its own, and this turn names no company: 'their' points back to Company 4354 in the interviewer's question. Without that link it never matched the passage to the client listed in the declaration, and read 'the regulator's decision' as general regulatory commentary.",
+   "reviewer_comment": "The expert advises Company 4354 on its regulatory submissions. He disclosed that the regulator has rejected its diabetes drug, which has not been announced. That is inside information. We redacted the passage, withheld the transcript from the client and referred the expert to the vetting team.",
+   "root_cause": "The AI assessed the answer on its own. The answer names no company: “their” refers back to Company 4354 in the question. Without that link, the AI did not connect the answer to the client named in the declaration, and treated “the regulator's decision” as general comment.",
    "source": "written for the prototype",
    "id": "missed-expert-6456",
    "kind": "missed",
@@ -994,7 +994,7 @@
    "name": "Expert 6456",
    "date": "2026-10-29",
    "role": "Regulatory Affairs Manager, Company 4794 (2016 to 2022). Principal Consultant, Company 6393 (2022 to present).",
-   "reviewer": "Reviewer 8559, Senior Compliance Manager",
+   "reviewer": "Reviewer 8559, Senior Compliance Manager (internal)",
    "reviewed_at": "2026-10-31T11:17",
    "entities": {
     "Company 4354": [
@@ -1079,8 +1079,8 @@
     }
    ],
    "passage_ts": "02:10",
-   "reviewer_comment": "Expert 3657 heads strategy at Company 3068, a listed company, and disclosed a board-approved sale of its European tyre business ahead of the announcement. We rejected the transcript and escalated the expert for breaching his declaration.",
-   "root_cause": "The expert said 'the board' rather than 'our board' and never named Company 3068, so the AI read the answer as commentary on consolidation among peers. The issue only shows against the declaration, which says he works in strategy at a listed group that owns a European tyre business, and the AI did not make that comparison.",
+   "reviewer_comment": "Expert 3657 heads strategy at Company 3068, a listed company. He disclosed that its board has approved the sale of its European tyre business, before any announcement. We rejected the transcript and escalated the expert for breaching his declaration.",
+   "root_cause": "The expert said “the board”, not “our board”, and did not name Company 3068, so the AI read the answer as comment on the sector. The problem only shows against the declaration, which says he works in strategy at a listed group with a European tyre business. The AI did not make that comparison.",
    "source": "written for the prototype",
    "id": "missed-expert-3657",
    "kind": "missed",
@@ -1088,7 +1088,7 @@
    "name": "Expert 3657",
    "date": "2026-11-05",
    "role": "Plant Manager, Company 4907 (2012 to 2019). Head of Corporate Strategy, Company 3068 (2019 to present).",
-   "reviewer": "Reviewer 6689, Legal Counsel",
+   "reviewer": "Reviewer 6689, Legal Counsel (internal)",
    "reviewed_at": "2026-11-06T14:05",
    "entities": {
     "Company 3068": [
@@ -1170,8 +1170,8 @@
     }
    ],
    "passage_ts": "02:07",
-   "reviewer_comment": "The expert left Company 2161, a listed company, only in August and disclosed that its largest customer has given notice on a contract worth about a fifth of revenue, which she says the market does not know. We redacted the passage and referred the expert to the vetting team.",
-   "root_cause": "The AI's log scored the turn as a continuation of the expert's general point about customer concentration and labelled it an illustrative industry example. It gave no weight to 'the market doesn't know' and did not check that she had left Company 2161, a listed company, three months before the call.",
+   "reviewer_comment": "The expert left Company 2161, a listed company, in August. She disclosed that its largest customer, worth about a fifth of revenue, has given notice, and said the market does not know. We redacted the passage and referred the expert to the vetting team.",
+   "root_cause": "The AI treated the answer as an example of the expert's general point about customer concentration. It gave no weight to “the market doesn't know”, and did not check that she had left Company 2161 three months before the call.",
    "source": "written for the prototype",
    "id": "missed-expert-7520",
    "kind": "missed",
@@ -1179,7 +1179,7 @@
    "name": "Expert 7520",
    "date": "2026-11-10",
    "role": "Account Manager, Company 2924 (2014 to 2018). Key Account Director, Company 2161 (2018 to August 2026). Independent packaging consultant (August 2026 to present).",
-   "reviewer": "Reviewer 8559, Senior Compliance Manager",
+   "reviewer": "Reviewer 8559, Senior Compliance Manager (internal)",
    "reviewed_at": "2026-11-12T16:38",
    "entities": {
     "Company 2161": [
@@ -1261,8 +1261,8 @@
     }
    ],
    "passage_ts": "02:03",
-   "reviewer_comment": "As Company 6650's main distributor, the expert has access to its order data, and he disclosed a non-public order book trend that points to a guidance miss at a listed company. We redacted the passage and reminded the expert of his restrictions.",
-   "root_cause": "The AI logged 'I'd expect them to miss guidance' as the expert's own forecast and classified the passage as opinion. It folded the 15% figure into that view and missed that 'the order book I saw' means he had seen Company 6650's internal data through the distribution relationship set out in his declaration.",
+   "reviewer_comment": "The expert is Company 6650's main distributor and sees its order data. He disclosed a fall in its order book that points to the company missing its published forecast (its guidance). Company 6650 is listed. We redacted the passage and reminded the expert of his restrictions.",
+   "root_cause": "The AI recorded “I'd expect them to miss guidance” as the expert's own forecast and treated the passage as opinion. It missed that “the order book I saw” means he had seen Company 6650's internal data, through the distribution relationship recorded in his declaration.",
    "source": "written for the prototype",
    "id": "missed-expert-0937",
    "kind": "missed",
@@ -1270,7 +1270,7 @@
    "name": "Expert 0937",
    "date": "2026-11-16",
    "role": "Regional Sales Manager, Company 5308 (2014 to 2021). Commercial Director, Company 6700 (2021 to present).",
-   "reviewer": "Reviewer 6689, Legal Counsel",
+   "reviewer": "Reviewer 6689, Legal Counsel (internal)",
    "reviewed_at": "2026-11-17T10:26",
    "entities": {
     "Company 5308": [
@@ -1370,8 +1370,8 @@
     }
    ],
    "passage_ts": "01:34",
-   "reviewer_comment": "Non-public pricing decision at the expert's current employer, not yet told to customers, in breach of her declaration. Redacted; the expert gets a reminder of her restrictions.",
-   "root_cause": "The AI only checks passages that name a company. This one says “for us”, and linking that to Company 5981, her current employer, needs her declaration, which the AI didn't read.",
+   "reviewer_comment": "The expert disclosed a price increase at her current employer that customers have not yet been told about. This breaches her declaration. We redacted the passage and reminded her of her restrictions.",
+   "root_cause": "The AI only checks answers that name a company. This answer says “for us”. Linking it to Company 5981, her current employer, needed her declaration, which the AI does not read.",
    "source": "test set, transcript 3",
    "id": "missed-expert-1342",
    "kind": "missed",
@@ -1379,7 +1379,7 @@
    "name": "Expert 1342",
    "date": "2026-11-04",
    "role": "VP Sales EMEA, Company 5981 (2021 to present). Previously Sales Director, Company 6065 (2016 to 2021).",
-   "reviewer": "Reviewer 5546, Compliance Analyst",
+   "reviewer": "Reviewer 5546, Compliance Analyst (internal)",
    "reviewed_at": "2026-11-06T12:51",
    "entities": {
     "Company 5981": [
@@ -1461,8 +1461,8 @@
     }
    ],
    "passage_ts": "01:56",
-   "reviewer_comment": "The expert works at Company 9237 and disclosed an unannounced plant closure that even the staff have not been told about, which her declaration clearly bars. We redacted the passage and sent her a reminder of her restrictions.",
-   "root_cause": "The AI's log labelled the turn as an example of the sector-wide site consolidation the expert had just described, reading 'we' as the industry. It never resolved 'we' to Company 9237 from the declaration, and logged 'keep that between us' as a conversational aside rather than a sign the information is confidential.",
+   "reviewer_comment": "The expert works at Company 9237. She disclosed a plant closure that has not been announced, even to staff. Her declaration prohibits this. We redacted the passage and reminded her of her restrictions.",
+   "root_cause": "The AI read “we” as the industry and treated the answer as an example of the sector-wide closures the expert had just described. It did not use the declaration to link “we” to Company 9237, and took “keep that between us” as a figure of speech rather than a sign that the information is confidential.",
    "source": "written for the prototype",
    "id": "missed-expert-0842",
    "kind": "missed",
@@ -1470,7 +1470,7 @@
    "name": "Expert 0842",
    "date": "2026-10-30",
    "role": "Production Engineer, Company 2597 (2015 to 2020). Operations Director, Company 9237 (2020 to present).",
-   "reviewer": "Reviewer 8404, Compliance Analyst",
+   "reviewer": "Reviewer 8404, Compliance Analyst (internal)",
    "reviewed_at": "2026-10-31T15:09",
    "entities": {
     "Company 2597": [
@@ -1552,8 +1552,8 @@
     }
    ],
    "passage_ts": "02:00",
-   "reviewer_comment": "The expert works at Company 0973 and gave a non-public launch date from its product roadmap, which his declaration bars. We redacted the passage; the general hiring discussion around it was fine.",
-   "root_cause": "The AI's log grouped this turn with the hiring discussion in the previous two turns and classified it as labour market commentary, which the declaration allows. It did not separate out the roadmap launch date attached to the hiring point, which is the confidential part.",
+   "reviewer_comment": "The expert works at Company 0973. He gave the launch date of a product on its roadmap, which is not public and which his declaration prohibits. We redacted that sentence; the discussion of hiring around it was acceptable.",
+   "root_cause": "The AI grouped this answer with the two before it, which were about hiring, and treated it as comment on the labour market, which the declaration permits. It did not pick out the launch date, which is the confidential part.",
    "source": "written for the prototype",
    "id": "missed-expert-3370",
    "kind": "missed",
@@ -1561,7 +1561,7 @@
    "name": "Expert 3370",
    "date": "2026-11-07",
    "role": "Software Engineer, Company 1849 (2014 to 2019). Engineering Manager, Company 0973 (2019 to present).",
-   "reviewer": "Reviewer 8705, Compliance Analyst",
+   "reviewer": "Reviewer 8705, Compliance Analyst (internal)",
    "reviewed_at": "2026-11-09T09:42",
    "entities": {
     "Company 0973": [
@@ -1643,8 +1643,8 @@
     }
    ],
    "passage_ts": "01:56",
-   "reviewer_comment": "The expert is on the account team at Company 7200, her current employer, and disclosed the imminent loss of its second-largest customer, which is non-public customer information under her declaration. We redacted the passage and sent her a reminder of her restrictions.",
-   "root_cause": "The AI's confidentiality check looked for specifics such as a customer name, a contract value or a date, found none, and scored the turn as low risk. It missed that a current employee saying a major customer is about to leave is confidential company information in itself.",
+   "reviewer_comment": "The expert is on the account team at Company 7200, her current employer. She disclosed that it is about to lose its second-largest customer. Under her declaration, that is confidential customer information. We redacted the passage and reminded her of her restrictions.",
+   "root_cause": "The AI's confidentiality check looks for specifics such as a customer name, a contract value or a date. It found none and scored the answer as low risk. It missed that an employee saying a major customer is about to leave is confidential in itself.",
    "source": "written for the prototype",
    "id": "missed-expert-8778",
    "kind": "missed",
@@ -1652,7 +1652,7 @@
    "name": "Expert 8778",
    "date": "2026-11-18",
    "role": "Account Manager, Company 1746 (2015 to 2021). Senior Account Director, Company 7200 (2021 to present).",
-   "reviewer": "Reviewer 5546, Compliance Analyst",
+   "reviewer": "Reviewer 5546, Compliance Analyst (internal)",
    "reviewed_at": "2026-11-19T11:17",
    "entities": {
     "Company 1746": [
@@ -1739,8 +1739,8 @@
     }
    ],
    "passage_ts": "01:34",
-   "reviewer_comment": "Names a current insider as the source of non-public vendor decisions, which also contradicts her declared lack of professional contact with Company 9560. Transcript rejected; the expert is referred to the vetting team.",
-   "root_cause": "The AI checks for company names, and this answer names none: “there” points back to Company 9560. It didn't treat “my contact Person 2315 … told me” as an insider source, so nothing was flagged.",
+   "reviewer_comment": "The expert names a current insider as the source of non-public decisions about suppliers. This also contradicts her declaration that she has no professional contact with Company 9560. We rejected the transcript and referred the expert to the vetting team.",
+   "root_cause": "The AI checks for company names, and the answer names none: “there” refers back to Company 9560. It did not treat “my contact Person 2315 … told me” as naming an inside source.",
    "source": "test set, transcript 6",
    "id": "missed-expert-6378",
    "kind": "missed",
@@ -1748,7 +1748,7 @@
    "name": "Expert 6378",
    "date": "2026-11-09",
    "role": "Head of Procurement, Company 9560 (2019 to October 2024, per declaration). Independent procurement advisor (October 2024 to present).",
-   "reviewer": "Reviewer 8404, Compliance Analyst",
+   "reviewer": "Reviewer 8404, Compliance Analyst (internal)",
    "reviewed_at": "2026-11-11T14:05",
    "entities": {
     "Company 9560": [
@@ -1834,8 +1834,8 @@
     }
    ],
    "passage_ts": "01:24",
-   "reviewer_comment": "Names a private individual alongside private health information. Redacted.",
-   "root_cause": "The AI looks for company information only. A private person's name and health details aren't on its list, so the answer went through.",
+   "reviewer_comment": "The expert names a private individual together with details of their health. We redacted the passage.",
+   "root_cause": "The AI only looks for information about companies. A private individual's name and health details are outside what it checks, so the answer passed.",
    "source": "test set, transcript 8",
    "id": "missed-expert-3658",
    "kind": "missed",
@@ -1843,7 +1843,7 @@
    "name": "Expert 3658",
    "date": "2026-11-13",
    "role": "Senior Manager, Financial Crime Advisory, Company 7122 (2016 to 2023), where she audited banks' anti-money-laundering controls. Head of Compliance, Company 1936 (2023 to present).",
-   "reviewer": "Reviewer 8705, Compliance Analyst",
+   "reviewer": "Reviewer 8705, Compliance Analyst (internal)",
    "reviewed_at": "2026-11-14T16:38",
    "entities": {
     "Company 0710": [
@@ -1945,8 +1945,8 @@
     }
    ],
    "passage_ts": "01:19",
-   "reviewer_comment": "Naming Company 0615 as a commonly mentioned target is public speculation, and Company 0615 isn't the expert's employer. Cleared.",
-   "root_cause": "The AI flags any passage that names a company. It matched “Company 0615” and didn't weigh that the expert framed it as public talk.",
+   "reviewer_comment": "The expert repeats market speculation that Company 0615 is a likely target. It is public talk, and Company 0615 is not his employer. Cleared.",
+   "root_cause": "The AI flags every answer that names a company. It matched “Company 0615” and did not consider that the expert presented it as public talk.",
    "source": "test set, transcript 2",
    "id": "false-alarm-expert-9432",
    "kind": "false_alarm",
@@ -1954,7 +1954,7 @@
    "name": "Expert 9432",
    "date": "2026-11-03",
    "role": "Regional Operations Manager, Company 5485 (2019 to present). Previously Depot Manager, Company 5707 (2014 to 2019).",
-   "reviewer": "Reviewer 5546, Compliance Analyst",
+   "reviewer": "Reviewer 5546, Compliance Analyst (internal)",
    "reviewed_at": "2026-11-05T10:26",
    "entities": {
     "Company 0615": [
@@ -2044,8 +2044,8 @@
     }
    ],
    "passage_ts": "00:26",
-   "reviewer_comment": "The expert left Company 9728 in 2021 and everything here is from the public investor day and filings. Cleared.",
-   "root_cause": "It matched “Company 9728”, the expert's former employer, without checking that he left in 2021 or that he cites the public investor day.",
+   "reviewer_comment": "The expert left Company 9728 in 2021. Everything he says comes from its public investor day and filings. Cleared.",
+   "root_cause": "The AI matched “Company 9728”, the expert's former employer. It did not check that he left in 2021, or that he cites the public investor day.",
    "source": "test set, transcript 4",
    "id": "false-alarm-expert-0383",
    "kind": "false_alarm",
@@ -2053,7 +2053,7 @@
    "name": "Expert 0383",
    "date": "2026-11-06",
    "role": "Head of Product, Company 9728 (2017 to 2021). Chief Product Officer, Company 2206 (2021 to 2024). Independent advisor (2024 to present).",
-   "reviewer": "Reviewer 8404, Compliance Analyst",
+   "reviewer": "Reviewer 8404, Compliance Analyst (internal)",
    "reviewed_at": "2026-11-07T12:51",
    "entities": {
     "Company 2206": [
@@ -2139,8 +2139,8 @@
     }
    ],
    "passage_ts": "00:36",
-   "reviewer_comment": "Precise figures, but all from the public Q2 earnings call and slides, which the expert confirms at 01:11. He left Company 9910 in 2022. Cleared.",
-   "root_cause": "It matched “Company 9910” next to precise margin figures and flagged them, without checking the source the expert gave: the public Q2 earnings call.",
+   "reviewer_comment": "The figures are precise but come from the public Q2 earnings call and slides, as the expert confirms at 01:11. He left Company 9910 in 2022. Cleared.",
+   "root_cause": "The AI matched “Company 9910” next to precise margin figures. It did not check the source the expert gave: the public Q2 earnings call.",
    "source": "test set, transcript 7",
    "id": "false-alarm-expert-8996",
    "kind": "false_alarm",
@@ -2148,7 +2148,7 @@
    "name": "Expert 8996",
    "date": "2026-11-12",
    "role": "CFO, Company 9910 (2016 to 2022). Non-executive director at two private food companies (2022 to present).",
-   "reviewer": "Reviewer 8705, Compliance Analyst",
+   "reviewer": "Reviewer 8705, Compliance Analyst (internal)",
    "reviewed_at": "2026-11-14T15:09",
    "entities": {
     "Company 9910": [
@@ -2222,8 +2222,8 @@
     }
    ],
    "passage_ts": "00:51",
-   "reviewer_comment": "The store closures are set out in Company 8334's published annual report, which the expert cites directly, and she has no connection to the company. Nothing here is non-public, so we cleared it.",
-   "root_cause": "The AI keyed on 'closing stores', which its rules treat as a restructuring signal, and on Company 8334 being a listed company named in the question. It did not check the attribution at the start of the sentence: the closures are in Company 8334's published annual report, and the expert has no link to the company.",
+   "reviewer_comment": "The store closures are set out in Company 8334's published annual report, which the expert cites. She has no connection to the company. Nothing here is non-public. Cleared.",
+   "root_cause": "The AI's rules treat “closing stores” as a sign of restructuring, and Company 8334 is a listed company named in the question. The AI did not read the start of the sentence, which attributes the closures to the published annual report.",
    "source": "written for the prototype",
    "id": "false-alarm-expert-3985",
    "kind": "false_alarm",
@@ -2231,7 +2231,7 @@
    "name": "Expert 3985",
    "date": "2026-11-14",
    "role": "Head of Store Operations, Company 8528 (2011 to 2018). Independent retail consultant (2018 to present).",
-   "reviewer": "Reviewer 5546, Compliance Analyst",
+   "reviewer": "Reviewer 5546, Compliance Analyst (internal)",
    "reviewed_at": "2026-11-15T09:42",
    "entities": {
     "Company 8334": [
@@ -2307,8 +2307,8 @@
     }
    ],
    "passage_ts": "01:30",
-   "reviewer_comment": "The expert is repeating what the chief executive said on Company 2306's public results call, and he has no connection to the company. We checked the published transcript and cleared the passage.",
-   "root_cause": "The AI keyed on the forward-looking statement about next year's capital spending and the mention of the chief executive, and scored it as possible insider guidance. It did not treat 'on the results call' as a public source, even though the expert adds that the comment is in the published transcript.",
+   "reviewer_comment": "The expert repeats what the chief executive said on Company 2306's public results call. He has no connection to the company. We checked the published transcript of the call. Cleared.",
+   "root_cause": "The AI read the statement about next year's capital spending, and the reference to the chief executive, as possible inside information about the company's plans. It did not treat “on the results call” as a public source, although the expert adds that the comment is in the published transcript.",
    "source": "written for the prototype",
    "id": "false-alarm-expert-2518",
    "kind": "false_alarm",
@@ -2316,7 +2316,7 @@
    "name": "Expert 2518",
    "date": "2026-11-19",
    "role": "Engineering Manager, Company 1047 (2013 to 2020). Independent warehouse automation consultant (2020 to present).",
-   "reviewer": "Reviewer 8404, Compliance Analyst",
+   "reviewer": "Reviewer 8404, Compliance Analyst (internal)",
    "reviewed_at": "2026-11-21T11:17",
    "entities": {
     "Company 1047": [
@@ -2397,8 +2397,8 @@
     }
    ],
    "passage_ts": "01:20",
-   "reviewer_comment": "Company 6339 announced the Leeds office in a public press release in September, which we confirmed on its website. The expert is repeating public news about her employer, so we cleared it.",
-   "root_cause": "The AI's employer rule fired on 'we' together with a new office, which it matched to the declaration's ban on Company 6339's non-public plans. It did not check the press release the expert cites, which Company 6339 published the month before the call.",
+   "reviewer_comment": "Company 6339 announced the Leeds office in a press release in September, which we confirmed on its website. The expert is repeating public news about her employer. Cleared.",
+   "root_cause": "The AI matched “we” and a new office to the declaration's ban on Company 6339's non-public plans. It did not check the press release the expert cites, published the month before the call.",
    "source": "written for the prototype",
    "id": "false-alarm-expert-8418",
    "kind": "false_alarm",
@@ -2406,7 +2406,7 @@
    "name": "Expert 8418",
    "date": "2026-10-28",
    "role": "Recruitment Consultant, Company 6379 (2014 to 2020). Head of Talent, Company 6339 (2020 to present).",
-   "reviewer": "Reviewer 8705, Compliance Analyst",
+   "reviewer": "Reviewer 8705, Compliance Analyst (internal)",
    "reviewed_at": "2026-10-29T14:05",
    "entities": {
     "Company 6339": [
@@ -2488,8 +2488,8 @@
     }
    ],
    "passage_ts": "01:56",
-   "reviewer_comment": "The £40 standard tier is on Company 7177's public pricing page, which we checked. A published list price is not confidential, so we cleared it.",
-   "root_cause": "The AI keyed on a precise price for the expert's current employer, 'our' plus '£40 a seat', and matched it to the declaration's ban on non-public pricing. It did not treat 'Our prices are on the website' as a source to check, and so did not tell a published list price apart from internal pricing.",
+   "reviewer_comment": "The £40 standard tier is on Company 7177's public pricing page, which we checked. A published list price is not confidential. Cleared.",
+   "root_cause": "The AI matched a precise price at the expert's current employer to the declaration's ban on non-public pricing. It did not treat “Our prices are on the website” as a source to check, so it could not tell a published price from internal pricing.",
    "source": "written for the prototype",
    "id": "false-alarm-expert-1578",
    "kind": "false_alarm",
@@ -2497,7 +2497,7 @@
    "name": "Expert 1578",
    "date": "2026-11-04",
    "role": "Implementation Consultant, Company 5782 (2015 to 2019). Head of Customer Success, Company 7177 (2019 to present).",
-   "reviewer": "Reviewer 5546, Compliance Analyst",
+   "reviewer": "Reviewer 5546, Compliance Analyst (internal)",
    "reviewed_at": "2026-11-06T16:38",
    "entities": {
     "Company 5782": [
@@ -2574,8 +2574,8 @@
     }
    ],
    "passage_ts": "00:52",
-   "reviewer_comment": "The figure comes straight from Company 9296's published sustainability report, which the expert names, and the report confirms an emissions cut of about a tenth. Public information, so we cleared it.",
-   "root_cause": "The AI's log shows it split the sentence at the colon and assessed 'we cut emissions by about a tenth last year' on its own, as a quantified internal metric about the current employer. The attribution to the published sustainability report sat in the first half of the sentence and was lost.",
+   "reviewer_comment": "The figure is in Company 9296's published sustainability report, which the expert names. The report confirms emissions fell by about a tenth. Public information. Cleared.",
+   "root_cause": "The AI split the sentence at the colon and assessed “we cut emissions by about a tenth last year” on its own, as an internal figure about the current employer. The reference to the published report was in the first half of the sentence, and the AI lost it.",
    "source": "written for the prototype",
    "id": "false-alarm-expert-8173",
    "kind": "false_alarm",
@@ -2583,7 +2583,7 @@
    "name": "Expert 8173",
    "date": "2026-11-11",
    "role": "Environmental Engineer, Company 1733 (2014 to 2021). Head of Sustainability, Company 9296 (2021 to present).",
-   "reviewer": "Reviewer 8404, Compliance Analyst",
+   "reviewer": "Reviewer 8404, Compliance Analyst (internal)",
    "reviewed_at": "2026-11-12T10:26",
    "entities": {
     "Company 1733": [
@@ -2665,8 +2665,8 @@
     }
    ],
    "passage_ts": "01:22",
-   "reviewer_comment": "The oven was launched on stage at a public trade show in September and covered in the trade press, and the expert stuck to what was shown there. Nothing confidential, so we cleared it.",
-   "root_cause": "The AI matched 'new product' to the declaration's ban on non-public product plans and read 'so it's public now' as the expert justifying a disclosure, a pattern its rules mark as higher risk. It did not check the September trade show, where the oven was shown on stage and widely reported.",
+   "reviewer_comment": "The oven was launched on stage at a public trade show in September and reported in the trade press. The expert kept to what was shown there. Cleared.",
+   "root_cause": "The AI matched “new product” to the declaration's ban on non-public product plans, and read “so it's public now” as the expert justifying a disclosure, which its rules treat as higher risk. It did not check the September trade show.",
    "source": "written for the prototype",
    "id": "false-alarm-expert-0462",
    "kind": "false_alarm",
@@ -2674,7 +2674,7 @@
    "name": "Expert 0462",
    "date": "2026-11-17",
    "role": "Product Designer, Company 0663 (2013 to 2019). Senior Product Manager, Company 4939 (2019 to present).",
-   "reviewer": "Reviewer 8705, Compliance Analyst",
+   "reviewer": "Reviewer 8705, Compliance Analyst (internal)",
    "reviewed_at": "2026-11-19T12:51",
    "entities": {
     "Company 0663": [
@@ -2691,7 +2691,7 @@
   }
  },
  "release": {
-  "note": "Agent outputs are SIMULATED (pre-generated on the masked synthetic test set). The scoring runs on the page.",
+  "note": "Version outputs are SIMULATED (pre-generated on the masked synthetic test set). The scoring runs on the page.",
   "baseline": "v1.0",
   "high": [
    "MNPI",
@@ -2703,47 +2703,53 @@
     "id": "MNPI",
     "label": "Material non-public information",
     "short": "MNPI",
+    "priority": "high",
     "high": true
    },
    {
     "id": "Current employer confidential",
     "label": "Current-employer confidential",
     "short": "current-employer confidential",
+    "priority": "high",
     "high": true
    },
    {
     "id": "Declaration conflict",
     "label": "Declaration conflict",
     "short": "a declaration conflict",
+    "priority": "high",
     "high": true
    },
    {
     "id": "Source disclosure",
     "label": "Source disclosure",
     "short": "a source disclosure",
+    "priority": "medium",
     "high": false
    },
    {
     "id": "Confidentiality breach",
     "label": "Former-client confidential",
     "short": "former-client confidential",
+    "priority": "low",
     "high": false
    },
    {
     "id": "PII",
     "label": "Personal data",
     "short": "personal data",
+    "priority": "medium",
     "high": false
    }
   ],
   "issue_notes": {
-   "T2-01:39": "unannounced acquisition at the expert's listed employer",
-   "T3-01:34": "unreleased pricing at the expert's current employer",
-   "T5-01:24": "hedged hint about a listed company",
-   "T6-01:06": "still in touch with former colleagues, against the declaration",
-   "T6-01:34": "names a current insider as the source",
-   "T8-00:53": "a former client's confidential details",
-   "T8-01:24": "a named person's health information"
+   "T2-01:39": "an unannounced acquisition by the expert's listed employer",
+   "T3-01:34": "unannounced pricing at the expert's current employer",
+   "T5-01:24": "a hedged hint about a listed company",
+   "T6-01:06": "continuing contact with the former employer, contrary to the declaration",
+   "T6-01:34": "a current insider named as the source",
+   "T8-00:53": "a former client's confidential information",
+   "T8-01:24": "a named individual's health information"
   },
   "answer_key": {
    "T2-01:39": {
@@ -2828,14 +2834,54 @@
    "T8-02:19",
    "T8-02:49"
   ],
+  "clean": {
+   "note": "Reviewer notes on why a clean answer is clean, for every clean answer that any version flags. From the answer key's notes on each transcript. Used to group false alarms by type.",
+   "types": [
+    {
+     "id": "public-source",
+     "label": "Public source cited"
+    },
+    {
+     "id": "company-mention",
+     "label": "Harmless company mention"
+    },
+    {
+     "id": "market-talk",
+     "label": "Public market talk"
+    }
+   ],
+   "answers": {
+    "T2-01:19": {
+     "type": "market-talk",
+     "note": "Repeats market speculation about a possible target. The company is not the expert's employer."
+    },
+    "T4-00:26": {
+     "type": "public-source",
+     "note": "Taken from the 2024 investor day and public filings. The expert left in 2021."
+    },
+    "T4-02:03": {
+     "type": "public-source",
+     "note": "Refers to figures the company publishes in its annual results."
+    },
+    "T5-01:03": {
+     "type": "company-mention",
+     "note": "A general, favourable remark about a former employer. No specific or non-public fact."
+    },
+    "T7-00:36": {
+     "type": "public-source",
+     "note": "Figures from the public Q2 earnings call, which the expert names."
+    }
+   }
+  },
   "versions": [
    {
     "id": "v1.0",
+    "label": "Current production (v1.0)",
     "status": "Current production",
-    "description": "Flags any answer that names a company. Too many false alarms, and misses passages that don't name a company.",
+    "description": "Flags every answer that names a company. It raises many false alarms, and misses answers that refer to a company without naming it.",
     "model": "Small, fast model",
     "prompt": "Flag every expert answer that names a company.",
-    "settings": "Reads the answer only. No declaration, no question.",
+    "settings": "Reads the answer only, without the question or the expert's declaration.",
     "outputs": {
      "T1-00:21": {
       "flag": false,
@@ -3147,11 +3193,12 @@
    },
    {
     "id": "v1.1",
-    "status": "Candidate",
-    "description": "Also reads the expert's declaration to work out “we”, “us” and “their”. Fewer false alarms, no misses in the high-priority types.",
+    "label": "New version: reads the expert's declaration (v1.1)",
+    "status": "New version",
+    "description": "Also reads the question and the expert's declaration, so it can tell which company “we”, “us” and “their” refer to.",
     "model": "Large model",
-    "prompt": "Review each answer with the question before it and the expert's declaration. Work out who “we”, “us” and “their” refer to, using the masked IDs and their tags. Flag by issue type and suggest an action.",
-    "settings": "Reads the question, the answer and the declaration. Temperature 0.",
+    "prompt": "Review each answer together with the question and the expert's declaration. Identify the company that “we”, “us” or “their” refers to, using the masked IDs and their tags. Flag by issue type and recommend an action.",
+    "settings": "Reads the question, the answer and the declaration. Temperature 0 (the same input always gives the same output).",
     "outputs": {
      "T1-00:21": {
       "flag": false,
@@ -3328,10 +3375,10 @@
       "reason": "General view on hospital procurement pricing pressure in Europe and US."
      },
      "T5-01:03": {
-      "flag": false,
-      "type": null,
-      "action": null,
-      "reason": "Expert stays careful and gives only a generic, positive public-level view of Company 3966."
+      "flag": true,
+      "type": "Confidentiality breach",
+      "action": "escalate to human",
+      "reason": "Comment on Company 3966, a listed company the expert left in March 2026 and owes continuing confidentiality to. Flagged as a precaution."
      },
      "T5-01:24": {
       "flag": true,
@@ -3394,10 +3441,10 @@
       "reason": "General description of packaged food margin pressures and recovery."
      },
      "T7-00:36": {
-      "flag": false,
-      "type": null,
-      "action": null,
-      "reason": "Company 9910 figures attributed to its public Q2 earnings call in August; public information."
+      "flag": true,
+      "type": "MNPI",
+      "action": "escalate to human",
+      "reason": "Precise margin figures and full-year guidance for Company 9910, the expert's listed former employer. The cited source was not verified."
      },
      "T7-01:11": {
       "flag": false,
@@ -3463,11 +3510,12 @@
    },
    {
     "id": "v1.2",
-    "status": "Candidate",
-    "description": "v1.1 on a cheaper, faster model. Misses one hedged MNPI hint.",
+    "label": "New version: cheaper model (v1.2)",
+    "status": "New version",
+    "description": "The same instructions as v1.1, on a cheaper and faster model.",
     "model": "Small, fast model",
     "prompt": "Same as v1.1.",
-    "settings": "Reads the question, the answer and the declaration. Temperature 0.",
+    "settings": "Reads the question, the answer and the declaration. Temperature 0 (the same input always gives the same output).",
     "outputs": {
      "T1-00:21": {
       "flag": false,
@@ -3644,16 +3692,16 @@
       "reason": "General view on hospital procurement pricing pressure in Europe and US."
      },
      "T5-01:03": {
-      "flag": false,
-      "type": null,
-      "action": null,
-      "reason": "Expert stays careful and gives only a generic, positive public-level view of Company 3966."
+      "flag": true,
+      "type": "Confidentiality breach",
+      "action": "escalate to human",
+      "reason": "Comment on Company 3966, a listed company the expert left in March 2026 and owes continuing confidentiality to. Flagged as a precaution."
      },
      "T5-01:24": {
       "flag": false,
       "type": null,
       "action": null,
-      "reason": "General advice to watch results; no company named and no specific figure."
+      "reason": "General advice to watch the results. No company is named and no figure is given."
      },
      "T5-01:57": {
       "flag": false,
@@ -3710,10 +3758,10 @@
       "reason": "General description of packaged food margin pressures and recovery."
      },
      "T7-00:36": {
-      "flag": false,
-      "type": null,
-      "action": null,
-      "reason": "Company 9910 figures attributed to its public Q2 earnings call in August; public information."
+      "flag": true,
+      "type": "MNPI",
+      "action": "escalate to human",
+      "reason": "Precise margin figures and full-year guidance for Company 9910, the expert's listed former employer. The cited source was not verified."
      },
      "T7-01:11": {
       "flag": false,
@@ -3783,7 +3831,7 @@
     "at": "2026-09-08T10:14",
     "version": "v1.0",
     "result": "Released",
-    "reason": "First release, before the gate existed. Now the baseline that candidates are compared with.",
+    "reason": "First version in production, released before this test existed. New versions are compared with it.",
     "by": "Staff 0004"
    }
   ],

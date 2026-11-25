@@ -19,7 +19,7 @@ const BRIEF = [["Material non-public information", 38, 5, 60], ["Current-employe
   ["Source disclosure", 29, 4, 8], ["Former-client confidential", 33, 3, 20], ["Personal data", 96, 7, 60]];
 BRIEF.forEach(([n, f, mi, fa], i) => { const c = D.categories[i];
   t(`${n}: found ${f}, missed ${mi}, false alarms ${fa}`, c.name === n && c.found === f && c.missed === mi && c.false_alarms === fa); });
-t("high priority first: the first three categories", D.categories.slice(0, 3).every(c => c.priority === "high") && D.categories.slice(3).every(c => c.priority === "lower"));
+t("high priority first: the first three categories", D.categories.slice(0, 3).every(c => c.priority === "high") && D.categories.slice(3).every(c => c.priority !== "high"));
 
 const T = C.totals(D);
 t("1,000 transcripts", T.sample === 1000, T.sample);
@@ -96,23 +96,32 @@ t("the same company has the same ID in the test set and in the benchmark transcr
   const a = D.transcripts[D.cards.find(c => c.source === "test set T5-01:24").transcript]; return a.declaration === tsx[5].declaration && empOf(5).every(id => a.declaration.includes(id)); })());
 t("no emails or phone numbers left", !/[\w.+-]+@[\w-]+\.[\w.]+/.test(JSON.stringify(D)) && !(JSON.stringify(D).match(/\+?\(?\d[\d ()-]{7,}\d/g) || []).some(x => x.replace(/\D/g, "").length >= 9));
 
-// release gate: the page's scoring equals the Python eval (notebooks/release_gate.py) for every version
+// testing a new version: the page's scoring equals the Python eval (notebooks/release_gate.py) for every version
 const RL = D.release, srt = a => [...a].sort().join();
 RL.versions.forEach(v => {
   const s = C.scoreVersion(RL, v.id), g = C.gateResult(RL, v.id), p = GATE[v.id];
-  t(`${v.id}: page scoring equals the Python eval`, s.flags === p.flags && s.right === p.right && srt(s.false_alarms) === srt(p.false_alarms) &&
-    Object.keys(p.missed).every(x => srt(s.missed[x]) === srt(p.missed[x])), JSON.stringify({ flags: s.flags, fa: s.false_alarms.length }));
-  t(`${v.id}: gate result equals the Python eval`, g.passed === p.gate.passed && g.message === p.gate.message && g.reason === p.gate.reason && g.links.join() === p.gate.links.join(), g.message);
+  t(`${v.id}: page scoring equals the Python eval`, s.flags === p.flags && s.caught === p.caught && s.issues === p.issues && s.missed_total === p.missed_total &&
+    s.missed_high === p.missed_high && srt(s.false_alarms) === srt(p.false_alarms) && Object.keys(p.missed).every(x => srt(s.missed[x]) === srt(p.missed[x])) &&
+    Object.keys(p.false_alarms_by_type).every(x => srt(s.false_alarms_by_type[x]) === srt(p.false_alarms_by_type[x])), JSON.stringify({ caught: s.caught, fa: s.false_alarms.length }));
+  t(`${v.id}: result equals the Python eval`, g.passed === p.result.passed && g.headline === p.result.headline && g.reason === p.result.reason && g.links.join() === p.result.links.join(), g.headline);
 });
-t("v1.0 (baseline): 8 flags, 5 false alarms, misses current-employer confidential (T3) and MNPI (T5)", GATE["v1.0"].flags === 8 && GATE["v1.0"].false_alarms.length === 5 &&
-  GATE["v1.0"].missed.MNPI.join() === "T5-01:24" && GATE["v1.0"]["missed"]["Current employer confidential"].join() === "T3-01:34");
-t("v1.1 passes", C.gateResult(RL, "v1.1").message === "Release gate: passed. v1.1 can go to shadow mode.");
-t("v1.2 is blocked on the hedged MNPI hint in transcript 5", C.gateResult(RL, "v1.2").message === "Release gate: blocked. v1.2 missed MNPI in transcript 5 (hedged hint about a listed company)." &&
+const sc = id => C.scoreVersion(RL, id), faT = id => RL.clean.types.map(t => sc(id).false_alarms_by_type[t.id].length).join();
+t("v1.0 (current production): 3 of 7 caught, 4 missed (2 high priority), 5 false alarms (3 public source, 1 harmless mention, 1 market talk)",
+  sc("v1.0").caught === 3 && sc("v1.0").missed_total === 4 && sc("v1.0").missed_high === 2 && faT("v1.0") === "3,1,1");
+t("v1.1: all 7 caught, 0 missed, 2 false alarms (1 public source, 1 harmless company mention), ready for shadow testing",
+  sc("v1.1").caught === 7 && sc("v1.1").missed_total === 0 && faT("v1.1") === "1,1,0" && C.gateResult(RL, "v1.1").headline === "Ready for shadow testing");
+t("v1.2: not ready, missed MNPI in transcript 5 (the hedged hint), linked", C.gateResult(RL, "v1.2").headline === "Not ready: missed MNPI in transcript 5" &&
   C.gateResult(RL, "v1.2").links.join() === "T5-01:24");
+t("every flagged clean answer has a reviewer note saying why it is not an issue", RL.versions.every(v => sc(v.id).false_alarms.every(a => RL.clean.answers[a] && RL.clean.answers[a].note)));
+t("version labels in plain words", RL.versions.map(v => v.label).join("|") === "Current production (v1.0)|New version: reads the expert's declaration (v1.1)|New version: cheaper model (v1.2)");
 t("every version's outputs cover every expert answer and are labelled simulated", RL.versions.every(v => RL.answers.every(a => v.outputs[a])) && /SIMULATED/.test(RL.note));
 t("v1.2 differs from v1.1 only on T5-01:24", RL.answers.filter(a => JSON.stringify(RL.versions[1].outputs[a]) !== JSON.stringify(RL.versions[2].outputs[a])).join() === "T5-01:24");
 t("release log is prefilled with v1.0's release", RL.log.length === 1 && RL.log[0].version === "v1.0" && ID.test(RL.log[0].by));
-t("kill-switch copy under the gate", html.includes("In production, the same check runs on live spot-checks. A miss in a high-priority type triggers the kill switch, and that type goes back to full human review."));
+t("kill-switch copy under the result", html.includes("In production, the same check runs on live spot-checks. A miss in a high-priority type triggers the kill switch, and that type goes back to full human review."));
+t("the term \"release gate\" isn't shown anywhere on the page", !/release gate/i.test(html.replace(/<script id="data"[\s\S]*?<\/script>/, "").replace(/\/\*[\s\S]*?\*\//g, "").replace(/\/\/.*$/gm, "")));
+t("reviewers are internal", Object.values(D.transcripts).every(x => /\(internal\)$/.test(x.reviewer)));
+t("no reviewer comment names the company we work for", Object.values(D.transcripts).every(x => !/dialectica/i.test(x.reviewer_comment)));
+t("priorities: three high, two medium, one low", D.categories.map(c => c.priority).join() === "high,high,high,medium,low,medium");
 
 const text = html.replace(/<script id="data"[\s\S]*?<\/script>/, "") + JSON.stringify(D);
 t("no em or en dashes", !/[—]/.test(text) && !/–/.test(html.replace(/<script id="data"[\s\S]*?<\/script>/, "").replace(/\$\{w\.start \+ 1\}–/g, "")));

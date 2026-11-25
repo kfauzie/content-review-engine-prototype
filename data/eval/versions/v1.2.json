@@ -177,16 +177,16 @@
    "reason": "General view on hospital procurement pricing pressure in Europe and US."
   },
   "T5-01:03": {
-   "flag": false,
-   "type": null,
-   "action": null,
-   "reason": "Expert stays careful and gives only a generic, positive public-level view of Company 3966."
+   "flag": true,
+   "type": "Confidentiality breach",
+   "action": "escalate to human",
+   "reason": "Comment on Company 3966, a listed company the expert left in March 2026 and owes continuing confidentiality to. Flagged as a precaution."
   },
   "T5-01:24": {
    "flag": false,
    "type": null,
    "action": null,
-   "reason": "General advice to watch results; no company named and no specific figure."
+   "reason": "General advice to watch the results. No company is named and no figure is given."
   },
   "T5-01:57": {
    "flag": false,
@@ -243,10 +243,10 @@
    "reason": "General description of packaged food margin pressures and recovery."
   },
   "T7-00:36": {
-   "flag": false,
-   "type": null,
-   "action": null,
-   "reason": "Company 9910 figures attributed to its public Q2 earnings call in August; public information."
+   "flag": true,
+   "type": "MNPI",
+   "action": "escalate to human",
+   "reason": "Precise margin figures and full-year guidance for Company 9910, the expert's listed former employer. The cited source was not verified."
   },
   "T7-01:11": {
    "flag": false,
