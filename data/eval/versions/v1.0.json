@@ -1,0 +1,312 @@
+{
+ "version": "v1.0",
+ "note": "SIMULATED outputs on the masked synthetic test set.",
+ "outputs": {
+  "T1-00:21": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "No company named."
+  },
+  "T1-01:03": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "No company named."
+  },
+  "T1-01:44": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "No company named."
+  },
+  "T1-02:39": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "No company named."
+  },
+  "T1-03:23": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "No company named."
+  },
+  "T1-03:58": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "No company named."
+  },
+  "T1-04:35": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "No company named."
+  },
+  "T2-00:12": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "No company named."
+  },
+  "T2-00:48": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "No company named."
+  },
+  "T2-01:19": {
+   "flag": true,
+   "type": null,
+   "action": "escalate to human",
+   "reason": "Names Company 0615."
+  },
+  "T2-01:39": {
+   "flag": true,
+   "type": null,
+   "action": "escalate to human",
+   "reason": "Names Company 0615."
+  },
+  "T2-02:20": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "No company named."
+  },
+  "T2-02:55": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "No company named."
+  },
+  "T2-03:32": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "No company named."
+  },
+  "T3-00:14": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "No company named."
+  },
+  "T3-00:39": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "No company named."
+  },
+  "T3-01:06": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "No company named."
+  },
+  "T3-01:34": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "No company named."
+  },
+  "T3-02:06": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "No company named."
+  },
+  "T3-02:35": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "No company named."
+  },
+  "T3-03:03": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "No company named."
+  },
+  "T4-00:13": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "No company named."
+  },
+  "T4-00:26": {
+   "flag": true,
+   "type": null,
+   "action": "escalate to human",
+   "reason": "Names Company 9728."
+  },
+  "T4-00:58": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "No company named."
+  },
+  "T4-01:33": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "No company named."
+  },
+  "T4-02:03": {
+   "flag": true,
+   "type": null,
+   "action": "escalate to human",
+   "reason": "Names Company 9728."
+  },
+  "T4-02:33": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "No company named."
+  },
+  "T5-00:12": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "No company named."
+  },
+  "T5-00:38": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "No company named."
+  },
+  "T5-01:03": {
+   "flag": true,
+   "type": null,
+   "action": "escalate to human",
+   "reason": "Names Company 3966."
+  },
+  "T5-01:24": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "No company named."
+  },
+  "T5-01:57": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "No company named."
+  },
+  "T5-02:29": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "No company named."
+  },
+  "T6-00:14": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "No company named."
+  },
+  "T6-00:40": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "No company named."
+  },
+  "T6-01:06": {
+   "flag": true,
+   "type": null,
+   "action": "escalate to human",
+   "reason": "Names Company 9560."
+  },
+  "T6-01:34": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "No company named."
+  },
+  "T6-01:59": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "No company named."
+  },
+  "T6-02:24": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "No company named."
+  },
+  "T7-00:11": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "No company named."
+  },
+  "T7-00:36": {
+   "flag": true,
+   "type": null,
+   "action": "escalate to human",
+   "reason": "Names Company 9910."
+  },
+  "T7-01:11": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "No company named."
+  },
+  "T7-01:29": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "No company named."
+  },
+  "T7-01:56": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "No company named."
+  },
+  "T7-02:23": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "No company named."
+  },
+  "T8-00:15": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "No company named."
+  },
+  "T8-00:53": {
+   "flag": true,
+   "type": null,
+   "action": "escalate to human",
+   "reason": "Names Company 0710."
+  },
+  "T8-01:24": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "No company named."
+  },
+  "T8-01:52": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "No company named."
+  },
+  "T8-02:19": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "No company named."
+  },
+  "T8-02:49": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "No company named."
+  }
+ }
+}

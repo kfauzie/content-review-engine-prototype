@@ -125,10 +125,28 @@ With 7 issues in a synthetic set, this shows the method works end to end, not th
 - **Assumptions:** kept 4 of the concept's 5 open questions. Dropped "Who rules on disagreements, and how quickly?", because the prototype no longer uses rulings: Kevin removed "missed by analysts".
 - **Step 3** (check the sample ourselves) starts when real transcripts arrive.
 
+## 9. Release gate and PII masking
+
+Kevin asked for a release gate on the benchmark prototype, with names masked everywhere. Code: `notebooks/mask.py`, `notebooks/release_gate.py`; page: `build/mvp.html#release`.
+
+- **Masking:** every person and company gets a stable numbered ID, the same in every transcript, table and log: Expert, Person (third parties), Reviewer, Staff, Company. Emails become [EMAIL] and phone numbers [PHONE] (none occur in the data; unit tests cover the rules). Each ID keeps role tags read from the declaration and profile, e.g. "Company, listed, expert's current employer". The vault (name to ID) is written at build time to `data/private/vault.json`, which is gitignored; the eval and the page never read it. A test scans every output for real names.
+- **Versions:** v1.0 (current production) runs the "flag any answer naming a company" rule on the masked text. v1.1 uses the blind AI reviewer's verdicts. v1.2 is v1.1 with the hedged MNPI hint cleared. All outputs are pre-generated and labelled simulated.
+- **Scoring:** real. `eval.funnel` compares each version with the answer key on the masked test set, and the page runs the same scoring; a test checks the two agree for every version.
+
+| Version | Flags | Found | False alarms | Missed | Gate |
+|---|---|---|---|---|---|
+| v1.0 current production | 8 | 3 of 7 | 5 | current-employer confidential (T3), MNPI (T5), source disclosure (T6), personal data (T8) | Blocked |
+| v1.1 candidate | 7 | 7 of 7 | 0 | none | Passed |
+| v1.2 candidate | 6 | 6 of 7 | 0 | MNPI (T5-01:24) | Blocked |
+
+v1.0's score on the masked text matches the unmasked rules baseline exactly, so the IDs keep what the rule needs. The hedged hint is in transcript 5 (medical devices), not transcript 4 as first described; the gate message is generated from the scoring, so it says transcript 5.
+
 ## Decisions I made (and what I turned down)
 
 | Decision | Why | What I turned down |
 |---|---|---|
+| Mask every person and company with a role-tagged ID, keep the vault outside the eval (Kevin's call) | The review still needs to know listed vs private, and current vs former employer, to judge MNPI and conflicts; it doesn't need the name | Masking only the experts, or dropping the role along with the name |
+| Score versions with the existing eval code and mirror it on the page, tested equal | A gate is only as good as its scoring, so the scoring is real even though the outputs are simulated | Hard-coding the gate results in the page |
 | Use Kevin's 8 transcripts, not data I generate | Real-looking passages beat invented volumes, and the test set covers the hard cases (hedges, public figures, declaration conflicts) | A synthetic month of scores and volumes, built before the data arrived |
 | Hold back the answer key | Reviewers don't get one. Discovery should see what they see, and the key stays clean for testing the build | Reading the key's categories and expected actions into the findings |
 | Eval before any solution (Kevin's feedback) | We don't know the real problem yet; an eval by issue type shows whether the tool is too cautious, not cautious enough, or keyed on the wrong signal | The first concept, which recommended declaration-aware review on role-play evidence |

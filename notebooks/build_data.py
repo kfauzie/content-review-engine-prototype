@@ -6,6 +6,8 @@ Sources (all ILLUSTRATIVE):
   examples       data/examples_illustrative.json (missed issues and false alarms; 7 quote the test set, the rest written)
   transcripts    5 from data/synthetic-expert-transcripts.md (test set), 13 from data/transcripts_illustrative.json (written)
 Clickable cards: every card in the top two categories, plus the fix examples from other categories.
+Masking: every person and company is replaced by a stable ID (notebooks/mask.py) before anything is written. The vault
+(name -> ID) goes to data/private/vault.json, gitignored; the masked test set goes to data/eval/test_set_masked.md.
 A clickable card's timestamp is taken from its transcript's passage, so the two always agree.
 """
 import json
@@ -16,6 +18,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from data_review import SRC, parse  # noqa: E402
+from mask import Masker, build_vault, listed_status, save_vault, tags_for  # noqa: E402
+from release_gate import MASKED_TEST_SET, release_data  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 SAMPLE = 1000
@@ -165,60 +169,92 @@ def role_of(profile):
     return re.sub(r"^[^.]+\.\s*", "", profile).rsplit(" Industry:", 1)[0]
 
 
+def blocks(src):
+    """The test set split per transcript, so each block can be masked with its own people in context."""
+    parts = src.split("\n## Transcript ")
+    return parts[0], parts[1:]
+
+
 def main():
     ex = json.loads((ROOT / "data/examples_illustrative.json").read_text())
-    written = {t["name"]: t for t in json.loads((ROOT / "data/transcripts_illustrative.json").read_text())["transcripts"]}
+    written_raw = {t["name"]: t for t in json.loads((ROOT / "data/transcripts_illustrative.json").read_text())["transcripts"]}
     src = SRC.read_text()
     topics = {int(n): tp.strip() for n, tp in re.findall(r"^\| (\d) \| ([^|]+?) \|", src, re.M)}
-    tset = {t["num"]: t for t in parse(src)}
 
-    transcripts, cards = {}, []
+    # masking: one vault for every person and company; the masked data is all that leaves this step
+    experts = [e["name"] for e in ex["examples"] + ex["false_alarms"]] + [t["profile"].split(".")[0] for t in parse(src)]
+    reviewers = [r.split(",")[0] for pool in REVIEWERS.values() for r in pool]
+    vault = build_vault(experts, reviewers)
+    save_vault(vault)
+    M = Masker(vault)
+    head, raw_blocks = blocks(src)
+    block_ctx = {int(re.match(r"\d+", b).group()): M.context(b) for b in raw_blocks}
+    masked_src = M.text(head) + "".join("\n## Transcript " + M.text(b, block_ctx[int(re.match(r"\d+", b).group())]) for b in raw_blocks)
+    MASKED_TEST_SET.write_text(masked_src)
+    tset = {t["num"]: t for t in parse(masked_src)}
+    ctx_of = {}
+    for e in ex["examples"] + ex["false_alarms"]:
+        c = M.context(e, written_raw.get(e["name"]))
+        m = re.match(r"test set T(\d)", e["source"])
+        ctx_of[e["name"]] = c | (block_ctx[int(m.group(1))] if m else set())
+    written = {n: M.obj(w, ctx_of.get(n, M.context(w))) for n, w in written_raw.items()}
+    listed = listed_status(masked_src, *[w["profile"] + " " + w["declaration"] for w in written.values()])
+
+    transcripts, cards, by_raw = {}, [], {}
     for kind, items in (("missed", ex["examples"]), ("false_alarm", ex["false_alarms"])):
         for e in items:
-            card = {"id": slug(f"{kind}-{e['name']}"), "kind": kind, "category": e["category"], "name": e["name"],
-                    "date": e["date"], "ts": e["ts"], "quote": e["quote"], "source": e["source"],
-                    "cleared": e.get("cleared"), "transcript": None, "fix": FIX_OF.get(e["name"]), "highlight": HIGHLIGHT[e["name"]],
-                    "fa_type": FALSE_ALARM_TYPE_OF.get(e["name"]) if kind == "false_alarm" else None}
-            assert card["highlight"] in card["quote"], e["name"]
-            if e["category"] in TOP or e["name"] in FIX_EXAMPLE_NAMES:
+            raw, ctx = e["name"], ctx_of[e["name"]]
+            me = M.obj(e, ctx)
+            name = M.name(raw)
+            card = {"id": slug(f"{kind}-{name}"), "kind": kind, "category": e["category"], "name": name,
+                    "date": e["date"], "ts": e["ts"], "quote": me["quote"], "source": e["source"],
+                    "cleared": me.get("cleared"), "transcript": None, "fix": FIX_OF.get(raw), "highlight": M.text(HIGHLIGHT[raw], ctx),
+                    "fa_type": FALSE_ALARM_TYPE_OF.get(raw) if kind == "false_alarm" else None}
+            assert card["highlight"] in card["quote"], raw
+            if e["category"] in TOP or raw in FIX_EXAMPLE_NAMES:
                 tid = card["id"]
                 if e["source"].startswith("test set"):
                     n, pts = re.match(r"test set T(\d)-(\d\d:\d\d)", e["source"]).groups()
                     t = tset[int(n)]
-                    rc, why = TEST_SET_NOTES[f"T{n}-{pts}"]
+                    rc, why = (M.text(x, ctx) for x in TEST_SET_NOTES[f"T{n}-{pts}"])
                     tr = {"topic": topics[int(n)], "profile": t["profile"], "declaration": t["declaration"],
                           "turns": [{"ts": ts(s), "speaker": w, "text": x} for s, w, x in t["turns"]],
                           "passage_ts": pts, "reviewer_comment": rc, "root_cause": why, "source": f"test set, transcript {n}"}
                 else:
-                    w = written[e["name"]]
-                    assert (w["kind"], w["category"], w["date"]) == (kind, e["category"], e["date"]), e["name"]
+                    w = written[raw]
+                    assert (w["kind"], w["category"], w["date"]) == (kind, e["category"], e["date"]), raw
                     tr = {k: w[k] for k in ("topic", "profile", "declaration", "turns", "passage_ts", "reviewer_comment", "root_cause")}
                     tr["source"] = "written for the prototype"
                 pool = REVIEWERS.get(e["category"], REVIEWERS["other"]) if kind == "missed" else REVIEWERS["other"]
                 n = len(transcripts)  # made-up review time: one or two days after the call, during Athens office hours
                 reviewed = date.fromisoformat(e["date"]) + timedelta(days=1 + n % 2)
-                tr.update({"id": tid, "kind": kind, "category": e["category"], "name": e["name"], "date": e["date"],
-                           "role": role_of(tr["profile"]), "reviewer": pool[n % len(pool)],
-                           "reviewed_at": f"{reviewed.isoformat()}T{REVIEW_TIMES[n % len(REVIEW_TIMES)]}"})
+                tr.update({"id": tid, "kind": kind, "category": e["category"], "name": name, "date": e["date"],
+                           "role": role_of(tr["profile"]), "reviewer": M.text(pool[n % len(pool)]),
+                           "reviewed_at": f"{reviewed.isoformat()}T{REVIEW_TIMES[n % len(REVIEW_TIMES)]}",
+                           "entities": tags_for(tr["profile"], tr["declaration"], " ".join(u["text"] for u in tr["turns"]), listed)})
                 transcripts[tid] = tr
                 card["transcript"] = tid
                 card["ts"] = tr["passage_ts"]
             cards.append(card)
+            by_raw[raw] = card
 
-    by_name = {c["name"]: c for c in cards}
     assert sum(t["count"] for t in FALSE_ALARM_TYPES) == sum(c[5] for c in CATEGORIES) == 187
     assert all(c["fa_type"] for c in cards if c["kind"] == "false_alarm")
     for f in FIXES:
         for x in f["examples"]:
-            c = by_name[x["name"]]
-            assert x["highlight"] in c["quote"] and c["fix"] == f["id"] and x["highlight"] == c["highlight"], x
+            c = by_raw[x["name"]]
+            assert x["highlight"] == HIGHLIGHT[x["name"]] and c["fix"] == f["id"], x
     data = {"note": "ILLUSTRATIVE. Made-up counts for a 1,000-transcript sample; examples and transcripts are synthetic.",
             "sample": SAMPLE, "top": TOP,
             "categories": [{"name": n, "priority": p, "description": d, "found": f, "missed": m, "false_alarms": fa}
                            for n, p, d, f, m, fa in CATEGORIES],
             "false_alarm_types": FALSE_ALARM_TYPES,
-            "fixes": [{**f, "examples": [{**x, **{k: by_name[x["name"]][k] for k in ("quote", "date", "ts", "kind", "category", "transcript")}}
+            "fixes": [{**f, "examples": [{**x, **{k: by_raw[x["name"]][k] for k in ("name", "highlight", "quote", "date", "ts", "kind", "category", "transcript")}}
                                          for x in f["examples"]]} for f in FIXES], "cards": cards, "transcripts": transcripts}
+    data = M.obj(data)  # safety pass over every remaining string (descriptions, fix copy)
+    data["release"] = release_data(M, tset, listed, topics)
+    leaks = M.leaks(json.dumps(data, ensure_ascii=False))
+    assert not leaks, f"real names left after masking: {leaks}"
     out = ROOT / "data/benchmark.json"
     out.write_text(json.dumps(data, indent=1, ensure_ascii=False) + "\n")
 

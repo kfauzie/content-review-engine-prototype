@@ -3,7 +3,7 @@
   "private": true,
   "description": "Checks for the illustrative AI performance benchmark prototype",
   "scripts": {
-    "test": "node build/test_mvp.js && node build/check_mvp.js"
+    "test": "python3 notebooks/test_mask.py && node build/test_mvp.js && node build/check_mvp.js"
   },
   "devDependencies": {
     "playwright": "^1.49.0"

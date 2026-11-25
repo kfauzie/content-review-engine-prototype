@@ -1,0 +1,312 @@
+{
+ "version": "v1.2",
+ "note": "SIMULATED outputs on the masked synthetic test set.",
+ "outputs": {
+  "T1-00:21": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "General industry view on post-pandemic shift to supply chain resilience; no company-specific non-public info."
+  },
+  "T1-01:03": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "General industry observations on regional depots, safety stock and control towers; no named company data."
+  },
+  "T1-01:44": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "General knowledge on automation by product category and labour availability; expert opinion."
+  },
+  "T1-02:39": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "Opinion on cold chain regulation and capex cycle; public regulatory trends, no confidential info."
+  },
+  "T1-03:23": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "Expert declines to name operators and speaks only about generic capabilities."
+  },
+  "T1-03:58": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "General view on 3PL margins and value-added services; opinion, no non-public data."
+  },
+  "T1-04:35": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "General opinion on store-level forecasting underinvestment; nothing about Company 5144 specifically."
+  },
+  "T2-00:12": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "General description of UK road freight fragmentation and consolidation drivers; industry knowledge."
+  },
+  "T2-00:48": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "General view that network density drives deals; no Halbrook-specific info."
+  },
+  "T2-01:19": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "Refers to what people say 'publicly' about mid-sized regional players such as Company 0615; market chatter, no insider detail."
+  },
+  "T2-01:39": {
+   "flag": true,
+   "type": "MNPI",
+   "action": "reject whole transcript",
+   "reason": "Current Company 5485 employee (listed company; declaration bars discussing Company 5485's non-public corporate activity) reveals unannounced acquisition of Company 0615: 'we've had integration planning sessions already', 'project codename', 'The board's signed off on it, it's just timing on the announcement'. Deliberate breach of declaration."
+  },
+  "T2-02:20": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "General comment on fuel surcharges and driver wage inflation across the industry."
+  },
+  "T2-02:55": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "General view on electrification and hydrogen in freight; industry knowledge."
+  },
+  "T2-03:32": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "General opinion on contract vs spot freight margins; no Company 5485 data."
+  },
+  "T3-00:14": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "General market view on demand and buyer scrutiny in workforce software."
+  },
+  "T3-00:39": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "General description of typical buyers; industry knowledge."
+  },
+  "T3-01:06": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "General view on pricing competition and switching costs; no Company 5981 specifics."
+  },
+  "T3-01:34": {
+   "flag": true,
+   "type": "Current employer confidential",
+   "action": "redact",
+   "reason": "Current Company 5981 employee shares unannounced pricing change: 'moving list price up 12% on the mid-market tier from January... customers haven't been told yet'. Declaration explicitly bars sharing Company 5981's non-public pricing. Company 5981 is private so not MNPI; remove passage, rest of call is general."
+  },
+  "T3-02:06": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "Explicitly general ('In general') view on buyer reaction to price increases."
+  },
+  "T3-02:35": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "General view on AI demand forecasting features across vendors."
+  },
+  "T3-03:03": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "General opinion that healthcare is the fastest growing segment; industry knowledge."
+  },
+  "T4-00:13": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "Expert sets caveat that he left in 2021 and will stick to public information; consistent with declaration."
+  },
+  "T4-00:26": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "Cites Company 9728's 2024 investor day and public filings; public information, post-dates his 2021 departure."
+  },
+  "T4-00:58": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "Opinion on lending thesis and concentration risk; general comment on past culture is not confidential."
+  },
+  "T4-01:33": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "General competitive view on loan approval speed and risk pricing."
+  },
+  "T4-02:03": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "Points to metrics Company 9728 reports in annual results; public information and opinion."
+  },
+  "T4-02:33": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "Refers to CEO's public statements on strategy; public information."
+  },
+  "T5-00:12": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "General market view on orthopaedic demand and ageing populations."
+  },
+  "T5-00:38": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "General view on hospital procurement pricing pressure in Europe and US."
+  },
+  "T5-01:03": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "Expert stays careful and gives only a generic, positive public-level view of Company 3966."
+  },
+  "T5-01:24": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "General advice to watch results; no company named and no specific figure."
+  },
+  "T5-01:57": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "General discussion of public EU medical device regulation and its effects."
+  },
+  "T5-02:29": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "General industry view on robotics locking in implant sales."
+  },
+  "T6-00:14": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "General description of enterprise software buying cycles."
+  },
+  "T6-00:40": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "General view on security and legal review as stall points."
+  },
+  "T6-01:06": {
+   "flag": true,
+   "type": "Declaration conflict",
+   "action": "escalate to human",
+   "reason": "Expert declared she left Company 9560 in October 2024, but speaks as a current insider: 'At Company 9560, our team is rolling out a consolidation programme next month', 'We've been building the business case since the summer'. Also discloses Company 9560's non-public vendor plans. Human must verify true employment status."
+  },
+  "T6-01:34": {
+   "flag": true,
+   "type": "Source disclosure",
+   "action": "reject whole transcript",
+   "reason": "Names an insider as source of non-public info: 'My contact Person 2315, who runs procurement there now, told me last week they're giving notice to two of them in Q1'. Contradicts declaration 'Not in contact with Company 9560 in a professional capacity'; together with 01:06 undermines the whole call."
+  },
+  "T6-01:59": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "General view on how vendors defend against consolidation."
+  },
+  "T6-02:24": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "General view on analytics pricing models; industry knowledge."
+  },
+  "T7-00:11": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "General description of packaged food margin pressures and recovery."
+  },
+  "T7-00:36": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "Company 9910 figures attributed to its public Q2 earnings call in August; public information."
+  },
+  "T7-01:11": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "Expert confirms figures come from the public call and slides; consistent with 2022 departure."
+  },
+  "T7-01:29": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "Opinion on trade-offs of exiting private label; general analysis."
+  },
+  "T7-01:56": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "General view on retailer pushback and delistings."
+  },
+  "T7-02:23": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "Opinion on volume trends as key watch item; general analysis."
+  },
+  "T8-00:15": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "General description of common AML control weaknesses; industry knowledge."
+  },
+  "T8-00:53": {
+   "flag": true,
+   "type": "Confidentiality breach",
+   "action": "reject whole transcript",
+   "reason": "Declaration says bound by confidentiality to Company 7122's former clients, yet expert names former audit client and its findings: 'Company 0710, around 40% of the higher-risk customer files... missing source-of-funds documentation. It was in our final report to their board.' Could also be MNPI if Company 0710 is listed."
+  },
+  "T8-01:24": {
+   "flag": true,
+   "type": "PII",
+   "action": "redact",
+   "reason": "Names a private individual and discloses sensitive health information: 'Person 8435, who led their financial crime team at the time, was signed off for months with a breakdown'. Also derived from confidential client engagement."
+  },
+  "T8-01:52": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "General view on first-line ownership and monitoring tuning."
+  },
+  "T8-02:19": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "General view on machine learning and explainability in transaction monitoring."
+  },
+  "T8-02:49": {
+   "flag": false,
+   "type": null,
+   "action": null,
+   "reason": "General view on what investors should watch in bank technology vendors."
+  }
+ }
+}

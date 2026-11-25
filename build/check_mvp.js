@@ -51,7 +51,7 @@ const t = (name, ok, got) => { if (!ok) fail++; console.log(`${ok ? "PASS" : "FA
   t("no legends, no \"Confirmed\"", await p.locator(".sleg").count() === 0 && !(await p.locator("main").textContent()).includes("Confirmed"));
   t("subtitle", (await p.locator(".sub1").textContent()) === "We compared the content review AI with human reviewers across 1,000 transcripts to see where it misses compliance risks, and where it raises false alarms.");
   t("fix titles", (await p.locator(".fix h3").allTextContents()).join("|") === "Read each answer in context|Check for people and sources, not just companies|Check the expert's cited source before flagging");
-  t("recommendation examples show date and call timestamp", (await p.locator('.fix[data-fix="declaration"] .fq .by').first().textContent()) === "PN4 Nov 2026 · 01:34");
+  t("recommendation examples show date and call timestamp", (await p.locator('.fix[data-fix="declaration"] .fq .by').first().textContent()) === `${(await p.evaluate(() => JSON.parse(document.getElementById("data").textContent).fixes[0].examples[0].name))} · 4 Nov 2026 · 01:34`);
   t("first example reads as written", (await p.locator('.fix[data-fix="declaration"] .fq').first().textContent()).startsWith("\u201cFor us specifically, we're moving list price up 12% on the mid-market tier from January.\u201d"));
   t("three fixes, each with root cause, examples and next steps", await p.locator(".fix").count() === 3 &&
     (await p.locator(".fix .fl").allTextContents()).join("|") === "Why the AI missed it|Examples|What we'll change|Why the AI missed it|Examples|What we'll change|Why the AI raised a false alarm|Examples|What we'll change" && await p.locator(".fix li").count() === 9);
@@ -76,10 +76,10 @@ const t = (name, ok, got) => { if (!ok) fail++; console.log(`${ok ? "PASS" : "FA
 
   const fams = await p.evaluate(() => [...new Set([...document.querySelectorAll("h1,h2,.kh,.n,.fq,.lab,.d")].map(e => getComputedStyle(e).fontFamily.split(",")[0].replace(/["']/g, "").trim()))]);
   t("one font family throughout", fams.length === 1, fams.join(" | "));
-  t("category examples are rows: initials, quote with highlight, date and call time, no names",
+  t("category examples are rows: masked expert ID, quote with highlight, date and call time, no names or initials",
     await p.locator(".cat .rx").count() === 41 && await p.locator(".cat .nm, .cat .fq").count() === 0 &&
-    (await p.locator(".cat .rx").evaluateAll(a => a.every(x => x.querySelector("mark") && /^[A-Z]{2}$/.test(x.querySelector(".av").textContent) &&
-      /^\d{1,2} [A-Z][a-z]{2} \d{4} · \d\d:\d\d$/.test(x.querySelector(".when").textContent)))));
+    (await p.locator(".cat .rx").evaluateAll(a => a.every(x => x.querySelector("mark") && !x.querySelector(".av") &&
+      /^Expert \d{4} · \d{1,2} [A-Z][a-z]{2} \d{4} · \d\d:\d\d$/.test(x.querySelector(".when").textContent)))));
   const inView = id => p.evaluate(i => { const r = document.getElementById(i).getBoundingClientRect(); return r.top >= 0 && r.top < innerHeight; }, id);
   await p.locator(".risk.jump").click(); await p.waitForTimeout(900);
   t("clicking the compliance box scrolls to \"Missed by AI, by type\"", await inView("sec-missed"));
@@ -97,7 +97,7 @@ const t = (name, ok, got) => { if (!ok) fail++; console.log(`${ok ? "PASS" : "FA
   t("Enter on the focused category shows them again", await p.locator('[data-cat="missed|Personal data"] .ex').count() === 7);
   t("declaration conflict (0 missed) has no tiles and no toggle", await p.locator('[data-cat="missed|Declaration conflict"] [data-toggle]').count() === 0);
   t("outside the top categories, only fix examples open a transcript", await p.locator('[data-cat="missed|Personal data"] a.ex').count() === 1 &&
-    (await p.locator('[data-cat="missed|Personal data"] a.ex .av').getAttribute("title")) === "Hannah Booth" && await p.locator('[data-cat="missed|Former-client confidential"] a.ex').count() === 0);
+    /^Expert \d{4} · 13 Nov 2026 · 01:24$/.test(await p.locator('[data-cat="missed|Personal data"] a.ex .when').textContent()) && await p.locator('[data-cat="missed|Former-client confidential"] a.ex').count() === 0);
   t("false alarms are grouped by type of false alarm, with examples where there are some",
     (await p.locator('[data-cat^="fatype|"] .n').allTextContents()).join("|") === "Public source cited|The expert's own opinion or estimate|Former employer, left long ago|Public market talk" &&
     await p.locator('[data-cat="fatype|public-source"] a.ex').count() === 7 && await p.locator('[data-cat="fatype|own-view"] .ex').count() === 3 && await p.locator('[data-cat="fatype|own-view"] a.ex').count() === 0 &&
@@ -111,7 +111,7 @@ const t = (name, ok, got) => { if (!ok) fail++; console.log(`${ok ? "PASS" : "FA
   for (const id of ids) {
     await p.goto(`${url}#t/${id}`); await p.waitForSelector('body[data-view="transcript"]');
     const ok = await p.locator("#passage").count() === 1 && await p.locator(".note.rev").count() === 1 && await p.locator(".note.agent .ns").textContent() === "Analysis by an independent agent, from the original AI's log"
-      && /^[A-Z][a-z]+ [A-Z][a-z]+, [A-Z]/.test(await p.locator(".note.rev .ns").textContent());
+      && /^Reviewer \d{4}, [A-Z]/.test(await p.locator(".note.rev .ns").textContent());
     if (!ok) { okAll = false; console.log("  problem in", id); }
   }
   t(`all ${ids.length} transcripts open with the passage, the reviewer's name, title and comment, and the agent analysis`, okAll);
@@ -120,7 +120,7 @@ const t = (name, ok, got) => { if (!ok) fail++; console.log(`${ok ? "PASS" : "FA
   await p.locator('[data-cat="missed|Material non-public information"] a.ex').first().click();
   await p.waitForSelector('body[data-view="transcript"]');
   t("clicking a card opens its transcript", (await p.locator(".htag").textContent()).startsWith("Missed · Material non-public information"));
-  t("reviewer's comment shows name, title, date and time", /^[A-Z][a-z]+ [A-Z][a-z]+, [A-Za-z ]+ · \d{1,2} [A-Z][a-z]{2} \d{4}, \d\d:\d\d$/.test(await p.locator(".note.rev .ns").textContent()), await p.locator(".note.rev .ns").textContent());
+  t("reviewer's comment shows reviewer ID, title, date and time", /^Reviewer \d{4}, [A-Za-z ]+ · \d{1,2} [A-Z][a-z]{2} \d{4}, \d\d:\d\d$/.test(await p.locator(".note.rev .ns").textContent()), await p.locator(".note.rev .ns").textContent());
   t("missed: note titled \"Why the original AI didn't flag it\"", (await p.locator(".note.agent .nt").textContent()) === "Why the original AI didn't flag it");
   t("call context: expert, call date, role, declared", await p.locator(".ctx .k").allTextContents().then(k => k.join("|")) === "Expert|Call date|Role|Declared");
   await p.locator(".back").click(); await p.waitForSelector('body[data-view="summary"]');
@@ -131,7 +131,7 @@ const t = (name, ok, got) => { if (!ok) fail++; console.log(`${ok ? "PASS" : "FA
     await p.locator(".hit.false_alarm").count() === 1 && (await p.locator(".note.agent .nt").textContent()) === "Why the original AI flagged it");
   await p.goto(url); await p.waitForSelector('body[data-view="summary"]');
   await p.locator('.fix[data-fix="people"] a.fq').first().click(); await p.waitForSelector('body[data-view="transcript"]');
-  t("clicking a fix example opens its transcript", (await p.locator(".ctx .v b").textContent()) === "Elena Vasquez" && (await p.locator(".htag").textContent()) === "Missed · Source disclosure");
+  t("clicking a fix example opens its transcript", /^Expert \d{4}$/.test(await p.locator(".ctx .v b").textContent()) && (await p.locator(".htag").textContent()) === "Missed · Source disclosure");
   await p.goto(`${url}#t/nope`); await p.waitForSelector('body[data-ready="1"]');
   t("an unknown transcript link says so and offers the way back", (await p.locator(".notfound").count()) === 1);
   t(`main flow in ${((Date.now() - t0) / 1000).toFixed(1)} s`, Date.now() - t0 < 20000);
@@ -149,6 +149,51 @@ const t = (name, ok, got) => { if (!ok) fail++; console.log(`${ok ? "PASS" : "FA
 
   await p.setViewportSize({ width: 1280, height: 900 }); await p.goto(url); await p.waitForSelector('body[data-ready="1"]');
   t("top bar and badge", (await p.locator(".brand").textContent()) === "Content review engine· AI benchmark" && (await p.locator(".badge").textContent()) === "Illustrative · synthetic data");
+
+  // release gate
+  await p.goto(`${url}#release`); await p.waitForSelector('body[data-view="release"]');
+  t("release gate: top bar tab and crumb", (await p.locator(".brand").textContent()) === "Content review engine· Release gate" &&
+    await p.locator('[data-tab="release"][aria-current]').count() === 1);
+  t("three versions with a one-line description, model, prompt and settings; v1.0 is current production; v1.1 picked",
+    await p.locator(".ver").count() === 3 && await p.locator(".ver .vc i").count() === 9 &&
+    (await p.locator(".ver").first().textContent()).includes("Current production") && await p.locator('input[value="v1.1"]').isChecked());
+  t("no gate result before a run; log prefilled with v1.0's release", await p.locator("#gate").count() === 0 &&
+    await p.locator(".log tbody tr").count() === 1 && (await p.locator(".log tbody tr").textContent()).includes("Released"));
+  await p.locator("[data-run]").click();
+  t("v1.1: green \"Release gate: passed. v1.1 can go to shadow mode.\"", await p.locator(".gate.pass .gm").textContent() === "Release gate: passed. v1.1 can go to shadow mode.");
+  t("kill-switch copy under the gate", (await p.locator(".gate .ks").textContent()).startsWith("In production, the same check runs on live spot-checks."));
+  t("compared with v1.0 as the baseline", (await p.locator(".cmp thead").textContent()).includes("Baseline") && await p.locator(".cmp thead th").count() === 3);
+  t("the run is logged: Passed, by Staff 0001 (you)", await p.locator(".log tbody tr").count() === 2 &&
+    /Passed.*Staff 0001 \(you\)/.test(await p.locator(".log tbody tr").first().textContent()));
+  await p.locator('.ver:has(input[value="v1.2"])').click();
+  t("picking v1.2 updates the button", (await p.locator("[data-run]").textContent()) === "Run gate on v1.2");
+  await p.locator("[data-run]").click();
+  t("v1.2: red, blocked on MNPI in transcript 5", await p.locator(".gate.fail .gm").textContent() === "Release gate: blocked. v1.2 missed MNPI in transcript 5 (hedged hint about a listed company).");
+  t("the gate links to the missed passage", (await p.locator(".gate .gl a").getAttribute("href")) === "#ts/5/01:24/v1.2");
+  await p.locator(".gate .gl a").click(); await p.waitForSelector('body[data-view="testset"]');
+  t("the passage: missed MNPI, answer key and v1.2's simulated output", await p.locator("#passage").count() === 1 &&
+    (await p.locator(".htag").textContent()) === "Missed · Material non-public information" && (await p.locator(".note.agent").textContent()).includes("Not flagged"));
+  t("masked names show as IDs with role tags", await p.locator(".tr .ent").count() > 0 &&
+    (await p.locator(".legend li").allTextContents()).some(x => /^Company \d{4}listed · expert's former employer \(left March 2026\)$/.test(x)));
+  await p.locator(".back").click(); await p.waitForSelector('body[data-view="release"]');
+  t("back on the gate, the last result is still shown", await p.locator(".gate.fail").count() === 1 && await p.locator(".log tbody tr").count() === 3);
+  await p.reload(); await p.waitForSelector('body[data-view="release"]');
+  t("the log survives a reload", await p.locator(".log tbody tr").count() === 3);
+  await p.locator('.ver:has(input[value="v1.0"])').click(); await p.locator("[data-run]").click();
+  t("v1.0 against itself: blocked on its two high-priority misses, one comparison column",
+    (await p.locator(".gate.fail .gm").textContent()).startsWith("Release gate: blocked. v1.0 missed current-employer confidential in transcript 3") &&
+    await p.locator(".gate .gl a").count() === 2 && await p.locator(".cmp thead th").count() === 2);
+  await p.goto(`${url}#ts/9/00:00/v1.1`); await p.waitForSelector('body[data-ready="1"]');
+  t("an unknown passage link says so", await p.locator(".notfound").count() === 1);
+  for (const [w, h] of [[390, 844], [768, 1024]]) {
+    await p.setViewportSize({ width: w, height: h });
+    await p.goto(`${url}#release`); await p.waitForSelector('body[data-view="release"]'); await p.locator("[data-run]").click();
+    let sw = await p.evaluate(() => document.documentElement.scrollWidth);
+    t(`${w}px release gate after a run: no sideways scrolling`, sw <= w, `${sw}px`);
+    await p.goto(`${url}#ts/5/01:24/v1.2`); await p.waitForSelector('body[data-view="testset"]');
+    sw = await p.evaluate(() => document.documentElement.scrollWidth);
+    t(`${w}px test-set passage: no sideways scrolling`, sw <= w, `${sw}px`);
+  }
   t("no console errors", errors.length === 0, errors.join(" | ") || "none");
   await ctx.close(); await b.close(); srv.close();
   console.log(fail ? `${fail} FAILED` : "Headless check passes"); process.exit(fail ? 1 : 0);

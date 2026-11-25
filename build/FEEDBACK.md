@@ -1,3 +1,30 @@
+# Prototype feedback, round 19 (applied): release gate and PII masking
+
+Kevin asked for a release gate on the benchmark, with names masked everywhere. Existing pages keep working.
+
+1. **Agent versions:** a picker with three versions, each with a one-line description, model, prompt summary and settings.
+   - **v1.0, current production:** flags any answer naming a company.
+   - **v1.1, candidate:** also reads the declaration to work out "we", "us" and "their".
+   - **v1.2, candidate:** v1.1 on a cheaper, faster model.
+   - **Outputs and scoring:** outputs are pre-generated and labelled simulated. The scoring is real: the eval code and the page compute the same results, and a test checks they match.
+2. **Release gate, at the top after a run.**
+   - **Rule:** zero misses in MNPI, current-employer confidential and declaration conflict, and no more misses in the other types than v1.0.
+   - **v1.1:** green "Release gate: passed. v1.1 can go to shadow mode."
+   - **v1.2:** red "Release gate: blocked. v1.2 missed MNPI in transcript 5 (hedged hint about a listed company)." It links to the passage, which shows the answer key next to v1.2's output.
+   - **Correction:** the hedged hint is in transcript 5, not 4.
+   - **Baseline comparison:** a table shows misses by type, false alarms and flags for v1.0 and the candidate. Every count links to its passages.
+3. **Release log:** date and time, version, result, reason and who ran it. It's prefilled with v1.0's release (Staff 0004). Each run adds a row ("Staff 0001 (you)"), and the rows are kept in this browser.
+4. **PII masking:**
+   - **IDs:** every person and company has a stable numbered ID, the same across all transcripts, tables and logs: Expert, Person (third parties), Reviewer, Staff and Company.
+   - **Role tags:** each ID keeps its role, e.g. "Company, listed, expert's former employer (left March 2026)". Tags show as hover text on the ID chips and in a "Masked names in this call" box on each transcript.
+   - **Emails and phone numbers:** these become [EMAIL] and [PHONE]. None appear in the synthetic data.
+   - **Client IDs:** no client names appear in the data, so no Client IDs are issued yet.
+   - **The vault:** the table mapping names to IDs is written only at build time to a gitignored file. Neither the eval nor the page reads it.
+   - **Initials:** the example rows and cards now show the expert ID in place of initials.
+5. **Copy under the gate:** "In production, the same check runs on live spot-checks. A miss in a high-priority type triggers the kill switch, and that type goes back to full human review."
+
+---
+
 # Prototype feedback, round 18 (applied): category examples as rows
 
 Kevin agreed to switch the category examples from carousels to rows, the convention in comparable products (Braintrust and LangSmith trace tables, inbox lists).

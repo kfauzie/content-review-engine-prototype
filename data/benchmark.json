@@ -89,34 +89,34 @@
    "root_cause": "The AI read each answer in isolation. When an expert said “we”, “their” or “the board”, it didn't know which company they meant, so it couldn't tell that the expert was talking about their own employer, a client or a former employer.",
    "examples": [
     {
-     "name": "Priya Natarajan",
+     "name": "Expert 1342",
      "highlight": "For us specifically",
      "quote": "For us specifically, we're moving list price up 12% on the mid-market tier from January. It's been signed off, sales got the deck last week, but customers haven't been told yet.",
      "date": "2026-11-04",
      "ts": "01:34",
      "kind": "missed",
      "category": "Current-employer confidential",
-     "transcript": "missed-priya-natarajan"
+     "transcript": "missed-expert-1342"
     },
     {
-     "name": "Henrik Lindqvist",
+     "name": "Expert 3657",
      "highlight": "The board approved the sale",
      "quote": "The board approved the sale of the European tyre business on Tuesday. The announcement is planned for after the half-year results.",
      "date": "2026-11-05",
      "ts": "02:10",
      "kind": "missed",
      "category": "Material non-public information",
-     "transcript": "missed-henrik-lindqvist"
+     "transcript": "missed-expert-3657"
     },
     {
-     "name": "Olivia Grant",
+     "name": "Expert 6456",
      "highlight": "the regulator's decision on their diabetes drug",
      "quote": "Between us, the regulator's decision on their diabetes drug came back last week, and it's a rejection. They haven't announced it yet.",
      "date": "2026-10-29",
      "ts": "02:17",
      "kind": "missed",
      "category": "Material non-public information",
-     "transcript": "missed-olivia-grant"
+     "transcript": "missed-expert-6456"
     }
    ],
    "how": [
@@ -132,24 +132,24 @@
    "root_cause": "The AI only looked for information about companies. It didn't catch private individuals being named, or experts naming insiders as their source.",
    "examples": [
     {
-     "name": "Elena Vasquez",
-     "highlight": "My contact Jamie Holt, who runs procurement there now, told me",
-     "quote": "My contact Jamie Holt, who runs procurement there now, told me last week they're giving notice to two of them in Q1.",
+     "name": "Expert 6378",
+     "highlight": "My contact Person 2315, who runs procurement there now, told me",
+     "quote": "My contact Person 2315, who runs procurement there now, told me last week they're giving notice to two of them in Q1.",
      "date": "2026-11-09",
      "ts": "01:34",
      "kind": "missed",
      "category": "Source disclosure",
-     "transcript": "missed-elena-vasquez"
+     "transcript": "missed-expert-6378"
     },
     {
-     "name": "Hannah Booth",
-     "highlight": "Mark Ellison",
-     "quote": "I remember Mark Ellison, who led their financial crime team at the time, was signed off for months with a breakdown afterwards.",
+     "name": "Expert 3658",
+     "highlight": "Person 8435",
+     "quote": "I remember Person 8435, who led their financial crime team at the time, was signed off for months with a breakdown afterwards.",
      "date": "2026-11-13",
      "ts": "01:24",
      "kind": "missed",
      "category": "Personal data",
-     "transcript": "missed-hannah-booth"
+     "transcript": "missed-expert-3658"
     }
    ],
    "how": [
@@ -165,44 +165,44 @@
    "root_cause": "Most false alarms were statements the expert attributed to a public source, such as an earnings call, a press release or an annual report. The AI flagged them without checking whether the information really was public.",
    "examples": [
     {
-     "name": "Ibrahim Yusuf",
+     "name": "Expert 1578",
      "highlight": "Our prices are on the website",
      "quote": "Our prices are on the website. The standard tier is £40 a seat, and that hasn't changed this year.",
      "date": "2026-11-04",
      "ts": "01:56",
      "kind": "false_alarm",
      "category": "Current-employer confidential",
-     "transcript": "false-alarm-ibrahim-yusuf"
+     "transcript": "false-alarm-expert-1578"
     },
     {
-     "name": "Laura Bennett",
+     "name": "Expert 3985",
      "highlight": "As their annual report says",
      "quote": "As their annual report says, they've been closing stores in the north for two years, so the shift to online isn't new.",
      "date": "2026-11-14",
      "ts": "00:51",
      "kind": "false_alarm",
      "category": "Material non-public information",
-     "transcript": "false-alarm-laura-bennett"
+     "transcript": "false-alarm-expert-3985"
     },
     {
-     "name": "Robert Chen",
+     "name": "Expert 8996",
      "highlight": "On their Q2 earnings call in August",
-     "quote": "Ardent is a good one because they're transparent. On their Q2 earnings call in August, they reported gross margin of 31.4%, up from 28.9% a year earlier, and guided to 32% to 33% for the full year.",
+     "quote": "Company 9910 is a good one because they're transparent. On their Q2 earnings call in August, they reported gross margin of 31.4%, up from 28.9% a year earlier, and guided to 32% to 33% for the full year.",
      "date": "2026-11-12",
      "ts": "00:36",
      "kind": "false_alarm",
      "category": "Material non-public information",
-     "transcript": "false-alarm-robert-chen"
+     "transcript": "false-alarm-expert-8996"
     },
     {
-     "name": "Chloe Martin",
+     "name": "Expert 8418",
      "highlight": "We announced the Leeds office in a press release",
      "quote": "We announced the Leeds office in a press release last month, so it's no secret we're expanding in the north.",
      "date": "2026-10-28",
      "ts": "01:20",
      "kind": "false_alarm",
      "category": "Current-employer confidential",
-     "transcript": "false-alarm-chloe-martin"
+     "transcript": "false-alarm-expert-8418"
     }
    ],
    "how": [
@@ -214,175 +214,175 @@
  ],
  "cards": [
   {
-   "id": "missed-sanjay-mehta",
+   "id": "missed-expert-9928",
    "kind": "missed",
    "category": "Material non-public information",
-   "name": "Sanjay Mehta",
+   "name": "Expert 9928",
    "date": "2026-11-12",
    "ts": "01:24",
    "quote": "Look, I'm not saying anything specific, but if I were you I'd watch their Q3 numbers closely. Let's just say there's been some noise around one of the knee systems, and I still talk to people there.",
    "source": "test set T5-01:24",
    "cleared": null,
-   "transcript": "missed-sanjay-mehta",
+   "transcript": "missed-expert-9928",
    "fix": "declaration",
    "highlight": "watch their Q3 numbers closely",
    "fa_type": null
   },
   {
-   "id": "missed-olivia-grant",
+   "id": "missed-expert-6456",
    "kind": "missed",
    "category": "Material non-public information",
-   "name": "Olivia Grant",
+   "name": "Expert 6456",
    "date": "2026-10-29",
    "ts": "02:17",
    "quote": "Between us, the regulator's decision on their diabetes drug came back last week, and it's a rejection. They haven't announced it yet.",
    "source": "written for the design",
    "cleared": null,
-   "transcript": "missed-olivia-grant",
+   "transcript": "missed-expert-6456",
    "fix": "declaration",
    "highlight": "the regulator's decision on their diabetes drug",
    "fa_type": null
   },
   {
-   "id": "missed-henrik-lindqvist",
+   "id": "missed-expert-3657",
    "kind": "missed",
    "category": "Material non-public information",
-   "name": "Henrik Lindqvist",
+   "name": "Expert 3657",
    "date": "2026-11-05",
    "ts": "02:10",
    "quote": "The board approved the sale of the European tyre business on Tuesday. The announcement is planned for after the half-year results.",
    "source": "written for the design",
    "cleared": null,
-   "transcript": "missed-henrik-lindqvist",
+   "transcript": "missed-expert-3657",
    "fix": "declaration",
    "highlight": "The board approved the sale",
    "fa_type": null
   },
   {
-   "id": "missed-nadia-rahimi",
+   "id": "missed-expert-7520",
    "kind": "missed",
    "category": "Material non-public information",
-   "name": "Nadia Rahimi",
+   "name": "Expert 7520",
    "date": "2026-11-10",
    "ts": "02:07",
    "quote": "Their biggest customer has given notice on the five-year supply deal. That's about a fifth of revenue, and the market doesn't know.",
    "source": "written for the design",
    "cleared": null,
-   "transcript": "missed-nadia-rahimi",
+   "transcript": "missed-expert-7520",
    "fix": "declaration",
    "highlight": "Their biggest customer has given notice on the five-year supply deal",
    "fa_type": null
   },
   {
-   "id": "missed-benjamin-cole",
+   "id": "missed-expert-0937",
    "kind": "missed",
    "category": "Material non-public information",
-   "name": "Benjamin Cole",
+   "name": "Expert 0937",
    "date": "2026-11-16",
    "ts": "02:03",
    "quote": "I'd expect them to miss guidance. The October order book I saw was down about 15% on last year.",
    "source": "written for the design",
    "cleared": null,
-   "transcript": "missed-benjamin-cole",
+   "transcript": "missed-expert-0937",
    "fix": "declaration",
    "highlight": "The October order book I saw was down about 15%",
    "fa_type": null
   },
   {
-   "id": "missed-priya-natarajan",
+   "id": "missed-expert-1342",
    "kind": "missed",
    "category": "Current-employer confidential",
-   "name": "Priya Natarajan",
+   "name": "Expert 1342",
    "date": "2026-11-04",
    "ts": "01:34",
    "quote": "For us specifically, we're moving list price up 12% on the mid-market tier from January. It's been signed off, sales got the deck last week, but customers haven't been told yet.",
    "source": "test set T3-01:34",
    "cleared": null,
-   "transcript": "missed-priya-natarajan",
+   "transcript": "missed-expert-1342",
    "fix": "declaration",
    "highlight": "For us specifically",
    "fa_type": null
   },
   {
-   "id": "missed-grace-liu",
+   "id": "missed-expert-0842",
    "kind": "missed",
    "category": "Current-employer confidential",
-   "name": "Grace Liu",
+   "name": "Expert 0842",
    "date": "2026-10-30",
    "ts": "01:56",
    "quote": "We're closing the Manchester plant in March. The staff haven't been told yet, so please keep that between us.",
    "source": "written for the design",
    "cleared": null,
-   "transcript": "missed-grace-liu",
+   "transcript": "missed-expert-0842",
    "fix": "declaration",
    "highlight": "We're closing the Manchester plant in March",
    "fa_type": null
   },
   {
-   "id": "missed-mateo-alvarez",
+   "id": "missed-expert-3370",
    "kind": "missed",
    "category": "Current-employer confidential",
-   "name": "Mateo Alvarez",
+   "name": "Expert 3370",
    "date": "2026-11-07",
    "ts": "02:00",
    "quote": "Our roadmap has the analytics module launching in Q2, which is why we've been hiring so many data engineers.",
    "source": "written for the design",
    "cleared": null,
-   "transcript": "missed-mateo-alvarez",
+   "transcript": "missed-expert-3370",
    "fix": null,
    "highlight": "Our roadmap has the analytics module launching in Q2",
    "fa_type": null
   },
   {
-   "id": "missed-siobhan-kelly",
+   "id": "missed-expert-8778",
    "kind": "missed",
    "category": "Current-employer confidential",
-   "name": "Siobhan Kelly",
+   "name": "Expert 8778",
    "date": "2026-11-18",
    "ts": "01:56",
    "quote": "We're about to lose our second-largest customer. I'm on the account team, and the renewal isn't going to happen.",
    "source": "written for the design",
    "cleared": null,
-   "transcript": "missed-siobhan-kelly",
+   "transcript": "missed-expert-8778",
    "fix": null,
    "highlight": "We're about to lose our second-largest customer",
    "fa_type": null
   },
   {
-   "id": "missed-elena-vasquez",
+   "id": "missed-expert-6378",
    "kind": "missed",
    "category": "Source disclosure",
-   "name": "Elena Vasquez",
+   "name": "Expert 6378",
    "date": "2026-11-09",
    "ts": "01:34",
-   "quote": "My contact Jamie Holt, who runs procurement there now, told me last week they're giving notice to two of them in Q1.",
+   "quote": "My contact Person 2315, who runs procurement there now, told me last week they're giving notice to two of them in Q1.",
    "source": "test set T6-01:34",
    "cleared": null,
-   "transcript": "missed-elena-vasquez",
+   "transcript": "missed-expert-6378",
    "fix": "people",
-   "highlight": "My contact Jamie Holt, who runs procurement there now, told me",
+   "highlight": "My contact Person 2315, who runs procurement there now, told me",
    "fa_type": null
   },
   {
-   "id": "missed-owen-prendergast",
+   "id": "missed-expert-4560",
    "kind": "missed",
    "category": "Source disclosure",
-   "name": "Owen Prendergast",
+   "name": "Expert 4560",
    "date": "2026-10-28",
    "ts": "14:52",
-   "quote": "Their head of logistics, Carla, told me over dinner that the Rotterdam site is being mothballed after Christmas.",
+   "quote": "Their head of logistics, Person 2179, told me over dinner that the Rotterdam site is being mothballed after Christmas.",
    "source": "written for the design",
    "cleared": null,
    "transcript": null,
    "fix": "people",
-   "highlight": "Their head of logistics, Carla, told me",
+   "highlight": "Their head of logistics, Person 2179, told me",
    "fa_type": null
   },
   {
-   "id": "missed-mei-lin-tan",
+   "id": "missed-expert-3063",
    "kind": "missed",
    "category": "Source disclosure",
-   "name": "Mei Lin Tan",
+   "name": "Expert 3063",
    "date": "2026-11-02",
    "ts": "22:07",
    "quote": "I still speak to the plant manager at Ostrava most weeks, and he says the line restart has slipped to February.",
@@ -394,10 +394,10 @@
    "fa_type": null
   },
   {
-   "id": "missed-farid-haddad",
+   "id": "missed-expert-5026",
    "kind": "missed",
    "category": "Source disclosure",
-   "name": "Farid Haddad",
+   "name": "Expert 5026",
    "date": "2026-11-15",
    "ts": "09:41",
    "quote": "Someone on their pricing committee sent me the new rate card before it went out, so I know the increases are double digit.",
@@ -409,10 +409,10 @@
    "fa_type": null
   },
   {
-   "id": "missed-thomas-achebe",
+   "id": "missed-expert-2073",
    "kind": "missed",
    "category": "Former-client confidential",
-   "name": "Thomas Achebe",
+   "name": "Expert 2073",
    "date": "2026-10-30",
    "ts": "18:26",
    "quote": "When we did their carve-out work, the stranded costs came out at nearly twice what management told the board.",
@@ -424,10 +424,10 @@
    "fa_type": null
   },
   {
-   "id": "missed-ingrid-solberg",
+   "id": "missed-expert-0460",
    "kind": "missed",
    "category": "Former-client confidential",
-   "name": "Ingrid Solberg",
+   "name": "Expert 0460",
    "date": "2026-11-06",
    "ts": "11:03",
    "quote": "One bank I advised had its core banking migration fail twice. It never went public, but it cost them most of a year.",
@@ -439,10 +439,10 @@
    "fa_type": null
   },
   {
-   "id": "missed-ravi-chandran",
+   "id": "missed-expert-2345",
    "kind": "missed",
    "category": "Former-client confidential",
-   "name": "Ravi Chandran",
+   "name": "Expert 2345",
    "date": "2026-11-11",
    "ts": "26:40",
    "quote": "I rebuilt their churn model last year as a consultant, and the real number was well above what they show investors.",
@@ -454,43 +454,43 @@
    "fa_type": null
   },
   {
-   "id": "missed-hannah-booth",
+   "id": "missed-expert-3658",
    "kind": "missed",
    "category": "Personal data",
-   "name": "Hannah Booth",
+   "name": "Expert 3658",
    "date": "2026-11-13",
    "ts": "01:24",
-   "quote": "I remember Mark Ellison, who led their financial crime team at the time, was signed off for months with a breakdown afterwards.",
+   "quote": "I remember Person 8435, who led their financial crime team at the time, was signed off for months with a breakdown afterwards.",
    "source": "test set T8-01:24",
    "cleared": null,
-   "transcript": "missed-hannah-booth",
+   "transcript": "missed-expert-3658",
    "fix": "people",
-   "highlight": "Mark Ellison",
+   "highlight": "Person 8435",
    "fa_type": null
   },
   {
-   "id": "missed-marcus-webb",
+   "id": "missed-expert-7691",
    "kind": "missed",
    "category": "Personal data",
-   "name": "Marcus Webb",
+   "name": "Expert 7691",
    "date": "2026-10-27",
    "ts": "16:12",
-   "quote": "Their finance director, Tom Reyes, has been going through a difficult divorce, which is why he's been so distracted this year.",
+   "quote": "Their finance director, Person 9437, has been going through a difficult divorce, which is why he's been so distracted this year.",
    "source": "written for the design",
    "cleared": null,
    "transcript": null,
    "fix": "people",
-   "highlight": "Tom Reyes, has been going through a difficult divorce",
+   "highlight": "Person 9437, has been going through a difficult divorce",
    "fa_type": null
   },
   {
-   "id": "missed-sofia-marchetti",
+   "id": "missed-expert-3191",
    "kind": "missed",
    "category": "Personal data",
-   "name": "Sofia Marchetti",
+   "name": "Expert 3191",
    "date": "2026-10-31",
    "ts": "05:48",
-   "quote": "Speak to Mark Doyle in their Leeds office. I've got his personal mobile if you want it.",
+   "quote": "Speak to Person 3126 in their Leeds office. I've got his personal mobile if you want it.",
    "source": "written for the design",
    "cleared": null,
    "transcript": null,
@@ -499,55 +499,55 @@
    "fa_type": null
   },
   {
-   "id": "missed-kwame-mensah",
+   "id": "missed-expert-6924",
    "kind": "missed",
    "category": "Personal data",
-   "name": "Kwame Mensah",
+   "name": "Expert 6924",
    "date": "2026-11-03",
    "ts": "28:33",
-   "quote": "The head of sales there, Aisha Rahman, went on long-term sick leave after surgery in the spring.",
+   "quote": "The head of sales there, Person 1337, went on long-term sick leave after surgery in the spring.",
    "source": "written for the design",
    "cleared": null,
    "transcript": null,
    "fix": "people",
-   "highlight": "Aisha Rahman, went on long-term sick leave after surgery",
+   "highlight": "Person 1337, went on long-term sick leave after surgery",
    "fa_type": null
   },
   {
-   "id": "missed-lena-hoffmann",
+   "id": "missed-expert-4361",
    "kind": "missed",
    "category": "Personal data",
-   "name": "Lena Hoffmann",
+   "name": "Expert 4361",
    "date": "2026-11-08",
    "ts": "12:19",
-   "quote": "One of their senior engineers, Pieter van Dam, was let go after a drink-driving conviction, which hit the project hard.",
+   "quote": "One of their senior engineers, Person 5340, was let go after a drink-driving conviction, which hit the project hard.",
    "source": "written for the design",
    "cleared": null,
    "transcript": null,
    "fix": "people",
-   "highlight": "Pieter van Dam, was let go after a drink-driving conviction",
+   "highlight": "Person 5340, was let go after a drink-driving conviction",
    "fa_type": null
   },
   {
-   "id": "missed-daniel-osei",
+   "id": "missed-expert-3320",
    "kind": "missed",
    "category": "Personal data",
-   "name": "Daniel Osei",
+   "name": "Expert 3320",
    "date": "2026-11-14",
    "ts": "20:04",
-   "quote": "Their compliance officer, Rachel Lim, is on maternity leave until next summer, so the team is stretched.",
+   "quote": "Their compliance officer, Person 4732, is on maternity leave until next summer, so the team is stretched.",
    "source": "written for the design",
    "cleared": null,
    "transcript": null,
    "fix": "people",
-   "highlight": "Rachel Lim, is on maternity leave",
+   "highlight": "Person 4732, is on maternity leave",
    "fa_type": null
   },
   {
-   "id": "missed-aoife-brennan",
+   "id": "missed-expert-1603",
    "kind": "missed",
    "category": "Personal data",
-   "name": "Aoife Brennan",
+   "name": "Expert 1603",
    "date": "2026-11-19",
    "ts": "33:47",
    "quote": "The founder's son is only nineteen, and he's been put on the payroll as a director at the Dublin subsidiary.",
@@ -559,145 +559,145 @@
    "fa_type": null
   },
   {
-   "id": "false-alarm-daniel-reyes",
+   "id": "false-alarm-expert-9432",
    "kind": "false_alarm",
    "category": "Material non-public information",
-   "name": "Daniel Reyes",
+   "name": "Expert 9432",
    "date": "2026-11-03",
    "ts": "01:19",
-   "quote": "Publicly, people talk about the mid-sized regional players. Corvane Freight is the one everyone mentions, they're strong in the North West and Scotland.",
+   "quote": "Publicly, people talk about the mid-sized regional players. Company 0615 is the one everyone mentions, they're strong in the North West and Scotland.",
    "source": "test set T2-01:19",
    "cleared": "Public speculation about a takeover target, not the expert's employer",
-   "transcript": "false-alarm-daniel-reyes",
+   "transcript": "false-alarm-expert-9432",
    "fix": "sources",
    "highlight": "Publicly, people talk about",
    "fa_type": "market-talk"
   },
   {
-   "id": "false-alarm-tom-fairley",
+   "id": "false-alarm-expert-0383",
    "kind": "false_alarm",
    "category": "Material non-public information",
-   "name": "Tom Fairley",
+   "name": "Expert 0383",
    "date": "2026-11-06",
    "ts": "00:26",
-   "quote": "Quillon laid out the lending strategy at their 2024 investor day. The logic is straightforward: they already see merchants' transaction data, so they can underwrite small loans with better information than a bank.",
+   "quote": "Company 9728 laid out the lending strategy at their 2024 investor day. The logic is straightforward: they already see merchants' transaction data, so they can underwrite small loans with better information than a bank.",
    "source": "test set T4-00:26",
    "cleared": "Former employer, left in 2021; cites the public investor day",
-   "transcript": "false-alarm-tom-fairley",
+   "transcript": "false-alarm-expert-0383",
    "fix": "declaration",
    "highlight": "at their 2024 investor day",
    "fa_type": "former-employer"
   },
   {
-   "id": "false-alarm-robert-chen",
+   "id": "false-alarm-expert-8996",
    "kind": "false_alarm",
    "category": "Material non-public information",
-   "name": "Robert Chen",
+   "name": "Expert 8996",
    "date": "2026-11-12",
    "ts": "00:36",
-   "quote": "Ardent is a good one because they're transparent. On their Q2 earnings call in August, they reported gross margin of 31.4%, up from 28.9% a year earlier, and guided to 32% to 33% for the full year.",
+   "quote": "Company 9910 is a good one because they're transparent. On their Q2 earnings call in August, they reported gross margin of 31.4%, up from 28.9% a year earlier, and guided to 32% to 33% for the full year.",
    "source": "test set T7-00:36",
    "cleared": "Figures from the public Q2 earnings call",
-   "transcript": "false-alarm-robert-chen",
+   "transcript": "false-alarm-expert-8996",
    "fix": "sources",
    "highlight": "On their Q2 earnings call in August",
    "fa_type": "public-source"
   },
   {
-   "id": "false-alarm-laura-bennett",
+   "id": "false-alarm-expert-3985",
    "kind": "false_alarm",
    "category": "Material non-public information",
-   "name": "Laura Bennett",
+   "name": "Expert 3985",
    "date": "2026-11-14",
    "ts": "00:51",
    "quote": "As their annual report says, they've been closing stores in the north for two years, so the shift to online isn't new.",
    "source": "written for the design",
    "cleared": "Cites the published annual report",
-   "transcript": "false-alarm-laura-bennett",
+   "transcript": "false-alarm-expert-3985",
    "fix": "sources",
    "highlight": "As their annual report says",
    "fa_type": "public-source"
   },
   {
-   "id": "false-alarm-arjun-mehra",
+   "id": "false-alarm-expert-2518",
    "kind": "false_alarm",
    "category": "Material non-public information",
-   "name": "Arjun Mehra",
+   "name": "Expert 2518",
    "date": "2026-11-19",
    "ts": "01:30",
    "quote": "The chief executive said on the results call that capital spending would rise next year, mostly on automation.",
    "source": "written for the design",
    "cleared": "A public statement on the results call",
-   "transcript": "false-alarm-arjun-mehra",
+   "transcript": "false-alarm-expert-2518",
    "fix": "sources",
    "highlight": "said on the results call",
    "fa_type": "public-source"
   },
   {
-   "id": "false-alarm-chloe-martin",
+   "id": "false-alarm-expert-8418",
    "kind": "false_alarm",
    "category": "Current-employer confidential",
-   "name": "Chloe Martin",
+   "name": "Expert 8418",
    "date": "2026-10-28",
    "ts": "01:20",
    "quote": "We announced the Leeds office in a press release last month, so it's no secret we're expanding in the north.",
    "source": "written for the design",
    "cleared": "Announced in a press release",
-   "transcript": "false-alarm-chloe-martin",
+   "transcript": "false-alarm-expert-8418",
    "fix": "sources",
    "highlight": "We announced the Leeds office in a press release",
    "fa_type": "public-source"
   },
   {
-   "id": "false-alarm-ibrahim-yusuf",
+   "id": "false-alarm-expert-1578",
    "kind": "false_alarm",
    "category": "Current-employer confidential",
-   "name": "Ibrahim Yusuf",
+   "name": "Expert 1578",
    "date": "2026-11-04",
    "ts": "01:56",
    "quote": "Our prices are on the website. The standard tier is £40 a seat, and that hasn't changed this year.",
    "source": "written for the design",
    "cleared": "Published list price",
-   "transcript": "false-alarm-ibrahim-yusuf",
+   "transcript": "false-alarm-expert-1578",
    "fix": "sources",
    "highlight": "Our prices are on the website",
    "fa_type": "public-source"
   },
   {
-   "id": "false-alarm-ruth-okonkwo",
+   "id": "false-alarm-expert-8173",
    "kind": "false_alarm",
    "category": "Current-employer confidential",
-   "name": "Ruth Okonkwo",
+   "name": "Expert 8173",
    "date": "2026-11-11",
    "ts": "00:52",
    "quote": "I can only tell you what's in our published sustainability report: we cut emissions by about a tenth last year.",
    "source": "written for the design",
    "cleared": "From the published sustainability report",
-   "transcript": "false-alarm-ruth-okonkwo",
+   "transcript": "false-alarm-expert-8173",
    "fix": "sources",
    "highlight": "what's in our published sustainability report",
    "fa_type": "public-source"
   },
   {
-   "id": "false-alarm-marco-rossi",
+   "id": "false-alarm-expert-0462",
    "kind": "false_alarm",
    "category": "Current-employer confidential",
-   "name": "Marco Rossi",
+   "name": "Expert 0462",
    "date": "2026-11-17",
    "ts": "01:22",
    "quote": "Our chief executive showed the new product on stage at the trade show in September, so it's public now.",
    "source": "written for the design",
    "cleared": "Shown publicly at a trade show",
-   "transcript": "false-alarm-marco-rossi",
+   "transcript": "false-alarm-expert-0462",
    "fix": "sources",
    "highlight": "showed the new product on stage at the trade show",
    "fa_type": "public-source"
   },
   {
-   "id": "false-alarm-isabel-moreno",
+   "id": "false-alarm-expert-6699",
    "kind": "false_alarm",
    "category": "Former-client confidential",
-   "name": "Isabel Moreno",
+   "name": "Expert 6699",
    "date": "2026-10-29",
    "ts": "07:41",
    "quote": "My own estimate is that their margins are nearer 20% than 25%, based on industry benchmarks, not anything I worked on.",
@@ -709,10 +709,10 @@
    "fa_type": "own-view"
   },
   {
-   "id": "false-alarm-kenji-watanabe",
+   "id": "false-alarm-expert-4716",
    "kind": "false_alarm",
    "category": "Source disclosure",
-   "name": "Kenji Watanabe",
+   "name": "Expert 4716",
    "date": "2026-11-05",
    "ts": "13:22",
    "quote": "Nobody told me this, but my view is they'll have to raise prices within a year.",
@@ -724,13 +724,13 @@
    "fa_type": "own-view"
   },
   {
-   "id": "false-alarm-fatima-al-sayed",
+   "id": "false-alarm-expert-0382",
    "kind": "false_alarm",
    "category": "Personal data",
-   "name": "Fatima Al-Sayed",
+   "name": "Expert 0382",
    "date": "2026-11-13",
    "ts": "19:58",
-   "quote": "I think their new chief executive, Daniel Kerr, is the right person for the turnaround, though that's only my opinion.",
+   "quote": "I think their new chief executive, Person 1134, is the right person for the turnaround, though that's only my opinion.",
    "source": "written for the design",
    "cleared": "An opinion about a public figure in a public role",
    "transcript": null,
@@ -739,43 +739,43 @@
    "fa_type": "own-view"
   },
   {
-   "id": "false-alarm-george-whitfield",
+   "id": "false-alarm-expert-6523",
    "kind": "false_alarm",
    "category": "Former-client confidential",
-   "name": "George Whitfield",
+   "name": "Expert 6523",
    "date": "2026-10-31",
    "ts": "10:14",
-   "quote": "When I was at Harlow Foods in 2015, we priced on a cost-plus basis. I've no idea what they do now.",
+   "quote": "When I was at Company 7278 in 2015, we priced on a cost-plus basis. I've no idea what they do now.",
    "source": "written for the design",
-   "cleared": "Left Harlow Foods in 2016; nothing current",
+   "cleared": "Left Company 7278 in 2016; nothing current",
    "transcript": null,
    "fix": null,
-   "highlight": "When I was at Harlow Foods in 2015",
+   "highlight": "When I was at Company 7278 in 2015",
    "fa_type": "former-employer"
   },
   {
-   "id": "false-alarm-ana-costa",
+   "id": "false-alarm-expert-8012",
    "kind": "false_alarm",
    "category": "Declaration conflict",
-   "name": "Ana Costa",
+   "name": "Expert 8012",
    "date": "2026-11-09",
    "ts": "04:37",
-   "quote": "I left Brennick Steel in 2017, and back then the plant ran three shifts.",
+   "quote": "I left Company 7660 in 2017, and back then the plant ran three shifts.",
    "source": "written for the design",
    "cleared": "Matches the declaration; nine-year-old detail",
    "transcript": null,
    "fix": null,
-   "highlight": "I left Brennick Steel in 2017",
+   "highlight": "I left Company 7660 in 2017",
    "fa_type": "former-employer"
   },
   {
-   "id": "false-alarm-patrick-doyle",
+   "id": "false-alarm-expert-1186",
    "kind": "false_alarm",
    "category": "Source disclosure",
-   "name": "Patrick Doyle",
+   "name": "Expert 1186",
    "date": "2026-11-16",
    "ts": "22:45",
-   "quote": "My old manager at Fenwick Telecom, back in 2014, always said the network was over-built.",
+   "quote": "My old manager at Company 5364, back in 2014, always said the network was over-built.",
    "source": "written for the design",
    "cleared": "A decade-old opinion from a former employer",
    "transcript": null,
@@ -784,13 +784,13 @@
    "fa_type": "former-employer"
   },
   {
-   "id": "false-alarm-leila-nasser",
+   "id": "false-alarm-expert-8831",
    "kind": "false_alarm",
    "category": "Personal data",
-   "name": "Leila Nasser",
+   "name": "Expert 8831",
    "date": "2026-10-30",
    "ts": "16:03",
-   "quote": "Their chief executive, Anna Berg, has said at two conferences that she'd consider selling the business.",
+   "quote": "Their chief executive, Person 0904, has said at two conferences that she'd consider selling the business.",
    "source": "written for the design",
    "cleared": "Public statements by a chief executive",
    "transcript": null,
@@ -799,10 +799,10 @@
    "fa_type": "market-talk"
   },
   {
-   "id": "false-alarm-tomasz-nowak",
+   "id": "false-alarm-expert-1923",
    "kind": "false_alarm",
    "category": "Source disclosure",
-   "name": "Tomasz Nowak",
+   "name": "Expert 1923",
    "date": "2026-11-07",
    "ts": "11:36",
    "quote": "A few people I met at the trade show think the merger will happen, but that's just the chatter going round.",
@@ -814,13 +814,13 @@
    "fa_type": "market-talk"
   },
   {
-   "id": "false-alarm-rebecca-stone",
+   "id": "false-alarm-expert-3201",
    "kind": "false_alarm",
    "category": "Source disclosure",
-   "name": "Rebecca Stone",
+   "name": "Expert 3201",
    "date": "2026-11-18",
    "ts": "08:29",
-   "quote": "According to the financial press, analysts expect Tavish Bank to cut its dividend.",
+   "quote": "According to the financial press, analysts expect Company 5640 to cut its dividend.",
    "source": "written for the design",
    "cleared": "Published analyst expectations",
    "transcript": null,
@@ -830,15 +830,15 @@
   }
  ],
  "transcripts": {
-  "missed-sanjay-mehta": {
+  "missed-expert-9928": {
    "topic": "Medical devices",
-   "profile": "Sanjay Mehta. Finance Director, Northwind Biomedical (2018 to March 2026). Independent consultant (March 2026 to present). Industry: medical devices.",
-   "declaration": "Left Northwind Biomedical (listed company) in March 2026. No current employer in medical devices. Standard confidentiality obligations to Northwind. No conflicts declared.",
+   "profile": "Expert 9928. Finance Director, Company 3966 (2018 to March 2026). Independent consultant (March 2026 to present). Industry: medical devices.",
+   "declaration": "Left Company 3966 (listed company) in March 2026. No current employer in medical devices. Standard confidentiality obligations to Company 3966. No conflicts declared.",
    "turns": [
     {
      "ts": "00:00",
      "speaker": "INTERVIEWER",
-     "text": "Sanjay, thanks for your time. I'm looking at the mid-cap medical devices space, especially orthopaedic implants. How is demand?"
+     "text": "Expert 9928, thanks for your time. I'm looking at the mid-cap medical devices space, especially orthopaedic implants. How is demand?"
     },
     {
      "ts": "00:12",
@@ -858,12 +858,12 @@
     {
      "ts": "01:00",
      "speaker": "INTERVIEWER",
-     "text": "What about Northwind specifically?"
+     "text": "What about Company 3966 specifically?"
     },
     {
      "ts": "01:03",
      "speaker": "EXPERT",
-     "text": "I'll stay careful there since I only left in March. Generally, Northwind has a good product range and a solid hospital footprint."
+     "text": "I'll stay careful there since I only left in March. Generally, Company 3966 has a good product range and a solid hospital footprint."
     },
     {
      "ts": "01:20",
@@ -898,31 +898,40 @@
     {
      "ts": "02:50",
      "speaker": "INTERVIEWER",
-     "text": "Thank you, Sanjay."
+     "text": "Thank you, Expert 9928."
     }
    ],
    "passage_ts": "01:24",
    "reviewer_comment": "Hedged, but points to a possible undisclosed product quality issue at a listed former employer, sourced from current contacts there. Too uncertain for AI to clear or reject; needs a compliance reviewer.",
-   "root_cause": "The AI looks for named companies, and none is named: the expert says “their”. Linking it to Northwind, a listed company he left in March 2026, needs the question before it and his declaration.",
+   "root_cause": "The AI looks for named companies, and none is named: the expert says “their”. Linking it to Company 3966, a listed company he left in March 2026, needs the question before it and his declaration.",
    "source": "test set, transcript 5",
-   "id": "missed-sanjay-mehta",
+   "id": "missed-expert-9928",
    "kind": "missed",
    "category": "Material non-public information",
-   "name": "Sanjay Mehta",
+   "name": "Expert 9928",
    "date": "2026-11-12",
-   "role": "Finance Director, Northwind Biomedical (2018 to March 2026). Independent consultant (March 2026 to present).",
-   "reviewer": "Sophie Laurent, Legal Counsel",
-   "reviewed_at": "2026-11-13T09:42"
+   "role": "Finance Director, Company 3966 (2018 to March 2026). Independent consultant (March 2026 to present).",
+   "reviewer": "Reviewer 6689, Legal Counsel",
+   "reviewed_at": "2026-11-13T09:42",
+   "entities": {
+    "Company 3966": [
+     "listed",
+     "expert's former employer (left March 2026)"
+    ],
+    "Expert 9928": [
+     "the expert"
+    ]
+   }
   },
-  "missed-olivia-grant": {
+  "missed-expert-6456": {
    "topic": "Diabetes drug approvals",
-   "profile": "Olivia Grant. Regulatory Affairs Manager, Pellham Biosciences (2016 to 2022). Principal Consultant, Ashgrove Regulatory Partners (2022 to present). Industry: pharmaceuticals, regulatory affairs.",
-   "declaration": "Currently a consultant at Ashgrove Regulatory Partners, which advises listed drug developers on regulatory submissions; Torvane Pharma (listed company) is a current client. Must not discuss any client's non-public regulatory, clinical or commercial information.",
+   "profile": "Expert 6456. Regulatory Affairs Manager, Company 4794 (2016 to 2022). Principal Consultant, Company 6393 (2022 to present). Industry: pharmaceuticals, regulatory affairs.",
+   "declaration": "Currently a consultant at Company 6393, which advises listed drug developers on regulatory submissions; Company 4354 (listed company) is a current client. Must not discuss any client's non-public regulatory, clinical or commercial information.",
    "turns": [
     {
      "ts": "00:00",
      "speaker": "INTERVIEWER",
-     "text": "Thanks for joining, Olivia. I'm looking at diabetes and weight-loss drugs, and how regulators are treating the newer once-weekly treatments. Where are we in the cycle?"
+     "text": "Thanks for joining, Expert 6456. I'm looking at diabetes and weight-loss drugs, and how regulators are treating the newer once-weekly treatments. Where are we in the cycle?"
     },
     {
      "ts": "00:16",
@@ -952,7 +961,7 @@
     {
      "ts": "02:10",
      "speaker": "INTERVIEWER",
-     "text": "Torvane has its once-weekly diabetes drug under review. How do you rate their chances?"
+     "text": "Company 4354 has its once-weekly diabetes drug under review. How do you rate their chances?"
     },
     {
      "ts": "02:17",
@@ -972,31 +981,46 @@
     {
      "ts": "03:18",
      "speaker": "INTERVIEWER",
-     "text": "Thanks, Olivia."
+     "text": "Thanks, Expert 6456."
     }
    ],
    "passage_ts": "02:17",
-   "reviewer_comment": "The expert advises Torvane on its submissions and disclosed an unannounced regulatory rejection, which is plainly material and non-public. We redacted the passage, held the transcript back from the client and referred the expert to the vetting team.",
-   "root_cause": "The AI assessed each expert turn on its own, and this turn names no company: 'their' points back to Torvane in the interviewer's question. Without that link it never matched the passage to the client listed in the declaration, and read 'the regulator's decision' as general regulatory commentary.",
+   "reviewer_comment": "The expert advises Company 4354 on its submissions and disclosed an unannounced regulatory rejection, which is plainly material and non-public. We redacted the passage, held the transcript back from the client and referred the expert to the vetting team.",
+   "root_cause": "The AI assessed each expert turn on its own, and this turn names no company: 'their' points back to Company 4354 in the interviewer's question. Without that link it never matched the passage to the client listed in the declaration, and read 'the regulator's decision' as general regulatory commentary.",
    "source": "written for the prototype",
-   "id": "missed-olivia-grant",
+   "id": "missed-expert-6456",
    "kind": "missed",
    "category": "Material non-public information",
-   "name": "Olivia Grant",
+   "name": "Expert 6456",
    "date": "2026-10-29",
-   "role": "Regulatory Affairs Manager, Pellham Biosciences (2016 to 2022). Principal Consultant, Ashgrove Regulatory Partners (2022 to present).",
-   "reviewer": "Nikos Andreou, Senior Compliance Manager",
-   "reviewed_at": "2026-10-31T11:17"
+   "role": "Regulatory Affairs Manager, Company 4794 (2016 to 2022). Principal Consultant, Company 6393 (2022 to present).",
+   "reviewer": "Reviewer 8559, Senior Compliance Manager",
+   "reviewed_at": "2026-10-31T11:17",
+   "entities": {
+    "Company 4354": [
+     "listed",
+     "named in the call"
+    ],
+    "Company 4794": [
+     "expert's former employer (left 2022)"
+    ],
+    "Company 6393": [
+     "expert's current employer"
+    ],
+    "Expert 6456": [
+     "the expert"
+    ]
+   }
   },
-  "missed-henrik-lindqvist": {
+  "missed-expert-3657": {
    "topic": "European tyre market",
-   "profile": "Henrik Lindqvist. Plant Manager, Nordvik Rubber (2012 to 2019). Head of Corporate Strategy, Brannholt Automotive (2019 to present). Industry: automotive components and tyres.",
-   "declaration": "Currently employed by Brannholt Automotive (listed company), which owns a European tyre business. May discuss the tyre and components market in general. Must not discuss Brannholt's non-public information, financials, strategy or corporate activity.",
+   "profile": "Expert 3657. Plant Manager, Company 4907 (2012 to 2019). Head of Corporate Strategy, Company 3068 (2019 to present). Industry: automotive components and tyres.",
+   "declaration": "Currently employed by Company 3068 (listed company), which owns a European tyre business. May discuss the tyre and components market in general. Must not discuss Company 3068's non-public information, financials, strategy or corporate activity.",
    "turns": [
     {
      "ts": "00:00",
      "speaker": "INTERVIEWER",
-     "text": "Henrik, thanks for your time. I'm researching the European tyre market. How healthy is it right now?"
+     "text": "Expert 3657, thanks for your time. I'm researching the European tyre market. How healthy is it right now?"
     },
     {
      "ts": "00:12",
@@ -1055,27 +1079,39 @@
     }
    ],
    "passage_ts": "02:10",
-   "reviewer_comment": "Henrik heads strategy at Brannholt, a listed company, and disclosed a board-approved sale of its European tyre business ahead of the announcement. We rejected the transcript and escalated the expert for breaching his declaration.",
-   "root_cause": "The expert said 'the board' rather than 'our board' and never named Brannholt, so the AI read the answer as commentary on consolidation among peers. The issue only shows against the declaration, which says he works in strategy at a listed group that owns a European tyre business, and the AI did not make that comparison.",
+   "reviewer_comment": "Expert 3657 heads strategy at Company 3068, a listed company, and disclosed a board-approved sale of its European tyre business ahead of the announcement. We rejected the transcript and escalated the expert for breaching his declaration.",
+   "root_cause": "The expert said 'the board' rather than 'our board' and never named Company 3068, so the AI read the answer as commentary on consolidation among peers. The issue only shows against the declaration, which says he works in strategy at a listed group that owns a European tyre business, and the AI did not make that comparison.",
    "source": "written for the prototype",
-   "id": "missed-henrik-lindqvist",
+   "id": "missed-expert-3657",
    "kind": "missed",
    "category": "Material non-public information",
-   "name": "Henrik Lindqvist",
+   "name": "Expert 3657",
    "date": "2026-11-05",
-   "role": "Plant Manager, Nordvik Rubber (2012 to 2019). Head of Corporate Strategy, Brannholt Automotive (2019 to present).",
-   "reviewer": "Sophie Laurent, Legal Counsel",
-   "reviewed_at": "2026-11-06T14:05"
+   "role": "Plant Manager, Company 4907 (2012 to 2019). Head of Corporate Strategy, Company 3068 (2019 to present).",
+   "reviewer": "Reviewer 6689, Legal Counsel",
+   "reviewed_at": "2026-11-06T14:05",
+   "entities": {
+    "Company 3068": [
+     "listed",
+     "expert's current employer"
+    ],
+    "Company 4907": [
+     "expert's former employer (left 2019)"
+    ],
+    "Expert 3657": [
+     "the expert"
+    ]
+   }
   },
-  "missed-nadia-rahimi": {
+  "missed-expert-7520": {
    "topic": "Food packaging supply",
-   "profile": "Nadia Rahimi. Account Manager, Fenwick Cartons (2014 to 2018). Key Account Director, Stellan Packaging (2018 to August 2026). Independent packaging consultant (August 2026 to present). Industry: food and drink packaging.",
-   "declaration": "Left Stellan Packaging (listed company) in August 2026. No current employer. Standard confidentiality obligations to Stellan, including its customer contracts. No conflicts declared.",
+   "profile": "Expert 7520. Account Manager, Company 2924 (2014 to 2018). Key Account Director, Company 2161 (2018 to August 2026). Independent packaging consultant (August 2026 to present). Industry: food and drink packaging.",
+   "declaration": "Left Company 2161 (listed company) in August 2026. No current employer. Standard confidentiality obligations to Company 2161, including its customer contracts. No conflicts declared.",
    "turns": [
     {
      "ts": "00:00",
      "speaker": "INTERVIEWER",
-     "text": "Nadia, thanks for joining. I'm looking at packaging suppliers to the big food manufacturers. How do those contracts usually work?"
+     "text": "Expert 7520, thanks for joining. I'm looking at packaging suppliers to the big food manufacturers. How do those contracts usually work?"
     },
     {
      "ts": "00:13",
@@ -1105,7 +1141,7 @@
     {
      "ts": "02:02",
      "speaker": "INTERVIEWER",
-     "text": "Is that a live risk at Stellan?"
+     "text": "Is that a live risk at Company 2161?"
     },
     {
      "ts": "02:07",
@@ -1134,27 +1170,39 @@
     }
    ],
    "passage_ts": "02:07",
-   "reviewer_comment": "The expert left Stellan, a listed company, only in August and disclosed that its largest customer has given notice on a contract worth about a fifth of revenue, which she says the market does not know. We redacted the passage and referred the expert to the vetting team.",
-   "root_cause": "The AI's log scored the turn as a continuation of the expert's general point about customer concentration and labelled it an illustrative industry example. It gave no weight to 'the market doesn't know' and did not check that she had left Stellan, a listed company, three months before the call.",
+   "reviewer_comment": "The expert left Company 2161, a listed company, only in August and disclosed that its largest customer has given notice on a contract worth about a fifth of revenue, which she says the market does not know. We redacted the passage and referred the expert to the vetting team.",
+   "root_cause": "The AI's log scored the turn as a continuation of the expert's general point about customer concentration and labelled it an illustrative industry example. It gave no weight to 'the market doesn't know' and did not check that she had left Company 2161, a listed company, three months before the call.",
    "source": "written for the prototype",
-   "id": "missed-nadia-rahimi",
+   "id": "missed-expert-7520",
    "kind": "missed",
    "category": "Material non-public information",
-   "name": "Nadia Rahimi",
+   "name": "Expert 7520",
    "date": "2026-11-10",
-   "role": "Account Manager, Fenwick Cartons (2014 to 2018). Key Account Director, Stellan Packaging (2018 to August 2026). Independent packaging consultant (August 2026 to present).",
-   "reviewer": "Nikos Andreou, Senior Compliance Manager",
-   "reviewed_at": "2026-11-12T16:38"
+   "role": "Account Manager, Company 2924 (2014 to 2018). Key Account Director, Company 2161 (2018 to August 2026). Independent packaging consultant (August 2026 to present).",
+   "reviewer": "Reviewer 8559, Senior Compliance Manager",
+   "reviewed_at": "2026-11-12T16:38",
+   "entities": {
+    "Company 2161": [
+     "listed",
+     "expert's former employer (left August 2026)"
+    ],
+    "Company 2924": [
+     "expert's former employer (left 2018)"
+    ],
+    "Expert 7520": [
+     "the expert"
+    ]
+   }
   },
-  "missed-benjamin-cole": {
+  "missed-expert-0937": {
    "topic": "Industrial pumps distribution",
-   "profile": "Benjamin Cole. Regional Sales Manager, Hartwell Pumps (2014 to 2021). Commercial Director, Ridgeway Industrial Supply (2021 to present). Industry: industrial equipment distribution.",
-   "declaration": "Currently employed by Ridgeway Industrial Supply, the main UK distributor for Corran Engineering (listed company). May discuss the industrial equipment market in general. Must not share Ridgeway's or Corran's non-public sales, order or pricing data.",
+   "profile": "Expert 0937. Regional Sales Manager, Company 5308 (2014 to 2021). Commercial Director, Company 6700 (2021 to present). Industry: industrial equipment distribution.",
+   "declaration": "Currently employed by Company 6700, the main UK distributor for Company 6650 (listed company). May discuss the industrial equipment market in general. Must not share Company 6700's or Company 6650's non-public sales, order or pricing data.",
    "turns": [
     {
      "ts": "00:00",
      "speaker": "INTERVIEWER",
-     "text": "Benjamin, thanks for joining. I'm looking at demand for industrial pumps and valves in the UK. How does the market feel?"
+     "text": "Expert 0937, thanks for joining. I'm looking at demand for industrial pumps and valves in the UK. How does the market feel?"
     },
     {
      "ts": "00:13",
@@ -1184,7 +1232,7 @@
     {
      "ts": "01:58",
      "speaker": "INTERVIEWER",
-     "text": "How do you see Corran heading into the year end?"
+     "text": "How do you see Company 6650 heading into the year end?"
     },
     {
      "ts": "02:03",
@@ -1213,27 +1261,42 @@
     }
    ],
    "passage_ts": "02:03",
-   "reviewer_comment": "As Corran's main distributor, the expert has access to its order data, and he disclosed a non-public order book trend that points to a guidance miss at a listed company. We redacted the passage and reminded the expert of his restrictions.",
-   "root_cause": "The AI logged 'I'd expect them to miss guidance' as the expert's own forecast and classified the passage as opinion. It folded the 15% figure into that view and missed that 'the order book I saw' means he had seen Corran's internal data through the distribution relationship set out in his declaration.",
+   "reviewer_comment": "As Company 6650's main distributor, the expert has access to its order data, and he disclosed a non-public order book trend that points to a guidance miss at a listed company. We redacted the passage and reminded the expert of his restrictions.",
+   "root_cause": "The AI logged 'I'd expect them to miss guidance' as the expert's own forecast and classified the passage as opinion. It folded the 15% figure into that view and missed that 'the order book I saw' means he had seen Company 6650's internal data through the distribution relationship set out in his declaration.",
    "source": "written for the prototype",
-   "id": "missed-benjamin-cole",
+   "id": "missed-expert-0937",
    "kind": "missed",
    "category": "Material non-public information",
-   "name": "Benjamin Cole",
+   "name": "Expert 0937",
    "date": "2026-11-16",
-   "role": "Regional Sales Manager, Hartwell Pumps (2014 to 2021). Commercial Director, Ridgeway Industrial Supply (2021 to present).",
-   "reviewer": "Sophie Laurent, Legal Counsel",
-   "reviewed_at": "2026-11-17T10:26"
+   "role": "Regional Sales Manager, Company 5308 (2014 to 2021). Commercial Director, Company 6700 (2021 to present).",
+   "reviewer": "Reviewer 6689, Legal Counsel",
+   "reviewed_at": "2026-11-17T10:26",
+   "entities": {
+    "Company 5308": [
+     "expert's former employer (left 2021)"
+    ],
+    "Company 6650": [
+     "listed",
+     "named in the call"
+    ],
+    "Company 6700": [
+     "expert's current employer"
+    ],
+    "Expert 0937": [
+     "the expert"
+    ]
+   }
   },
-  "missed-priya-natarajan": {
+  "missed-expert-1342": {
    "topic": "Workforce SaaS pricing",
-   "profile": "Priya Natarajan. VP Sales EMEA, Teallight Software (2021 to present). Previously Sales Director, Orbisoft (2016 to 2021). Industry: B2B SaaS, workforce scheduling software.",
-   "declaration": "Currently employed by Teallight Software (private company). May discuss the workforce software market, buyer behaviour and competitors in general terms. Must not share Teallight's non-public pricing, roadmap or customer information.",
+   "profile": "Expert 1342. VP Sales EMEA, Company 5981 (2021 to present). Previously Sales Director, Company 6065 (2016 to 2021). Industry: B2B SaaS, workforce scheduling software.",
+   "declaration": "Currently employed by Company 5981 (private company). May discuss the workforce software market, buyer behaviour and competitors in general terms. Must not share Company 5981's non-public pricing, roadmap or customer information.",
    "turns": [
     {
      "ts": "00:00",
      "speaker": "INTERVIEWER",
-     "text": "Priya, thanks for joining. I'm looking at the workforce scheduling software market in Europe. How would you describe demand right now?"
+     "text": "Expert 1342, thanks for joining. I'm looking at the workforce scheduling software market in Europe. How would you describe demand right now?"
     },
     {
      "ts": "00:14",
@@ -1303,31 +1366,43 @@
     {
      "ts": "03:25",
      "speaker": "INTERVIEWER",
-     "text": "Thank you, Priya."
+     "text": "Thank you, Expert 1342."
     }
    ],
    "passage_ts": "01:34",
    "reviewer_comment": "Non-public pricing decision at the expert's current employer, not yet told to customers, in breach of her declaration. Redacted; the expert gets a reminder of her restrictions.",
-   "root_cause": "The AI only checks passages that name a company. This one says “for us”, and linking that to Teallight, her current employer, needs her declaration, which the AI didn't read.",
+   "root_cause": "The AI only checks passages that name a company. This one says “for us”, and linking that to Company 5981, her current employer, needs her declaration, which the AI didn't read.",
    "source": "test set, transcript 3",
-   "id": "missed-priya-natarajan",
+   "id": "missed-expert-1342",
    "kind": "missed",
    "category": "Current-employer confidential",
-   "name": "Priya Natarajan",
+   "name": "Expert 1342",
    "date": "2026-11-04",
-   "role": "VP Sales EMEA, Teallight Software (2021 to present). Previously Sales Director, Orbisoft (2016 to 2021).",
-   "reviewer": "Katerina Ioannou, Compliance Analyst",
-   "reviewed_at": "2026-11-06T12:51"
+   "role": "VP Sales EMEA, Company 5981 (2021 to present). Previously Sales Director, Company 6065 (2016 to 2021).",
+   "reviewer": "Reviewer 5546, Compliance Analyst",
+   "reviewed_at": "2026-11-06T12:51",
+   "entities": {
+    "Company 5981": [
+     "private",
+     "expert's current employer"
+    ],
+    "Company 6065": [
+     "expert's former employer (left 2021)"
+    ],
+    "Expert 1342": [
+     "the expert"
+    ]
+   }
   },
-  "missed-grace-liu": {
+  "missed-expert-0842": {
    "topic": "UK household goods manufacturing",
-   "profile": "Grace Liu. Production Engineer, Thornbury Plastics (2015 to 2020). Operations Director, Kelsall Home Products (2020 to present). Industry: household goods manufacturing.",
-   "declaration": "Currently employed by Kelsall Home Products (private company). May discuss UK manufacturing trends in general. Must not share Kelsall's non-public plans, site decisions, financials or customer information.",
+   "profile": "Expert 0842. Production Engineer, Company 2597 (2015 to 2020). Operations Director, Company 9237 (2020 to present). Industry: household goods manufacturing.",
+   "declaration": "Currently employed by Company 9237 (private company). May discuss UK manufacturing trends in general. Must not share Company 9237's non-public plans, site decisions, financials or customer information.",
    "turns": [
     {
      "ts": "00:00",
      "speaker": "INTERVIEWER",
-     "text": "Grace, thanks for your time. I'm researching UK manufacturers of household goods. What's the biggest pressure on them at the moment?"
+     "text": "Expert 0842, thanks for your time. I'm researching UK manufacturers of household goods. What's the biggest pressure on them at the moment?"
     },
     {
      "ts": "00:12",
@@ -1386,27 +1461,39 @@
     }
    ],
    "passage_ts": "01:56",
-   "reviewer_comment": "The expert works at Kelsall and disclosed an unannounced plant closure that even the staff have not been told about, which her declaration clearly bars. We redacted the passage and sent her a reminder of her restrictions.",
-   "root_cause": "The AI's log labelled the turn as an example of the sector-wide site consolidation the expert had just described, reading 'we' as the industry. It never resolved 'we' to Kelsall from the declaration, and logged 'keep that between us' as a conversational aside rather than a sign the information is confidential.",
+   "reviewer_comment": "The expert works at Company 9237 and disclosed an unannounced plant closure that even the staff have not been told about, which her declaration clearly bars. We redacted the passage and sent her a reminder of her restrictions.",
+   "root_cause": "The AI's log labelled the turn as an example of the sector-wide site consolidation the expert had just described, reading 'we' as the industry. It never resolved 'we' to Company 9237 from the declaration, and logged 'keep that between us' as a conversational aside rather than a sign the information is confidential.",
    "source": "written for the prototype",
-   "id": "missed-grace-liu",
+   "id": "missed-expert-0842",
    "kind": "missed",
    "category": "Current-employer confidential",
-   "name": "Grace Liu",
+   "name": "Expert 0842",
    "date": "2026-10-30",
-   "role": "Production Engineer, Thornbury Plastics (2015 to 2020). Operations Director, Kelsall Home Products (2020 to present).",
-   "reviewer": "Eleni Papadaki, Compliance Analyst",
-   "reviewed_at": "2026-10-31T15:09"
+   "role": "Production Engineer, Company 2597 (2015 to 2020). Operations Director, Company 9237 (2020 to present).",
+   "reviewer": "Reviewer 8404, Compliance Analyst",
+   "reviewed_at": "2026-10-31T15:09",
+   "entities": {
+    "Company 2597": [
+     "expert's former employer (left 2020)"
+    ],
+    "Company 9237": [
+     "private",
+     "expert's current employer"
+    ],
+    "Expert 0842": [
+     "the expert"
+    ]
+   }
   },
-  "missed-mateo-alvarez": {
+  "missed-expert-3370": {
    "topic": "Retail point-of-sale software",
-   "profile": "Mateo Alvarez. Software Engineer, Plinth Systems (2014 to 2019). Engineering Manager, Quayside Retail Software (2019 to present). Industry: retail point-of-sale and analytics software.",
-   "declaration": "Currently employed by Quayside Retail Software (private company). May discuss the retail software market and hiring trends in general. Must not share Quayside's non-public roadmap, pricing or customer information.",
+   "profile": "Expert 3370. Software Engineer, Company 1849 (2014 to 2019). Engineering Manager, Company 0973 (2019 to present). Industry: retail point-of-sale and analytics software.",
+   "declaration": "Currently employed by Company 0973 (private company). May discuss the retail software market and hiring trends in general. Must not share Company 0973's non-public roadmap, pricing or customer information.",
    "turns": [
     {
      "ts": "00:00",
      "speaker": "INTERVIEWER",
-     "text": "Mateo, thanks for joining. I'm looking at point-of-sale software for mid-sized retailers. What are buyers asking for now?"
+     "text": "Expert 3370, thanks for joining. I'm looking at point-of-sale software for mid-sized retailers. What are buyers asking for now?"
     },
     {
      "ts": "00:13",
@@ -1436,7 +1523,7 @@
     {
      "ts": "01:56",
      "speaker": "INTERVIEWER",
-     "text": "Is Quayside hiring?"
+     "text": "Is Company 0973 hiring?"
     },
     {
      "ts": "02:00",
@@ -1465,27 +1552,39 @@
     }
    ],
    "passage_ts": "02:00",
-   "reviewer_comment": "The expert works at Quayside and gave a non-public launch date from its product roadmap, which his declaration bars. We redacted the passage; the general hiring discussion around it was fine.",
+   "reviewer_comment": "The expert works at Company 0973 and gave a non-public launch date from its product roadmap, which his declaration bars. We redacted the passage; the general hiring discussion around it was fine.",
    "root_cause": "The AI's log grouped this turn with the hiring discussion in the previous two turns and classified it as labour market commentary, which the declaration allows. It did not separate out the roadmap launch date attached to the hiring point, which is the confidential part.",
    "source": "written for the prototype",
-   "id": "missed-mateo-alvarez",
+   "id": "missed-expert-3370",
    "kind": "missed",
    "category": "Current-employer confidential",
-   "name": "Mateo Alvarez",
+   "name": "Expert 3370",
    "date": "2026-11-07",
-   "role": "Software Engineer, Plinth Systems (2014 to 2019). Engineering Manager, Quayside Retail Software (2019 to present).",
-   "reviewer": "Dimitris Vlachos, Compliance Analyst",
-   "reviewed_at": "2026-11-09T09:42"
+   "role": "Software Engineer, Company 1849 (2014 to 2019). Engineering Manager, Company 0973 (2019 to present).",
+   "reviewer": "Reviewer 8705, Compliance Analyst",
+   "reviewed_at": "2026-11-09T09:42",
+   "entities": {
+    "Company 0973": [
+     "private",
+     "expert's current employer"
+    ],
+    "Company 1849": [
+     "expert's former employer (left 2019)"
+    ],
+    "Expert 3370": [
+     "the expert"
+    ]
+   }
   },
-  "missed-siobhan-kelly": {
+  "missed-expert-8778": {
    "topic": "Outsourced facilities management",
-   "profile": "Siobhan Kelly. Account Manager, Brayfield Telecom (2015 to 2021). Senior Account Director, Calder Facilities Services (2021 to present). Industry: outsourced facilities management.",
-   "declaration": "Currently employed by Calder Facilities Services (private company). May discuss the facilities management market in general. Must not share Calder's non-public customer, contract or financial information.",
+   "profile": "Expert 8778. Account Manager, Company 1746 (2015 to 2021). Senior Account Director, Company 7200 (2021 to present). Industry: outsourced facilities management.",
+   "declaration": "Currently employed by Company 7200 (private company). May discuss the facilities management market in general. Must not share Company 7200's non-public customer, contract or financial information.",
    "turns": [
     {
      "ts": "00:00",
      "speaker": "INTERVIEWER",
-     "text": "Siobhan, thanks for joining. I'm researching outsourced facilities management in the UK. How is the market doing?"
+     "text": "Expert 8778, thanks for joining. I'm researching outsourced facilities management in the UK. How is the market doing?"
     },
     {
      "ts": "00:12",
@@ -1544,27 +1643,39 @@
     }
    ],
    "passage_ts": "01:56",
-   "reviewer_comment": "The expert is on the account team at Calder, her current employer, and disclosed the imminent loss of its second-largest customer, which is non-public customer information under her declaration. We redacted the passage and sent her a reminder of her restrictions.",
+   "reviewer_comment": "The expert is on the account team at Company 7200, her current employer, and disclosed the imminent loss of its second-largest customer, which is non-public customer information under her declaration. We redacted the passage and sent her a reminder of her restrictions.",
    "root_cause": "The AI's confidentiality check looked for specifics such as a customer name, a contract value or a date, found none, and scored the turn as low risk. It missed that a current employee saying a major customer is about to leave is confidential company information in itself.",
    "source": "written for the prototype",
-   "id": "missed-siobhan-kelly",
+   "id": "missed-expert-8778",
    "kind": "missed",
    "category": "Current-employer confidential",
-   "name": "Siobhan Kelly",
+   "name": "Expert 8778",
    "date": "2026-11-18",
-   "role": "Account Manager, Brayfield Telecom (2015 to 2021). Senior Account Director, Calder Facilities Services (2021 to present).",
-   "reviewer": "Katerina Ioannou, Compliance Analyst",
-   "reviewed_at": "2026-11-19T11:17"
+   "role": "Account Manager, Company 1746 (2015 to 2021). Senior Account Director, Company 7200 (2021 to present).",
+   "reviewer": "Reviewer 5546, Compliance Analyst",
+   "reviewed_at": "2026-11-19T11:17",
+   "entities": {
+    "Company 1746": [
+     "expert's former employer (left 2021)"
+    ],
+    "Company 7200": [
+     "private",
+     "expert's current employer"
+    ],
+    "Expert 8778": [
+     "the expert"
+    ]
+   }
   },
-  "missed-elena-vasquez": {
+  "missed-expert-6378": {
    "topic": "Enterprise software buying",
-   "profile": "Elena Vasquez. Head of Procurement, Marrow Analytics (2019 to October 2024, per declaration). Independent procurement advisor (October 2024 to present). Industry: enterprise data and analytics software.",
-   "declaration": "Left Marrow Analytics in October 2024. No current employer. Not in contact with Marrow Analytics in a professional capacity. No conflicts declared.",
+   "profile": "Expert 6378. Head of Procurement, Company 9560 (2019 to October 2024, per declaration). Independent procurement advisor (October 2024 to present). Industry: enterprise data and analytics software.",
+   "declaration": "Left Company 9560 in October 2024. No current employer. Not in contact with Company 9560 in a professional capacity. No conflicts declared.",
    "turns": [
     {
      "ts": "00:00",
      "speaker": "INTERVIEWER",
-     "text": "Elena, thanks for joining. I'm researching how large enterprises buy data and analytics software. What does a typical buying process look like?"
+     "text": "Expert 6378, thanks for joining. I'm researching how large enterprises buy data and analytics software. What does a typical buying process look like?"
     },
     {
      "ts": "00:14",
@@ -1589,7 +1700,7 @@
     {
      "ts": "01:06",
      "speaker": "EXPERT",
-     "text": "Aggressively. Most companies have too many overlapping tools. At Marrow, our team is rolling out a consolidation programme next month, cutting the analytics stack from nine vendors to four. We've been building the business case since the summer."
+     "text": "Aggressively. Most companies have too many overlapping tools. At Company 9560, our team is rolling out a consolidation programme next month, cutting the analytics stack from nine vendors to four. We've been building the business case since the summer."
     },
     {
      "ts": "01:30",
@@ -1599,7 +1710,7 @@
     {
      "ts": "01:34",
      "speaker": "EXPERT",
-     "text": "The niche dashboard tools. My contact Jamie Holt, who runs procurement there now, told me last week they're giving notice to two of them in Q1. The big platforms will win because they can bundle."
+     "text": "The niche dashboard tools. My contact Person 2315, who runs procurement there now, told me last week they're giving notice to two of them in Q1. The big platforms will win because they can bundle."
     },
     {
      "ts": "01:55",
@@ -1624,26 +1735,37 @@
     {
      "ts": "02:50",
      "speaker": "INTERVIEWER",
-     "text": "Thanks, Elena."
+     "text": "Thanks, Expert 6378."
     }
    ],
    "passage_ts": "01:34",
-   "reviewer_comment": "Names a current insider as the source of non-public vendor decisions, which also contradicts her declared lack of professional contact with Marrow. Transcript rejected; the expert is referred to the vetting team.",
-   "root_cause": "The AI checks for company names, and this answer names none: “there” points back to Marrow. It didn't treat “my contact Jamie Holt … told me” as an insider source, so nothing was flagged.",
+   "reviewer_comment": "Names a current insider as the source of non-public vendor decisions, which also contradicts her declared lack of professional contact with Company 9560. Transcript rejected; the expert is referred to the vetting team.",
+   "root_cause": "The AI checks for company names, and this answer names none: “there” points back to Company 9560. It didn't treat “my contact Person 2315 … told me” as an insider source, so nothing was flagged.",
    "source": "test set, transcript 6",
-   "id": "missed-elena-vasquez",
+   "id": "missed-expert-6378",
    "kind": "missed",
    "category": "Source disclosure",
-   "name": "Elena Vasquez",
+   "name": "Expert 6378",
    "date": "2026-11-09",
-   "role": "Head of Procurement, Marrow Analytics (2019 to October 2024, per declaration). Independent procurement advisor (October 2024 to present).",
-   "reviewer": "Eleni Papadaki, Compliance Analyst",
-   "reviewed_at": "2026-11-11T14:05"
+   "role": "Head of Procurement, Company 9560 (2019 to October 2024, per declaration). Independent procurement advisor (October 2024 to present).",
+   "reviewer": "Reviewer 8404, Compliance Analyst",
+   "reviewed_at": "2026-11-11T14:05",
+   "entities": {
+    "Company 9560": [
+     "expert's former employer"
+    ],
+    "Expert 6378": [
+     "the expert"
+    ],
+    "Person 2315": [
+     "third party named in the call"
+    ]
+   }
   },
-  "missed-hannah-booth": {
+  "missed-expert-3658": {
    "topic": "Financial crime (AI-led)",
-   "profile": "Hannah Booth. Senior Manager, Financial Crime Advisory, Kestrel Advisory (2016 to 2023), where she audited banks' anti-money-laundering controls. Head of Compliance, Pellow Insurance (2023 to present). Industry: financial crime compliance.",
-   "declaration": "Currently employed by Pellow Insurance; will not discuss Pellow. Left Kestrel Advisory in 2023. Bound by confidentiality to Kestrel's former clients. No conflicts declared.",
+   "profile": "Expert 3658. Senior Manager, Financial Crime Advisory, Company 7122 (2016 to 2023), where she audited banks' anti-money-laundering controls. Head of Compliance, Company 1936 (2023 to present). Industry: financial crime compliance.",
+   "declaration": "Currently employed by Company 1936; will not discuss Company 1936. Left Company 7122 in 2023. Bound by confidentiality to Company 7122's former clients. No conflicts declared.",
    "turns": [
     {
      "ts": "00:00",
@@ -1663,7 +1785,7 @@
     {
      "ts": "00:53",
      "speaker": "EXPERT",
-     "text": "At one of the banks we audited, Fairhaven Credit, around 40% of the higher-risk customer files we sampled were missing source-of-funds documentation. It was in our final report to their board. They had to run a full remediation programme."
+     "text": "At one of the banks we audited, Company 0710, around 40% of the higher-risk customer files we sampled were missing source-of-funds documentation. It was in our final report to their board. They had to run a full remediation programme."
     },
     {
      "ts": "01:20",
@@ -1673,7 +1795,7 @@
     {
      "ts": "01:24",
      "speaker": "EXPERT",
-     "text": "A remediation programme, usually with external help, and a lot of pressure on the compliance team. It's tough on people. I remember Mark Ellison, who led their financial crime team at the time, was signed off for months with a breakdown afterwards."
+     "text": "A remediation programme, usually with external help, and a lot of pressure on the compliance team. It's tough on people. I remember Person 8435, who led their financial crime team at the time, was signed off for months with a breakdown afterwards."
     },
     {
      "ts": "01:48",
@@ -1715,24 +1837,41 @@
    "reviewer_comment": "Names a private individual alongside private health information. Redacted.",
    "root_cause": "The AI looks for company information only. A private person's name and health details aren't on its list, so the answer went through.",
    "source": "test set, transcript 8",
-   "id": "missed-hannah-booth",
+   "id": "missed-expert-3658",
    "kind": "missed",
    "category": "Personal data",
-   "name": "Hannah Booth",
+   "name": "Expert 3658",
    "date": "2026-11-13",
-   "role": "Senior Manager, Financial Crime Advisory, Kestrel Advisory (2016 to 2023), where she audited banks' anti-money-laundering controls. Head of Compliance, Pellow Insurance (2023 to present).",
-   "reviewer": "Dimitris Vlachos, Compliance Analyst",
-   "reviewed_at": "2026-11-14T16:38"
+   "role": "Senior Manager, Financial Crime Advisory, Company 7122 (2016 to 2023), where she audited banks' anti-money-laundering controls. Head of Compliance, Company 1936 (2023 to present).",
+   "reviewer": "Reviewer 8705, Compliance Analyst",
+   "reviewed_at": "2026-11-14T16:38",
+   "entities": {
+    "Company 0710": [
+     "named in the call"
+    ],
+    "Company 1936": [
+     "expert's current employer"
+    ],
+    "Company 7122": [
+     "expert's former employer (left 2023)"
+    ],
+    "Expert 3658": [
+     "the expert"
+    ],
+    "Person 8435": [
+     "third party named in the call"
+    ]
+   }
   },
-  "false-alarm-daniel-reyes": {
+  "false-alarm-expert-9432": {
    "topic": "Road freight consolidation",
-   "profile": "Daniel Reyes. Regional Operations Manager, Halbrook Logistics (2019 to present). Previously Depot Manager, Marlow Haulage (2014 to 2019). Industry: road freight and logistics.",
-   "declaration": "Currently employed by Halbrook Logistics (listed company). May discuss general industry trends. Must not discuss Halbrook's non-public information, financials, strategy or corporate activity.",
+   "profile": "Expert 9432. Regional Operations Manager, Company 5485 (2019 to present). Previously Depot Manager, Company 5707 (2014 to 2019). Industry: road freight and logistics.",
+   "declaration": "Currently employed by Company 5485 (listed company). May discuss general industry trends. Must not discuss Company 5485's non-public information, financials, strategy or corporate activity.",
    "turns": [
     {
      "ts": "00:00",
      "speaker": "INTERVIEWER",
-     "text": "Hi Daniel, thanks for your time. I'm researching consolidation in UK road freight. How fragmented is the market today?"
+     "text": "Hi Expert 9432, thanks for your time. I'm researching consolidation in UK road freight. How fragmented is the market today?"
     },
     {
      "ts": "00:12",
@@ -1757,17 +1896,17 @@
     {
      "ts": "01:19",
      "speaker": "EXPERT",
-     "text": "Publicly, people talk about the mid-sized regional players. Corvane Freight is the one everyone mentions, they're strong in the North West and Scotland."
+     "text": "Publicly, people talk about the mid-sized regional players. Company 0615 is the one everyone mentions, they're strong in the North West and Scotland."
     },
     {
      "ts": "01:35",
      "speaker": "INTERVIEWER",
-     "text": "Do you think Corvane stays independent?"
+     "text": "Do you think Company 0615 stays independent?"
     },
     {
      "ts": "01:39",
      "speaker": "EXPERT",
-     "text": "Honestly? I'd be surprised if Corvane is still independent by spring. I probably shouldn't say much more, but we've had integration planning sessions already. They're staffing the integration team from our side, and there's a project codename going around internally. The board's signed off on it, it's just timing on the announcement."
+     "text": "Honestly? I'd be surprised if Company 0615 is still independent by spring. I probably shouldn't say much more, but we've had integration planning sessions already. They're staffing the integration team from our side, and there's a project codename going around internally. The board's signed off on it, it's just timing on the announcement."
     },
     {
      "ts": "02:12",
@@ -1802,31 +1941,46 @@
     {
      "ts": "04:00",
      "speaker": "INTERVIEWER",
-     "text": "Thanks, Daniel."
+     "text": "Thanks, Expert 9432."
     }
    ],
    "passage_ts": "01:19",
-   "reviewer_comment": "Naming Corvane as a commonly mentioned target is public speculation, and Corvane isn't the expert's employer. Cleared.",
-   "root_cause": "The AI flags any passage that names a company. It matched “Corvane Freight” and didn't weigh that the expert framed it as public talk.",
+   "reviewer_comment": "Naming Company 0615 as a commonly mentioned target is public speculation, and Company 0615 isn't the expert's employer. Cleared.",
+   "root_cause": "The AI flags any passage that names a company. It matched “Company 0615” and didn't weigh that the expert framed it as public talk.",
    "source": "test set, transcript 2",
-   "id": "false-alarm-daniel-reyes",
+   "id": "false-alarm-expert-9432",
    "kind": "false_alarm",
    "category": "Material non-public information",
-   "name": "Daniel Reyes",
+   "name": "Expert 9432",
    "date": "2026-11-03",
-   "role": "Regional Operations Manager, Halbrook Logistics (2019 to present). Previously Depot Manager, Marlow Haulage (2014 to 2019).",
-   "reviewer": "Katerina Ioannou, Compliance Analyst",
-   "reviewed_at": "2026-11-05T10:26"
+   "role": "Regional Operations Manager, Company 5485 (2019 to present). Previously Depot Manager, Company 5707 (2014 to 2019).",
+   "reviewer": "Reviewer 5546, Compliance Analyst",
+   "reviewed_at": "2026-11-05T10:26",
+   "entities": {
+    "Company 0615": [
+     "named in the call"
+    ],
+    "Company 5485": [
+     "listed",
+     "expert's current employer"
+    ],
+    "Company 5707": [
+     "expert's former employer (left 2019)"
+    ],
+    "Expert 9432": [
+     "the expert"
+    ]
+   }
   },
-  "false-alarm-tom-fairley": {
+  "false-alarm-expert-0383": {
    "topic": "Payments lending strategy",
-   "profile": "Tom Fairley. Head of Product, Quillon Payments (2017 to 2021). Chief Product Officer, Brisk Invoicing (2021 to 2024). Independent advisor (2024 to present). Industry: payments and fintech.",
-   "declaration": "Left Quillon Payments in 2021 and Brisk Invoicing in 2024. No current employer. Standard confidentiality obligations to former employers. No conflicts declared.",
+   "profile": "Expert 0383. Head of Product, Company 9728 (2017 to 2021). Chief Product Officer, Company 2206 (2021 to 2024). Independent advisor (2024 to present). Industry: payments and fintech.",
+   "declaration": "Left Company 9728 in 2021 and Company 2206 in 2024. No current employer. Standard confidentiality obligations to former employers. No conflicts declared.",
    "turns": [
     {
      "ts": "00:00",
      "speaker": "INTERVIEWER",
-     "text": "Tom, thanks for joining. I'm looking at Quillon's move into small business lending. You were there for four years, so I'd love your view."
+     "text": "Expert 0383, thanks for joining. I'm looking at Company 9728's move into small business lending. You were there for four years, so I'd love your view."
     },
     {
      "ts": "00:13",
@@ -1841,7 +1995,7 @@
     {
      "ts": "00:26",
      "speaker": "EXPERT",
-     "text": "Quillon laid out the lending strategy at their 2024 investor day. The logic is straightforward: they already see merchants' transaction data, so they can underwrite small loans with better information than a bank. That's the whole thesis, and it's been in their public filings since."
+     "text": "Company 9728 laid out the lending strategy at their 2024 investor day. The logic is straightforward: they already see merchants' transaction data, so they can underwrite small loans with better information than a bank. That's the whole thesis, and it's been in their public filings since."
     },
     {
      "ts": "00:55",
@@ -1871,7 +2025,7 @@
     {
      "ts": "02:03",
      "speaker": "EXPERT",
-     "text": "Default rates by sector and vintage, which Quillon reports in its annual results, and how much of the loan book they keep versus sell on to funding partners. Keeping it boosts revenue but adds risk to the balance sheet."
+     "text": "Default rates by sector and vintage, which Company 9728 reports in its annual results, and how much of the loan book they keep versus sell on to funding partners. Keeping it boosts revenue but adds risk to the balance sheet."
     },
     {
      "ts": "02:30",
@@ -1886,31 +2040,42 @@
     {
      "ts": "02:52",
      "speaker": "INTERVIEWER",
-     "text": "Thanks, Tom."
+     "text": "Thanks, Expert 0383."
     }
    ],
    "passage_ts": "00:26",
-   "reviewer_comment": "The expert left Quillon in 2021 and everything here is from the public investor day and filings. Cleared.",
-   "root_cause": "It matched “Quillon”, the expert's former employer, without checking that he left in 2021 or that he cites the public investor day.",
+   "reviewer_comment": "The expert left Company 9728 in 2021 and everything here is from the public investor day and filings. Cleared.",
+   "root_cause": "It matched “Company 9728”, the expert's former employer, without checking that he left in 2021 or that he cites the public investor day.",
    "source": "test set, transcript 4",
-   "id": "false-alarm-tom-fairley",
+   "id": "false-alarm-expert-0383",
    "kind": "false_alarm",
    "category": "Material non-public information",
-   "name": "Tom Fairley",
+   "name": "Expert 0383",
    "date": "2026-11-06",
-   "role": "Head of Product, Quillon Payments (2017 to 2021). Chief Product Officer, Brisk Invoicing (2021 to 2024). Independent advisor (2024 to present).",
-   "reviewer": "Eleni Papadaki, Compliance Analyst",
-   "reviewed_at": "2026-11-07T12:51"
+   "role": "Head of Product, Company 9728 (2017 to 2021). Chief Product Officer, Company 2206 (2021 to 2024). Independent advisor (2024 to present).",
+   "reviewer": "Reviewer 8404, Compliance Analyst",
+   "reviewed_at": "2026-11-07T12:51",
+   "entities": {
+    "Company 2206": [
+     "expert's former employer (left 2024)"
+    ],
+    "Company 9728": [
+     "expert's former employer (left 2021)"
+    ],
+    "Expert 0383": [
+     "the expert"
+    ]
+   }
   },
-  "false-alarm-robert-chen": {
+  "false-alarm-expert-8996": {
    "topic": "Packaged food margins",
-   "profile": "Robert Chen. CFO, Ardent Foods (2016 to 2022). Non-executive director at two private food companies (2022 to present). Industry: packaged food manufacturing.",
-   "declaration": "Left Ardent Foods (listed company) in 2022. Non-executive roles at two private food companies, declared by name and excluded from discussion. No conflicts with Ardent declared.",
+   "profile": "Expert 8996. CFO, Company 9910 (2016 to 2022). Non-executive director at two private food companies (2022 to present). Industry: packaged food manufacturing.",
+   "declaration": "Left Company 9910 (listed company) in 2022. Non-executive roles at two private food companies, declared by name and excluded from discussion. No conflicts with Company 9910 declared.",
    "turns": [
     {
      "ts": "00:00",
      "speaker": "INTERVIEWER",
-     "text": "Robert, thanks for joining. I'm looking at margins in packaged food. Can you walk me through what's happening?"
+     "text": "Expert 8996, thanks for joining. I'm looking at margins in packaged food. Can you walk me through what's happening?"
     },
     {
      "ts": "00:11",
@@ -1925,7 +2090,7 @@
     {
      "ts": "00:36",
      "speaker": "EXPERT",
-     "text": "Ardent is a good one because they're transparent. On their Q2 earnings call in August, they reported gross margin of 31.4%, up from 28.9% a year earlier, and guided to 32% to 33% for the full year. They attributed most of it to pricing and to exiting low-margin private label contracts."
+     "text": "Company 9910 is a good one because they're transparent. On their Q2 earnings call in August, they reported gross margin of 31.4%, up from 28.9% a year earlier, and guided to 32% to 33% for the full year. They attributed most of it to pricing and to exiting low-margin private label contracts."
     },
     {
      "ts": "01:08",
@@ -1970,31 +2135,40 @@
     {
      "ts": "02:45",
      "speaker": "INTERVIEWER",
-     "text": "Thanks, Robert."
+     "text": "Thanks, Expert 8996."
     }
    ],
    "passage_ts": "00:36",
-   "reviewer_comment": "Precise figures, but all from the public Q2 earnings call and slides, which the expert confirms at 01:11. He left Ardent in 2022. Cleared.",
-   "root_cause": "It matched “Ardent” next to precise margin figures and flagged them, without checking the source the expert gave: the public Q2 earnings call.",
+   "reviewer_comment": "Precise figures, but all from the public Q2 earnings call and slides, which the expert confirms at 01:11. He left Company 9910 in 2022. Cleared.",
+   "root_cause": "It matched “Company 9910” next to precise margin figures and flagged them, without checking the source the expert gave: the public Q2 earnings call.",
    "source": "test set, transcript 7",
-   "id": "false-alarm-robert-chen",
+   "id": "false-alarm-expert-8996",
    "kind": "false_alarm",
    "category": "Material non-public information",
-   "name": "Robert Chen",
+   "name": "Expert 8996",
    "date": "2026-11-12",
-   "role": "CFO, Ardent Foods (2016 to 2022). Non-executive director at two private food companies (2022 to present).",
-   "reviewer": "Dimitris Vlachos, Compliance Analyst",
-   "reviewed_at": "2026-11-14T15:09"
+   "role": "CFO, Company 9910 (2016 to 2022). Non-executive director at two private food companies (2022 to present).",
+   "reviewer": "Reviewer 8705, Compliance Analyst",
+   "reviewed_at": "2026-11-14T15:09",
+   "entities": {
+    "Company 9910": [
+     "listed",
+     "expert's former employer (left 2022)"
+    ],
+    "Expert 8996": [
+     "the expert"
+    ]
+   }
   },
-  "false-alarm-laura-bennett": {
+  "false-alarm-expert-3985": {
    "topic": "UK fashion retail",
-   "profile": "Laura Bennett. Head of Store Operations, Ellery & Pike (2011 to 2018). Independent retail consultant (2018 to present). Industry: UK fashion retail.",
-   "declaration": "Left Ellery & Pike in 2018. No current employer and no links to any listed retailer. No conflicts declared.",
+   "profile": "Expert 3985. Head of Store Operations, Company 8528 (2011 to 2018). Independent retail consultant (2018 to present). Industry: UK fashion retail.",
+   "declaration": "Left Company 8528 in 2018. No current employer and no links to any listed retailer. No conflicts declared.",
    "turns": [
     {
      "ts": "00:00",
      "speaker": "INTERVIEWER",
-     "text": "Laura, thanks for joining. I'm looking at mid-market fashion retailers in the UK, especially Hollin Stores. How has the sector changed?"
+     "text": "Expert 3985, thanks for joining. I'm looking at mid-market fashion retailers in the UK, especially Company 8334. How has the sector changed?"
     },
     {
      "ts": "00:13",
@@ -2004,7 +2178,7 @@
     {
      "ts": "00:47",
      "speaker": "INTERVIEWER",
-     "text": "Is Hollin doing anything different?"
+     "text": "Is Company 8334 doing anything different?"
     },
     {
      "ts": "00:51",
@@ -2044,31 +2218,42 @@
     {
      "ts": "03:05",
      "speaker": "INTERVIEWER",
-     "text": "Thanks, Laura."
+     "text": "Thanks, Expert 3985."
     }
    ],
    "passage_ts": "00:51",
-   "reviewer_comment": "The store closures are set out in Hollin's published annual report, which the expert cites directly, and she has no connection to the company. Nothing here is non-public, so we cleared it.",
-   "root_cause": "The AI keyed on 'closing stores', which its rules treat as a restructuring signal, and on Hollin being a listed company named in the question. It did not check the attribution at the start of the sentence: the closures are in Hollin's published annual report, and the expert has no link to the company.",
+   "reviewer_comment": "The store closures are set out in Company 8334's published annual report, which the expert cites directly, and she has no connection to the company. Nothing here is non-public, so we cleared it.",
+   "root_cause": "The AI keyed on 'closing stores', which its rules treat as a restructuring signal, and on Company 8334 being a listed company named in the question. It did not check the attribution at the start of the sentence: the closures are in Company 8334's published annual report, and the expert has no link to the company.",
    "source": "written for the prototype",
-   "id": "false-alarm-laura-bennett",
+   "id": "false-alarm-expert-3985",
    "kind": "false_alarm",
    "category": "Material non-public information",
-   "name": "Laura Bennett",
+   "name": "Expert 3985",
    "date": "2026-11-14",
-   "role": "Head of Store Operations, Ellery & Pike (2011 to 2018). Independent retail consultant (2018 to present).",
-   "reviewer": "Katerina Ioannou, Compliance Analyst",
-   "reviewed_at": "2026-11-15T09:42"
+   "role": "Head of Store Operations, Company 8528 (2011 to 2018). Independent retail consultant (2018 to present).",
+   "reviewer": "Reviewer 5546, Compliance Analyst",
+   "reviewed_at": "2026-11-15T09:42",
+   "entities": {
+    "Company 8334": [
+     "named in the call"
+    ],
+    "Company 8528": [
+     "expert's former employer (left 2018)"
+    ],
+    "Expert 3985": [
+     "the expert"
+    ]
+   }
   },
-  "false-alarm-arjun-mehra": {
+  "false-alarm-expert-2518": {
    "topic": "Warehouse automation spending",
-   "profile": "Arjun Mehra. Engineering Manager, Dunmore Logistics (2013 to 2020). Independent warehouse automation consultant (2020 to present). Industry: warehousing and logistics technology.",
-   "declaration": "Left Dunmore Logistics in 2020. No current employer. No connection to Penrose Distribution. No conflicts declared.",
+   "profile": "Expert 2518. Engineering Manager, Company 1047 (2013 to 2020). Independent warehouse automation consultant (2020 to present). Industry: warehousing and logistics technology.",
+   "declaration": "Left Company 1047 in 2020. No current employer. No connection to Company 2306. No conflicts declared.",
    "turns": [
     {
      "ts": "00:00",
      "speaker": "INTERVIEWER",
-     "text": "Arjun, thanks for your time. I'm researching warehouse automation spending, particularly at Penrose Distribution. How are operators thinking about automation now?"
+     "text": "Expert 2518, thanks for your time. I'm researching warehouse automation spending, particularly at Company 2306. How are operators thinking about automation now?"
     },
     {
      "ts": "00:14",
@@ -2088,7 +2273,7 @@
     {
      "ts": "01:26",
      "speaker": "INTERVIEWER",
-     "text": "And Penrose?"
+     "text": "And Company 2306?"
     },
     {
      "ts": "01:30",
@@ -2118,31 +2303,42 @@
     {
      "ts": "03:08",
      "speaker": "INTERVIEWER",
-     "text": "Thanks, Arjun."
+     "text": "Thanks, Expert 2518."
     }
    ],
    "passage_ts": "01:30",
-   "reviewer_comment": "The expert is repeating what the chief executive said on Penrose's public results call, and he has no connection to the company. We checked the published transcript and cleared the passage.",
+   "reviewer_comment": "The expert is repeating what the chief executive said on Company 2306's public results call, and he has no connection to the company. We checked the published transcript and cleared the passage.",
    "root_cause": "The AI keyed on the forward-looking statement about next year's capital spending and the mention of the chief executive, and scored it as possible insider guidance. It did not treat 'on the results call' as a public source, even though the expert adds that the comment is in the published transcript.",
    "source": "written for the prototype",
-   "id": "false-alarm-arjun-mehra",
+   "id": "false-alarm-expert-2518",
    "kind": "false_alarm",
    "category": "Material non-public information",
-   "name": "Arjun Mehra",
+   "name": "Expert 2518",
    "date": "2026-11-19",
-   "role": "Engineering Manager, Dunmore Logistics (2013 to 2020). Independent warehouse automation consultant (2020 to present).",
-   "reviewer": "Eleni Papadaki, Compliance Analyst",
-   "reviewed_at": "2026-11-21T11:17"
+   "role": "Engineering Manager, Company 1047 (2013 to 2020). Independent warehouse automation consultant (2020 to present).",
+   "reviewer": "Reviewer 8404, Compliance Analyst",
+   "reviewed_at": "2026-11-21T11:17",
+   "entities": {
+    "Company 1047": [
+     "expert's former employer (left 2020)"
+    ],
+    "Company 2306": [
+     "named in the call"
+    ],
+    "Expert 2518": [
+     "the expert"
+    ]
+   }
   },
-  "false-alarm-chloe-martin": {
+  "false-alarm-expert-8418": {
    "topic": "UK legal services hiring",
-   "profile": "Chloe Martin. Recruitment Consultant, Harrowgate Partners (2014 to 2020). Head of Talent, Fenmore Legal Services (2020 to present). Industry: legal services and professional hiring.",
-   "declaration": "Currently employed by Fenmore Legal Services (private company). May discuss the legal services job market in general. Must not share Fenmore's non-public plans, financials or client information.",
+   "profile": "Expert 8418. Recruitment Consultant, Company 6379 (2014 to 2020). Head of Talent, Company 6339 (2020 to present). Industry: legal services and professional hiring.",
+   "declaration": "Currently employed by Company 6339 (private company). May discuss the legal services job market in general. Must not share Company 6339's non-public plans, financials or client information.",
    "turns": [
     {
      "ts": "00:00",
      "speaker": "INTERVIEWER",
-     "text": "Chloe, thanks for joining. I'm looking at hiring in UK legal services outside London. What's changed?"
+     "text": "Expert 8418, thanks for joining. I'm looking at hiring in UK legal services outside London. What's changed?"
     },
     {
      "ts": "00:13",
@@ -2201,27 +2397,39 @@
     }
    ],
    "passage_ts": "01:20",
-   "reviewer_comment": "Fenmore announced the Leeds office in a public press release in September, which we confirmed on its website. The expert is repeating public news about her employer, so we cleared it.",
-   "root_cause": "The AI's employer rule fired on 'we' together with a new office, which it matched to the declaration's ban on Fenmore's non-public plans. It did not check the press release the expert cites, which Fenmore published the month before the call.",
+   "reviewer_comment": "Company 6339 announced the Leeds office in a public press release in September, which we confirmed on its website. The expert is repeating public news about her employer, so we cleared it.",
+   "root_cause": "The AI's employer rule fired on 'we' together with a new office, which it matched to the declaration's ban on Company 6339's non-public plans. It did not check the press release the expert cites, which Company 6339 published the month before the call.",
    "source": "written for the prototype",
-   "id": "false-alarm-chloe-martin",
+   "id": "false-alarm-expert-8418",
    "kind": "false_alarm",
    "category": "Current-employer confidential",
-   "name": "Chloe Martin",
+   "name": "Expert 8418",
    "date": "2026-10-28",
-   "role": "Recruitment Consultant, Harrowgate Partners (2014 to 2020). Head of Talent, Fenmore Legal Services (2020 to present).",
-   "reviewer": "Dimitris Vlachos, Compliance Analyst",
-   "reviewed_at": "2026-10-29T14:05"
+   "role": "Recruitment Consultant, Company 6379 (2014 to 2020). Head of Talent, Company 6339 (2020 to present).",
+   "reviewer": "Reviewer 8705, Compliance Analyst",
+   "reviewed_at": "2026-10-29T14:05",
+   "entities": {
+    "Company 6339": [
+     "private",
+     "expert's current employer"
+    ],
+    "Company 6379": [
+     "expert's former employer (left 2020)"
+    ],
+    "Expert 8418": [
+     "the expert"
+    ]
+   }
   },
-  "false-alarm-ibrahim-yusuf": {
+  "false-alarm-expert-1578": {
    "topic": "Field service software",
-   "profile": "Ibrahim Yusuf. Implementation Consultant, Corbridge Systems (2015 to 2019). Head of Customer Success, Tidewell Software (2019 to present). Industry: B2B SaaS, field service management.",
-   "declaration": "Currently employed by Tidewell Software (private company). May discuss the field service software market in general. Must not share Tidewell's non-public pricing, roadmap or customer information.",
+   "profile": "Expert 1578. Implementation Consultant, Company 5782 (2015 to 2019). Head of Customer Success, Company 7177 (2019 to present). Industry: B2B SaaS, field service management.",
+   "declaration": "Currently employed by Company 7177 (private company). May discuss the field service software market in general. Must not share Company 7177's non-public pricing, roadmap or customer information.",
    "turns": [
     {
      "ts": "00:00",
      "speaker": "INTERVIEWER",
-     "text": "Ibrahim, thanks for joining. I'm looking at software for field service teams: plumbers, electricians, maintenance firms. Who's buying?"
+     "text": "Expert 1578, thanks for joining. I'm looking at software for field service teams: plumbers, electricians, maintenance firms. Who's buying?"
     },
     {
      "ts": "00:13",
@@ -2251,7 +2459,7 @@
     {
      "ts": "01:52",
      "speaker": "INTERVIEWER",
-     "text": "Where does Tidewell sit on price?"
+     "text": "Where does Company 7177 sit on price?"
     },
     {
      "ts": "01:56",
@@ -2280,27 +2488,39 @@
     }
    ],
    "passage_ts": "01:56",
-   "reviewer_comment": "The £40 standard tier is on Tidewell's public pricing page, which we checked. A published list price is not confidential, so we cleared it.",
+   "reviewer_comment": "The £40 standard tier is on Company 7177's public pricing page, which we checked. A published list price is not confidential, so we cleared it.",
    "root_cause": "The AI keyed on a precise price for the expert's current employer, 'our' plus '£40 a seat', and matched it to the declaration's ban on non-public pricing. It did not treat 'Our prices are on the website' as a source to check, and so did not tell a published list price apart from internal pricing.",
    "source": "written for the prototype",
-   "id": "false-alarm-ibrahim-yusuf",
+   "id": "false-alarm-expert-1578",
    "kind": "false_alarm",
    "category": "Current-employer confidential",
-   "name": "Ibrahim Yusuf",
+   "name": "Expert 1578",
    "date": "2026-11-04",
-   "role": "Implementation Consultant, Corbridge Systems (2015 to 2019). Head of Customer Success, Tidewell Software (2019 to present).",
-   "reviewer": "Katerina Ioannou, Compliance Analyst",
-   "reviewed_at": "2026-11-06T16:38"
+   "role": "Implementation Consultant, Company 5782 (2015 to 2019). Head of Customer Success, Company 7177 (2019 to present).",
+   "reviewer": "Reviewer 5546, Compliance Analyst",
+   "reviewed_at": "2026-11-06T16:38",
+   "entities": {
+    "Company 5782": [
+     "expert's former employer (left 2019)"
+    ],
+    "Company 7177": [
+     "private",
+     "expert's current employer"
+    ],
+    "Expert 1578": [
+     "the expert"
+    ]
+   }
   },
-  "false-alarm-ruth-okonkwo": {
+  "false-alarm-expert-8173": {
    "topic": "Construction materials decarbonisation",
-   "profile": "Ruth Okonkwo. Environmental Engineer, Ashby Aggregates (2014 to 2021). Head of Sustainability, Marchbank Building Materials (2021 to present). Industry: construction materials.",
-   "declaration": "Currently employed by Marchbank Building Materials (private company). May discuss decarbonisation in the building materials sector in general. Must not share Marchbank's non-public data, plans or customer information.",
+   "profile": "Expert 8173. Environmental Engineer, Company 1733 (2014 to 2021). Head of Sustainability, Company 9296 (2021 to present). Industry: construction materials.",
+   "declaration": "Currently employed by Company 9296 (private company). May discuss decarbonisation in the building materials sector in general. Must not share Company 9296's non-public data, plans or customer information.",
    "turns": [
     {
      "ts": "00:00",
      "speaker": "INTERVIEWER",
-     "text": "Ruth, thanks for your time. I'm looking at how building materials producers are cutting emissions. Where does the industry stand?"
+     "text": "Expert 8173, thanks for your time. I'm looking at how building materials producers are cutting emissions. Where does the industry stand?"
     },
     {
      "ts": "00:13",
@@ -2350,31 +2570,43 @@
     {
      "ts": "03:07",
      "speaker": "INTERVIEWER",
-     "text": "Thanks, Ruth."
+     "text": "Thanks, Expert 8173."
     }
    ],
    "passage_ts": "00:52",
-   "reviewer_comment": "The figure comes straight from Marchbank's published sustainability report, which the expert names, and the report confirms an emissions cut of about a tenth. Public information, so we cleared it.",
+   "reviewer_comment": "The figure comes straight from Company 9296's published sustainability report, which the expert names, and the report confirms an emissions cut of about a tenth. Public information, so we cleared it.",
    "root_cause": "The AI's log shows it split the sentence at the colon and assessed 'we cut emissions by about a tenth last year' on its own, as a quantified internal metric about the current employer. The attribution to the published sustainability report sat in the first half of the sentence and was lost.",
    "source": "written for the prototype",
-   "id": "false-alarm-ruth-okonkwo",
+   "id": "false-alarm-expert-8173",
    "kind": "false_alarm",
    "category": "Current-employer confidential",
-   "name": "Ruth Okonkwo",
+   "name": "Expert 8173",
    "date": "2026-11-11",
-   "role": "Environmental Engineer, Ashby Aggregates (2014 to 2021). Head of Sustainability, Marchbank Building Materials (2021 to present).",
-   "reviewer": "Eleni Papadaki, Compliance Analyst",
-   "reviewed_at": "2026-11-12T10:26"
+   "role": "Environmental Engineer, Company 1733 (2014 to 2021). Head of Sustainability, Company 9296 (2021 to present).",
+   "reviewer": "Reviewer 8404, Compliance Analyst",
+   "reviewed_at": "2026-11-12T10:26",
+   "entities": {
+    "Company 1733": [
+     "expert's former employer (left 2021)"
+    ],
+    "Company 9296": [
+     "private",
+     "expert's current employer"
+    ],
+    "Expert 8173": [
+     "the expert"
+    ]
+   }
   },
-  "false-alarm-marco-rossi": {
+  "false-alarm-expert-0462": {
    "topic": "Smart kitchen appliances",
-   "profile": "Marco Rossi. Product Designer, Albaro Elettrodomestici (2013 to 2019). Senior Product Manager, Velmora Home Appliances (2019 to present). Industry: domestic appliances.",
-   "declaration": "Currently employed by Velmora Home Appliances (private company). May discuss the domestic appliance market in general. Must not share Velmora's non-public product plans, pricing or sales data.",
+   "profile": "Expert 0462. Product Designer, Company 0663 (2013 to 2019). Senior Product Manager, Company 4939 (2019 to present). Industry: domestic appliances.",
+   "declaration": "Currently employed by Company 4939 (private company). May discuss the domestic appliance market in general. Must not share Company 4939's non-public product plans, pricing or sales data.",
    "turns": [
     {
      "ts": "00:00",
      "speaker": "INTERVIEWER",
-     "text": "Marco, thanks for joining. I'm researching connected kitchen appliances in Europe. Is there real demand?"
+     "text": "Expert 0462, thanks for joining. I'm researching connected kitchen appliances in Europe. Is there real demand?"
     },
     {
      "ts": "00:13",
@@ -2394,7 +2626,7 @@
     {
      "ts": "01:18",
      "speaker": "INTERVIEWER",
-     "text": "Is Velmora doing anything in this area?"
+     "text": "Is Company 4939 doing anything in this area?"
     },
     {
      "ts": "01:22",
@@ -2436,14 +2668,1832 @@
    "reviewer_comment": "The oven was launched on stage at a public trade show in September and covered in the trade press, and the expert stuck to what was shown there. Nothing confidential, so we cleared it.",
    "root_cause": "The AI matched 'new product' to the declaration's ban on non-public product plans and read 'so it's public now' as the expert justifying a disclosure, a pattern its rules mark as higher risk. It did not check the September trade show, where the oven was shown on stage and widely reported.",
    "source": "written for the prototype",
-   "id": "false-alarm-marco-rossi",
+   "id": "false-alarm-expert-0462",
    "kind": "false_alarm",
    "category": "Current-employer confidential",
-   "name": "Marco Rossi",
+   "name": "Expert 0462",
    "date": "2026-11-17",
-   "role": "Product Designer, Albaro Elettrodomestici (2013 to 2019). Senior Product Manager, Velmora Home Appliances (2019 to present).",
-   "reviewer": "Dimitris Vlachos, Compliance Analyst",
-   "reviewed_at": "2026-11-19T12:51"
+   "role": "Product Designer, Company 0663 (2013 to 2019). Senior Product Manager, Company 4939 (2019 to present).",
+   "reviewer": "Reviewer 8705, Compliance Analyst",
+   "reviewed_at": "2026-11-19T12:51",
+   "entities": {
+    "Company 0663": [
+     "expert's former employer (left 2019)"
+    ],
+    "Company 4939": [
+     "private",
+     "expert's current employer"
+    ],
+    "Expert 0462": [
+     "the expert"
+    ]
+   }
+  }
+ },
+ "release": {
+  "note": "Agent outputs are SIMULATED (pre-generated on the masked synthetic test set). The scoring runs on the page.",
+  "baseline": "v1.0",
+  "high": [
+   "MNPI",
+   "Current employer confidential",
+   "Declaration conflict"
+  ],
+  "types": [
+   {
+    "id": "MNPI",
+    "label": "Material non-public information",
+    "short": "MNPI",
+    "high": true
+   },
+   {
+    "id": "Current employer confidential",
+    "label": "Current-employer confidential",
+    "short": "current-employer confidential",
+    "high": true
+   },
+   {
+    "id": "Declaration conflict",
+    "label": "Declaration conflict",
+    "short": "a declaration conflict",
+    "high": true
+   },
+   {
+    "id": "Source disclosure",
+    "label": "Source disclosure",
+    "short": "a source disclosure",
+    "high": false
+   },
+   {
+    "id": "Confidentiality breach",
+    "label": "Former-client confidential",
+    "short": "former-client confidential",
+    "high": false
+   },
+   {
+    "id": "PII",
+    "label": "Personal data",
+    "short": "personal data",
+    "high": false
+   }
+  ],
+  "issue_notes": {
+   "T2-01:39": "unannounced acquisition at the expert's listed employer",
+   "T3-01:34": "unreleased pricing at the expert's current employer",
+   "T5-01:24": "hedged hint about a listed company",
+   "T6-01:06": "still in touch with former colleagues, against the declaration",
+   "T6-01:34": "names a current insider as the source",
+   "T8-00:53": "a former client's confidential details",
+   "T8-01:24": "a named person's health information"
+  },
+  "answer_key": {
+   "T2-01:39": {
+    "type": "MNPI",
+    "action": "reject whole transcript"
+   },
+   "T3-01:34": {
+    "type": "Current employer confidential",
+    "action": "redact"
+   },
+   "T5-01:24": {
+    "type": "MNPI",
+    "action": "escalate to human"
+   },
+   "T6-01:06": {
+    "type": "Declaration conflict",
+    "action": "reject whole transcript"
+   },
+   "T6-01:34": {
+    "type": "Source disclosure",
+    "action": "reject whole transcript"
+   },
+   "T8-00:53": {
+    "type": "Confidentiality breach",
+    "action": "redact"
+   },
+   "T8-01:24": {
+    "type": "PII",
+    "action": "redact"
+   }
+  },
+  "answers": [
+   "T1-00:21",
+   "T1-01:03",
+   "T1-01:44",
+   "T1-02:39",
+   "T1-03:23",
+   "T1-03:58",
+   "T1-04:35",
+   "T2-00:12",
+   "T2-00:48",
+   "T2-01:19",
+   "T2-01:39",
+   "T2-02:20",
+   "T2-02:55",
+   "T2-03:32",
+   "T3-00:14",
+   "T3-00:39",
+   "T3-01:06",
+   "T3-01:34",
+   "T3-02:06",
+   "T3-02:35",
+   "T3-03:03",
+   "T4-00:13",
+   "T4-00:26",
+   "T4-00:58",
+   "T4-01:33",
+   "T4-02:03",
+   "T4-02:33",
+   "T5-00:12",
+   "T5-00:38",
+   "T5-01:03",
+   "T5-01:24",
+   "T5-01:57",
+   "T5-02:29",
+   "T6-00:14",
+   "T6-00:40",
+   "T6-01:06",
+   "T6-01:34",
+   "T6-01:59",
+   "T6-02:24",
+   "T7-00:11",
+   "T7-00:36",
+   "T7-01:11",
+   "T7-01:29",
+   "T7-01:56",
+   "T7-02:23",
+   "T8-00:15",
+   "T8-00:53",
+   "T8-01:24",
+   "T8-01:52",
+   "T8-02:19",
+   "T8-02:49"
+  ],
+  "versions": [
+   {
+    "id": "v1.0",
+    "status": "Current production",
+    "description": "Flags any answer that names a company. Too many false alarms, and misses passages that don't name a company.",
+    "model": "Small, fast model",
+    "prompt": "Flag every expert answer that names a company.",
+    "settings": "Reads the answer only. No declaration, no question.",
+    "outputs": {
+     "T1-00:21": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "No company named."
+     },
+     "T1-01:03": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "No company named."
+     },
+     "T1-01:44": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "No company named."
+     },
+     "T1-02:39": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "No company named."
+     },
+     "T1-03:23": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "No company named."
+     },
+     "T1-03:58": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "No company named."
+     },
+     "T1-04:35": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "No company named."
+     },
+     "T2-00:12": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "No company named."
+     },
+     "T2-00:48": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "No company named."
+     },
+     "T2-01:19": {
+      "flag": true,
+      "type": null,
+      "action": "escalate to human",
+      "reason": "Names Company 0615."
+     },
+     "T2-01:39": {
+      "flag": true,
+      "type": null,
+      "action": "escalate to human",
+      "reason": "Names Company 0615."
+     },
+     "T2-02:20": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "No company named."
+     },
+     "T2-02:55": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "No company named."
+     },
+     "T2-03:32": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "No company named."
+     },
+     "T3-00:14": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "No company named."
+     },
+     "T3-00:39": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "No company named."
+     },
+     "T3-01:06": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "No company named."
+     },
+     "T3-01:34": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "No company named."
+     },
+     "T3-02:06": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "No company named."
+     },
+     "T3-02:35": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "No company named."
+     },
+     "T3-03:03": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "No company named."
+     },
+     "T4-00:13": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "No company named."
+     },
+     "T4-00:26": {
+      "flag": true,
+      "type": null,
+      "action": "escalate to human",
+      "reason": "Names Company 9728."
+     },
+     "T4-00:58": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "No company named."
+     },
+     "T4-01:33": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "No company named."
+     },
+     "T4-02:03": {
+      "flag": true,
+      "type": null,
+      "action": "escalate to human",
+      "reason": "Names Company 9728."
+     },
+     "T4-02:33": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "No company named."
+     },
+     "T5-00:12": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "No company named."
+     },
+     "T5-00:38": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "No company named."
+     },
+     "T5-01:03": {
+      "flag": true,
+      "type": null,
+      "action": "escalate to human",
+      "reason": "Names Company 3966."
+     },
+     "T5-01:24": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "No company named."
+     },
+     "T5-01:57": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "No company named."
+     },
+     "T5-02:29": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "No company named."
+     },
+     "T6-00:14": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "No company named."
+     },
+     "T6-00:40": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "No company named."
+     },
+     "T6-01:06": {
+      "flag": true,
+      "type": null,
+      "action": "escalate to human",
+      "reason": "Names Company 9560."
+     },
+     "T6-01:34": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "No company named."
+     },
+     "T6-01:59": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "No company named."
+     },
+     "T6-02:24": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "No company named."
+     },
+     "T7-00:11": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "No company named."
+     },
+     "T7-00:36": {
+      "flag": true,
+      "type": null,
+      "action": "escalate to human",
+      "reason": "Names Company 9910."
+     },
+     "T7-01:11": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "No company named."
+     },
+     "T7-01:29": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "No company named."
+     },
+     "T7-01:56": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "No company named."
+     },
+     "T7-02:23": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "No company named."
+     },
+     "T8-00:15": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "No company named."
+     },
+     "T8-00:53": {
+      "flag": true,
+      "type": null,
+      "action": "escalate to human",
+      "reason": "Names Company 0710."
+     },
+     "T8-01:24": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "No company named."
+     },
+     "T8-01:52": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "No company named."
+     },
+     "T8-02:19": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "No company named."
+     },
+     "T8-02:49": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "No company named."
+     }
+    }
+   },
+   {
+    "id": "v1.1",
+    "status": "Candidate",
+    "description": "Also reads the expert's declaration to work out “we”, “us” and “their”. Fewer false alarms, no misses in the high-priority types.",
+    "model": "Large model",
+    "prompt": "Review each answer with the question before it and the expert's declaration. Work out who “we”, “us” and “their” refer to, using the masked IDs and their tags. Flag by issue type and suggest an action.",
+    "settings": "Reads the question, the answer and the declaration. Temperature 0.",
+    "outputs": {
+     "T1-00:21": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General industry view on post-pandemic shift to supply chain resilience; no company-specific non-public info."
+     },
+     "T1-01:03": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General industry observations on regional depots, safety stock and control towers; no named company data."
+     },
+     "T1-01:44": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General knowledge on automation by product category and labour availability; expert opinion."
+     },
+     "T1-02:39": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "Opinion on cold chain regulation and capex cycle; public regulatory trends, no confidential info."
+     },
+     "T1-03:23": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "Expert declines to name operators and speaks only about generic capabilities."
+     },
+     "T1-03:58": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General view on 3PL margins and value-added services; opinion, no non-public data."
+     },
+     "T1-04:35": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General opinion on store-level forecasting underinvestment; nothing about Company 5144 specifically."
+     },
+     "T2-00:12": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General description of UK road freight fragmentation and consolidation drivers; industry knowledge."
+     },
+     "T2-00:48": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General view that network density drives deals; no Halbrook-specific info."
+     },
+     "T2-01:19": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "Refers to what people say 'publicly' about mid-sized regional players such as Company 0615; market chatter, no insider detail."
+     },
+     "T2-01:39": {
+      "flag": true,
+      "type": "MNPI",
+      "action": "reject whole transcript",
+      "reason": "Current Company 5485 employee (listed company; declaration bars discussing Company 5485's non-public corporate activity) reveals unannounced acquisition of Company 0615: 'we've had integration planning sessions already', 'project codename', 'The board's signed off on it, it's just timing on the announcement'. Deliberate breach of declaration."
+     },
+     "T2-02:20": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General comment on fuel surcharges and driver wage inflation across the industry."
+     },
+     "T2-02:55": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General view on electrification and hydrogen in freight; industry knowledge."
+     },
+     "T2-03:32": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General opinion on contract vs spot freight margins; no Company 5485 data."
+     },
+     "T3-00:14": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General market view on demand and buyer scrutiny in workforce software."
+     },
+     "T3-00:39": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General description of typical buyers; industry knowledge."
+     },
+     "T3-01:06": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General view on pricing competition and switching costs; no Company 5981 specifics."
+     },
+     "T3-01:34": {
+      "flag": true,
+      "type": "Current employer confidential",
+      "action": "redact",
+      "reason": "Current Company 5981 employee shares unannounced pricing change: 'moving list price up 12% on the mid-market tier from January... customers haven't been told yet'. Declaration explicitly bars sharing Company 5981's non-public pricing. Company 5981 is private so not MNPI; remove passage, rest of call is general."
+     },
+     "T3-02:06": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "Explicitly general ('In general') view on buyer reaction to price increases."
+     },
+     "T3-02:35": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General view on AI demand forecasting features across vendors."
+     },
+     "T3-03:03": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General opinion that healthcare is the fastest growing segment; industry knowledge."
+     },
+     "T4-00:13": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "Expert sets caveat that he left in 2021 and will stick to public information; consistent with declaration."
+     },
+     "T4-00:26": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "Cites Company 9728's 2024 investor day and public filings; public information, post-dates his 2021 departure."
+     },
+     "T4-00:58": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "Opinion on lending thesis and concentration risk; general comment on past culture is not confidential."
+     },
+     "T4-01:33": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General competitive view on loan approval speed and risk pricing."
+     },
+     "T4-02:03": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "Points to metrics Company 9728 reports in annual results; public information and opinion."
+     },
+     "T4-02:33": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "Refers to CEO's public statements on strategy; public information."
+     },
+     "T5-00:12": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General market view on orthopaedic demand and ageing populations."
+     },
+     "T5-00:38": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General view on hospital procurement pricing pressure in Europe and US."
+     },
+     "T5-01:03": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "Expert stays careful and gives only a generic, positive public-level view of Company 3966."
+     },
+     "T5-01:24": {
+      "flag": true,
+      "type": "MNPI",
+      "action": "reject whole transcript",
+      "reason": "Former Company 3966 Finance Director (listed company, left March 2026, confidentiality obligations) tips undisclosed quality issue ahead of results: 'watch their Q3 numbers closely', 'noise around one of the knee systems', 'I still talk to people there'. Signals non-public adverse information from ongoing insider contacts."
+     },
+     "T5-01:57": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General discussion of public EU medical device regulation and its effects."
+     },
+     "T5-02:29": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General industry view on robotics locking in implant sales."
+     },
+     "T6-00:14": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General description of enterprise software buying cycles."
+     },
+     "T6-00:40": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General view on security and legal review as stall points."
+     },
+     "T6-01:06": {
+      "flag": true,
+      "type": "Declaration conflict",
+      "action": "escalate to human",
+      "reason": "Expert declared she left Company 9560 in October 2024, but speaks as a current insider: 'At Company 9560, our team is rolling out a consolidation programme next month', 'We've been building the business case since the summer'. Also discloses Company 9560's non-public vendor plans. Human must verify true employment status."
+     },
+     "T6-01:34": {
+      "flag": true,
+      "type": "Source disclosure",
+      "action": "reject whole transcript",
+      "reason": "Names an insider as source of non-public info: 'My contact Person 2315, who runs procurement there now, told me last week they're giving notice to two of them in Q1'. Contradicts declaration 'Not in contact with Company 9560 in a professional capacity'; together with 01:06 undermines the whole call."
+     },
+     "T6-01:59": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General view on how vendors defend against consolidation."
+     },
+     "T6-02:24": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General view on analytics pricing models; industry knowledge."
+     },
+     "T7-00:11": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General description of packaged food margin pressures and recovery."
+     },
+     "T7-00:36": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "Company 9910 figures attributed to its public Q2 earnings call in August; public information."
+     },
+     "T7-01:11": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "Expert confirms figures come from the public call and slides; consistent with 2022 departure."
+     },
+     "T7-01:29": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "Opinion on trade-offs of exiting private label; general analysis."
+     },
+     "T7-01:56": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General view on retailer pushback and delistings."
+     },
+     "T7-02:23": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "Opinion on volume trends as key watch item; general analysis."
+     },
+     "T8-00:15": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General description of common AML control weaknesses; industry knowledge."
+     },
+     "T8-00:53": {
+      "flag": true,
+      "type": "Confidentiality breach",
+      "action": "reject whole transcript",
+      "reason": "Declaration says bound by confidentiality to Company 7122's former clients, yet expert names former audit client and its findings: 'Company 0710, around 40% of the higher-risk customer files... missing source-of-funds documentation. It was in our final report to their board.' Could also be MNPI if Company 0710 is listed."
+     },
+     "T8-01:24": {
+      "flag": true,
+      "type": "PII",
+      "action": "redact",
+      "reason": "Names a private individual and discloses sensitive health information: 'Person 8435, who led their financial crime team at the time, was signed off for months with a breakdown'. Also derived from confidential client engagement."
+     },
+     "T8-01:52": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General view on first-line ownership and monitoring tuning."
+     },
+     "T8-02:19": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General view on machine learning and explainability in transaction monitoring."
+     },
+     "T8-02:49": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General view on what investors should watch in bank technology vendors."
+     }
+    }
+   },
+   {
+    "id": "v1.2",
+    "status": "Candidate",
+    "description": "v1.1 on a cheaper, faster model. Misses one hedged MNPI hint.",
+    "model": "Small, fast model",
+    "prompt": "Same as v1.1.",
+    "settings": "Reads the question, the answer and the declaration. Temperature 0.",
+    "outputs": {
+     "T1-00:21": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General industry view on post-pandemic shift to supply chain resilience; no company-specific non-public info."
+     },
+     "T1-01:03": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General industry observations on regional depots, safety stock and control towers; no named company data."
+     },
+     "T1-01:44": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General knowledge on automation by product category and labour availability; expert opinion."
+     },
+     "T1-02:39": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "Opinion on cold chain regulation and capex cycle; public regulatory trends, no confidential info."
+     },
+     "T1-03:23": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "Expert declines to name operators and speaks only about generic capabilities."
+     },
+     "T1-03:58": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General view on 3PL margins and value-added services; opinion, no non-public data."
+     },
+     "T1-04:35": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General opinion on store-level forecasting underinvestment; nothing about Company 5144 specifically."
+     },
+     "T2-00:12": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General description of UK road freight fragmentation and consolidation drivers; industry knowledge."
+     },
+     "T2-00:48": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General view that network density drives deals; no Halbrook-specific info."
+     },
+     "T2-01:19": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "Refers to what people say 'publicly' about mid-sized regional players such as Company 0615; market chatter, no insider detail."
+     },
+     "T2-01:39": {
+      "flag": true,
+      "type": "MNPI",
+      "action": "reject whole transcript",
+      "reason": "Current Company 5485 employee (listed company; declaration bars discussing Company 5485's non-public corporate activity) reveals unannounced acquisition of Company 0615: 'we've had integration planning sessions already', 'project codename', 'The board's signed off on it, it's just timing on the announcement'. Deliberate breach of declaration."
+     },
+     "T2-02:20": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General comment on fuel surcharges and driver wage inflation across the industry."
+     },
+     "T2-02:55": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General view on electrification and hydrogen in freight; industry knowledge."
+     },
+     "T2-03:32": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General opinion on contract vs spot freight margins; no Company 5485 data."
+     },
+     "T3-00:14": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General market view on demand and buyer scrutiny in workforce software."
+     },
+     "T3-00:39": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General description of typical buyers; industry knowledge."
+     },
+     "T3-01:06": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General view on pricing competition and switching costs; no Company 5981 specifics."
+     },
+     "T3-01:34": {
+      "flag": true,
+      "type": "Current employer confidential",
+      "action": "redact",
+      "reason": "Current Company 5981 employee shares unannounced pricing change: 'moving list price up 12% on the mid-market tier from January... customers haven't been told yet'. Declaration explicitly bars sharing Company 5981's non-public pricing. Company 5981 is private so not MNPI; remove passage, rest of call is general."
+     },
+     "T3-02:06": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "Explicitly general ('In general') view on buyer reaction to price increases."
+     },
+     "T3-02:35": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General view on AI demand forecasting features across vendors."
+     },
+     "T3-03:03": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General opinion that healthcare is the fastest growing segment; industry knowledge."
+     },
+     "T4-00:13": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "Expert sets caveat that he left in 2021 and will stick to public information; consistent with declaration."
+     },
+     "T4-00:26": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "Cites Company 9728's 2024 investor day and public filings; public information, post-dates his 2021 departure."
+     },
+     "T4-00:58": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "Opinion on lending thesis and concentration risk; general comment on past culture is not confidential."
+     },
+     "T4-01:33": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General competitive view on loan approval speed and risk pricing."
+     },
+     "T4-02:03": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "Points to metrics Company 9728 reports in annual results; public information and opinion."
+     },
+     "T4-02:33": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "Refers to CEO's public statements on strategy; public information."
+     },
+     "T5-00:12": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General market view on orthopaedic demand and ageing populations."
+     },
+     "T5-00:38": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General view on hospital procurement pricing pressure in Europe and US."
+     },
+     "T5-01:03": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "Expert stays careful and gives only a generic, positive public-level view of Company 3966."
+     },
+     "T5-01:24": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General advice to watch results; no company named and no specific figure."
+     },
+     "T5-01:57": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General discussion of public EU medical device regulation and its effects."
+     },
+     "T5-02:29": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General industry view on robotics locking in implant sales."
+     },
+     "T6-00:14": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General description of enterprise software buying cycles."
+     },
+     "T6-00:40": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General view on security and legal review as stall points."
+     },
+     "T6-01:06": {
+      "flag": true,
+      "type": "Declaration conflict",
+      "action": "escalate to human",
+      "reason": "Expert declared she left Company 9560 in October 2024, but speaks as a current insider: 'At Company 9560, our team is rolling out a consolidation programme next month', 'We've been building the business case since the summer'. Also discloses Company 9560's non-public vendor plans. Human must verify true employment status."
+     },
+     "T6-01:34": {
+      "flag": true,
+      "type": "Source disclosure",
+      "action": "reject whole transcript",
+      "reason": "Names an insider as source of non-public info: 'My contact Person 2315, who runs procurement there now, told me last week they're giving notice to two of them in Q1'. Contradicts declaration 'Not in contact with Company 9560 in a professional capacity'; together with 01:06 undermines the whole call."
+     },
+     "T6-01:59": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General view on how vendors defend against consolidation."
+     },
+     "T6-02:24": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General view on analytics pricing models; industry knowledge."
+     },
+     "T7-00:11": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General description of packaged food margin pressures and recovery."
+     },
+     "T7-00:36": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "Company 9910 figures attributed to its public Q2 earnings call in August; public information."
+     },
+     "T7-01:11": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "Expert confirms figures come from the public call and slides; consistent with 2022 departure."
+     },
+     "T7-01:29": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "Opinion on trade-offs of exiting private label; general analysis."
+     },
+     "T7-01:56": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General view on retailer pushback and delistings."
+     },
+     "T7-02:23": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "Opinion on volume trends as key watch item; general analysis."
+     },
+     "T8-00:15": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General description of common AML control weaknesses; industry knowledge."
+     },
+     "T8-00:53": {
+      "flag": true,
+      "type": "Confidentiality breach",
+      "action": "reject whole transcript",
+      "reason": "Declaration says bound by confidentiality to Company 7122's former clients, yet expert names former audit client and its findings: 'Company 0710, around 40% of the higher-risk customer files... missing source-of-funds documentation. It was in our final report to their board.' Could also be MNPI if Company 0710 is listed."
+     },
+     "T8-01:24": {
+      "flag": true,
+      "type": "PII",
+      "action": "redact",
+      "reason": "Names a private individual and discloses sensitive health information: 'Person 8435, who led their financial crime team at the time, was signed off for months with a breakdown'. Also derived from confidential client engagement."
+     },
+     "T8-01:52": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General view on first-line ownership and monitoring tuning."
+     },
+     "T8-02:19": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General view on machine learning and explainability in transaction monitoring."
+     },
+     "T8-02:49": {
+      "flag": false,
+      "type": null,
+      "action": null,
+      "reason": "General view on what investors should watch in bank technology vendors."
+     }
+    }
+   }
+  ],
+  "log": [
+   {
+    "at": "2026-09-08T10:14",
+    "version": "v1.0",
+    "result": "Released",
+    "reason": "First release, before the gate existed. Now the baseline that candidates are compared with.",
+    "by": "Staff 0004"
+   }
+  ],
+  "transcripts": {
+   "1": {
+    "num": 1,
+    "topic": "UK grocery supply chain",
+    "profile": "Expert 3429. Director of Supply Chain, Company 5144 (2015 to 2023). Independent supply chain consultant (2023 to present). Industry: UK grocery retail.",
+    "declaration": "Left Company 5144 in June 2023. No current employer in grocery retail. Not under any confidentiality restriction beyond standard post-employment terms. No conflicts declared.",
+    "turns": [
+     {
+      "ts": "00:00",
+      "speaker": "INTERVIEWER",
+      "text": "Thanks for joining, Expert 3429. I'm looking at UK grocery supply chains, especially cold chain and automation. Can you start with how the landscape has changed over the last five years?"
+     },
+     {
+      "ts": "00:21",
+      "speaker": "EXPERT",
+      "text": "Sure. The big shift is that the large grocers stopped treating distribution as a cost centre and started treating it as a competitive weapon. Before the pandemic, most of the conversation was about squeezing pennies out of each case. After 2020, it became about resilience. Everyone saw empty shelves and realised a lean network has no slack."
+     },
+     {
+      "ts": "00:58",
+      "speaker": "INTERVIEWER",
+      "text": "What did that mean in practice?"
+     },
+     {
+      "ts": "01:03",
+      "speaker": "EXPERT",
+      "text": "More regional depots, more safety stock on key lines, and a lot more investment in visibility. You'd be amazed how many grocers, even large ones, didn't know where a pallet was between leaving the supplier and arriving at the depot. Now most of the big players have some kind of control tower, a single view of inbound freight."
+     },
+     {
+      "ts": "01:40",
+      "speaker": "INTERVIEWER",
+      "text": "And automation?"
+     },
+     {
+      "ts": "01:44",
+      "speaker": "EXPERT",
+      "text": "It's real, but it's uneven. Automated picking works brilliantly for ambient goods, tins, pasta, that kind of thing. Chilled is harder because of temperature and shelf life, and fresh produce is harder still because items are irregular. So you see grocers automate ambient first and keep people on chilled and fresh. The business case is mostly about labour availability now, not labour cost. You simply can't hire enough warehouse staff in some regions."
+     },
+     {
+      "ts": "02:35",
+      "speaker": "INTERVIEWER",
+      "text": "How about cold chain specifically?"
+     },
+     {
+      "ts": "02:39",
+      "speaker": "EXPERT",
+      "text": "Cold chain is where I'd look if I were an investor. The regulation is tightening on temperature logging, and the refrigerant rules are pushing operators to replace older fleets. That's a big capex cycle. The operators who can offer verified temperature data end to end will win contracts, because grocers want to prove compliance to food safety auditors without chasing paper."
+     },
+     {
+      "ts": "03:20",
+      "speaker": "INTERVIEWER",
+      "text": "Who's doing that well?"
+     },
+     {
+      "ts": "03:23",
+      "speaker": "EXPERT",
+      "text": "I'd rather talk about capabilities than name operators. The good ones have telematics in every trailer, alerts when temperature drifts, and the data feeds straight into the grocer's system. The weaker ones still send a PDF at the end of the week."
+     },
+     {
+      "ts": "03:51",
+      "speaker": "INTERVIEWER",
+      "text": "Fair. What's your view on margins for third-party logistics providers serving grocers?"
+     },
+     {
+      "ts": "03:58",
+      "speaker": "EXPERT",
+      "text": "Thin and getting thinner on the basic contracts. The money is in value-added services: returns handling, cross-docking for online orders, and data. If a 3PL can tell a grocer which suppliers are consistently late, that's worth more than moving one more pallet."
+     },
+     {
+      "ts": "04:30",
+      "speaker": "INTERVIEWER",
+      "text": "Last question. Where are grocers still underinvesting?"
+     },
+     {
+      "ts": "04:35",
+      "speaker": "EXPERT",
+      "text": "Forecasting at store level. Depot forecasting has improved a lot, but store-level ordering still relies too heavily on manual overrides. That's where waste comes from, especially in fresh. I think the next few years will be about machine learning for store ordering, but the hard part is change management, getting store managers to trust the system."
+     },
+     {
+      "ts": "05:10",
+      "speaker": "INTERVIEWER",
+      "text": "Great, thank you, Expert 3429."
+     }
+    ],
+    "entities": {
+     "Company 5144": [
+      "expert's former employer (left 2023)"
+     ],
+     "Expert 3429": [
+      "the expert"
+     ]
+    }
+   },
+   "2": {
+    "num": 2,
+    "topic": "Road freight consolidation",
+    "profile": "Expert 9432. Regional Operations Manager, Company 5485 (2019 to present). Previously Depot Manager, Company 5707 (2014 to 2019). Industry: road freight and logistics.",
+    "declaration": "Currently employed by Company 5485 (listed company). May discuss general industry trends. Must not discuss Company 5485's non-public information, financials, strategy or corporate activity.",
+    "turns": [
+     {
+      "ts": "00:00",
+      "speaker": "INTERVIEWER",
+      "text": "Hi Expert 9432, thanks for your time. I'm researching consolidation in UK road freight. How fragmented is the market today?"
+     },
+     {
+      "ts": "00:12",
+      "speaker": "EXPERT",
+      "text": "Very. There are a handful of large national players and then thousands of small operators, many of them family businesses with ten or twenty trucks. Driver shortages and fuel costs have pushed a lot of the small ones to the edge, so consolidation has been happening for years."
+     },
+     {
+      "ts": "00:44",
+      "speaker": "INTERVIEWER",
+      "text": "What's driving deals at the larger end?"
+     },
+     {
+      "ts": "00:48",
+      "speaker": "EXPERT",
+      "text": "Network density, mainly. If you can fill trucks on the return leg, your economics change completely. And customers increasingly want one provider across the country, not five regional ones."
+     },
+     {
+      "ts": "01:15",
+      "speaker": "INTERVIEWER",
+      "text": "Are there obvious targets?"
+     },
+     {
+      "ts": "01:19",
+      "speaker": "EXPERT",
+      "text": "Publicly, people talk about the mid-sized regional players. Company 0615 is the one everyone mentions, they're strong in the North West and Scotland."
+     },
+     {
+      "ts": "01:35",
+      "speaker": "INTERVIEWER",
+      "text": "Do you think Company 0615 stays independent?"
+     },
+     {
+      "ts": "01:39",
+      "speaker": "EXPERT",
+      "text": "Honestly? I'd be surprised if Company 0615 is still independent by spring. I probably shouldn't say much more, but we've had integration planning sessions already. They're staffing the integration team from our side, and there's a project codename going around internally. The board's signed off on it, it's just timing on the announcement."
+     },
+     {
+      "ts": "02:12",
+      "speaker": "INTERVIEWER",
+      "text": "Okay. Let's step back to the broader market. How are fuel costs affecting pricing?"
+     },
+     {
+      "ts": "02:20",
+      "speaker": "EXPERT",
+      "text": "Fuel surcharges are standard now, so most of the volatility gets passed through. The bigger issue is driver wages. They're up a lot over three years and they don't come back down. Operators who didn't lock in rate increases are hurting."
+     },
+     {
+      "ts": "02:51",
+      "speaker": "INTERVIEWER",
+      "text": "And electrification?"
+     },
+     {
+      "ts": "02:55",
+      "speaker": "EXPERT",
+      "text": "Early. Electric vans for last mile, yes. Heavy goods vehicles, still mostly pilots. Charging at depots is the bottleneck, grid connections can take years. Hydrogen gets talked about, but I don't see it at scale this decade."
+     },
+     {
+      "ts": "03:28",
+      "speaker": "INTERVIEWER",
+      "text": "Where's the margin opportunity for operators?"
+     },
+     {
+      "ts": "03:32",
+      "speaker": "EXPERT",
+      "text": "Contract logistics rather than spot freight. Multi-year contracts with warehousing attached are stickier and better margin. Spot is a race to the bottom when capacity is loose."
+     },
+     {
+      "ts": "04:00",
+      "speaker": "INTERVIEWER",
+      "text": "Thanks, Expert 9432."
+     }
+    ],
+    "entities": {
+     "Company 0615": [
+      "named in the call"
+     ],
+     "Company 5485": [
+      "listed",
+      "expert's current employer"
+     ],
+     "Company 5707": [
+      "expert's former employer (left 2019)"
+     ],
+     "Expert 9432": [
+      "the expert"
+     ]
+    }
+   },
+   "3": {
+    "num": 3,
+    "topic": "Workforce SaaS pricing",
+    "profile": "Expert 1342. VP Sales EMEA, Company 5981 (2021 to present). Previously Sales Director, Company 6065 (2016 to 2021). Industry: B2B SaaS, workforce scheduling software.",
+    "declaration": "Currently employed by Company 5981 (private company). May discuss the workforce software market, buyer behaviour and competitors in general terms. Must not share Company 5981's non-public pricing, roadmap or customer information.",
+    "turns": [
+     {
+      "ts": "00:00",
+      "speaker": "INTERVIEWER",
+      "text": "Expert 1342, thanks for joining. I'm looking at the workforce scheduling software market in Europe. How would you describe demand right now?"
+     },
+     {
+      "ts": "00:14",
+      "speaker": "EXPERT",
+      "text": "Healthy but more scrutinised. Two years ago, buyers were adding tools quickly. Now every purchase goes through finance, and they want a clear payback, usually within a year."
+     },
+     {
+      "ts": "00:36",
+      "speaker": "INTERVIEWER",
+      "text": "Who are the typical buyers?"
+     },
+     {
+      "ts": "00:39",
+      "speaker": "EXPERT",
+      "text": "Operations leaders in retail, hospitality and healthcare. HR is involved, but operations owns the budget because scheduling directly drives labour cost, which is often their biggest line."
+     },
+     {
+      "ts": "01:02",
+      "speaker": "INTERVIEWER",
+      "text": "How competitive is pricing?"
+     },
+     {
+      "ts": "01:06",
+      "speaker": "EXPERT",
+      "text": "Competitive at the low end, where you have lots of simple tools. At the enterprise end, it's more about integration with payroll and time-and-attendance systems. Switching costs are high once you're integrated."
+     },
+     {
+      "ts": "01:30",
+      "speaker": "INTERVIEWER",
+      "text": "Are vendors pushing price increases?"
+     },
+     {
+      "ts": "01:34",
+      "speaker": "EXPERT",
+      "text": "Most of the market is trying. For us specifically, we're moving list price up 12% on the mid-market tier from January. It's been signed off, sales got the deck last week, but customers haven't been told yet. We think churn risk is low because of the integrations."
+     },
+     {
+      "ts": "02:01",
+      "speaker": "INTERVIEWER",
+      "text": "Interesting. How do buyers usually react to increases like that?"
+     },
+     {
+      "ts": "02:06",
+      "speaker": "EXPERT",
+      "text": "In general, they push back, then accept if the vendor shows new value at the same time, a new module or better reporting. The ones who churn are usually the smaller accounts who were price shopping anyway."
+     },
+     {
+      "ts": "02:31",
+      "speaker": "INTERVIEWER",
+      "text": "What about AI features in scheduling?"
+     },
+     {
+      "ts": "02:35",
+      "speaker": "EXPERT",
+      "text": "Everyone is adding demand forecasting. The useful version predicts footfall or patient volume and builds a draft rota. The hype version is a chatbot on top. Buyers are getting better at telling the difference."
+     },
+     {
+      "ts": "03:00",
+      "speaker": "INTERVIEWER",
+      "text": "Which segment is growing fastest?"
+     },
+     {
+      "ts": "03:03",
+      "speaker": "EXPERT",
+      "text": "Healthcare. Staffing pressures are severe, agency costs are high, and better scheduling reduces agency spend directly. That's an easy business case."
+     },
+     {
+      "ts": "03:25",
+      "speaker": "INTERVIEWER",
+      "text": "Thank you, Expert 1342."
+     }
+    ],
+    "entities": {
+     "Company 5981": [
+      "private",
+      "expert's current employer"
+     ],
+     "Company 6065": [
+      "expert's former employer (left 2021)"
+     ],
+     "Expert 1342": [
+      "the expert"
+     ]
+    }
+   },
+   "4": {
+    "num": 4,
+    "topic": "Payments lending strategy",
+    "profile": "Expert 0383. Head of Product, Company 9728 (2017 to 2021). Chief Product Officer, Company 2206 (2021 to 2024). Independent advisor (2024 to present). Industry: payments and fintech.",
+    "declaration": "Left Company 9728 in 2021 and Company 2206 in 2024. No current employer. Standard confidentiality obligations to former employers. No conflicts declared.",
+    "turns": [
+     {
+      "ts": "00:00",
+      "speaker": "INTERVIEWER",
+      "text": "Expert 0383, thanks for joining. I'm looking at Company 9728's move into small business lending. You were there for four years, so I'd love your view."
+     },
+     {
+      "ts": "00:13",
+      "speaker": "EXPERT",
+      "text": "Happy to, with the caveat that I left in 2021, so I'll stick to what's public and my general view of the market."
+     },
+     {
+      "ts": "00:24",
+      "speaker": "INTERVIEWER",
+      "text": "Understood."
+     },
+     {
+      "ts": "00:26",
+      "speaker": "EXPERT",
+      "text": "Company 9728 laid out the lending strategy at their 2024 investor day. The logic is straightforward: they already see merchants' transaction data, so they can underwrite small loans with better information than a bank. That's the whole thesis, and it's been in their public filings since."
+     },
+     {
+      "ts": "00:55",
+      "speaker": "INTERVIEWER",
+      "text": "Does the thesis hold up?"
+     },
+     {
+      "ts": "00:58",
+      "speaker": "EXPERT",
+      "text": "Mostly. Payment data is a strong signal for cash flow. The risk is concentration. If a sector like hospitality has a bad year, a lot of their borrowers suffer at once. When I was there, the culture was very product-led, and lending is a credit business, so building that muscle takes time."
+     },
+     {
+      "ts": "01:30",
+      "speaker": "INTERVIEWER",
+      "text": "How do competitors compare?"
+     },
+     {
+      "ts": "01:33",
+      "speaker": "EXPERT",
+      "text": "Several payment providers are doing the same thing. The differentiator is how quickly they can approve a loan and how well they price risk. Speed sells to small businesses. Pricing determines whether the book makes money."
+     },
+     {
+      "ts": "02:00",
+      "speaker": "INTERVIEWER",
+      "text": "What should investors watch?"
+     },
+     {
+      "ts": "02:03",
+      "speaker": "EXPERT",
+      "text": "Default rates by sector and vintage, which Company 9728 reports in its annual results, and how much of the loan book they keep versus sell on to funding partners. Keeping it boosts revenue but adds risk to the balance sheet."
+     },
+     {
+      "ts": "02:30",
+      "speaker": "INTERVIEWER",
+      "text": "Any view on management?"
+     },
+     {
+      "ts": "02:33",
+      "speaker": "EXPERT",
+      "text": "The CEO has been consistent and public about wanting to become a broader financial services provider for small businesses. Whether they execute is the question, but the direction isn't a secret."
+     },
+     {
+      "ts": "02:52",
+      "speaker": "INTERVIEWER",
+      "text": "Thanks, Expert 0383."
+     }
+    ],
+    "entities": {
+     "Company 2206": [
+      "expert's former employer (left 2024)"
+     ],
+     "Company 9728": [
+      "expert's former employer (left 2021)"
+     ],
+     "Expert 0383": [
+      "the expert"
+     ]
+    }
+   },
+   "5": {
+    "num": 5,
+    "topic": "Medical devices",
+    "profile": "Expert 9928. Finance Director, Company 3966 (2018 to March 2026). Independent consultant (March 2026 to present). Industry: medical devices.",
+    "declaration": "Left Company 3966 (listed company) in March 2026. No current employer in medical devices. Standard confidentiality obligations to Company 3966. No conflicts declared.",
+    "turns": [
+     {
+      "ts": "00:00",
+      "speaker": "INTERVIEWER",
+      "text": "Expert 9928, thanks for your time. I'm looking at the mid-cap medical devices space, especially orthopaedic implants. How is demand?"
+     },
+     {
+      "ts": "00:12",
+      "speaker": "EXPERT",
+      "text": "Strong. Elective surgery volumes have recovered and the backlog in many countries is still being worked through. Ageing populations make the long-term demand very predictable."
+     },
+     {
+      "ts": "00:35",
+      "speaker": "INTERVIEWER",
+      "text": "How about pricing?"
+     },
+     {
+      "ts": "00:38",
+      "speaker": "EXPERT",
+      "text": "Under pressure from hospital procurement, especially in Europe where tenders are aggressive. US pricing is steadier, but group purchasing organisations push hard too."
+     },
+     {
+      "ts": "01:00",
+      "speaker": "INTERVIEWER",
+      "text": "What about Company 3966 specifically?"
+     },
+     {
+      "ts": "01:03",
+      "speaker": "EXPERT",
+      "text": "I'll stay careful there since I only left in March. Generally, Company 3966 has a good product range and a solid hospital footprint."
+     },
+     {
+      "ts": "01:20",
+      "speaker": "INTERVIEWER",
+      "text": "Anything investors should be aware of?"
+     },
+     {
+      "ts": "01:24",
+      "speaker": "EXPERT",
+      "text": "Look, I'm not saying anything specific, but if I were you I'd watch their Q3 numbers closely. Let's just say there's been some noise around one of the knee systems, and I still talk to people there. Quality issues take a while to show up in the numbers."
+     },
+     {
+      "ts": "01:52",
+      "speaker": "INTERVIEWER",
+      "text": "Okay. Going back to the market, how important is regulation?"
+     },
+     {
+      "ts": "01:57",
+      "speaker": "EXPERT",
+      "text": "Very. The EU medical device regulation raised the bar for clinical evidence. Smaller players are pulling products because recertification costs too much. That's good for the bigger, well-capitalised companies."
+     },
+     {
+      "ts": "02:25",
+      "speaker": "INTERVIEWER",
+      "text": "And robotics in orthopaedics?"
+     },
+     {
+      "ts": "02:29",
+      "speaker": "EXPERT",
+      "text": "It's the main arms race. Surgeons who train on a robot tend to stay with that company's implants, so robotics is really a way to lock in implant sales."
+     },
+     {
+      "ts": "02:50",
+      "speaker": "INTERVIEWER",
+      "text": "Thank you, Expert 9928."
+     }
+    ],
+    "entities": {
+     "Company 3966": [
+      "listed",
+      "expert's former employer (left March 2026)"
+     ],
+     "Expert 9928": [
+      "the expert"
+     ]
+    }
+   },
+   "6": {
+    "num": 6,
+    "topic": "Enterprise software buying",
+    "profile": "Expert 6378. Head of Procurement, Company 9560 (2019 to October 2024, per declaration). Independent procurement advisor (October 2024 to present). Industry: enterprise data and analytics software.",
+    "declaration": "Left Company 9560 in October 2024. No current employer. Not in contact with Company 9560 in a professional capacity. No conflicts declared.",
+    "turns": [
+     {
+      "ts": "00:00",
+      "speaker": "INTERVIEWER",
+      "text": "Expert 6378, thanks for joining. I'm researching how large enterprises buy data and analytics software. What does a typical buying process look like?"
+     },
+     {
+      "ts": "00:14",
+      "speaker": "EXPERT",
+      "text": "Long. Six to twelve months for a big platform. You have IT, security, procurement and the business all involved. Security review alone can take two or three months."
+     },
+     {
+      "ts": "00:36",
+      "speaker": "INTERVIEWER",
+      "text": "Where do deals usually stall?"
+     },
+     {
+      "ts": "00:40",
+      "speaker": "EXPERT",
+      "text": "Security and legal. Vendors underestimate how many questions a large company's security team will ask, especially about where data is stored and who can access it."
+     },
+     {
+      "ts": "01:02",
+      "speaker": "INTERVIEWER",
+      "text": "How are enterprises approaching vendor consolidation?"
+     },
+     {
+      "ts": "01:06",
+      "speaker": "EXPERT",
+      "text": "Aggressively. Most companies have too many overlapping tools. At Company 9560, our team is rolling out a consolidation programme next month, cutting the analytics stack from nine vendors to four. We've been building the business case since the summer."
+     },
+     {
+      "ts": "01:30",
+      "speaker": "INTERVIEWER",
+      "text": "Which vendors are likely to lose?"
+     },
+     {
+      "ts": "01:34",
+      "speaker": "EXPERT",
+      "text": "The niche dashboard tools. My contact Person 2315, who runs procurement there now, told me last week they're giving notice to two of them in Q1. The big platforms will win because they can bundle."
+     },
+     {
+      "ts": "01:55",
+      "speaker": "INTERVIEWER",
+      "text": "In general, how do vendors defend against consolidation?"
+     },
+     {
+      "ts": "01:59",
+      "speaker": "EXPERT",
+      "text": "Deep integration and proving usage. If a vendor can show that hundreds of people use the tool daily, it's hard to cut. If usage is concentrated in one team, it's an easy target."
+     },
+     {
+      "ts": "02:20",
+      "speaker": "INTERVIEWER",
+      "text": "What about pricing models?"
+     },
+     {
+      "ts": "02:24",
+      "speaker": "EXPERT",
+      "text": "Buyers are pushing back on per-seat pricing for analytics, because usage is uneven. Consumption-based pricing is growing, but finance teams worry about unpredictable bills, so many deals end up with a committed spend plus overage."
+     },
+     {
+      "ts": "02:50",
+      "speaker": "INTERVIEWER",
+      "text": "Thanks, Expert 6378."
+     }
+    ],
+    "entities": {
+     "Company 9560": [
+      "expert's former employer"
+     ],
+     "Expert 6378": [
+      "the expert"
+     ],
+     "Person 2315": [
+      "third party named in the call"
+     ]
+    }
+   },
+   "7": {
+    "num": 7,
+    "topic": "Packaged food margins",
+    "profile": "Expert 8996. CFO, Company 9910 (2016 to 2022). Non-executive director at two private food companies (2022 to present). Industry: packaged food manufacturing.",
+    "declaration": "Left Company 9910 (listed company) in 2022. Non-executive roles at two private food companies, declared by name and excluded from discussion. No conflicts with Company 9910 declared.",
+    "turns": [
+     {
+      "ts": "00:00",
+      "speaker": "INTERVIEWER",
+      "text": "Expert 8996, thanks for joining. I'm looking at margins in packaged food. Can you walk me through what's happening?"
+     },
+     {
+      "ts": "00:11",
+      "speaker": "EXPERT",
+      "text": "Margins got squeezed hard in 2022 and 2023 by input costs: wheat, oils, packaging, energy. Since then, most manufacturers have rebuilt them through price increases and mix."
+     },
+     {
+      "ts": "00:33",
+      "speaker": "INTERVIEWER",
+      "text": "Can you give a concrete example?"
+     },
+     {
+      "ts": "00:36",
+      "speaker": "EXPERT",
+      "text": "Company 9910 is a good one because they're transparent. On their Q2 earnings call in August, they reported gross margin of 31.4%, up from 28.9% a year earlier, and guided to 32% to 33% for the full year. They attributed most of it to pricing and to exiting low-margin private label contracts."
+     },
+     {
+      "ts": "01:08",
+      "speaker": "INTERVIEWER",
+      "text": "That's quite specific. Is that from your time there?"
+     },
+     {
+      "ts": "01:11",
+      "speaker": "EXPERT",
+      "text": "No, that's all from the August call and the slides they published. I left in 2022. I'm just reading their numbers like any analyst would."
+     },
+     {
+      "ts": "01:25",
+      "speaker": "INTERVIEWER",
+      "text": "Got it. Is the private label exit a smart move?"
+     },
+     {
+      "ts": "01:29",
+      "speaker": "EXPERT",
+      "text": "For margins, yes. For volume, it hurts, and it means factories run below capacity unless they fill them with branded growth. That's the trade-off every mid-sized manufacturer faces."
+     },
+     {
+      "ts": "01:52",
+      "speaker": "INTERVIEWER",
+      "text": "What about retailer pushback on prices?"
+     },
+     {
+      "ts": "01:56",
+      "speaker": "EXPERT",
+      "text": "It's intense. Retailers are delisting brands that push too hard, and promoting their own label. The brands with genuine pricing power are the ones consumers will switch stores for, and there aren't many."
+     },
+     {
+      "ts": "02:20",
+      "speaker": "INTERVIEWER",
+      "text": "What would you watch going forward?"
+     },
+     {
+      "ts": "02:23",
+      "speaker": "EXPERT",
+      "text": "Volume trends. Margin recovery through price only lasts so long. If volumes keep falling, manufacturers will have to reinvest in promotion, and margins will come back down."
+     },
+     {
+      "ts": "02:45",
+      "speaker": "INTERVIEWER",
+      "text": "Thanks, Expert 8996."
+     }
+    ],
+    "entities": {
+     "Company 9910": [
+      "listed",
+      "expert's former employer (left 2022)"
+     ],
+     "Expert 8996": [
+      "the expert"
+     ]
+    }
+   },
+   "8": {
+    "num": 8,
+    "topic": "Financial crime (AI-led)",
+    "profile": "Expert 3658. Senior Manager, Financial Crime Advisory, Company 7122 (2016 to 2023), where she audited banks' anti-money-laundering controls. Head of Compliance, Company 1936 (2023 to present). Industry: financial crime compliance.",
+    "declaration": "Currently employed by Company 1936; will not discuss Company 1936. Left Company 7122 in 2023. Bound by confidentiality to Company 7122's former clients. No conflicts declared.",
+    "turns": [
+     {
+      "ts": "00:00",
+      "speaker": "AI INTERVIEWER",
+      "text": "Thank you for joining. This interview focuses on anti-money-laundering controls in mid-sized UK banks. First question: what are the most common weaknesses you have seen?"
+     },
+     {
+      "ts": "00:15",
+      "speaker": "EXPERT",
+      "text": "The most common is customer due diligence, especially source of funds for higher-risk customers. Banks collect the documents at onboarding but don't refresh them. Second is transaction monitoring that generates too many false alerts, so analysts burn out and miss the real ones."
+     },
+     {
+      "ts": "00:48",
+      "speaker": "AI INTERVIEWER",
+      "text": "Can you give an example of how severe these gaps can be?"
+     },
+     {
+      "ts": "00:53",
+      "speaker": "EXPERT",
+      "text": "At one of the banks we audited, Company 0710, around 40% of the higher-risk customer files we sampled were missing source-of-funds documentation. It was in our final report to their board. They had to run a full remediation programme."
+     },
+     {
+      "ts": "01:20",
+      "speaker": "AI INTERVIEWER",
+      "text": "How do banks typically respond to findings like that?"
+     },
+     {
+      "ts": "01:24",
+      "speaker": "EXPERT",
+      "text": "A remediation programme, usually with external help, and a lot of pressure on the compliance team. It's tough on people. I remember Person 8435, who led their financial crime team at the time, was signed off for months with a breakdown afterwards."
+     },
+     {
+      "ts": "01:48",
+      "speaker": "AI INTERVIEWER",
+      "text": "What separates banks that manage this well?"
+     },
+     {
+      "ts": "01:52",
+      "speaker": "EXPERT",
+      "text": "Ownership in the first line. When relationship managers own the quality of customer files, rather than leaving it all to compliance, you get far better results. And good monitoring tuning: fewer, better alerts."
+     },
+     {
+      "ts": "02:15",
+      "speaker": "AI INTERVIEWER",
+      "text": "How is technology changing transaction monitoring?"
+     },
+     {
+      "ts": "02:19",
+      "speaker": "EXPERT",
+      "text": "Machine learning is reducing false positives in the better systems, sometimes significantly. But regulators want explainability. If a model closes an alert, the bank needs to show why. Black-box models are a hard sell to the regulator."
+     },
+     {
+      "ts": "02:45",
+      "speaker": "AI INTERVIEWER",
+      "text": "Final question: what should investors in bank technology watch?"
+     },
+     {
+      "ts": "02:49",
+      "speaker": "EXPERT",
+      "text": "Vendors that combine monitoring with case management and a clear audit trail. Regulators care less about how clever the model is and more about whether the bank can evidence its decisions."
+     },
+     {
+      "ts": "03:10",
+      "speaker": "AI INTERVIEWER",
+      "text": "Thank you. This transcript was generated from an AI-led interview."
+     }
+    ],
+    "entities": {
+     "Company 0710": [
+      "named in the call"
+     ],
+     "Company 1936": [
+      "expert's current employer"
+     ],
+     "Company 7122": [
+      "expert's former employer (left 2023)"
+     ],
+     "Expert 3658": [
+      "the expert"
+     ],
+     "Person 8435": [
+      "third party named in the call"
+     ]
+    }
+   }
   }
  }
 }

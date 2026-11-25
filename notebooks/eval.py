@@ -32,8 +32,9 @@ def aid(t, ts):
     return f"T{t['num']}-{ts // 60:02d}:{ts % 60:02d}"
 
 
-def load():
-    text = SRC.read_text()
+def load(text=None):
+    """The test set and answer key. Pass masked text (data/eval/test_set_masked.md) to run on masked data."""
+    text = text or SRC.read_text()
     T = parse(text)
     keys = {int(re.match(r"\d+", b).group()): json.loads(re.search(r"```json\n(.*?)\n```", b, re.S).group(1))
             for b in text.split("\n## Transcript ")[1:]}

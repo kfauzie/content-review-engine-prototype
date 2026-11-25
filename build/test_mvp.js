@@ -7,7 +7,8 @@ new Function("module", html.split('<script id="calc">')[1].split("</script>")[0]
 const C = m.exports;
 const D = JSON.parse(html.split('<script id="data" type="application/json">')[1].split("</script>")[0].replace(/<\\\//g, "</"));
 const FILE = JSON.parse(fs.readFileSync(path.join(root, "data/benchmark.json"), "utf8"));
-const SRC = fs.readFileSync(path.join(root, "data/synthetic-expert-transcripts.md"), "utf8");
+const SRC = fs.readFileSync(path.join(root, "data/eval/test_set_masked.md"), "utf8");  // the eval and the page only see masked text
+const GATE = JSON.parse(fs.readFileSync(path.join(root, "data/eval/release_gate.json"), "utf8"));
 let fail = 0;
 const t = (name, ok, got) => { if (!ok) fail++; console.log(`${ok ? "PASS" : "FAIL"} ${name}${got !== undefined ? ": " + got : ""}`); };
 
@@ -61,14 +62,14 @@ t("fix 2, people and sources: 11 fewer misses, false alarms not estimated (no ex
 t("fix 3, cited sources: no change to misses, about 78 fewer false alarms (60 x 4/5 + 30 x 4/4)",
   imp[2].id === "sources" && imp[2].missed === 0 && imp[2].falseAlarms === 78, JSON.stringify(imp[2]));
 t("the fixes never claim more misses than exist, and 2 misses stay uncovered", imp.reduce((s, x) => s + x.missed, 0) === 21 &&
-  D.cards.filter(c => c.kind === "missed" && !c.fix).map(c => c.name).join() === "Mateo Alvarez,Siobhan Kelly");
+  D.cards.filter(c => c.kind === "missed" && !c.fix).length === 2);
 t("each fix has a title, a root cause, 2 to 4 examples and three next steps", D.fixes.length === 3 && D.fixes.every(f => f.title && f.root_cause && f.how.length === 3 && f.examples.length >= 2 && f.examples.length <= 4));
 t("each fix labels its cause: missed for fixes 1 and 2, false alarm for fix 3", D.fixes.map(f => f.cause_label).join("|") === "Why the AI missed it|Why the AI missed it|Why the AI raised a false alarm");
 t("the number of examples varies across fixes (3, 2, 4)", D.fixes.map(f => f.examples.length).join() === "3,2,4");
 t("every fix example opens its transcript", D.fixes.every(f => f.examples.every(x => x.transcript && D.transcripts[x.transcript] && D.transcripts[x.transcript].name === x.name)));
 t("each fix example quotes its card word for word, highlights a phrase in it, and is tagged to that fix", D.fixes.every(f => f.examples.every(x => {
   const c = D.cards.find(k => k.name === x.name); return c && c.quote === x.quote && c.date === x.date && x.quote.includes(x.highlight) && c.fix === f.id; })));
-t("every transcript names its reviewer and title", Object.values(D.transcripts).every(x => /^[A-Z][a-z]+ [A-Z][a-z]+, [A-Z]/.test(x.reviewer)));
+t("every transcript names its reviewer and title", Object.values(D.transcripts).every(x => /^Reviewer \d{4}, [A-Z]/.test(x.reviewer)));
 t("each reviewer comment is timestamped one or two days after the call", Object.values(D.transcripts).every(x => {
   const gap = (new Date(x.reviewed_at.split("T")[0]) - new Date(x.date)) / 864e5; return /^\d{4}-\d\d-\d\dT\d\d:\d\d$/.test(x.reviewed_at) && (gap === 1 || gap === 2); }));
 t("each fix example carries its call timestamp, matching its card and transcript passage", D.fixes.every(f => f.examples.every(x =>
@@ -81,7 +82,37 @@ t("every false alarm card has a type; examples per type: 7, 3, 4, 4", D.cards.fi
   D.false_alarm_types.map(x => C.faTypeCards(D, x.id).length).join() === "7,3,4,4");
 t("carousel window clamps at the ends", JSON.stringify(C.windowOf(5, 4, 3)) === '{"start":2,"end":5}' && JSON.stringify(C.windowOf(5, -1, 3)) === '{"start":0,"end":3}');
 t("three cards on desktop, two on tablet, one on phone", C.perView(1280) === 3 && C.perView(800) === 2 && C.perView(390) === 1);
-t("initials and dates", C.initials("Mei Lin Tan") === "ML" && C.niceDate("2026-11-04") === "4 Nov 2026");
+t("dates", C.niceDate("2026-11-04") === "4 Nov 2026");
+
+// masking: every name is an ID; the same person or company keeps one ID everywhere
+const ID = /^(Expert|Person|Reviewer|Company|Client|Staff) \d{4}$/;
+t("every card and transcript names the expert by ID", D.cards.every(c => /^Expert \d{4}$/.test(c.name)) && Object.values(D.transcripts).every(x => /^Expert \d{4}$/.test(x.name)));
+t("card and transcript links use IDs, not names", D.cards.every(c => /^(missed|false-alarm)-expert-\d{4}$/.test(c.id)));
+t("every ID in a transcript carries role tags", [...Object.values(D.transcripts), ...Object.values(D.release.transcripts)].every(x =>
+  Object.entries(x.entities).every(([k, v]) => ID.test(k) && v.length > 0)));
+const tsx = D.release.transcripts, empOf = n => Object.entries(tsx[n].entities).filter(([, v]) => v.some(z => z.startsWith("expert's"))).map(([k]) => k);
+t("the expert's employer keeps its role: transcript 2 'Company, listed, current employer'", Object.entries(tsx[2].entities).some(([k, v]) => k.startsWith("Company") && v.join() === "listed,expert's current employer"));
+t("the same company has the same ID in the test set and in the benchmark transcripts", (() => {
+  const a = D.transcripts[D.cards.find(c => c.source === "test set T5-01:24").transcript]; return a.declaration === tsx[5].declaration && empOf(5).every(id => a.declaration.includes(id)); })());
+t("no emails or phone numbers left", !/[\w.+-]+@[\w-]+\.[\w.]+/.test(JSON.stringify(D)) && !(JSON.stringify(D).match(/\+?\(?\d[\d ()-]{7,}\d/g) || []).some(x => x.replace(/\D/g, "").length >= 9));
+
+// release gate: the page's scoring equals the Python eval (notebooks/release_gate.py) for every version
+const RL = D.release, srt = a => [...a].sort().join();
+RL.versions.forEach(v => {
+  const s = C.scoreVersion(RL, v.id), g = C.gateResult(RL, v.id), p = GATE[v.id];
+  t(`${v.id}: page scoring equals the Python eval`, s.flags === p.flags && s.right === p.right && srt(s.false_alarms) === srt(p.false_alarms) &&
+    Object.keys(p.missed).every(x => srt(s.missed[x]) === srt(p.missed[x])), JSON.stringify({ flags: s.flags, fa: s.false_alarms.length }));
+  t(`${v.id}: gate result equals the Python eval`, g.passed === p.gate.passed && g.message === p.gate.message && g.reason === p.gate.reason && g.links.join() === p.gate.links.join(), g.message);
+});
+t("v1.0 (baseline): 8 flags, 5 false alarms, misses current-employer confidential (T3) and MNPI (T5)", GATE["v1.0"].flags === 8 && GATE["v1.0"].false_alarms.length === 5 &&
+  GATE["v1.0"].missed.MNPI.join() === "T5-01:24" && GATE["v1.0"]["missed"]["Current employer confidential"].join() === "T3-01:34");
+t("v1.1 passes", C.gateResult(RL, "v1.1").message === "Release gate: passed. v1.1 can go to shadow mode.");
+t("v1.2 is blocked on the hedged MNPI hint in transcript 5", C.gateResult(RL, "v1.2").message === "Release gate: blocked. v1.2 missed MNPI in transcript 5 (hedged hint about a listed company)." &&
+  C.gateResult(RL, "v1.2").links.join() === "T5-01:24");
+t("every version's outputs cover every expert answer and are labelled simulated", RL.versions.every(v => RL.answers.every(a => v.outputs[a])) && /SIMULATED/.test(RL.note));
+t("v1.2 differs from v1.1 only on T5-01:24", RL.answers.filter(a => JSON.stringify(RL.versions[1].outputs[a]) !== JSON.stringify(RL.versions[2].outputs[a])).join() === "T5-01:24");
+t("release log is prefilled with v1.0's release", RL.log.length === 1 && RL.log[0].version === "v1.0" && ID.test(RL.log[0].by));
+t("kill-switch copy under the gate", html.includes("In production, the same check runs on live spot-checks. A miss in a high-priority type triggers the kill switch, and that type goes back to full human review."));
 
 const text = html.replace(/<script id="data"[\s\S]*?<\/script>/, "") + JSON.stringify(D);
 t("no em or en dashes", !/[—]/.test(text) && !/–/.test(html.replace(/<script id="data"[\s\S]*?<\/script>/, "").replace(/\$\{w\.start \+ 1\}–/g, "")));

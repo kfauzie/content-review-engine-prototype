@@ -8,7 +8,9 @@ jobs:
       - uses: actions/setup-python@v5
         with: { python-version: '3.12' }
       - name: Data is reproducible and embedded
-        run: python3 notebooks/build_data.py && git diff --exit-code -- data/benchmark.json build/mvp.html
+        run: python3 notebooks/build_data.py && git diff --exit-code -- data/benchmark.json build/mvp.html data/eval/test_set_masked.md data/eval/release_gate.json data/eval/versions
+      - name: Masking tests (no real names in any output)
+        run: python3 notebooks/test_mask.py
       - uses: actions/setup-node@v4
         with: { node-version: '20' }
       - run: npm install --no-audit --no-fund && npx playwright install --with-deps chromium
