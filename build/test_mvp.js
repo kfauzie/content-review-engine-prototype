@@ -137,6 +137,8 @@ t("first false alarm example: says what the AI should check, not 'web search'", 
 t("example wording is plain: no jargon left in the quotes", !D.cards.some(c => /knee systems|signed off for months|rate card|mothball|carve-out|churn model|underwrite|guided to|cost-plus|over-built/.test(c.quote)));
 t("the term \"release gate\" isn't shown anywhere on the page", !/release gate/i.test(html.replace(/<script id="data"[\s\S]*?<\/script>/, "").replace(/\/\*[\s\S]*?\*\//g, "").replace(/\/\/.*$/gm, "")));
 t("no simulated-answers note, no model comparison line, no kill-switch copy", !/prepared in advance|more careful with subtle cases|kill switch/.test(html.replace(/<script id="data"[\s\S]*?<\/script>/, "")));
+t("no reviewer refers a case to their own team (Legal Counsel escalates, not 'refers to Legal')", Object.values(D.transcripts).every(x => !/referred it to Legal/.test(x.reviewer_comment)) &&
+  /We redacted the passage and escalated it\.$/.test(bySrc("test set T5-01:24").reviewer_comment));
 t("reviewers are internal", Object.values(D.transcripts).every(x => /\(internal\)$/.test(x.reviewer)));
 t("no reviewer comment names the company we work for", Object.values(D.transcripts).every(x => !/dialectica/i.test(x.reviewer_comment)));
 t("priorities: three high, two medium, one low", D.categories.map(c => c.priority).join() === "high,high,high,medium,low,medium");
