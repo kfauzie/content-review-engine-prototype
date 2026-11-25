@@ -143,6 +143,8 @@ Round 20 (Kevin's polish): v1.1 is made realistic with two over-cautious flags o
 
 v1.0's score on the masked text matches the unmasked rules baseline exactly, so the IDs keep what the rule needs. The hedged hint is in transcript 5 (medical devices), not transcript 4 as first described; the gate message is generated from the scoring, so it says transcript 5.
 
+Round 22: the comparison now runs on the benchmark's 1,000 reviewed transcripts, not the 8-transcript test set. Production reproduces the benchmark exactly; v1.1 (9 lower-priority misses, 138 false alarms) is Ready; v1.2 (1 high-priority miss) is Not ready. New-version outputs are simulated item by item by the rules in `notebooks/release_gate.py`; the scoring is real and the page's scoring is tested equal to Python's.
+
 ## Decisions I made (and what I turned down)
 
 | Decision | Why | What I turned down |

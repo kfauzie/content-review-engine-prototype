@@ -51,7 +51,7 @@ const t = (name, ok, got) => { if (!ok) fail++; console.log(`${ok ? "PASS" : "FA
   t("no legends, no \"Confirmed\"", await p.locator(".sleg").count() === 0 && !(await p.locator("main").textContent()).includes("Confirmed"));
   t("subtitle", (await p.locator(".sub1").textContent()) === "We compared the content review AI with human reviewers across 1,000 transcripts to see where it misses compliance risks, and where it raises false alarms.");
   t("fix titles", (await p.locator(".fix h3").allTextContents()).join("|") === "Give the AI the expert's declaration|Flag named people: insider sources and personal details|Check if the cited source is already public");
-  t("recommendation examples show date and call timestamp", (await p.locator('.fix[data-fix="declaration"] .fq .by').first().textContent()) === `${(await p.evaluate(() => JSON.parse(document.getElementById("data").textContent).fixes[0].examples[0].name))} · 4 Nov 2026 · 01:34`);
+  t("recommendation examples show date and call timestamp", (await p.locator('.fix[data-fix="declaration"] .fq .by').first().textContent()) === `Transcript ${(await p.evaluate(() => { const d = JSON.parse(document.getElementById("data").textContent); return d.cards.find(c => c.id === d.fixes[0].examples[0].transcript).tid; }))} · 4 Nov 2026 · 01:34`);
   t("first example reads as written", (await p.locator('.fix[data-fix="declaration"] .fq').first().textContent()).startsWith("\u201cFor us specifically, we're moving list price up 12% on the mid-market tier from January.\u201d"));
   t("three fixes, each with root cause, examples and next steps", await p.locator(".fix").count() === 3 &&
     (await p.locator(".fix .fl").allTextContents()).join("|") === "Why the AI missed it|Examples|What we'll change|Why the AI missed it|Examples|What we'll change|Why the AI raised a false alarm|Examples|What we'll change" && await p.locator(".fix li").count() === 9);
@@ -76,10 +76,10 @@ const t = (name, ok, got) => { if (!ok) fail++; console.log(`${ok ? "PASS" : "FA
 
   const fams = await p.evaluate(() => [...new Set([...document.querySelectorAll("h1,h2,.kh,.n,.fq,.lab,.d")].map(e => getComputedStyle(e).fontFamily.split(",")[0].replace(/["']/g, "").trim()))]);
   t("one font family throughout", fams.length === 1, fams.join(" | "));
-  t("category examples are rows: masked expert ID, quote with highlight, date and call time, no names or initials",
+  t("category examples are rows: transcript ID, quote with highlight, date and call time, no names or initials",
     await p.locator(".cat .rx").count() === 41 && await p.locator(".cat .nm, .cat .fq").count() === 0 &&
     (await p.locator(".cat .rx").evaluateAll(a => a.every(x => x.querySelector("mark") && !x.querySelector(".av") &&
-      /^Expert \d{4} · \d{1,2} [A-Z][a-z]{2} \d{4} · \d\d:\d\d$/.test(x.querySelector(".when").textContent)))));
+      /^Transcript \d{4} · \d{1,2} [A-Z][a-z]{2} \d{4} · \d\d:\d\d$/.test(x.querySelector(".when").textContent)))));
   const inView = id => p.evaluate(i => { const r = document.getElementById(i).getBoundingClientRect(); return r.top >= 0 && r.top < innerHeight; }, id);
   await p.locator(".risk.jump").click(); await p.waitForTimeout(900);
   t("clicking the compliance box scrolls to \"Missed by AI, by type\"", await inView("sec-missed"));
@@ -97,7 +97,7 @@ const t = (name, ok, got) => { if (!ok) fail++; console.log(`${ok ? "PASS" : "FA
   t("Enter on the focused category shows them again", await p.locator('[data-cat="missed|Personal data"] .ex').count() === 7);
   t("declaration conflict (0 missed) has no tiles and no toggle", await p.locator('[data-cat="missed|Declaration conflict"] [data-toggle]').count() === 0);
   t("outside the top categories, only fix examples open a transcript", await p.locator('[data-cat="missed|Personal data"] a.ex').count() === 1 &&
-    /^Expert \d{4} · 13 Nov 2026 · 01:24$/.test(await p.locator('[data-cat="missed|Personal data"] a.ex .when').textContent()) && await p.locator('[data-cat="missed|Former-client confidential"] a.ex').count() === 0);
+    /^Transcript \d{4} · 13 Nov 2026 · 01:24$/.test(await p.locator('[data-cat="missed|Personal data"] a.ex .when').textContent()) && await p.locator('[data-cat="missed|Former-client confidential"] a.ex').count() === 0);
   t("false alarms are grouped by type of false alarm, with examples where there are some",
     (await p.locator('[data-cat^="fatype|"] .n').allTextContents()).join("|") === "Public source cited|The expert's own opinion or estimate|Former employer, left long ago|Public market talk" &&
     await p.locator('[data-cat="fatype|public-source"] a.ex').count() === 7 && await p.locator('[data-cat="fatype|own-view"] .ex').count() === 3 && await p.locator('[data-cat="fatype|own-view"] a.ex').count() === 0 &&
@@ -153,47 +153,53 @@ const t = (name, ok, got) => { if (!ok) fail++; console.log(`${ok ? "PASS" : "FA
   // compare a new version with current production
   await p.goto(`${url}#compare`); await p.waitForSelector('body[data-view="compare"]');
   t("two tabs, no repeated headers", (await p.locator(".tabs a").allTextContents()).join("|") === "Current AI performance|Compare a new version" &&
-    await p.locator('[data-tab="compare"][aria-current]').count() === 1 && (await p.locator(".brand").textContent()) === "Content review engine" && await p.locator(".crumb").count() === 0);
+    await p.locator('[data-tab="compare"][aria-current]').count() === 1 && (await p.locator(".brand").textContent()) === "Content review engine");
   t("title and one-line description", (await p.locator("h1").textContent()) === "Compare a new version" &&
     (await p.locator(".lede").textContent()) === "Run a new version on the same reviewed transcripts and compare it with current production.");
-  t("no release gate, shadow mode in the description, or release log", !/release gate|release log/i.test(await p.locator("body").innerText()) && !/shadow/i.test(await p.locator(".lede").textContent()));
+  t("no model comparison line and no simulated-answers note", await p.locator(".models, .simnote").count() === 0);
+  t("runs on all 1,000 reviewed transcripts", (await p.locator("[data-run]").textContent()) === "Run on all 1,000 reviewed transcripts");
+  t("sections clearly separated: own card, coloured band, divided header",
+    (await p.locator(".rel .block h2").allTextContents()).join("|") === "Choose a version|What's changed" &&
+    new Set(await p.locator(".rel .block").evaluateAll(a => a.map(x => getComputedStyle(x, "::before").backgroundColor))).size === 2);
   t("versions in plain words; v1.1 picked", (await p.locator(".ver").allTextContents()).join("|") ===
     "Current production (v1.0)|New version: reads the expert's declaration (v1.1)|New version: cheaper model (v1.2)" && await p.locator('input[value="v1.1"]').isChecked());
-  t("one line on the fictional models", (await p.locator(".models").textContent()) === "Meridian Pro: more careful with subtle cases, slower and costs more. Meridian Swift: faster and cheaper, more likely to miss subtle hints.");
   t("what's changed: changes highlighted, unchanged muted", (await p.locator(".chg li.on").allTextContents()).some(x => x.startsWith("Reads: Now reads the expert's declaration")) &&
     (await p.locator(".chg li.off").allTextContents()).includes("Settings: same"));
   await p.locator("[data-run]").click();
-  t("a short loading state while it runs", (await p.locator(".loading").textContent()).includes("Running on 8 transcripts") && await p.locator("[data-run]").isDisabled());
+  t("a short loading state while it runs", (await p.locator(".loading").textContent()).includes("Running on all 1,000 transcripts") && await p.locator("[data-run]").isDisabled());
   await p.waitForSelector("#result");
-  t("v1.1: green \"Ready for shadow testing\"", (await p.locator(".result.pass .rh").textContent()) === "Ready for shadow testing");
+  t("v1.1: \"Ready\", 0 high-priority misses, nothing else", (await p.locator(".result.pass .rh").textContent()) === "Ready" &&
+    (await p.locator(".result .rd").textContent()) === "0 high-priority misses" && (await p.locator(".result").textContent()) === "Ready0 high-priority misses");
   const rowsOf = async n => (await p.locator(".ctab").nth(n).locator("tbody tr, tfoot tr").evaluateAll(rs => rs.map(r => [...r.children].map(c => c.childNodes[0]?.textContent.trim() || c.textContent.trim()).join("|"))));
   const miss = await rowsOf(0);
-  t("misses table: one row per issue type, sorted by priority, current vs new", miss.join(" / ") ===
-    "Material non-public information|High|1|0 / Current-employer confidential|High|1|0 / Declaration conflict|High|0|0 / Source disclosure|Medium|1|0 / Personal data|Medium|1|0 / Former-client confidential|Low|0|0 / All types (7 actual issues)||4|0", miss.join(" / "));
-  t("misses table header", (await p.locator(".ctab").first().locator("thead th").allTextContents()).join("|") === "Issue type|Priority|Current production missed|New version missed");
-  t("small transcript links in the rows", await p.locator(".ctab").first().locator("a.tlink").count() === 4 && (await p.locator(".ctab a.tlink").first().textContent()) === "T5 01:24");
+  t("misses table on 1,000 transcripts: current production matches the benchmark", miss.join(" / ") ===
+    "Material non-public information|High|5|0 / Current-employer confidential|High|4|0 / Declaration conflict|High|0|0 / Source disclosure|Medium|4|3 / Personal data|Medium|7|6 / Former-client confidential|Low|3|0 / All types (262 actual issues)||23|9", miss.join(" / "));
+  t("transcript IDs in the rows", /^T\d{4}$/.test(await p.locator(".ctab a.tlink").first().textContent()));
   const fa = await rowsOf(1);
-  t("false alarms table: explained in the title, numbers only", (await p.locator(".ctab caption").nth(1).textContent()) === "False alarms: flagged by AI, not an actual issue" &&
-    fa.join(" / ") === "Public source cited|3|1 / Harmless company mention|1|1 / Public market talk|1|0 / All types|5|2" && await p.locator(".ctab").nth(1).locator("a").count() === 0, fa.join(" / "));
-  t("v1.1's two false alarms listed with the reasons", await p.locator(".res-row.f").count() === 2 && (await p.locator(".res-row.f").first().textContent()).includes("What v1.1 said"));
+  t("false alarms table: numbers only", fa.join(" / ") === "Public source cited|98|97 / The expert's own opinion or estimate|41|41 / Former employer, left long ago|27|0 / Public market talk|21|0 / All types|187|138" &&
+    await p.locator(".ctab").nth(1).locator("a").count() === 0, fa.join(" / "));
+  t("last section: \"All current misses and false alarms\"", (await p.locator(".allb h2").textContent()) === "All current misses and false alarms" &&
+    await p.locator(".allb .al-row").count() === 9 && (await p.locator(".allb .al-fa .tlink").count()) === 138);
   await p.locator('.ver:has(input[value="v1.2"])').click();
-  t("v1.2: model change highlighted", (await p.locator(".chg li.on").first().textContent()) === "Model: Meridian Pro \u2192 Meridian Swift");
+  t("v1.2: model change highlighted, no 'flags by issue type'", (await p.locator(".chg li.on").first().textContent()) === "Model: Meridian Pro \u2192 Meridian Swift" &&
+    !(await p.locator(".chg").textContent()).includes("issue type"));
   await p.locator("[data-run]").click(); await p.waitForSelector("#result");
-  t("v1.2: red \"Not ready: missed MNPI in transcript 5\"", (await p.locator(".result.fail .rh").textContent()) === "Not ready: missed MNPI in transcript 5");
-  t("the result links to the passage", (await p.locator(".result .rl a").getAttribute("href")) === "#ts/5/01:24/v1.2");
-  await p.locator(".result .rl a").click(); await p.waitForSelector('body[data-view="testset"]');
-  t("the passage: missed MNPI, answer key and what v1.2 said", await p.locator("#passage").count() === 1 &&
-    (await p.locator(".htag").textContent()) === "Missed · Material non-public information" && (await p.locator(".note.agent").textContent()).includes("Not flagged"));
+  t("v1.2: \"Not ready\", 1 high-priority miss", (await p.locator(".result.fail .rh").textContent()) === "Not ready" && (await p.locator(".result .rd").textContent()) === "1 high-priority miss");
+  const mnpiLink = p.locator(".ctab").first().locator("tbody tr").first().locator("td").nth(2).locator("a.tlink");
+  t("the MNPI miss links to its passage", await mnpiLink.count() === 1);
+  await mnpiLink.click(); await p.waitForSelector('body[data-view="testset"]');
+  t("the passage: missed MNPI, human verdict and what v1.2 said", await p.locator("#passage").count() === 1 &&
+    (await p.locator(".htag").textContent()) === "Missed · Material non-public information" && /^Transcript \d{4}$/.test(await p.locator(".eyebrow").textContent()) &&
+    (await p.locator(".note.agent").textContent()).includes("General advice to watch the results"));
   t("masked names show as IDs with role tags, tinted by kind", await p.locator(".tr .ent.expert").count() > 0 && await p.locator(".tr .ent.company").count() > 0 &&
     (await p.locator(".legend li").allTextContents()).some(x => /^Company \d{4}listed · expert's former employer \(left March 2026\)$/.test(x)));
   await p.locator(".back").click(); await p.waitForSelector('body[data-view="compare"]');
   t("back on the page, the last result is still shown", await p.locator(".result.fail").count() === 1);
   await p.locator('.ver:has(input[value="v1.0"])').click();
-  t("current production: nothing has changed", (await p.locator(".about .same").textContent()).startsWith("Nothing has changed"));
+  t("current production: nothing has changed", (await p.locator(".chgb .same").textContent()).startsWith("Nothing has changed"));
   await p.locator("[data-run]").click(); await p.waitForSelector("#result");
-  t("v1.0 against itself: not ready on its two high-priority misses",
-    (await p.locator(".result.fail .rh").textContent()) === "Not ready: missed current-employer confidential in transcript 3 and MNPI in transcript 5" && await p.locator(".result .rl a").count() === 2);
-  await p.goto(`${url}#ts/9/00:00/v1.1`); await p.waitForSelector('body[data-ready="1"]');
+  t("v1.0 against itself: not ready, 9 high-priority misses", (await p.locator(".result.fail .rh").textContent()) === "Not ready" && (await p.locator(".result .rd").textContent()) === "9 high-priority misses");
+  await p.goto(`${url}#c/v1.1/i999`); await p.waitForSelector('body[data-ready="1"]');
   t("an unknown passage link says so", await p.locator(".notfound").count() === 1);
   await p.goto(`${url}#t/${ids[0]}`); await p.waitForSelector('body[data-view="transcript"]');
   t("transcript notes: human, internal reviewer in green; AI analysis in rose", (await p.locator(".note.rev .nt").textContent()) === "Human reviewer's comment" &&
@@ -217,7 +223,7 @@ const t = (name, ok, got) => { if (!ok) fail++; console.log(`${ok ? "PASS" : "FA
     await p.goto(`${url}#compare`); await p.waitForSelector('body[data-view="compare"]'); await p.locator("[data-run]").click(); await p.waitForSelector("#result");
     let sw = await p.evaluate(() => document.documentElement.scrollWidth);
     t(`${w}px version page after a run: no sideways scrolling`, sw <= w, `${sw}px`);
-    await p.goto(`${url}#ts/5/01:24/v1.2`); await p.waitForSelector('body[data-view="testset"]');
+    await p.goto(`${url}#c/v1.2/${(await p.evaluate(() => JSON.parse(document.getElementById("data").textContent).release.items.find(i => i.aid === "T5-01:24").id))}`); await p.waitForSelector('body[data-view="testset"]');
     sw = await p.evaluate(() => document.documentElement.scrollWidth);
     t(`${w}px reviewed-transcript passage: no sideways scrolling`, sw <= w, `${sw}px`);
   }

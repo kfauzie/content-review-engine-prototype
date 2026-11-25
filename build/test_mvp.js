@@ -88,46 +88,55 @@ t("dates", C.niceDate("2026-11-04") === "4 Nov 2026");
 const ID = /^(Expert|Person|Reviewer|Company|Client|Staff) \d{4}$/;
 t("every card and transcript names the expert by ID", D.cards.every(c => /^Expert \d{4}$/.test(c.name)) && Object.values(D.transcripts).every(x => /^Expert \d{4}$/.test(x.name)));
 t("card and transcript links use IDs, not names", D.cards.every(c => /^(missed|false-alarm)-expert-\d{4}$/.test(c.id)));
-t("every ID in a transcript carries role tags", [...Object.values(D.transcripts), ...Object.values(D.release.transcripts)].every(x =>
-  Object.entries(x.entities).every(([k, v]) => ID.test(k) && v.length > 0)));
-const tsx = D.release.transcripts, empOf = n => Object.entries(tsx[n].entities).filter(([, v]) => v.some(z => z.startsWith("expert's"))).map(([k]) => k);
-t("the expert's employer keeps its role: transcript 2 'Company, listed, current employer'", Object.entries(tsx[2].entities).some(([k, v]) => k.startsWith("Company") && v.join() === "listed,expert's current employer"));
-t("the same company has the same ID in the test set and in the benchmark transcripts", (() => {
-  const a = D.transcripts[D.cards.find(c => c.source === "test set T5-01:24").transcript]; return a.declaration === tsx[5].declaration && empOf(5).every(id => a.declaration.includes(id)); })());
+t("every ID in a transcript carries role tags", Object.values(D.transcripts).every(x => Object.entries(x.entities).every(([k, v]) => ID.test(k) && v.length > 0)));
+const bySrc = src => D.transcripts[D.cards.find(c => c.source === src).transcript];
+t("the expert's employer keeps its role: transcript 2 'Company, listed, current employer'", Object.entries(bySrc("test set T2-01:19").entities).some(([k, v]) => k.startsWith("Company") && v.join() === "listed,expert's current employer"));
+t("a company keeps one ID across transcripts and tables", (() => { const id = Object.keys(bySrc("test set T5-01:24").entities).find(k => k.startsWith("Company"));
+  return bySrc("test set T5-01:24").declaration.includes(id) && D.release.versions[1].outputs[D.release.items.find(i => i.aid === "T5-01:03").id].reason.includes(id); })());
 t("no emails or phone numbers left", !/[\w.+-]+@[\w-]+\.[\w.]+/.test(JSON.stringify(D)) && !(JSON.stringify(D).match(/\+?\(?\d[\d ()-]{7,}\d/g) || []).some(x => x.replace(/\D/g, "").length >= 9));
 
-// testing a new version: the page's scoring equals the Python eval (notebooks/release_gate.py) for every version
+// comparing a new version: the page's scoring equals the Python eval (notebooks/release_gate.py) for every version
 const RL = D.release, srt = a => [...a].sort().join();
 RL.versions.forEach(v => {
   const s = C.scoreVersion(RL, v.id), g = C.gateResult(RL, v.id), p = GATE[v.id];
   t(`${v.id}: page scoring equals the Python eval`, s.flags === p.flags && s.caught === p.caught && s.issues === p.issues && s.missed_total === p.missed_total &&
     s.missed_high === p.missed_high && srt(s.false_alarms) === srt(p.false_alarms) && Object.keys(p.missed).every(x => srt(s.missed[x]) === srt(p.missed[x])) &&
     Object.keys(p.false_alarms_by_type).every(x => srt(s.false_alarms_by_type[x]) === srt(p.false_alarms_by_type[x])), JSON.stringify({ caught: s.caught, fa: s.false_alarms.length }));
-  t(`${v.id}: result equals the Python eval`, g.passed === p.result.passed && g.headline === p.result.headline && g.reason === p.result.reason && g.links.join() === p.result.links.join(), g.headline);
+  t(`${v.id}: result equals the Python eval`, g.passed === p.result.passed && g.headline === p.result.headline && g.detail === p.result.detail, `${g.headline}: ${g.detail}`);
 });
-const sc = id => C.scoreVersion(RL, id), faT = id => RL.clean.types.map(t => sc(id).false_alarms_by_type[t.id].length).join();
-t("v1.0 (current production): 3 of 7 caught, 4 missed (2 high priority), 5 false alarms (3 public source, 1 harmless mention, 1 market talk)",
-  sc("v1.0").caught === 3 && sc("v1.0").missed_total === 4 && sc("v1.0").missed_high === 2 && faT("v1.0") === "3,1,1");
-t("v1.1: all 7 caught, 0 missed, 2 false alarms (1 public source, 1 harmless company mention), ready for shadow testing",
-  sc("v1.1").caught === 7 && sc("v1.1").missed_total === 0 && faT("v1.1") === "1,1,0" && C.gateResult(RL, "v1.1").headline === "Ready for shadow testing");
-t("v1.2: not ready, missed MNPI in transcript 5 (the hedged hint), linked", C.gateResult(RL, "v1.2").headline === "Not ready: missed MNPI in transcript 5" &&
-  C.gateResult(RL, "v1.2").links.join() === "T5-01:24");
-t("every flagged clean answer has a reviewer note saying why it is not an issue", RL.versions.every(v => sc(v.id).false_alarms.every(a => RL.clean.answers[a] && RL.clean.answers[a].note)));
+const sc = id => C.scoreVersion(RL, id), faT = id => RL.fa_types.map(t => sc(id).false_alarms_by_type[t.id].length).join(), missT = id => RL.types.map(t => sc(id).missed[t.id].length).join();
+t("runs on all 1,000 reviewed transcripts, one transcript ID per item", RL.transcripts === 1000 && RL.items.every(i => /^\d{4}$/.test(i.tid) && +i.tid >= 1 && +i.tid <= 1000));
+t("current production reproduces the Current AI performance page: 262 issues, 23 missed (5,4,0,4,3,7), 187 false alarms (98,41,27,21)",
+  sc("v1.0").issues === T.found && sc("v1.0").missed_total === T.missed && missT("v1.0") === D.categories.map(c => c.missed).join() &&
+  faT("v1.0") === D.false_alarm_types.map(x => x.count).join());
+t("each production miss is one of the page's example misses, in the same transcript", sc("v1.0").false_alarms.length === 187 &&
+  RL.types.every(x => sc("v1.0").missed[x.id].every(id => { const i = RL.items.find(z => z.id === id), c = D.cards.find(k => k.id === i.card); return c && c.kind === "missed" && c.tid === i.tid; })));
+t("v1.1: ready, 0 high-priority misses; 9 lower-priority misses (named people); 138 false alarms", C.gateResult(RL, "v1.1").headline === "Ready" &&
+  C.gateResult(RL, "v1.1").detail === "0 high-priority misses" && sc("v1.1").missed_total === 9 && sc("v1.1").false_alarms.length === 138);
+t("v1.2: not ready, 1 high-priority miss (the hedged MNPI hint)", C.gateResult(RL, "v1.2").headline === "Not ready" && C.gateResult(RL, "v1.2").detail === "1 high-priority miss" &&
+  sc("v1.2").missed.MNPI.map(id => RL.items.find(i => i.id === id).aid).join() === "T5-01:24");
+t("on the test set, v1.1 keeps the blind reviewer's results: all 7 issues caught, false alarms T5-01:03 and T7-00:36 only", (() => {
+  const ts = RL.items.filter(i => i.aid), o = RL.versions[1].outputs;
+  return ts.filter(i => i.kind === "issue").length === 7 && ts.filter(i => i.kind === "issue").every(i => o[i.id].flag) &&
+    ts.filter(i => i.kind !== "issue" && o[i.id].flag).map(i => i.aid).sort().join() === "T5-01:03,T7-00:36"; })());
+t("v1.2 differs from v1.1 only on T5-01:24", RL.items.filter(i => JSON.stringify(RL.versions[1].outputs[i.id]) !== JSON.stringify(RL.versions[2].outputs[i.id])).map(i => i.aid).join() === "T5-01:24");
 t("version labels in plain words", RL.versions.map(v => v.label).join("|") === "Current production (v1.0)|New version: reads the expert's declaration (v1.1)|New version: cheaper model (v1.2)");
-t("every version's outputs cover every expert answer and are labelled simulated", RL.versions.every(v => RL.answers.every(a => v.outputs[a])) && /SIMULATED/.test(RL.note));
-t("v1.2 differs from v1.1 only on T5-01:24", RL.answers.filter(a => JSON.stringify(RL.versions[1].outputs[a]) !== JSON.stringify(RL.versions[2].outputs[a])).join() === "T5-01:24");
-t("model names are fictional: Meridian Pro (current) and Meridian Swift", RL.versions.map(v => v.model).join() === "Meridian Pro,Meridian Pro,Meridian Swift" &&
-  /^Meridian Pro: .* Meridian Swift: /.test(RL.models_note));
-t("what's changed: only differences from production are highlighted", RL.versions[0].changes.length === 0 &&
-  RL.versions[2].changes.find(c => c[0] === "Model").join() === "Model,Meridian Pro \u2192 Meridian Swift,true" && RL.versions[1].changes.find(c => c[0] === "Settings")[2] === false);
+t("outputs are labelled simulated", /SIMULATED/.test(RL.note));
+t("model names are fictional: Meridian Pro (current) and Meridian Swift", RL.versions.map(v => v.model).join() === "Meridian Pro,Meridian Pro,Meridian Swift");
+t("what's changed: only differences from production are highlighted; no 'flags by issue type'", RL.versions[0].changes.length === 0 &&
+  RL.versions[2].changes.find(c => c[0] === "Model").join() === "Model,Meridian Pro \u2192 Meridian Swift,true" && RL.versions[1].changes.find(c => c[0] === "Settings")[2] === false &&
+  !JSON.stringify(RL.versions.map(v => v.changes)).includes("issue type"));
+t("benchmark examples are cited by transcript ID", D.cards.every(c => /^\d{4}$/.test(c.tid)) && Object.values(D.transcripts).every(x => /^\d{4}$/.test(x.tid)) &&
+  new Set(Object.values(D.transcripts).map(x => x.tid)).size === 20 &&
+  D.fixes.every(f => f.examples.every(x => x.tid === D.transcripts[x.transcript].tid)));
 t("improvement 2 covers both insider sources and personal details", D.fixes[1].title === "Flag named people: insider sources and personal details");
-const T5 = D.transcripts[D.cards.find(c => c.source === "test set T5-01:24").transcript], T7 = D.transcripts[D.cards.find(c => c.source === "test set T7-00:36").transcript];
+const T5 = bySrc("test set T5-01:24"), T7 = bySrc("test set T7-00:36");
 t("first missed example: plain words, two paragraphs, and the reviewer's outside source", T5.reviewer_comment.split("\n\n").length === 2 && /knee replacement device/.test(T5.reviewer_comment) &&
   !/hedg/i.test(T5.reviewer_comment) && /not in the transcript/.test(T5.root_cause) && /declaration/.test(T5.root_cause));
 t("first false alarm example: says what the AI should check, not 'web search'", /company filings and earnings call transcripts/.test(T7.root_cause) && !/web search/i.test(T7.root_cause));
 t("example wording is plain: no jargon left in the quotes", !D.cards.some(c => /knee systems|signed off for months|rate card|mothball|carve-out|churn model|underwrite|guided to|cost-plus|over-built/.test(c.quote)));
-t("kill-switch copy under the result", html.includes("In production, the same check runs on live spot-checks. A miss in a high-priority type triggers the kill switch, and that type goes back to full human review."));
 t("the term \"release gate\" isn't shown anywhere on the page", !/release gate/i.test(html.replace(/<script id="data"[\s\S]*?<\/script>/, "").replace(/\/\*[\s\S]*?\*\//g, "").replace(/\/\/.*$/gm, "")));
+t("no simulated-answers note, no model comparison line, no kill-switch copy", !/prepared in advance|more careful with subtle cases|kill switch/.test(html.replace(/<script id="data"[\s\S]*?<\/script>/, "")));
 t("reviewers are internal", Object.values(D.transcripts).every(x => /\(internal\)$/.test(x.reviewer)));
 t("no reviewer comment names the company we work for", Object.values(D.transcripts).every(x => !/dialectica/i.test(x.reviewer_comment)));
 t("priorities: three high, two medium, one low", D.categories.map(c => c.priority).join() === "high,high,high,medium,low,medium");

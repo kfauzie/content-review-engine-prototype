@@ -241,7 +241,7 @@ def main():
             "fixes": [{**f, "examples": [{**x, **{k: by_raw[x["name"]][k] for k in ("name", "highlight", "quote", "date", "ts", "kind", "category", "transcript")}}
                                          for x in f["examples"]]} for f in FIXES], "cards": cards, "transcripts": transcripts}
     data = M.obj(data)  # safety pass over every remaining string (descriptions, fix copy)
-    data["release"] = release_data(M, tset, listed, topics)
+    data["release"] = release_data(M, data)
     leaks = M.leaks(json.dumps(data, ensure_ascii=False))
     assert not leaks, f"real names left after masking: {leaks}"
     out = ROOT / "data/benchmark.json"

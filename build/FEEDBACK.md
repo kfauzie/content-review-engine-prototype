@@ -1,3 +1,19 @@
+# Prototype feedback, round 22 (applied)
+
+- **Removed:** the Meridian Pro/Swift comparison line, the "simulated answers" note and the kill-switch sentence.
+- **Runs on all 1,000 reviewed transcripts:** the same set as the Current AI performance page.
+  - **Production:** it reproduces that page exactly: 262 issues, 23 missed (5, 4, 0, 4, 3, 7), 187 false alarms (98, 41, 27, 21). Each production miss is one of the page's example misses, in the same transcript.
+  - **New versions:** outputs are simulated item by item by stated rules (see `notebooks/release_gate.py`). On the 8 test-set transcripts, v1.1 keeps the blind reviewer's verdicts.
+  - **v1.1 results:** 9 lower-priority misses, all named people, since it adds no check for them. 138 false alarms: it clears those about long-ago employers and public market talk. Ready.
+  - **v1.2 results:** misses the hedged MNPI hint. Not ready, 1 high-priority miss.
+- **v1.2 "What's changed":** "flags by issue type" is gone. It now reads "Model: Meridian Pro → Meridian Swift", "Reads: same as v1.1…", "Instructions: same as v1.1" and "Settings: same".
+- **Result:** "Ready" with "0 high-priority misses", or "Not ready" with "N high-priority misses". Nothing else.
+- **Sections:** each compare section is its own card with a coloured band (slate, amber, blue, rose) and a divided header. "What's changed" is a section of its own.
+- **Last section:** headed "All current misses and false alarms". It lists every miss with its quote, and every false alarm by type with its transcript IDs.
+- **Transcript IDs everywhere:** examples on the Current AI performance page cite the transcript ID ("Transcript 0702 · 12 Nov 2026 · 01:24") instead of the expert ID. Transcript pages carry the ID as their eyebrow.
+
+---
+
 # Prototype feedback, round 21 (applied): second light polish
 
 **Structure**

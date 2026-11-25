@@ -1,312 +1,1802 @@
 {
  "version": "v1.2",
- "note": "SIMULATED outputs on the masked synthetic test set.",
+ "note": "SIMULATED outputs on the 1,000 reviewed transcripts.",
  "outputs": {
-  "T1-00:21": {
+  "i001": {
    "flag": false,
-   "type": null,
-   "action": null,
-   "reason": "General industry view on post-pandemic shift to supply chain resilience; no company-specific non-public info."
-  },
-  "T1-01:03": {
-   "flag": false,
-   "type": null,
-   "action": null,
-   "reason": "General industry observations on regional depots, safety stock and control towers; no named company data."
-  },
-  "T1-01:44": {
-   "flag": false,
-   "type": null,
-   "action": null,
-   "reason": "General knowledge on automation by product category and labour availability; expert opinion."
-  },
-  "T1-02:39": {
-   "flag": false,
-   "type": null,
-   "action": null,
-   "reason": "Opinion on cold chain regulation and capex cycle; public regulatory trends, no confidential info."
-  },
-  "T1-03:23": {
-   "flag": false,
-   "type": null,
-   "action": null,
-   "reason": "Expert declines to name operators and speaks only about generic capabilities."
-  },
-  "T1-03:58": {
-   "flag": false,
-   "type": null,
-   "action": null,
-   "reason": "General view on 3PL margins and value-added services; opinion, no non-public data."
-  },
-  "T1-04:35": {
-   "flag": false,
-   "type": null,
-   "action": null,
-   "reason": "General opinion on store-level forecasting underinvestment; nothing about Company 5144 specifically."
-  },
-  "T2-00:12": {
-   "flag": false,
-   "type": null,
-   "action": null,
-   "reason": "General description of UK road freight fragmentation and consolidation drivers; industry knowledge."
-  },
-  "T2-00:48": {
-   "flag": false,
-   "type": null,
-   "action": null,
-   "reason": "General view that network density drives deals; no Halbrook-specific info."
-  },
-  "T2-01:19": {
-   "flag": false,
-   "type": null,
-   "action": null,
-   "reason": "Refers to what people say 'publicly' about mid-sized regional players such as Company 0615; market chatter, no insider detail."
-  },
-  "T2-01:39": {
-   "flag": true,
-   "type": "MNPI",
-   "action": "reject whole transcript",
-   "reason": "Current Company 5485 employee (listed company; declaration bars discussing Company 5485's non-public corporate activity) reveals unannounced acquisition of Company 0615: 'we've had integration planning sessions already', 'project codename', 'The board's signed off on it, it's just timing on the announcement'. Deliberate breach of declaration."
-  },
-  "T2-02:20": {
-   "flag": false,
-   "type": null,
-   "action": null,
-   "reason": "General comment on fuel surcharges and driver wage inflation across the industry."
-  },
-  "T2-02:55": {
-   "flag": false,
-   "type": null,
-   "action": null,
-   "reason": "General view on electrification and hydrogen in freight; industry knowledge."
-  },
-  "T2-03:32": {
-   "flag": false,
-   "type": null,
-   "action": null,
-   "reason": "General opinion on contract vs spot freight margins; no Company 5485 data."
-  },
-  "T3-00:14": {
-   "flag": false,
-   "type": null,
-   "action": null,
-   "reason": "General market view on demand and buyer scrutiny in workforce software."
-  },
-  "T3-00:39": {
-   "flag": false,
-   "type": null,
-   "action": null,
-   "reason": "General description of typical buyers; industry knowledge."
-  },
-  "T3-01:06": {
-   "flag": false,
-   "type": null,
-   "action": null,
-   "reason": "General view on pricing competition and switching costs; no Company 5981 specifics."
-  },
-  "T3-01:34": {
-   "flag": true,
-   "type": "Current employer confidential",
-   "action": "redact",
-   "reason": "Current Company 5981 employee shares unannounced pricing change: 'moving list price up 12% on the mid-market tier from January... customers haven't been told yet'. Declaration explicitly bars sharing Company 5981's non-public pricing. Company 5981 is private so not MNPI; remove passage, rest of call is general."
-  },
-  "T3-02:06": {
-   "flag": false,
-   "type": null,
-   "action": null,
-   "reason": "Explicitly general ('In general') view on buyer reaction to price increases."
-  },
-  "T3-02:35": {
-   "flag": false,
-   "type": null,
-   "action": null,
-   "reason": "General view on AI demand forecasting features across vendors."
-  },
-  "T3-03:03": {
-   "flag": false,
-   "type": null,
-   "action": null,
-   "reason": "General opinion that healthcare is the fastest growing segment; industry knowledge."
-  },
-  "T4-00:13": {
-   "flag": false,
-   "type": null,
-   "action": null,
-   "reason": "Expert sets caveat that he left in 2021 and will stick to public information; consistent with declaration."
-  },
-  "T4-00:26": {
-   "flag": false,
-   "type": null,
-   "action": null,
-   "reason": "Cites Company 9728's 2024 investor day and public filings; public information, post-dates his 2021 departure."
-  },
-  "T4-00:58": {
-   "flag": false,
-   "type": null,
-   "action": null,
-   "reason": "Opinion on lending thesis and concentration risk; general comment on past culture is not confidential."
-  },
-  "T4-01:33": {
-   "flag": false,
-   "type": null,
-   "action": null,
-   "reason": "General competitive view on loan approval speed and risk pricing."
-  },
-  "T4-02:03": {
-   "flag": false,
-   "type": null,
-   "action": null,
-   "reason": "Points to metrics Company 9728 reports in annual results; public information and opinion."
-  },
-  "T4-02:33": {
-   "flag": false,
-   "type": null,
-   "action": null,
-   "reason": "Refers to CEO's public statements on strategy; public information."
-  },
-  "T5-00:12": {
-   "flag": false,
-   "type": null,
-   "action": null,
-   "reason": "General market view on orthopaedic demand and ageing populations."
-  },
-  "T5-00:38": {
-   "flag": false,
-   "type": null,
-   "action": null,
-   "reason": "General view on hospital procurement pricing pressure in Europe and US."
-  },
-  "T5-01:03": {
-   "flag": true,
-   "type": "Confidentiality breach",
-   "action": "escalate to human",
-   "reason": "Comment on Company 3966, a listed company the expert left in March 2026 and owes continuing confidentiality to. Flagged as a precaution."
-  },
-  "T5-01:24": {
-   "flag": false,
-   "type": null,
-   "action": null,
    "reason": "General advice to watch the results. No company is named and no figure is given."
   },
-  "T5-01:57": {
-   "flag": false,
-   "type": null,
-   "action": null,
-   "reason": "General discussion of public EU medical device regulation and its effects."
-  },
-  "T5-02:29": {
-   "flag": false,
-   "type": null,
-   "action": null,
-   "reason": "General industry view on robotics locking in implant sales."
-  },
-  "T6-00:14": {
-   "flag": false,
-   "type": null,
-   "action": null,
-   "reason": "General description of enterprise software buying cycles."
-  },
-  "T6-00:40": {
-   "flag": false,
-   "type": null,
-   "action": null,
-   "reason": "General view on security and legal review as stall points."
-  },
-  "T6-01:06": {
+  "i002": {
    "flag": true,
-   "type": "Declaration conflict",
-   "action": "escalate to human",
+   "reason": "Flagged."
+  },
+  "i003": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i004": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i005": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i006": {
+   "flag": true,
+   "reason": "Current Company 5485 employee (listed company; declaration bars discussing Company 5485's non-public corporate activity) reveals unannounced acquisition of Company 0615: 'we've had integration planning sessions already', 'project codename', 'The board's signed off on it, it's just timing on the announcement'. Deliberate breach of declaration."
+  },
+  "i007": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i008": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i009": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i010": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i011": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i012": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i013": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i014": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i015": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i016": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i017": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i018": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i019": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i020": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i021": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i022": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i023": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i024": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i025": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i026": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i027": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i028": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i029": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i030": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i031": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i032": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i033": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i034": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i035": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i036": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i037": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i038": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i039": {
+   "flag": true,
+   "reason": "Current Company 5981 employee shares unannounced pricing change: 'moving list price up 12% on the mid-market tier from January... customers haven't been told yet'. Declaration explicitly bars sharing Company 5981's non-public pricing. Company 5981 is private so not MNPI; remove passage, rest of call is general."
+  },
+  "i040": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i041": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i042": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i043": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i044": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i045": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i046": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i047": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i048": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i049": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i050": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i051": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i052": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i053": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i054": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i055": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i056": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i057": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i058": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i059": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i060": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i061": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i062": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i063": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i064": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i065": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i066": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i067": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i068": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i069": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i070": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i071": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i072": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i073": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i074": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i075": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i076": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i077": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i078": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i079": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i080": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i081": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i082": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i083": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i084": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i085": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i086": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i087": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i088": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i089": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i090": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i091": {
+   "flag": true,
    "reason": "Expert declared she left Company 9560 in October 2024, but speaks as a current insider: 'At Company 9560, our team is rolling out a consolidation programme next month', 'We've been building the business case since the summer'. Also discloses Company 9560's non-public vendor plans. Human must verify true employment status."
   },
-  "T6-01:34": {
+  "i092": {
    "flag": true,
-   "type": "Source disclosure",
-   "action": "reject whole transcript",
+   "reason": "Flagged."
+  },
+  "i093": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i094": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i095": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i096": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i097": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i098": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i099": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i100": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i101": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i102": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i103": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i104": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i105": {
+   "flag": true,
    "reason": "Names an insider as source of non-public info: 'My contact Person 2315, who runs procurement there now, told me last week they're giving notice to two of them in Q1'. Contradicts declaration 'Not in contact with Company 9560 in a professional capacity'; together with 01:06 undermines the whole call."
   },
-  "T6-01:59": {
+  "i106": {
    "flag": false,
-   "type": null,
-   "action": null,
-   "reason": "General view on how vendors defend against consolidation."
+   "reason": "The answer names a person or a source, not company information, and this version does not check for named people."
   },
-  "T6-02:24": {
+  "i107": {
    "flag": false,
-   "type": null,
-   "action": null,
-   "reason": "General view on analytics pricing models; industry knowledge."
+   "reason": "The answer names a person or a source, not company information, and this version does not check for named people."
   },
-  "T7-00:11": {
+  "i108": {
    "flag": false,
-   "type": null,
-   "action": null,
-   "reason": "General description of packaged food margin pressures and recovery."
+   "reason": "The answer names a person or a source, not company information, and this version does not check for named people."
   },
-  "T7-00:36": {
+  "i109": {
    "flag": true,
-   "type": "MNPI",
-   "action": "escalate to human",
-   "reason": "Precise margin figures and full-year guidance for Company 9910, the expert's listed former employer. The cited source was not verified."
+   "reason": "Flagged."
   },
-  "T7-01:11": {
-   "flag": false,
-   "type": null,
-   "action": null,
-   "reason": "Expert confirms figures come from the public call and slides; consistent with 2022 departure."
-  },
-  "T7-01:29": {
-   "flag": false,
-   "type": null,
-   "action": null,
-   "reason": "Opinion on trade-offs of exiting private label; general analysis."
-  },
-  "T7-01:56": {
-   "flag": false,
-   "type": null,
-   "action": null,
-   "reason": "General view on retailer pushback and delistings."
-  },
-  "T7-02:23": {
-   "flag": false,
-   "type": null,
-   "action": null,
-   "reason": "Opinion on volume trends as key watch item; general analysis."
-  },
-  "T8-00:15": {
-   "flag": false,
-   "type": null,
-   "action": null,
-   "reason": "General description of common AML control weaknesses; industry knowledge."
-  },
-  "T8-00:53": {
+  "i110": {
    "flag": true,
-   "type": "Confidentiality breach",
-   "action": "reject whole transcript",
+   "reason": "Flagged."
+  },
+  "i111": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i112": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i113": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i114": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i115": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i116": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i117": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i118": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i119": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i120": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i121": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i122": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i123": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i124": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i125": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i126": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i127": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i128": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i129": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i130": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i131": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i132": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i133": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i134": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i135": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i136": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i137": {
+   "flag": true,
    "reason": "Declaration says bound by confidentiality to Company 7122's former clients, yet expert names former audit client and its findings: 'Company 0710, around 40% of the higher-risk customer files... missing source-of-funds documentation. It was in our final report to their board.' Could also be MNPI if Company 0710 is listed."
   },
-  "T8-01:24": {
+  "i138": {
    "flag": true,
-   "type": "PII",
-   "action": "redact",
+   "reason": "Flagged."
+  },
+  "i139": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i140": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i141": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i142": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i143": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i144": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i145": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i146": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i147": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i148": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i149": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i150": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i151": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i152": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i153": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i154": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i155": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i156": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i157": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i158": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i159": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i160": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i161": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i162": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i163": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i164": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i165": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i166": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i167": {
+   "flag": true,
    "reason": "Names a private individual and discloses sensitive health information: 'Person 8435, who led their financial crime team at the time, was on sick leave for months after a mental breakdown'. Also derived from confidential client engagement."
   },
-  "T8-01:52": {
+  "i168": {
    "flag": false,
-   "type": null,
-   "action": null,
-   "reason": "General view on first-line ownership and monitoring tuning."
+   "reason": "The answer names a person or a source, not company information, and this version does not check for named people."
   },
-  "T8-02:19": {
+  "i169": {
    "flag": false,
-   "type": null,
-   "action": null,
-   "reason": "General view on machine learning and explainability in transaction monitoring."
+   "reason": "The answer names a person or a source, not company information, and this version does not check for named people."
   },
-  "T8-02:49": {
+  "i170": {
    "flag": false,
-   "type": null,
-   "action": null,
-   "reason": "General view on what investors should watch in bank technology vendors."
+   "reason": "The answer names a person or a source, not company information, and this version does not check for named people."
+  },
+  "i171": {
+   "flag": false,
+   "reason": "The answer names a person or a source, not company information, and this version does not check for named people."
+  },
+  "i172": {
+   "flag": false,
+   "reason": "The answer names a person or a source, not company information, and this version does not check for named people."
+  },
+  "i173": {
+   "flag": false,
+   "reason": "The answer names a person or a source, not company information, and this version does not check for named people."
+  },
+  "i174": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i175": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i176": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i177": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i178": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i179": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i180": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i181": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i182": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i183": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i184": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i185": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i186": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i187": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i188": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i189": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i190": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i191": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i192": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i193": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i194": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i195": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i196": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i197": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i198": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i199": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i200": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i201": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i202": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i203": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i204": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i205": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i206": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i207": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i208": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i209": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i210": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i211": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i212": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i213": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i214": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i215": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i216": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i217": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i218": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i219": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i220": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i221": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i222": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i223": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i224": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i225": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i226": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i227": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i228": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i229": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i230": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i231": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i232": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i233": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i234": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i235": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i236": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i237": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i238": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i239": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i240": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i241": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i242": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i243": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i244": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i245": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i246": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i247": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i248": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i249": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i250": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i251": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i252": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i253": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i254": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i255": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i256": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i257": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i258": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i259": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i260": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i261": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i262": {
+   "flag": true,
+   "reason": "Flagged."
+  },
+  "i263": {
+   "flag": true,
+   "reason": "Precise margin figures and full-year guidance for Company 9910, the expert's listed former employer. The cited source was not verified."
+  },
+  "i264": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i265": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i266": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i267": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i268": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i269": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i270": {
+   "flag": false,
+   "reason": "Points to metrics Company 9728 reports in annual results; public information and opinion."
+  },
+  "i271": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i272": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i273": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i274": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i275": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i276": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i277": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i278": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i279": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i280": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i281": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i282": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i283": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i284": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i285": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i286": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i287": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i288": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i289": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i290": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i291": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i292": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i293": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i294": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i295": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i296": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i297": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i298": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i299": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i300": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i301": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i302": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i303": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i304": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i305": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i306": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i307": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i308": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i309": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i310": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i311": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i312": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i313": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i314": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i315": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i316": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i317": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i318": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i319": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i320": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i321": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i322": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i323": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i324": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i325": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i326": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i327": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i328": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i329": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i330": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i331": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i332": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i333": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i334": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i335": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i336": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i337": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i338": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i339": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i340": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i341": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i342": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i343": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i344": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i345": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i346": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i347": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i348": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i349": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i350": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i351": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i352": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i353": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i354": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i355": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i356": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i357": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i358": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i359": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i360": {
+   "flag": true,
+   "reason": "Precise information about a company. The cited public source was not checked."
+  },
+  "i361": {
+   "flag": true,
+   "reason": "Comment about a named company, treated as possible inside information."
+  },
+  "i362": {
+   "flag": true,
+   "reason": "Comment about a named company, treated as possible inside information."
+  },
+  "i363": {
+   "flag": true,
+   "reason": "Comment about a named company, treated as possible inside information."
+  },
+  "i364": {
+   "flag": true,
+   "reason": "Comment on Company 3966, a listed company the expert left in March 2026 and owes continuing confidentiality to. Flagged as a precaution."
+  },
+  "i365": {
+   "flag": true,
+   "reason": "Comment about a named company, treated as possible inside information."
+  },
+  "i366": {
+   "flag": true,
+   "reason": "Comment about a named company, treated as possible inside information."
+  },
+  "i367": {
+   "flag": true,
+   "reason": "Comment about a named company, treated as possible inside information."
+  },
+  "i368": {
+   "flag": true,
+   "reason": "Comment about a named company, treated as possible inside information."
+  },
+  "i369": {
+   "flag": true,
+   "reason": "Comment about a named company, treated as possible inside information."
+  },
+  "i370": {
+   "flag": true,
+   "reason": "Comment about a named company, treated as possible inside information."
+  },
+  "i371": {
+   "flag": true,
+   "reason": "Comment about a named company, treated as possible inside information."
+  },
+  "i372": {
+   "flag": true,
+   "reason": "Comment about a named company, treated as possible inside information."
+  },
+  "i373": {
+   "flag": true,
+   "reason": "Comment about a named company, treated as possible inside information."
+  },
+  "i374": {
+   "flag": true,
+   "reason": "Comment about a named company, treated as possible inside information."
+  },
+  "i375": {
+   "flag": true,
+   "reason": "Comment about a named company, treated as possible inside information."
+  },
+  "i376": {
+   "flag": true,
+   "reason": "Comment about a named company, treated as possible inside information."
+  },
+  "i377": {
+   "flag": true,
+   "reason": "Comment about a named company, treated as possible inside information."
+  },
+  "i378": {
+   "flag": true,
+   "reason": "Comment about a named company, treated as possible inside information."
+  },
+  "i379": {
+   "flag": true,
+   "reason": "Comment about a named company, treated as possible inside information."
+  },
+  "i380": {
+   "flag": true,
+   "reason": "Comment about a named company, treated as possible inside information."
+  },
+  "i381": {
+   "flag": true,
+   "reason": "Comment about a named company, treated as possible inside information."
+  },
+  "i382": {
+   "flag": true,
+   "reason": "Comment about a named company, treated as possible inside information."
+  },
+  "i383": {
+   "flag": true,
+   "reason": "Comment about a named company, treated as possible inside information."
+  },
+  "i384": {
+   "flag": true,
+   "reason": "Comment about a named company, treated as possible inside information."
+  },
+  "i385": {
+   "flag": true,
+   "reason": "Comment about a named company, treated as possible inside information."
+  },
+  "i386": {
+   "flag": true,
+   "reason": "Comment about a named company, treated as possible inside information."
+  },
+  "i387": {
+   "flag": true,
+   "reason": "Comment about a named company, treated as possible inside information."
+  },
+  "i388": {
+   "flag": true,
+   "reason": "Comment about a named company, treated as possible inside information."
+  },
+  "i389": {
+   "flag": true,
+   "reason": "Comment about a named company, treated as possible inside information."
+  },
+  "i390": {
+   "flag": true,
+   "reason": "Comment about a named company, treated as possible inside information."
+  },
+  "i391": {
+   "flag": true,
+   "reason": "Comment about a named company, treated as possible inside information."
+  },
+  "i392": {
+   "flag": true,
+   "reason": "Comment about a named company, treated as possible inside information."
+  },
+  "i393": {
+   "flag": true,
+   "reason": "Comment about a named company, treated as possible inside information."
+  },
+  "i394": {
+   "flag": true,
+   "reason": "Comment about a named company, treated as possible inside information."
+  },
+  "i395": {
+   "flag": true,
+   "reason": "Comment about a named company, treated as possible inside information."
+  },
+  "i396": {
+   "flag": true,
+   "reason": "Comment about a named company, treated as possible inside information."
+  },
+  "i397": {
+   "flag": true,
+   "reason": "Comment about a named company, treated as possible inside information."
+  },
+  "i398": {
+   "flag": true,
+   "reason": "Comment about a named company, treated as possible inside information."
+  },
+  "i399": {
+   "flag": true,
+   "reason": "Comment about a named company, treated as possible inside information."
+  },
+  "i400": {
+   "flag": true,
+   "reason": "Comment about a named company, treated as possible inside information."
+  },
+  "i401": {
+   "flag": true,
+   "reason": "Comment about a named company, treated as possible inside information."
+  },
+  "i402": {
+   "flag": false,
+   "reason": "Cites Company 9728's 2024 investor day and public filings; public information, post-dates his 2021 departure."
+  },
+  "i403": {
+   "flag": false,
+   "reason": "Not flagged."
+  },
+  "i404": {
+   "flag": false,
+   "reason": "Not flagged."
+  },
+  "i405": {
+   "flag": false,
+   "reason": "Not flagged."
+  },
+  "i406": {
+   "flag": false,
+   "reason": "Not flagged."
+  },
+  "i407": {
+   "flag": false,
+   "reason": "Not flagged."
+  },
+  "i408": {
+   "flag": false,
+   "reason": "Not flagged."
+  },
+  "i409": {
+   "flag": false,
+   "reason": "Not flagged."
+  },
+  "i410": {
+   "flag": false,
+   "reason": "Not flagged."
+  },
+  "i411": {
+   "flag": false,
+   "reason": "Not flagged."
+  },
+  "i412": {
+   "flag": false,
+   "reason": "Not flagged."
+  },
+  "i413": {
+   "flag": false,
+   "reason": "Not flagged."
+  },
+  "i414": {
+   "flag": false,
+   "reason": "Not flagged."
+  },
+  "i415": {
+   "flag": false,
+   "reason": "Not flagged."
+  },
+  "i416": {
+   "flag": false,
+   "reason": "Not flagged."
+  },
+  "i417": {
+   "flag": false,
+   "reason": "Not flagged."
+  },
+  "i418": {
+   "flag": false,
+   "reason": "Not flagged."
+  },
+  "i419": {
+   "flag": false,
+   "reason": "Not flagged."
+  },
+  "i420": {
+   "flag": false,
+   "reason": "Not flagged."
+  },
+  "i421": {
+   "flag": false,
+   "reason": "Not flagged."
+  },
+  "i422": {
+   "flag": false,
+   "reason": "Not flagged."
+  },
+  "i423": {
+   "flag": false,
+   "reason": "Not flagged."
+  },
+  "i424": {
+   "flag": false,
+   "reason": "Not flagged."
+  },
+  "i425": {
+   "flag": false,
+   "reason": "Not flagged."
+  },
+  "i426": {
+   "flag": false,
+   "reason": "Not flagged."
+  },
+  "i427": {
+   "flag": false,
+   "reason": "Not flagged."
+  },
+  "i428": {
+   "flag": false,
+   "reason": "Not flagged."
+  },
+  "i429": {
+   "flag": false,
+   "reason": "Refers to what people say 'publicly' about mid-sized regional players such as Company 0615; market chatter, no insider detail."
+  },
+  "i430": {
+   "flag": false,
+   "reason": "Not flagged."
+  },
+  "i431": {
+   "flag": false,
+   "reason": "Not flagged."
+  },
+  "i432": {
+   "flag": false,
+   "reason": "Not flagged."
+  },
+  "i433": {
+   "flag": false,
+   "reason": "Not flagged."
+  },
+  "i434": {
+   "flag": false,
+   "reason": "Not flagged."
+  },
+  "i435": {
+   "flag": false,
+   "reason": "Not flagged."
+  },
+  "i436": {
+   "flag": false,
+   "reason": "Not flagged."
+  },
+  "i437": {
+   "flag": false,
+   "reason": "Not flagged."
+  },
+  "i438": {
+   "flag": false,
+   "reason": "Not flagged."
+  },
+  "i439": {
+   "flag": false,
+   "reason": "Not flagged."
+  },
+  "i440": {
+   "flag": false,
+   "reason": "Not flagged."
+  },
+  "i441": {
+   "flag": false,
+   "reason": "Not flagged."
+  },
+  "i442": {
+   "flag": false,
+   "reason": "Not flagged."
+  },
+  "i443": {
+   "flag": false,
+   "reason": "Not flagged."
+  },
+  "i444": {
+   "flag": false,
+   "reason": "Not flagged."
+  },
+  "i445": {
+   "flag": false,
+   "reason": "Not flagged."
+  },
+  "i446": {
+   "flag": false,
+   "reason": "Not flagged."
+  },
+  "i447": {
+   "flag": false,
+   "reason": "Not flagged."
+  },
+  "i448": {
+   "flag": false,
+   "reason": "Not flagged."
+  },
+  "i449": {
+   "flag": false,
+   "reason": "Not flagged."
   }
  }
 }
