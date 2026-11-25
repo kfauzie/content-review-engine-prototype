@@ -91,7 +91,7 @@
     {
      "name": "Expert 1342",
      "highlight": "For us specifically",
-     "quote": "For us specifically, we're moving list price up 12% on the mid-market tier from January. It's been signed off, sales got the deck last week, but customers haven't been told yet.",
+     "quote": "For us specifically, we're moving list price up 12% on the mid-market tier from January. It's been approved, and sales got the presentation last week, but customers haven't been told yet.",
      "date": "2026-11-04",
      "ts": "01:34",
      "kind": "missed",
@@ -127,14 +127,14 @@
   },
   {
    "id": "people",
-   "title": "Flag possible insider contacts",
+   "title": "Flag named people: insider sources and personal details",
    "cause_label": "Why the AI missed it",
    "root_cause": "The AI only looked for information about companies. It missed answers that name private individuals, and answers in which the expert names an insider as the source.",
    "examples": [
     {
      "name": "Expert 6378",
      "highlight": "My contact Person 2315, who runs procurement there now, told me",
-     "quote": "My contact Person 2315, who runs procurement there now, told me last week they're giving notice to two of them in Q1.",
+     "quote": "My contact Person 2315, who runs procurement there now, told me last week they're ending contracts with two of those tools in Q1.",
      "date": "2026-11-09",
      "ts": "01:34",
      "kind": "missed",
@@ -144,7 +144,7 @@
     {
      "name": "Expert 3658",
      "highlight": "Person 8435",
-     "quote": "I remember Person 8435, who led their financial crime team at the time, was signed off for months with a breakdown afterwards.",
+     "quote": "I remember Person 8435, who led their financial crime team at the time, was on sick leave for months after a mental breakdown.",
      "date": "2026-11-13",
      "ts": "01:24",
      "kind": "missed",
@@ -167,7 +167,7 @@
     {
      "name": "Expert 1578",
      "highlight": "Our prices are on the website",
-     "quote": "Our prices are on the website. The standard tier is £40 a seat, and that hasn't changed this year.",
+     "quote": "Our prices are on the website. The standard tier is £40 per user, and that hasn't changed this year.",
      "date": "2026-11-04",
      "ts": "01:56",
      "kind": "false_alarm",
@@ -187,7 +187,7 @@
     {
      "name": "Expert 8996",
      "highlight": "On their Q2 earnings call in August",
-     "quote": "Company 9910 is a good one because they're transparent. On their Q2 earnings call in August, they reported gross margin of 31.4%, up from 28.9% a year earlier, and guided to 32% to 33% for the full year.",
+     "quote": "Company 9910 is a good one because they're transparent. On their Q2 earnings call in August, they reported gross margin of 31.4%, up from 28.9% a year earlier, and forecast 32% to 33% for the full year.",
      "date": "2026-11-12",
      "ts": "00:36",
      "kind": "false_alarm",
@@ -220,7 +220,7 @@
    "name": "Expert 9928",
    "date": "2026-11-12",
    "ts": "01:24",
-   "quote": "Look, I'm not saying anything specific, but if I were you I'd watch their Q3 numbers closely. Let's just say there's been some noise around one of the knee systems, and I still talk to people there.",
+   "quote": "Look, I'm not saying anything specific, but if I were you I'd watch their Q3 numbers closely. Let's just say there's been some noise around one of their knee replacement devices, and I still talk to people there.",
    "source": "test set T5-01:24",
    "cleared": null,
    "transcript": "missed-expert-9928",
@@ -280,7 +280,7 @@
    "name": "Expert 0937",
    "date": "2026-11-16",
    "ts": "02:03",
-   "quote": "I'd expect them to miss guidance. The October order book I saw was down about 15% on last year.",
+   "quote": "I'd expect them to miss their profit forecast. The October order book I saw was down about 15% on last year.",
    "source": "written for the design",
    "cleared": null,
    "transcript": "missed-expert-0937",
@@ -295,7 +295,7 @@
    "name": "Expert 1342",
    "date": "2026-11-04",
    "ts": "01:34",
-   "quote": "For us specifically, we're moving list price up 12% on the mid-market tier from January. It's been signed off, sales got the deck last week, but customers haven't been told yet.",
+   "quote": "For us specifically, we're moving list price up 12% on the mid-market tier from January. It's been approved, and sales got the presentation last week, but customers haven't been told yet.",
    "source": "test set T3-01:34",
    "cleared": null,
    "transcript": "missed-expert-1342",
@@ -355,7 +355,7 @@
    "name": "Expert 6378",
    "date": "2026-11-09",
    "ts": "01:34",
-   "quote": "My contact Person 2315, who runs procurement there now, told me last week they're giving notice to two of them in Q1.",
+   "quote": "My contact Person 2315, who runs procurement there now, told me last week they're ending contracts with two of those tools in Q1.",
    "source": "test set T6-01:34",
    "cleared": null,
    "transcript": "missed-expert-6378",
@@ -370,7 +370,7 @@
    "name": "Expert 4560",
    "date": "2026-10-28",
    "ts": "14:52",
-   "quote": "Their head of logistics, Person 2179, told me over dinner that the Rotterdam site is being mothballed after Christmas.",
+   "quote": "Their head of logistics, Person 2179, told me over dinner that the Rotterdam site is being shut down temporarily after Christmas.",
    "source": "written for the design",
    "cleared": null,
    "transcript": null,
@@ -385,7 +385,7 @@
    "name": "Expert 3063",
    "date": "2026-11-02",
    "ts": "22:07",
-   "quote": "I still speak to the plant manager at Ostrava most weeks, and he says the line restart has slipped to February.",
+   "quote": "I still speak to the plant manager at Ostrava most weeks, and he says the restart of the production line has been pushed back to February.",
    "source": "written for the design",
    "cleared": null,
    "transcript": null,
@@ -400,12 +400,12 @@
    "name": "Expert 5026",
    "date": "2026-11-15",
    "ts": "09:41",
-   "quote": "Someone on their pricing committee sent me the new rate card before it went out, so I know the increases are double digit.",
+   "quote": "Someone on their pricing committee sent me the new price list before it went out, so I know the increases are more than 10%.",
    "source": "written for the design",
    "cleared": null,
    "transcript": null,
    "fix": "people",
-   "highlight": "Someone on their pricing committee sent me the new rate card",
+   "highlight": "Someone on their pricing committee sent me the new price list",
    "fa_type": null
   },
   {
@@ -415,12 +415,12 @@
    "name": "Expert 2073",
    "date": "2026-10-30",
    "ts": "18:26",
-   "quote": "When we did their carve-out work, the stranded costs came out at nearly twice what management told the board.",
+   "quote": "When we worked on selling off part of their business, the costs left behind came out at nearly twice what management told the board.",
    "source": "written for the design",
    "cleared": null,
    "transcript": null,
    "fix": "declaration",
-   "highlight": "the stranded costs came out at nearly twice what management told the board",
+   "highlight": "the costs left behind came out at nearly twice what management told the board",
    "fa_type": null
   },
   {
@@ -430,12 +430,12 @@
    "name": "Expert 0460",
    "date": "2026-11-06",
    "ts": "11:03",
-   "quote": "One bank I advised had its core banking migration fail twice. It never went public, but it cost them most of a year.",
+   "quote": "One bank I advised had its move to a new core banking system fail twice. It never went public, but it cost them most of a year.",
    "source": "written for the design",
    "cleared": null,
    "transcript": null,
    "fix": "declaration",
-   "highlight": "had its core banking migration fail twice",
+   "highlight": "had its move to a new core banking system fail twice",
    "fa_type": null
   },
   {
@@ -445,12 +445,12 @@
    "name": "Expert 2345",
    "date": "2026-11-11",
    "ts": "26:40",
-   "quote": "I rebuilt their churn model last year as a consultant, and the real number was well above what they show investors.",
+   "quote": "I rebuilt their model of how many customers leave last year as a consultant, and the real rate was well above what they show investors.",
    "source": "written for the design",
    "cleared": null,
    "transcript": null,
    "fix": "declaration",
-   "highlight": "the real number was well above what they show investors",
+   "highlight": "the real rate was well above what they show investors",
    "fa_type": null
   },
   {
@@ -460,7 +460,7 @@
    "name": "Expert 3658",
    "date": "2026-11-13",
    "ts": "01:24",
-   "quote": "I remember Person 8435, who led their financial crime team at the time, was signed off for months with a breakdown afterwards.",
+   "quote": "I remember Person 8435, who led their financial crime team at the time, was on sick leave for months after a mental breakdown.",
    "source": "test set T8-01:24",
    "cleared": null,
    "transcript": "missed-expert-3658",
@@ -580,7 +580,7 @@
    "name": "Expert 0383",
    "date": "2026-11-06",
    "ts": "00:26",
-   "quote": "Company 9728 laid out the lending strategy at their 2024 investor day. The logic is straightforward: they already see merchants' transaction data, so they can underwrite small loans with better information than a bank.",
+   "quote": "Company 9728 laid out the lending strategy at their 2024 investor day. The logic is straightforward: they already see merchants' transaction data, so they can decide whether to lend to small businesses with better information than a bank.",
    "source": "test set T4-00:26",
    "cleared": "Left in 2021; cites the public investor day",
    "transcript": "false-alarm-expert-0383",
@@ -595,7 +595,7 @@
    "name": "Expert 8996",
    "date": "2026-11-12",
    "ts": "00:36",
-   "quote": "Company 9910 is a good one because they're transparent. On their Q2 earnings call in August, they reported gross margin of 31.4%, up from 28.9% a year earlier, and guided to 32% to 33% for the full year.",
+   "quote": "Company 9910 is a good one because they're transparent. On their Q2 earnings call in August, they reported gross margin of 31.4%, up from 28.9% a year earlier, and forecast 32% to 33% for the full year.",
    "source": "test set T7-00:36",
    "cleared": "Figures from the public Q2 earnings call",
    "transcript": "false-alarm-expert-8996",
@@ -655,7 +655,7 @@
    "name": "Expert 1578",
    "date": "2026-11-04",
    "ts": "01:56",
-   "quote": "Our prices are on the website. The standard tier is £40 a seat, and that hasn't changed this year.",
+   "quote": "Our prices are on the website. The standard tier is £40 per user, and that hasn't changed this year.",
    "source": "written for the design",
    "cleared": "Published list price",
    "transcript": "false-alarm-expert-1578",
@@ -745,7 +745,7 @@
    "name": "Expert 6523",
    "date": "2026-10-31",
    "ts": "10:14",
-   "quote": "When I was at Company 7278 in 2015, we priced on a cost-plus basis. I've no idea what they do now.",
+   "quote": "When I was at Company 7278 in 2015, we set prices at cost plus a fixed margin. I've no idea what they do now.",
    "source": "written for the design",
    "cleared": "Left Company 7278 in 2016; nothing current",
    "transcript": null,
@@ -775,7 +775,7 @@
    "name": "Expert 1186",
    "date": "2026-11-16",
    "ts": "22:45",
-   "quote": "My old manager at Company 5364, back in 2014, always said the network was over-built.",
+   "quote": "My old manager at Company 5364, back in 2014, always said they had built more network than they needed.",
    "source": "written for the design",
    "cleared": "A ten-year-old opinion about a former employer",
    "transcript": null,
@@ -873,7 +873,7 @@
     {
      "ts": "01:24",
      "speaker": "EXPERT",
-     "text": "Look, I'm not saying anything specific, but if I were you I'd watch their Q3 numbers closely. Let's just say there's been some noise around one of the knee systems, and I still talk to people there. Quality issues take a while to show up in the numbers."
+     "text": "Look, I'm not saying anything specific, but if I were you I'd watch their Q3 numbers closely. Let's just say there's been some noise around one of their knee replacement devices, and I still talk to people there. Quality issues take a while to show up in the numbers."
     },
     {
      "ts": "01:52",
@@ -902,8 +902,8 @@
     }
    ],
    "passage_ts": "01:24",
-   "reviewer_comment": "The expert left Company 3966, a listed company, in March 2026 and says he still speaks to people there. He hints at a quality problem with one of its knee systems that has not yet shown in its results. The hedging does not make it safe: this may be inside information. We redacted the passage and referred it to Legal.",
-   "root_cause": "The AI only checks answers that name a company. This answer says “their” instead. To link it to Company 3966, the AI needed the question before it and the expert's declaration, and it reads neither.",
+   "reviewer_comment": "The expert left Company 3966, a listed company, in March 2026 and says he still speaks to people there. He hints at a quality problem with one of its knee replacement devices that has not yet shown in its results. That may be inside information.\n\nSaying “I'm not saying anything specific” does not make it safe. We redacted the passage and referred it to Legal.",
+   "root_cause": "The AI only checks answers that name a company, and this one says “their” instead. The human reviewer's conclusion also relies on a fact that is not in the transcript: that Company 3966 is a listed company. The reviewer probably checked another source, such as the expert's declaration. The AI reads neither the question before the answer nor the declaration, so it could not link “their” to Company 3966 or see that the company is listed.",
    "source": "test set, transcript 5",
    "id": "missed-expert-9928",
    "kind": "missed",
@@ -1237,7 +1237,7 @@
     {
      "ts": "02:03",
      "speaker": "EXPERT",
-     "text": "I'd expect them to miss guidance. The October order book I saw was down about 15% on last year."
+     "text": "I'd expect them to miss their profit forecast. The October order book I saw was down about 15% on last year."
     },
     {
      "ts": "02:20",
@@ -1262,7 +1262,7 @@
    ],
    "passage_ts": "02:03",
    "reviewer_comment": "The expert is Company 6650's main distributor and sees its order data. He disclosed a fall in its order book that points to the company missing its published forecast (its guidance). Company 6650 is listed. We redacted the passage and reminded the expert of his restrictions.",
-   "root_cause": "The AI recorded “I'd expect them to miss guidance” as the expert's own forecast and treated the passage as opinion. It missed that “the order book I saw” means he had seen Company 6650's internal data, through the distribution relationship recorded in his declaration.",
+   "root_cause": "The AI recorded “I'd expect them to miss their profit forecast” as the expert's own forecast and treated the passage as opinion. It missed that “the order book I saw” means he had seen Company 6650's internal data, through the distribution relationship recorded in his declaration.",
    "source": "written for the prototype",
    "id": "missed-expert-0937",
    "kind": "missed",
@@ -1331,7 +1331,7 @@
     {
      "ts": "01:34",
      "speaker": "EXPERT",
-     "text": "Most of the market is trying. For us specifically, we're moving list price up 12% on the mid-market tier from January. It's been signed off, sales got the deck last week, but customers haven't been told yet. We think churn risk is low because of the integrations."
+     "text": "Most of the market is trying. For us specifically, we're moving list price up 12% on the mid-market tier from January. It's been approved, and sales got the presentation last week, but customers haven't been told yet. We think churn risk is low because of the integrations."
     },
     {
      "ts": "02:01",
@@ -1710,7 +1710,7 @@
     {
      "ts": "01:34",
      "speaker": "EXPERT",
-     "text": "The niche dashboard tools. My contact Person 2315, who runs procurement there now, told me last week they're giving notice to two of them in Q1. The big platforms will win because they can bundle."
+     "text": "The niche dashboard tools. My contact Person 2315, who runs procurement there now, told me last week they're ending contracts with two of those tools in Q1. The big platforms will win because they can bundle."
     },
     {
      "ts": "01:55",
@@ -1795,7 +1795,7 @@
     {
      "ts": "01:24",
      "speaker": "EXPERT",
-     "text": "A remediation programme, usually with external help, and a lot of pressure on the compliance team. It's tough on people. I remember Person 8435, who led their financial crime team at the time, was signed off for months with a breakdown afterwards."
+     "text": "A remediation programme, usually with external help, and a lot of pressure on the compliance team. It's tough on people. I remember Person 8435, who led their financial crime team at the time, was on sick leave for months after a mental breakdown."
     },
     {
      "ts": "01:48",
@@ -1995,7 +1995,7 @@
     {
      "ts": "00:26",
      "speaker": "EXPERT",
-     "text": "Company 9728 laid out the lending strategy at their 2024 investor day. The logic is straightforward: they already see merchants' transaction data, so they can underwrite small loans with better information than a bank. That's the whole thesis, and it's been in their public filings since."
+     "text": "Company 9728 laid out the lending strategy at their 2024 investor day. The logic is straightforward: they already see merchants' transaction data, so they can decide whether to lend to small businesses with better information than a bank. That's the whole thesis, and it's been in their public filings since."
     },
     {
      "ts": "00:55",
@@ -2090,7 +2090,7 @@
     {
      "ts": "00:36",
      "speaker": "EXPERT",
-     "text": "Company 9910 is a good one because they're transparent. On their Q2 earnings call in August, they reported gross margin of 31.4%, up from 28.9% a year earlier, and guided to 32% to 33% for the full year. They attributed most of it to pricing and to exiting low-margin private label contracts."
+     "text": "Company 9910 is a good one because they're transparent. On their Q2 earnings call in August, they reported gross margin of 31.4%, up from 28.9% a year earlier, and forecast 32% to 33% for the full year. They attributed most of it to pricing and to exiting low-margin private label contracts."
     },
     {
      "ts": "01:08",
@@ -2140,7 +2140,7 @@
    ],
    "passage_ts": "00:36",
    "reviewer_comment": "The figures are precise but come from the public Q2 earnings call and slides, as the expert confirms at 01:11. He left Company 9910 in 2022. Cleared.",
-   "root_cause": "The AI matched “Company 9910” next to precise margin figures. It did not check the source the expert gave: the public Q2 earnings call.",
+   "root_cause": "The AI flagged precise margin figures next to “Company 9910” without checking the source the expert gave: the public Q2 earnings call. It should check figures like these against approved public sources, such as company filings and earnings call transcripts, and clear them when they match.",
    "source": "test set, transcript 7",
    "id": "false-alarm-expert-8996",
    "kind": "false_alarm",
@@ -2464,7 +2464,7 @@
     {
      "ts": "01:56",
      "speaker": "EXPERT",
-     "text": "Our prices are on the website. The standard tier is £40 a seat, and that hasn't changed this year."
+     "text": "Our prices are on the website. The standard tier is £40 per user, and that hasn't changed this year."
     },
     {
      "ts": "02:10",
@@ -2873,15 +2873,15 @@
     }
    }
   },
+  "models_note": "Meridian Pro: more careful with subtle cases, slower and costs more. Meridian Swift: faster and cheaper, more likely to miss subtle hints.",
   "versions": [
    {
     "id": "v1.0",
     "label": "Current production (v1.0)",
     "status": "Current production",
+    "model": "Meridian Pro",
     "description": "Flags every answer that names a company. It raises many false alarms, and misses answers that refer to a company without naming it.",
-    "model": "Small, fast model",
-    "prompt": "Flag every expert answer that names a company.",
-    "settings": "Reads the answer only, without the question or the expert's declaration.",
+    "changes": [],
     "outputs": {
      "T1-00:21": {
       "flag": false,
@@ -3195,10 +3195,30 @@
     "id": "v1.1",
     "label": "New version: reads the expert's declaration (v1.1)",
     "status": "New version",
+    "model": "Meridian Pro",
     "description": "Also reads the question and the expert's declaration, so it can tell which company “we”, “us” and “their” refer to.",
-    "model": "Large model",
-    "prompt": "Review each answer together with the question and the expert's declaration. Identify the company that “we”, “us” or “their” refers to, using the masked IDs and their tags. Flag by issue type and recommend an action.",
-    "settings": "Reads the question, the answer and the declaration. Temperature 0 (the same input always gives the same output).",
+    "changes": [
+     [
+      "Model",
+      "same (Meridian Pro)",
+      false
+     ],
+     [
+      "Reads",
+      "Now reads the expert's declaration and the question, not just the answer",
+      true
+     ],
+     [
+      "Instructions",
+      "Now works out which company “we”, “us” and “their” refer to, and flags by issue type",
+      true
+     ],
+     [
+      "Settings",
+      "same",
+      false
+     ]
+    ],
     "outputs": {
      "T1-00:21": {
       "flag": false,
@@ -3384,7 +3404,7 @@
       "flag": true,
       "type": "MNPI",
       "action": "reject whole transcript",
-      "reason": "Former Company 3966 Finance Director (listed company, left March 2026, confidentiality obligations) tips undisclosed quality issue ahead of results: 'watch their Q3 numbers closely', 'noise around one of the knee systems', 'I still talk to people there'. Signals non-public adverse information from ongoing insider contacts."
+      "reason": "Former Company 3966 Finance Director (listed company, left March 2026, confidentiality obligations) tips undisclosed quality issue ahead of results: 'watch their Q3 numbers closely', 'noise around one of their knee replacement devices', 'I still talk to people there'. Signals non-public adverse information from ongoing insider contacts."
      },
      "T5-01:57": {
       "flag": false,
@@ -3486,7 +3506,7 @@
       "flag": true,
       "type": "PII",
       "action": "redact",
-      "reason": "Names a private individual and discloses sensitive health information: 'Person 8435, who led their financial crime team at the time, was signed off for months with a breakdown'. Also derived from confidential client engagement."
+      "reason": "Names a private individual and discloses sensitive health information: 'Person 8435, who led their financial crime team at the time, was on sick leave for months after a mental breakdown'. Also derived from confidential client engagement."
      },
      "T8-01:52": {
       "flag": false,
@@ -3512,10 +3532,30 @@
     "id": "v1.2",
     "label": "New version: cheaper model (v1.2)",
     "status": "New version",
+    "model": "Meridian Swift",
     "description": "The same instructions as v1.1, on a cheaper and faster model.",
-    "model": "Small, fast model",
-    "prompt": "Same as v1.1.",
-    "settings": "Reads the question, the answer and the declaration. Temperature 0 (the same input always gives the same output).",
+    "changes": [
+     [
+      "Model",
+      "Meridian Pro → Meridian Swift",
+      true
+     ],
+     [
+      "Reads",
+      "Now reads the expert's declaration and the question, not just the answer",
+      true
+     ],
+     [
+      "Instructions",
+      "as v1.1: works out which company “we”, “us” and “their” refer to, and flags by issue type",
+      true
+     ],
+     [
+      "Settings",
+      "same",
+      false
+     ]
+    ],
     "outputs": {
      "T1-00:21": {
       "flag": false,
@@ -3803,7 +3843,7 @@
       "flag": true,
       "type": "PII",
       "action": "redact",
-      "reason": "Names a private individual and discloses sensitive health information: 'Person 8435, who led their financial crime team at the time, was signed off for months with a breakdown'. Also derived from confidential client engagement."
+      "reason": "Names a private individual and discloses sensitive health information: 'Person 8435, who led their financial crime team at the time, was on sick leave for months after a mental breakdown'. Also derived from confidential client engagement."
      },
      "T8-01:52": {
       "flag": false,
@@ -3824,15 +3864,6 @@
       "reason": "General view on what investors should watch in bank technology vendors."
      }
     }
-   }
-  ],
-  "log": [
-   {
-    "at": "2026-09-08T10:14",
-    "version": "v1.0",
-    "result": "Released",
-    "reason": "First version in production, released before this test existed. New versions are compared with it.",
-    "by": "Staff 0004"
    }
   ],
   "transcripts": {
@@ -4069,7 +4100,7 @@
      {
       "ts": "01:34",
       "speaker": "EXPERT",
-      "text": "Most of the market is trying. For us specifically, we're moving list price up 12% on the mid-market tier from January. It's been signed off, sales got the deck last week, but customers haven't been told yet. We think churn risk is low because of the integrations."
+      "text": "Most of the market is trying. For us specifically, we're moving list price up 12% on the mid-market tier from January. It's been approved, and sales got the presentation last week, but customers haven't been told yet. We think churn risk is low because of the integrations."
      },
      {
       "ts": "02:01",
@@ -4144,7 +4175,7 @@
      {
       "ts": "00:26",
       "speaker": "EXPERT",
-      "text": "Company 9728 laid out the lending strategy at their 2024 investor day. The logic is straightforward: they already see merchants' transaction data, so they can underwrite small loans with better information than a bank. That's the whole thesis, and it's been in their public filings since."
+      "text": "Company 9728 laid out the lending strategy at their 2024 investor day. The logic is straightforward: they already see merchants' transaction data, so they can decide whether to lend to small businesses with better information than a bank. That's the whole thesis, and it's been in their public filings since."
      },
      {
       "ts": "00:55",
@@ -4248,7 +4279,7 @@
      {
       "ts": "01:24",
       "speaker": "EXPERT",
-      "text": "Look, I'm not saying anything specific, but if I were you I'd watch their Q3 numbers closely. Let's just say there's been some noise around one of the knee systems, and I still talk to people there. Quality issues take a while to show up in the numbers."
+      "text": "Look, I'm not saying anything specific, but if I were you I'd watch their Q3 numbers closely. Let's just say there's been some noise around one of their knee replacement devices, and I still talk to people there. Quality issues take a while to show up in the numbers."
      },
      {
       "ts": "01:52",
@@ -4330,7 +4361,7 @@
      {
       "ts": "01:34",
       "speaker": "EXPERT",
-      "text": "The niche dashboard tools. My contact Person 2315, who runs procurement there now, told me last week they're giving notice to two of them in Q1. The big platforms will win because they can bundle."
+      "text": "The niche dashboard tools. My contact Person 2315, who runs procurement there now, told me last week they're ending contracts with two of those tools in Q1. The big platforms will win because they can bundle."
      },
      {
       "ts": "01:55",
@@ -4394,7 +4425,7 @@
      {
       "ts": "00:36",
       "speaker": "EXPERT",
-      "text": "Company 9910 is a good one because they're transparent. On their Q2 earnings call in August, they reported gross margin of 31.4%, up from 28.9% a year earlier, and guided to 32% to 33% for the full year. They attributed most of it to pricing and to exiting low-margin private label contracts."
+      "text": "Company 9910 is a good one because they're transparent. On their Q2 earnings call in August, they reported gross margin of 31.4%, up from 28.9% a year earlier, and forecast 32% to 33% for the full year. They attributed most of it to pricing and to exiting low-margin private label contracts."
      },
      {
       "ts": "01:08",
@@ -4486,7 +4517,7 @@
      {
       "ts": "01:24",
       "speaker": "EXPERT",
-      "text": "A remediation programme, usually with external help, and a lot of pressure on the compliance team. It's tough on people. I remember Person 8435, who led their financial crime team at the time, was signed off for months with a breakdown afterwards."
+      "text": "A remediation programme, usually with external help, and a lot of pressure on the compliance team. It's tough on people. I remember Person 8435, who led their financial crime team at the time, was on sick leave for months after a mental breakdown."
      },
      {
       "ts": "01:48",

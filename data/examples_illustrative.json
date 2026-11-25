@@ -7,7 +7,7 @@
    "date": "2026-11-12",
    "ts": "01:24",
    "source": "test set T5-01:24",
-   "quote": "Look, I'm not saying anything specific, but if I were you I'd watch their Q3 numbers closely. Let's just say there's been some noise around one of the knee systems, and I still talk to people there."
+   "quote": "Look, I'm not saying anything specific, but if I were you I'd watch their Q3 numbers closely. Let's just say there's been some noise around one of their knee replacement devices, and I still talk to people there."
   },
   {
    "category": "Material non-public information",
@@ -39,7 +39,7 @@
    "date": "2026-11-16",
    "ts": "12:48",
    "source": "written for the design",
-   "quote": "I'd expect them to miss guidance. The October order book I saw was down about 15% on last year."
+   "quote": "I'd expect them to miss their profit forecast. The October order book I saw was down about 15% on last year."
   },
   {
    "category": "Current-employer confidential",
@@ -47,7 +47,7 @@
    "date": "2026-11-04",
    "ts": "01:34",
    "source": "test set T3-01:34",
-   "quote": "For us specifically, we're moving list price up 12% on the mid-market tier from January. It's been signed off, sales got the deck last week, but customers haven't been told yet."
+   "quote": "For us specifically, we're moving list price up 12% on the mid-market tier from January. It's been approved, and sales got the presentation last week, but customers haven't been told yet."
   },
   {
    "category": "Current-employer confidential",
@@ -79,7 +79,7 @@
    "date": "2026-11-09",
    "ts": "01:34",
    "source": "test set T6-01:34",
-   "quote": "My contact Jamie Holt, who runs procurement there now, told me last week they're giving notice to two of them in Q1."
+   "quote": "My contact Jamie Holt, who runs procurement there now, told me last week they're ending contracts with two of those tools in Q1."
   },
   {
    "category": "Source disclosure",
@@ -87,7 +87,7 @@
    "date": "2026-10-28",
    "ts": "14:52",
    "source": "written for the design",
-   "quote": "Their head of logistics, Carla, told me over dinner that the Rotterdam site is being mothballed after Christmas."
+   "quote": "Their head of logistics, Carla, told me over dinner that the Rotterdam site is being shut down temporarily after Christmas."
   },
   {
    "category": "Source disclosure",
@@ -95,7 +95,7 @@
    "date": "2026-11-02",
    "ts": "22:07",
    "source": "written for the design",
-   "quote": "I still speak to the plant manager at Ostrava most weeks, and he says the line restart has slipped to February."
+   "quote": "I still speak to the plant manager at Ostrava most weeks, and he says the restart of the production line has been pushed back to February."
   },
   {
    "category": "Source disclosure",
@@ -103,7 +103,7 @@
    "date": "2026-11-15",
    "ts": "09:41",
    "source": "written for the design",
-   "quote": "Someone on their pricing committee sent me the new rate card before it went out, so I know the increases are double digit."
+   "quote": "Someone on their pricing committee sent me the new price list before it went out, so I know the increases are more than 10%."
   },
   {
    "category": "Former-client confidential",
@@ -111,7 +111,7 @@
    "date": "2026-10-30",
    "ts": "18:26",
    "source": "written for the design",
-   "quote": "When we did their carve-out work, the stranded costs came out at nearly twice what management told the board."
+   "quote": "When we worked on selling off part of their business, the costs left behind came out at nearly twice what management told the board."
   },
   {
    "category": "Former-client confidential",
@@ -119,7 +119,7 @@
    "date": "2026-11-06",
    "ts": "11:03",
    "source": "written for the design",
-   "quote": "One bank I advised had its core banking migration fail twice. It never went public, but it cost them most of a year."
+   "quote": "One bank I advised had its move to a new core banking system fail twice. It never went public, but it cost them most of a year."
   },
   {
    "category": "Former-client confidential",
@@ -127,7 +127,7 @@
    "date": "2026-11-11",
    "ts": "26:40",
    "source": "written for the design",
-   "quote": "I rebuilt their churn model last year as a consultant, and the real number was well above what they show investors."
+   "quote": "I rebuilt their model of how many customers leave last year as a consultant, and the real rate was well above what they show investors."
   },
   {
    "category": "Personal data",
@@ -135,7 +135,7 @@
    "date": "2026-11-13",
    "ts": "01:24",
    "source": "test set T8-01:24",
-   "quote": "I remember Mark Ellison, who led their financial crime team at the time, was signed off for months with a breakdown afterwards."
+   "quote": "I remember Mark Ellison, who led their financial crime team at the time, was on sick leave for months after a mental breakdown."
   },
   {
    "category": "Personal data",
@@ -201,7 +201,7 @@
    "date": "2026-11-06",
    "ts": "00:26",
    "source": "test set T4-00:26",
-   "quote": "Quillon laid out the lending strategy at their 2024 investor day. The logic is straightforward: they already see merchants' transaction data, so they can underwrite small loans with better information than a bank.",
+   "quote": "Quillon laid out the lending strategy at their 2024 investor day. The logic is straightforward: they already see merchants' transaction data, so they can decide whether to lend to small businesses with better information than a bank.",
    "cleared": "Left in 2021; cites the public investor day",
    "category": "Material non-public information"
   },
@@ -210,7 +210,7 @@
    "date": "2026-11-12",
    "ts": "00:36",
    "source": "test set T7-00:36",
-   "quote": "Ardent is a good one because they're transparent. On their Q2 earnings call in August, they reported gross margin of 31.4%, up from 28.9% a year earlier, and guided to 32% to 33% for the full year.",
+   "quote": "Ardent is a good one because they're transparent. On their Q2 earnings call in August, they reported gross margin of 31.4%, up from 28.9% a year earlier, and forecast 32% to 33% for the full year.",
    "cleared": "Figures from the public Q2 earnings call",
    "category": "Material non-public information"
   },
@@ -247,7 +247,7 @@
    "date": "2026-11-04",
    "ts": "24:09",
    "source": "written for the design",
-   "quote": "Our prices are on the website. The standard tier is £40 a seat, and that hasn't changed this year.",
+   "quote": "Our prices are on the website. The standard tier is £40 per user, and that hasn't changed this year.",
    "cleared": "Published list price"
   },
   {
@@ -301,7 +301,7 @@
    "date": "2026-10-31",
    "ts": "10:14",
    "source": "written for the design",
-   "quote": "When I was at Harlow Foods in 2015, we priced on a cost-plus basis. I've no idea what they do now.",
+   "quote": "When I was at Harlow Foods in 2015, we set prices at cost plus a fixed margin. I've no idea what they do now.",
    "cleared": "Left Harlow Foods in 2016; nothing current"
   },
   {
@@ -319,7 +319,7 @@
    "date": "2026-11-16",
    "ts": "22:45",
    "source": "written for the design",
-   "quote": "My old manager at Fenwick Telecom, back in 2014, always said the network was over-built.",
+   "quote": "My old manager at Fenwick Telecom, back in 2014, always said they had built more network than they needed.",
    "cleared": "A ten-year-old opinion about a former employer"
   },
   {

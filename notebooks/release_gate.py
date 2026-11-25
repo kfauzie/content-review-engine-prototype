@@ -43,22 +43,25 @@ ISSUE_NOTES = {"T2-01:39": "an unannounced acquisition by the expert's listed em
                "T6-01:34": "a current insider named as the source",
                "T8-00:53": "a former client's confidential information",
                "T8-01:24": "a named individual's health information"}
+# model names are fictional
+MODELS_NOTE = ("Meridian Pro: more careful with subtle cases, slower and costs more. "
+               "Meridian Swift: faster and cheaper, more likely to miss subtle hints.")
+READS_NEW = "Now reads the expert's declaration and the question, not just the answer"
 VERSIONS = [
-    {"id": "v1.0", "label": "Current production (v1.0)", "status": "Current production",
+    {"id": "v1.0", "label": "Current production (v1.0)", "status": "Current production", "model": "Meridian Pro",
      "description": "Flags every answer that names a company. It raises many false alarms, and misses answers that refer to a company without naming it.",
-     "model": "Small, fast model", "prompt": "Flag every expert answer that names a company.",
-     "settings": "Reads the answer only, without the question or the expert's declaration."},
-    {"id": "v1.1", "label": "New version: reads the expert's declaration (v1.1)", "status": "New version",
-     "description": "Also reads the question and the expert's declaration, so it can tell which company “we”, “us” and “their” refer to.",
-     "model": "Large model", "prompt": "Review each answer together with the question and the expert's declaration. Identify the company that “we”, “us” or “their” refers to, using the masked IDs and their tags. Flag by issue type and recommend an action.",
-     "settings": "Reads the question, the answer and the declaration. Temperature 0 (the same input always gives the same output)."},
-    {"id": "v1.2", "label": "New version: cheaper model (v1.2)", "status": "New version",
+     "changes": []},
+    {"id": "v1.1", "label": "New version: reads the expert's declaration (v1.1)", "status": "New version", "model": "Meridian Pro",
+     "description": "Also reads the question and the expert's declaration, so it can tell which company \u201cwe\u201d, \u201cus\u201d and \u201ctheir\u201d refer to.",
+     "changes": [["Model", "same (Meridian Pro)", False], ["Reads", READS_NEW, True],
+                 ["Instructions", "Now works out which company \u201cwe\u201d, \u201cus\u201d and \u201ctheir\u201d refer to, and flags by issue type", True],
+                 ["Settings", "same", False]]},
+    {"id": "v1.2", "label": "New version: cheaper model (v1.2)", "status": "New version", "model": "Meridian Swift",
      "description": "The same instructions as v1.1, on a cheaper and faster model.",
-     "model": "Small, fast model", "prompt": "Same as v1.1.",
-     "settings": "Reads the question, the answer and the declaration. Temperature 0 (the same input always gives the same output)."},
+     "changes": [["Model", "Meridian Pro \u2192 Meridian Swift", True], ["Reads", READS_NEW, True],
+                 ["Instructions", "as v1.1: works out which company \u201cwe\u201d, \u201cus\u201d and \u201ctheir\u201d refer to, and flags by issue type", True],
+                 ["Settings", "same", False]]},
 ]
-LOG = [{"at": "2026-09-08T10:14", "version": "v1.0", "result": "Released",
-        "reason": "First version in production, released before this test existed. New versions are compared with it.", "by": "Staff 0004"}]
 # simulated over-cautious flags by v1.1 (and so v1.2) on answers the answer key treats as clean
 V11_EXTRA = {
     "T5-01:03": {"type": "Confidentiality breach", "action": "escalate to human",
@@ -148,7 +151,7 @@ def release_data(M, tset, listed, topics):
             "baseline": BASELINE, "high": HIGH,
             "types": [{"id": x, "label": TYPE_INFO[x][0], "short": TYPE_INFO[x][1], "priority": TYPE_INFO[x][2], "high": x in HIGH} for x in TYPES],
             "issue_notes": ISSUE_NOTES, "answer_key": {k: v for k, v in human.items() if v}, "answers": sorted(human),
-            "clean": clean, "versions": [{**v, "outputs": outs[v["id"]]} for v in VERSIONS], "log": LOG, "transcripts": transcripts}
+            "clean": clean, "models_note": MODELS_NOTE, "versions": [{**v, "outputs": outs[v["id"]]} for v in VERSIONS], "transcripts": transcripts}
 
 
 if __name__ == "__main__":

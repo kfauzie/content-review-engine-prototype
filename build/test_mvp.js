@@ -116,7 +116,16 @@ t("every flagged clean answer has a reviewer note saying why it is not an issue"
 t("version labels in plain words", RL.versions.map(v => v.label).join("|") === "Current production (v1.0)|New version: reads the expert's declaration (v1.1)|New version: cheaper model (v1.2)");
 t("every version's outputs cover every expert answer and are labelled simulated", RL.versions.every(v => RL.answers.every(a => v.outputs[a])) && /SIMULATED/.test(RL.note));
 t("v1.2 differs from v1.1 only on T5-01:24", RL.answers.filter(a => JSON.stringify(RL.versions[1].outputs[a]) !== JSON.stringify(RL.versions[2].outputs[a])).join() === "T5-01:24");
-t("release log is prefilled with v1.0's release", RL.log.length === 1 && RL.log[0].version === "v1.0" && ID.test(RL.log[0].by));
+t("model names are fictional: Meridian Pro (current) and Meridian Swift", RL.versions.map(v => v.model).join() === "Meridian Pro,Meridian Pro,Meridian Swift" &&
+  /^Meridian Pro: .* Meridian Swift: /.test(RL.models_note));
+t("what's changed: only differences from production are highlighted", RL.versions[0].changes.length === 0 &&
+  RL.versions[2].changes.find(c => c[0] === "Model").join() === "Model,Meridian Pro \u2192 Meridian Swift,true" && RL.versions[1].changes.find(c => c[0] === "Settings")[2] === false);
+t("improvement 2 covers both insider sources and personal details", D.fixes[1].title === "Flag named people: insider sources and personal details");
+const T5 = D.transcripts[D.cards.find(c => c.source === "test set T5-01:24").transcript], T7 = D.transcripts[D.cards.find(c => c.source === "test set T7-00:36").transcript];
+t("first missed example: plain words, two paragraphs, and the reviewer's outside source", T5.reviewer_comment.split("\n\n").length === 2 && /knee replacement device/.test(T5.reviewer_comment) &&
+  !/hedg/i.test(T5.reviewer_comment) && /not in the transcript/.test(T5.root_cause) && /declaration/.test(T5.root_cause));
+t("first false alarm example: says what the AI should check, not 'web search'", /company filings and earnings call transcripts/.test(T7.root_cause) && !/web search/i.test(T7.root_cause));
+t("example wording is plain: no jargon left in the quotes", !D.cards.some(c => /knee systems|signed off for months|rate card|mothball|carve-out|churn model|underwrite|guided to|cost-plus|over-built/.test(c.quote)));
 t("kill-switch copy under the result", html.includes("In production, the same check runs on live spot-checks. A miss in a high-priority type triggers the kill switch, and that type goes back to full human review."));
 t("the term \"release gate\" isn't shown anywhere on the page", !/release gate/i.test(html.replace(/<script id="data"[\s\S]*?<\/script>/, "").replace(/\/\*[\s\S]*?\*\//g, "").replace(/\/\/.*$/gm, "")));
 t("reviewers are internal", Object.values(D.transcripts).every(x => /\(internal\)$/.test(x.reviewer)));

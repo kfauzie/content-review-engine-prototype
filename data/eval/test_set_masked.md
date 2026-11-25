@@ -143,7 +143,7 @@ Each transcript has an expert profile, the expert's onboarding declaration, the 
 
 [01:30] INTERVIEWER: Are vendors pushing price increases?
 
-[01:34] EXPERT: Most of the market is trying. For us specifically, we're moving list price up 12% on the mid-market tier from January. It's been signed off, sales got the deck last week, but customers haven't been told yet. We think churn risk is low because of the integrations.
+[01:34] EXPERT: Most of the market is trying. For us specifically, we're moving list price up 12% on the mid-market tier from January. It's been approved, and sales got the presentation last week, but customers haven't been told yet. We think churn risk is low because of the integrations.
 
 [02:01] INTERVIEWER: Interesting. How do buyers usually react to increases like that?
 
@@ -167,7 +167,7 @@ Each transcript has an expert profile, the expert's onboarding declaration, the 
   "issues": [
     {
       "timestamp": "01:34",
-      "quote": "For us specifically, we're moving list price up 12% on the mid-market tier from January. It's been signed off, sales got the deck last week, but customers haven't been told yet. We think churn risk is low because of the integrations.",
+      "quote": "For us specifically, we're moving list price up 12% on the mid-market tier from January. It's been approved, and sales got the presentation last week, but customers haven't been told yet. We think churn risk is low because of the integrations.",
       "category": "Current employer confidential",
       "severity": "high",
       "expected_action": "redact",
@@ -195,7 +195,7 @@ Each transcript has an expert profile, the expert's onboarding declaration, the 
 
 [00:24] INTERVIEWER: Understood.
 
-[00:26] EXPERT: Company 9728 laid out the lending strategy at their 2024 investor day. The logic is straightforward: they already see merchants' transaction data, so they can underwrite small loans with better information than a bank. That's the whole thesis, and it's been in their public filings since.
+[00:26] EXPERT: Company 9728 laid out the lending strategy at their 2024 investor day. The logic is straightforward: they already see merchants' transaction data, so they can decide whether to lend to small businesses with better information than a bank. That's the whole thesis, and it's been in their public filings since.
 
 [00:55] INTERVIEWER: Does the thesis hold up?
 
@@ -250,7 +250,7 @@ Each transcript has an expert profile, the expert's onboarding declaration, the 
 
 [01:20] INTERVIEWER: Anything investors should be aware of?
 
-[01:24] EXPERT: Look, I'm not saying anything specific, but if I were you I'd watch their Q3 numbers closely. Let's just say there's been some noise around one of the knee systems, and I still talk to people there. Quality issues take a while to show up in the numbers.
+[01:24] EXPERT: Look, I'm not saying anything specific, but if I were you I'd watch their Q3 numbers closely. Let's just say there's been some noise around one of their knee replacement devices, and I still talk to people there. Quality issues take a while to show up in the numbers.
 
 [01:52] INTERVIEWER: Okay. Going back to the market, how important is regulation?
 
@@ -270,7 +270,7 @@ Each transcript has an expert profile, the expert's onboarding declaration, the 
   "issues": [
     {
       "timestamp": "01:24",
-      "quote": "Look, I'm not saying anything specific, but if I were you I'd watch their Q3 numbers closely. Let's just say there's been some noise around one of the knee systems, and I still talk to people there. Quality issues take a while to show up in the numbers.",
+      "quote": "Look, I'm not saying anything specific, but if I were you I'd watch their Q3 numbers closely. Let's just say there's been some noise around one of their knee replacement devices, and I still talk to people there. Quality issues take a while to show up in the numbers.",
       "category": "MNPI",
       "severity": "high",
       "expected_action": "escalate to human",
@@ -306,7 +306,7 @@ Each transcript has an expert profile, the expert's onboarding declaration, the 
 
 [01:30] INTERVIEWER: Which vendors are likely to lose?
 
-[01:34] EXPERT: The niche dashboard tools. My contact Person 2315, who runs procurement there now, told me last week they're giving notice to two of them in Q1. The big platforms will win because they can bundle.
+[01:34] EXPERT: The niche dashboard tools. My contact Person 2315, who runs procurement there now, told me last week they're ending contracts with two of those tools in Q1. The big platforms will win because they can bundle.
 
 [01:55] INTERVIEWER: In general, how do vendors defend against consolidation?
 
@@ -334,7 +334,7 @@ Each transcript has an expert profile, the expert's onboarding declaration, the 
     },
     {
       "timestamp": "01:34",
-      "quote": "My contact Person 2315, who runs procurement there now, told me last week they're giving notice to two of them in Q1.",
+      "quote": "My contact Person 2315, who runs procurement there now, told me last week they're ending contracts with two of those tools in Q1.",
       "category": "Source disclosure",
       "severity": "high",
       "expected_action": "reject whole transcript",
@@ -362,7 +362,7 @@ Each transcript has an expert profile, the expert's onboarding declaration, the 
 
 [00:33] INTERVIEWER: Can you give a concrete example?
 
-[00:36] EXPERT: Company 9910 is a good one because they're transparent. On their Q2 earnings call in August, they reported gross margin of 31.4%, up from 28.9% a year earlier, and guided to 32% to 33% for the full year. They attributed most of it to pricing and to exiting low-margin private label contracts.
+[00:36] EXPERT: Company 9910 is a good one because they're transparent. On their Q2 earnings call in August, they reported gross margin of 31.4%, up from 28.9% a year earlier, and forecast 32% to 33% for the full year. They attributed most of it to pricing and to exiting low-margin private label contracts.
 
 [01:08] INTERVIEWER: That's quite specific. Is that from your time there?
 
@@ -413,7 +413,7 @@ Each transcript has an expert profile, the expert's onboarding declaration, the 
 
 [01:20] AI INTERVIEWER: How do banks typically respond to findings like that?
 
-[01:24] EXPERT: A remediation programme, usually with external help, and a lot of pressure on the compliance team. It's tough on people. I remember Person 8435, who led their financial crime team at the time, was signed off for months with a breakdown afterwards.
+[01:24] EXPERT: A remediation programme, usually with external help, and a lot of pressure on the compliance team. It's tough on people. I remember Person 8435, who led their financial crime team at the time, was on sick leave for months after a mental breakdown.
 
 [01:48] AI INTERVIEWER: What separates banks that manage this well?
 
@@ -445,7 +445,7 @@ Each transcript has an expert profile, the expert's onboarding declaration, the 
     },
     {
       "timestamp": "01:24",
-      "quote": "I remember Person 8435, who led their financial crime team at the time, was signed off for months with a breakdown afterwards.",
+      "quote": "I remember Person 8435, who led their financial crime team at the time, was on sick leave for months after a mental breakdown.",
       "category": "PII",
       "severity": "medium",
       "expected_action": "redact",

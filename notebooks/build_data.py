@@ -35,8 +35,8 @@ CATEGORIES = [
 ]
 # reviewer comments and root causes for the 5 test-set transcripts (the 13 written ones carry their own)
 TEST_SET_NOTES = {
-    "T5-01:24": ("The expert left Northwind Biomedical, a listed company, in March 2026 and says he still speaks to people there. He hints at a quality problem with one of its knee systems that has not yet shown in its results. The hedging does not make it safe: this may be inside information. We redacted the passage and referred it to Legal.",
-                 "The AI only checks answers that name a company. This answer says “their” instead. To link it to Northwind Biomedical, the AI needed the question before it and the expert's declaration, and it reads neither."),
+    "T5-01:24": ("The expert left Northwind Biomedical, a listed company, in March 2026 and says he still speaks to people there. He hints at a quality problem with one of its knee replacement devices that has not yet shown in its results. That may be inside information.\n\nSaying “I'm not saying anything specific” does not make it safe. We redacted the passage and referred it to Legal.",
+                 "The AI only checks answers that name a company, and this one says “their” instead. The human reviewer's conclusion also relies on a fact that is not in the transcript: that Northwind Biomedical is a listed company. The reviewer probably checked another source, such as the expert's declaration. The AI reads neither the question before the answer nor the declaration, so it could not link “their” to Northwind Biomedical or see that the company is listed."),
     "T3-01:34": ("The expert disclosed a price increase at her current employer that customers have not yet been told about. This breaches her declaration. We redacted the passage and reminded her of her restrictions.",
                  "The AI only checks answers that name a company. This answer says “for us”. Linking it to Teallight Software, her current employer, needed her declaration, which the AI does not read."),
     "T6-01:34": ("The expert names a current insider as the source of non-public decisions about suppliers. This also contradicts her declaration that she has no professional contact with Marrow Analytics. We rejected the transcript and referred the expert to the vetting team.",
@@ -48,7 +48,7 @@ TEST_SET_NOTES = {
     "T4-00:26": ("The expert left Quillon Payments in 2021. Everything he says comes from its public investor day and filings. Cleared.",
                  "The AI matched “Quillon Payments”, the expert's former employer. It did not check that he left in 2021, or that he cites the public investor day."),
     "T7-00:36": ("The figures are precise but come from the public Q2 earnings call and slides, as the expert confirms at 01:11. He left Ardent Foods in 2022. Cleared.",
-                 "The AI matched “Ardent Foods” next to precise margin figures. It did not check the source the expert gave: the public Q2 earnings call."),
+                 "The AI flagged precise margin figures next to “Ardent Foods” without checking the source the expert gave: the public Q2 earnings call. It should check figures like these against approved public sources, such as company filings and earnings call transcripts, and clear them when they match."),
 }
 
 
@@ -66,7 +66,7 @@ FIXES = [
      "how": ["Give the AI the question and the expert's declaration with every answer.",
              "Identify the company that \u201cwe\u201d, \u201cour\u201d or \u201ctheir\u201d refers to before assessing the answer.",
              "Check the answer against the expert's restrictions and the date they left each company."]},
-    {"id": "people", "title": "Flag possible insider contacts", "cause_label": "Why the AI missed it",
+    {"id": "people", "title": "Flag named people: insider sources and personal details", "cause_label": "Why the AI missed it",
      "root_cause": "The AI only looked for information about companies. It missed answers that name private individuals, and answers in which "
                    "the expert names an insider as the source.",
      "examples": [{"name": "Elena Vasquez", "highlight": "My contact Jamie Holt, who runs procurement there now, told me"},
@@ -92,9 +92,9 @@ HIGHLIGHT = {
     "Priya Natarajan": "For us specifically", "Grace Liu": "We're closing the Manchester plant in March",
     "Mateo Alvarez": "Our roadmap has the analytics module launching in Q2", "Siobhan Kelly": "We're about to lose our second-largest customer",
     "Elena Vasquez": "My contact Jamie Holt, who runs procurement there now, told me", "Owen Prendergast": "Their head of logistics, Carla, told me",
-    "Mei Lin Tan": "I still speak to the plant manager at Ostrava", "Farid Haddad": "Someone on their pricing committee sent me the new rate card",
-    "Thomas Achebe": "the stranded costs came out at nearly twice what management told the board",
-    "Ingrid Solberg": "had its core banking migration fail twice", "Ravi Chandran": "the real number was well above what they show investors",
+    "Mei Lin Tan": "I still speak to the plant manager at Ostrava", "Farid Haddad": "Someone on their pricing committee sent me the new price list",
+    "Thomas Achebe": "the costs left behind came out at nearly twice what management told the board",
+    "Ingrid Solberg": "had its move to a new core banking system fail twice", "Ravi Chandran": "the real rate was well above what they show investors",
     "Hannah Booth": "Mark Ellison", "Marcus Webb": "Tom Reyes, has been going through a difficult divorce",
     "Sofia Marchetti": "I've got his personal mobile", "Kwame Mensah": "Aisha Rahman, went on long-term sick leave after surgery",
     "Lena Hoffmann": "Pieter van Dam, was let go after a drink-driving conviction", "Daniel Osei": "Rachel Lim, is on maternity leave",

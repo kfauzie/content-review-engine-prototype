@@ -288,7 +288,7 @@
    "flag": true,
    "type": "PII",
    "action": "redact",
-   "reason": "Names a private individual and discloses sensitive health information: 'Person 8435, who led their financial crime team at the time, was signed off for months with a breakdown'. Also derived from confidential client engagement."
+   "reason": "Names a private individual and discloses sensitive health information: 'Person 8435, who led their financial crime team at the time, was on sick leave for months after a mental breakdown'. Also derived from confidential client engagement."
   },
   "T8-01:52": {
    "flag": false,

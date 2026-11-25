@@ -1,3 +1,30 @@
+# Prototype feedback, round 21 (applied): second light polish
+
+**Structure**
+- **Tabs:** two tabs, "Current AI performance" (the benchmark of the version in production) and "Compare a new version". The repeated breadcrumb is gone.
+- **Compare page:** a one-line description, "Run a new version on the same reviewed transcripts and compare it with current production." The release log and the results header are removed.
+
+**Compare a new version**
+- **Models:** fictional names, Meridian Pro (current) and Meridian Swift, with one line on the difference.
+- **What's changed:** shows only what differs from production. Changed lines are highlighted (e.g. "Model: Meridian Pro → Meridian Swift"); unchanged lines are muted (e.g. "Settings: same").
+- **Misses table:** Issue type | Priority | Current production missed | New version missed. It's sorted by priority, has an "All types" total and small transcript links in the cells.
+- **False alarms table:** titled "False alarms: flagged by AI, not an actual issue", with numbers only in the cells.
+
+**Current AI performance**
+- **Improvements:** each has its own colour (blue, teal, terracotta) on its top rule, number and labels.
+- **Expert quotes:** italic on a light grey background with a thin left rule.
+- **Type sizes:** the missed-by-AI and false alarm sections now use the same sizes.
+
+**Content**
+- **Clearer quotes:** 16 quotes were reworded, and the test set, written transcripts, highlights and simulated outputs were updated to match. Examples: "on sick leave for months after a mental breakdown", "knee replacement devices", "price list", "forecast" for "guided", "per user" for "a seat", "selling off part of their business" for "carve-out".
+- **Improvement 2:** now "Flag named people: insider sources and personal details".
+- **First missed example (transcript 5):**
+  - **Reviewer comment:** names the knee replacement device and drops "hedging". It's in two paragraphs.
+  - **AI note:** says the reviewer relied on a fact not in the transcript (that the company is listed), probably taken from the declaration.
+- **First false alarm example (transcript 7):** the AI note now says to check figures against approved public sources, such as company filings and earnings call transcripts.
+
+---
+
 # Prototype feedback, round 20 (applied): light polish, copy, colour, version testing
 
 1. **Copy, rewritten as a senior lawyer would write it.** This covers all 20 human reviewer comments, all 20 "Why the original AI didn't flag it" notes, the 18 "Cleared" reasons, the category and false alarm descriptions, the fix copy, the note subtitles and the legend.

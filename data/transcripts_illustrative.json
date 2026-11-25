@@ -265,7 +265,7 @@
     {
      "ts": "02:03",
      "speaker": "EXPERT",
-     "text": "I'd expect them to miss guidance. The October order book I saw was down about 15% on last year."
+     "text": "I'd expect them to miss their profit forecast. The October order book I saw was down about 15% on last year."
     },
     {
      "ts": "02:20",
@@ -290,7 +290,7 @@
    ],
    "passage_ts": "02:03",
    "reviewer_comment": "The expert is Corran Engineering's main distributor and sees its order data. He disclosed a fall in its order book that points to the company missing its published forecast (its guidance). Corran Engineering is listed. We redacted the passage and reminded the expert of his restrictions.",
-   "root_cause": "The AI recorded “I'd expect them to miss guidance” as the expert's own forecast and treated the passage as opinion. It missed that “the order book I saw” means he had seen Corran Engineering's internal data, through the distribution relationship recorded in his declaration."
+   "root_cause": "The AI recorded “I'd expect them to miss their profit forecast” as the expert's own forecast and treated the passage as opinion. It missed that “the order book I saw” means he had seen Corran Engineering's internal data, through the distribution relationship recorded in his declaration."
   },
   {
    "name": "Grace Liu",
@@ -773,7 +773,7 @@
     {
      "ts": "01:56",
      "speaker": "EXPERT",
-     "text": "Our prices are on the website. The standard tier is £40 a seat, and that hasn't changed this year."
+     "text": "Our prices are on the website. The standard tier is £40 per user, and that hasn't changed this year."
     },
     {
      "ts": "02:10",
